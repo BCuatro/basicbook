@@ -12,7 +12,7 @@ class Api::SessionController < ApplicationController
             login!(@user)
             render "api/users/show"
         else
-            flash.now[:errors] = ["Invalid credentials"], status 422
+            flash.now[:errors] = ["Invalid credentials"]
             render :new
         end
     end
