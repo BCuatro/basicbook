@@ -10,7 +10,7 @@ import { signup } from '../../actions/session_actions';
 // const mapStateToProps= ({state}) =>{
 //     return{
 //         formtype: "signup",
-//         errors: state.errors,
+//         errors: state.errors.session,
 //         // link: <Link to="/signup"> Sign Up </Link>
 
 

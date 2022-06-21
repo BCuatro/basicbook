@@ -45,7 +45,7 @@ export const logout =()=> dispatch =>{
 }
 // signup_container(user)
 
-export const signup = user => {
+export const signup = user => dispatch =>{
     return SessionApiUtil.signup(user)
     .then(currentUser => dispatch(receiveCurrentUser(currentUser))),
     err => dispatch(receieveErrors(err.responseJSON))
