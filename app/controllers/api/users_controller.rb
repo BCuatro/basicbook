@@ -7,9 +7,9 @@ class Api::UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         if @user
-            render json: @user
+            render :show
         else
-            flash.now[:errors] = ["user not found"]
+            render json:["user not found"], status: 401
         end
     end
     
@@ -19,9 +19,9 @@ class Api::UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login!(@user)
-            render :show
+            render "api/users/show"
         else
-            render json: @user.errors.full_messages
+            render json: ['WTF, Wrong Credentials'] , status: 401
         end
 
     end
@@ -30,10 +30,10 @@ class Api::UsersController < ApplicationController
     def update
         @user = User.find_by(id: params[:id])
         if @user.update(user_params)
-          flash[:success] = "Object was successfully updated"
-          render json: :show
+          
+          render :show
         else
-          flash[:error] = "Something went wrong"
+            render json: ["Something went wrong"], status: 401
         end
     end
     

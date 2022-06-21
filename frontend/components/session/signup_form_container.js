@@ -7,15 +7,18 @@ import { signup } from '../../actions/session_actions';
 
 
 
-// const mapStateToProps= ({state}) =>{
-//     return{
-//         formtype: "signup",
-//         errors: state.errors.session,
-//         // link: <Link to="/signup"> Sign Up </Link>
+const mapStateToProps= (state) => {
+    console.log(state)
+    // debugger
+    return{
+
+        errors: state.errors.session,
+        formtype: "Sign Up"
+        
 
 
-//     }
-// }
+    }
+}
 
 const mapDispatchToProps= dispatch => {
     return{
@@ -26,4 +29,4 @@ const mapDispatchToProps= dispatch => {
 }
 
 
-export default connect(null, mapDispatchToProps)(SessionForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SessionForm)

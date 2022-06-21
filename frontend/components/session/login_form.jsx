@@ -1,14 +1,11 @@
 import React from 'react';
 
 
-class SessionForm extends React.Component{
+class LoginForm extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
             username: "",
-            email:"",
-            first_name: "",
-            last_name: "",
             password: ""
         }
         this.handleSubmit= this.handleSubmit.bind(this);
@@ -18,7 +15,7 @@ class SessionForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.createNewUser(this.state);
+        this.props. processForm(this.state);
 
     }
 
@@ -54,24 +51,7 @@ class SessionForm extends React.Component{
                             onChange={this.handleInput('username')}
                             />
                         </label>
-                        <label>Email:
-                            <input type="text" 
-                            value={this.state.email}
-                            onChange={this.handleInput('email')}
-                            />
-                        </label>
-                        <label>First Name:
-                            <input type="text" 
-                            value={this.state.first_name}
-                            onChange={this.handleInput('first_name')}
-                            />
-                        </label>
-                        <label>Last Name:
-                            <input type="text" 
-                            value={this.state.last_name}
-                            onChange={this.handleInput('last_name')}
-                            />
-                        </label>
+                      
 
                         <label>Password:
                             <input type="password" 
@@ -79,7 +59,7 @@ class SessionForm extends React.Component{
                             onChange={this.handleInput('password')}
                             />
                         </label>
-                        <button onClick = {this.handleSubmit}>SignUp</button>
+                        <button onClick = {this.handleSubmit}>Log In</button>
                     </div>
                 </form>
 
@@ -89,4 +69,4 @@ class SessionForm extends React.Component{
     }
 }
 
-export default SessionForm
+export default LoginForm

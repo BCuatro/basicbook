@@ -1,4 +1,4 @@
-class Api::SessionController < ApplicationController
+class Api::SessionsController < ApplicationController
 
     before_action :ensure_logged_in, only:[:destroy]
 
@@ -12,13 +12,12 @@ class Api::SessionController < ApplicationController
             login!(@user)
             render "api/users/show"
         else
-            flash.now[:errors] = ["Invalid credentials"]
-            render :new
+            render json: ['WTF. Wrong credentials!'], status: 401
         end
     end
 
     def destroy
         logout!
-        render.json {successful}
+        render "api/users/show"
     end
 end
