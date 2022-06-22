@@ -1,8 +1,11 @@
 class User < ApplicationRecord
-    validates :username, :email,  presence: true, uniqueness: true
+    
+    validates :username, presence: true, uniqueness: {case_sensitive: false}
     validates :first_name, :last_name, :password_digest, :session_token, presence: true
+    validates :first_name, :last_name, format: { with: /\A[^0-9`!@#\$%\^&*+_=]+\z/}
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: {case_sensitive: false}
     validates :password, length: {minimum: 6}, allow_nil: true
-
+    
 
     attr_reader :password
     before_validation :ensure_session_token
@@ -29,6 +32,9 @@ class User < ApplicationRecord
         self.session_token = SecureRandom::urlsafe_base64
         self.save!
         self.session_token
+    end
+    def full_name
+        "#{first_name} #{last_name}"
     end
 
 
