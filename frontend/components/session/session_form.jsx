@@ -21,7 +21,7 @@ class SessionForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const user = Object.assign({}, this.state)
-        this.props.createNewUser(user).then(this.props.closeModal);
+        this.props.processForm(user).then(this.props.closeModal);
 
     }
 
@@ -45,11 +45,10 @@ class SessionForm extends React.Component{
     render(){
         return(
             <div>
-                <pre>{JSON.stringify(this.state,undefined,2)}</pre>
+                {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
+                <h2>{this.props.formtype}</h2>
                 <form onSubmit={this.handleSubmit}>
-                    Welcome to MetaBook!
-                    <br />
-                    {this.props.formtype} or {this.props.otherForm}
+                    
                     <div onClick={this.props.closeModal} className="close-x">X</div>
                      <div> {this.renderErrors()}</div>
                     <div>
@@ -60,12 +59,14 @@ class SessionForm extends React.Component{
                             onChange={this.handleInput('username')}
                             />
                         </label>
+                        <br />
                         <label>Email:
                             <input type="text" 
                             value={this.state.email}
                             onChange={this.handleInput('email')}
                             />
                         </label>
+                        <br />
                         <label>First Name:
                             <input type="text" 
                             value={this.state.first_name}
@@ -78,6 +79,7 @@ class SessionForm extends React.Component{
                             onChange={this.handleInput('last_name')}
                             />
                         </label>
+                        <br />
 
                         <label>Password:
                             <input type="password" 
@@ -86,6 +88,7 @@ class SessionForm extends React.Component{
                             />
                         </label>
                         <button onClick = {this.handleSubmit}>SignUp</button>
+                        {this.props.otherForm}
                     </div>
                 </form>
 

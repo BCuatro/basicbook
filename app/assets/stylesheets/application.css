@@ -16,11 +16,15 @@
 
  .modal-background {
     position: fixed;
-    top: 0;
+    top: 25%;
     bottom: 0;
     right: 0;
-    left: 0;
-    background: white;
+    left: 30%;
+    height: 400px;
+    width: 300px;
+    background: cornsilk;
+    border-radius: 5px;
+    border: solid black;
     z-index: 10;
   }
  

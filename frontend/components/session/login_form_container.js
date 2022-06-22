@@ -4,14 +4,14 @@ import { connect} from 'react-redux';
 import LoginForm from './login_form';
 import { login } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-
+// import SessionForm from './session_form';
 
 
 
 
 const mapStateToProps= (state, ownProps) =>{
     return{
-        formtype: "login",
+        formtype: "Log In",
         errors: state.errors.session,
 
 
