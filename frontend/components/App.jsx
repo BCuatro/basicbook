@@ -1,26 +1,28 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
+import { AuthRoute } from '../util/route_util';
+import home from './home/home';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
+import GreetingContainer from './greeting/greeting_container';
 
 const App = () => (
     <div>
         <header>
-                <h1>Metabook</h1>
-                <Link to ="/signup"> 
-                    <button>SignUp</button>
-                </Link>
-                <Link to ="/login">
-                    <button>LogIn</button>
-                </Link>
+            <h1>Metabook</h1>
+            <GreetingContainer/>
+        
         </header>
-            <Switch>
-            <Route exact path="/login" component={LoginFormContainer}/>
-            <Route exact path ="/signup" component = {SignupFormContainer}/>
+            <div>
+                {/* <Route path="/" component={GreetingContainer}/>
+                <Route exact path="/" component={home} /> */}
+                <AuthRoute exact path="/login" component={LoginFormContainer}/>
+                <AuthRoute exact path ="/signup" component = {SignupFormContainer}/>
 
-            </Switch>
+            </div>
          
     </div>
 )
 
 export default App;
+
