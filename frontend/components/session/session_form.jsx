@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 
 
 class SessionForm extends React.Component{
@@ -18,7 +20,8 @@ class SessionForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.createNewUser(this.state);
+        const user = Object.assign({}, this.state)
+        this.props.createNewUser(user).then(this.props.closeModal);
 
     }
 
@@ -44,7 +47,10 @@ class SessionForm extends React.Component{
             <div>
                 <pre>{JSON.stringify(this.state,undefined,2)}</pre>
                 <form onSubmit={this.handleSubmit}>
-                    <h3> {this.props.formtype}</h3>
+                    Welcome to MetaBook!
+                    <br />
+                    {this.props.formtype} or {this.props.otherForm}
+                    <div onClick={this.props.closeModal} className="close-x">X</div>
                      <div> {this.renderErrors()}</div>
                     <div>
                 
@@ -89,4 +95,4 @@ class SessionForm extends React.Component{
     }
 }
 
-export default SessionForm
+export default withRouter(SessionForm)

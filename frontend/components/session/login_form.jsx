@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 
 
 class LoginForm extends React.Component{
@@ -15,7 +17,8 @@ class LoginForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props. processForm(this.state);
+        const user = Object.assign({}, this.state);
+        this.props. processForm(user).then(this.props.closeModal);
 
     }
 
@@ -41,8 +44,11 @@ class LoginForm extends React.Component{
             <div>
                 <pre>{JSON.stringify(this.state,undefined,2)}</pre>
                 <form onSubmit={this.handleSubmit}>
-                    <h3> {this.props.formtype}</h3>
-                     <div> {this.renderErrors()}</div>
+                    Welcome to MetaBook!
+                    <br />
+                    {this.props.formtype} or {this.props.otherForm}
+                    <div onClick={this.props.closeModal} className="close-x">X</div>
+                    <div> {this.renderErrors()}</div>
                     <div>
                 
                         <label>Username:
@@ -69,4 +75,4 @@ class LoginForm extends React.Component{
     }
 }
 
-export default LoginForm
+export default withRouter(LoginForm)
