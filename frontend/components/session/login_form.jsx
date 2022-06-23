@@ -18,7 +18,7 @@ class LoginForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props. processForm(user).then(this.props.closeModal);
+        this.props.processForm(user).then(this.props.closeModal);
 
     }
 
@@ -41,7 +41,7 @@ class LoginForm extends React.Component{
 
     render(){
         return(
-            <div>
+            <div >
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
                 <form onSubmit={this.handleSubmit}>
                     <h2>{this.props.formtype} </h2>
@@ -50,22 +50,28 @@ class LoginForm extends React.Component{
                     <div> {this.renderErrors()}</div>
                     <div>
                 
-                        <label>Username:
+                    <div className="modal-input-container">   
                             <input type="text" 
-                            value={this.state.username}
-                            onChange={this.handleInput('username')}
+                                id="username"
+                                required
+                                className= "modal-input"
+                                value={this.state.username}
+                                onChange={this.handleInput('username')}
                             />
-                        </label>
-                      
-
-                        <label>Password:
+                            <label htmlFor= "username" className="modal-label">Username:</label>
+                        </div> 
+                        <br />
+                        <div className="modal-input-container">
                             <input type="password" 
-                            value={this.state.password}
-                            onChange={this.handleInput('password')}
+                                id="password"
+                                required
+                                className = "modal-input"
+                                value={this.state.password}
+                                onChange={this.handleInput('password')}
                             />
-                        </label>
+                            <label htmlFor= "password" className="modal-label">Password:</label>
+                        </div>
                         <button onClick = {this.handleSubmit}>Log In</button>
-                        {this.props.otherForm}
                     </div>
                 </form>
 

@@ -13,19 +13,32 @@
  *= require_tree .
  *= require_self
  */
+ .login-signup{
+    position: absolute;
+    top: 40%;
+    bottom:0;
+    left:35%;
+    right:0;
+   
+  }
+
 
  .modal-background {
     position: fixed;
     top: 25%;
     bottom: 0;
     right: 0;
-    left: 30%;
+    left: 55%;
     height: 400px;
     width: 300px;
-    background: cornsilk;
+    background: transparent;
+
     border-radius: 5px;
-    border: solid black;
+    border: solid white;
     z-index: 10;
+   
+    backdrop-filter: blur(3px) ;
+    box-shadow: 0 0 6px 0 rgba(29, 29, 29, 0.203);
   }
  
   .modal-child {
@@ -41,3 +54,85 @@
     right: 5px;
     cursor: pointer;
   }
+
+
+/* .input-field {
+  position: relative;
+  top: -50%;
+  width: 250px;
+  height: 44px;
+  line-height: 44px;
+  
+}
+label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #d3d3d3;
+  transform: translate(10px, 5px);
+  transform-origin: 0 0;
+  transition: all .3s;
+  cursor: text;
+}
+input {
+  
+  border: 2px solid #111;
+  
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: none;
+  background-color: transparent;
+  color: #111;
+  top:50%
+
+}
+input:focus,
+input:valid {
+  border-color: blue;
+}
+
+input:focus~label,
+input:valid~label {
+  transform: translate(10px, 5px) scale(.8);
+  background-color: white;
+  padding-inline: 5px;
+  font-size: 14px;
+  top: -24px;
+  color: blue;
+} */
+.modal-input-container {
+  position: relative;
+  width: 250px;
+  height: 40px;
+  line-height: 40px;
+}
+.modal-label {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  color: #d3d3d3;
+  transition: 0.2s all;
+  cursor: text;
+}
+.modal-input {
+  width: 75%;
+  border-radius: 5px;
+  outline: 0;
+  padding: .5em;
+  border: 2px solid black;
+  box-shadow: none;
+  color: #111;
+
+}
+
+.modal-input:focus,
+.modal-input:valid {
+  border-color: darkgreen;
+}
+.modal-input:focus~.modal-label,
+.modal-input:valid~.modal-label {
+  font-size: 14px;
+  top: -22px;
+  color: black;
+  padding: 0;
+}

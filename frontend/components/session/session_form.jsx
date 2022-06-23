@@ -50,43 +50,63 @@ class SessionForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     
                     <div onClick={this.props.closeModal} className="close-x">X</div>
-                     <div> {this.renderErrors()}</div>
-                    <div>
-                
-                        <label>Username:
+                    <div> {this.renderErrors()}</div>
+                    <div>   
+                        <div className="modal-input-container">   
                             <input type="text" 
-                            value={this.state.username}
-                            onChange={this.handleInput('username')}
+                                id="username"
+                                required
+                                className= "modal-input"
+                                value={this.state.username}
+                                onChange={this.handleInput('username')}
                             />
-                        </label>
+                            <label htmlFor= "username" className="modal-label">Username:</label>
+                        </div> 
                         <br />
-                        <label>Email:
-                            <input type="text" 
-                            value={this.state.email}
-                            onChange={this.handleInput('email')}
-                            />
-                        </label>
-                        <br />
-                        <label>First Name:
-                            <input type="text" 
-                            value={this.state.first_name}
-                            onChange={this.handleInput('first_name')}
-                            />
-                        </label>
-                        <label>Last Name:
-                            <input type="text" 
-                            value={this.state.last_name}
-                            onChange={this.handleInput('last_name')}
-                            />
-                        </label>
-                        <br />
-
-                        <label>Password:
+                        <div className="modal-input-container">
                             <input type="password" 
-                            value={this.state.password}
-                            onChange={this.handleInput('password')}
+                                id="password"
+                                required
+                                className = "modal-input"
+                                value={this.state.password}
+                                onChange={this.handleInput('password')}
                             />
-                        </label>
+                            <label htmlFor= "password" className="modal-label">Password:</label>
+                        </div>
+                        <br />
+                        <div className="modal-input-container">
+                            <input type="text" 
+                                id="email"
+                                required
+                                className="modal-input"
+                                value={this.state.email}
+                                onChange={this.handleInput('email')}
+                            />
+                            <label htmlFor= "email" className="modal-label">Email:</label>
+                        </div>
+                        <br />
+                        <div className="modal-input-container">
+                            <input type="text" 
+                                id="first_name"
+                                required
+                                className="modal-input"
+                                value={this.state.first_name}
+                                onChange={this.handleInput('first_name')}
+                            />
+                            <label htmlFor= "first_name" className="modal-label">First Name:</label>
+                        </div>
+                        <br />
+                        <div className="modal-input-container">
+                            <input type="text" 
+                                id="last_name"
+                                required
+                                className= "modal-input"
+                                value={this.state.last_name}
+                                onChange={this.handleInput('last_name')}
+                            />
+                            <label htmlFor= "last_name" className="modal-label">Last Nanme</label>
+                            <br />
+                        </div>
                         <button onClick = {this.handleSubmit}>SignUp</button>
                         {this.props.otherForm}
                     </div>

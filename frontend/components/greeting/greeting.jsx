@@ -6,6 +6,7 @@ const Greeting = ({ currentUser, logout, openModal }) => {
 
   const sessionLinks = () => (
     <nav className="login-signup">
+      <h1 id="title">Welcome To MetaBook</h1>
       <button onClick={() => openModal('login')}>Login</button>
       &nbsp;or&nbsp;
       <button onClick={() => openModal('signup')}>Signup</button>

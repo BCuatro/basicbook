@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import { AuthRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import home from './home/home';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
@@ -12,14 +12,15 @@ const App = () => (
         <Modal />
         <header>
             <h1>Metabook</h1>
-            <GreetingContainer/>
         
         </header>
             <div>
-                {/* <Route path="/" component={GreetingContainer}/>
-                <Route exact path="/" component={home} /> */}
-                {/* <AuthRoute exact path="/login" component={LoginFormContainer}/>
-                <AuthRoute exact path ="/signup" component = {SignupFormContainer}/> */}
+            <GreetingContainer/>
+                {/* <Route path="/" component={GreetingContainer}/>*/}
+               
+                {/* <AuthRoute exact path="/login" component={LoginFormContainer}/> */}
+                {/* <Route exact path ="/" component = {SignupFormContainer}/> */}
+                {/* <Route exact path="/" component={home} />  */}
 
             </div>
          
@@ -28,3 +29,4 @@ const App = () => (
 
 export default App;
 
+ProtectedRoute
