@@ -25,19 +25,19 @@
 
  .modal-background {
     position: absolute;
-    top: 25%;
+    top: 0;
     bottom: 0;
     right: 0;
-    left: 55%;
-    height: 400px;
-    width: 300px;
-    background: pink;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
 
     border-radius: 5px;
     border: solid white;
     z-index: 10;
    
-    backdrop-filter: blur(10px) ;
+    backdrop-filter: blur(3px) ;
     box-shadow: 0 0 6px 0 rgba(29, 29, 29, 0.203);
   }
  

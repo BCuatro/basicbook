@@ -11,8 +11,8 @@ class LoginForm extends React.Component{
             password: ""
         }
         this.handleSubmit= this.handleSubmit.bind(this);
-        this.handleImput = this.handleInput.bind(this)
-    
+        this.handleInput = this.handleInput.bind(this);
+        this.handleDemoUser = this.handleDemoUser.bind(this);    
     }
 
     handleSubmit(e){
@@ -20,6 +20,12 @@ class LoginForm extends React.Component{
         const user = Object.assign({}, this.state);
         this.props.processForm(user).then(this.props.closeModal);
 
+    }
+
+    handleDemoUser(e){
+        e.preventDefault();
+        const demoUser = { username: "remember", password:"123456"}
+        this.props.processForm(demoUser).then(this.props.closeModal)
     }
 
     handleInput(type) {
@@ -30,7 +36,7 @@ class LoginForm extends React.Component{
     renderErrors() {
         return(
             <ul> 
-                {this.props.errors.map((error, index) => (
+                {this.props.loginErrors.map((error, index) => (
                 <li key={`error-${index}`}>
                     {error}
                 </li>
@@ -46,7 +52,8 @@ class LoginForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     <h2>{this.props.formtype} </h2>
                     <br />
-                    <div onClick={this.props.closeModal} className="close-x">X</div>
+                  
+                    {/* <div onClick={this.props.closeModal} className="close-x">X</div> */}
                     <div> {this.renderErrors()}</div>
                     <div>
                 
@@ -72,6 +79,7 @@ class LoginForm extends React.Component{
                             <label htmlFor= "password" className="modal-label">Password:</label>
                         </div>
                         <button onClick = {this.handleSubmit}>Log In</button>
+                        <button onClick = {this.handleDemoUser}>DemoUser</button>
                     </div>
                 </form>
 
