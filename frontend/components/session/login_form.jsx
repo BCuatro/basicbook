@@ -14,7 +14,7 @@ class LoginForm extends React.Component{
         this.handleInput = this.handleInput.bind(this);
         this.handleDemoUser = this.handleDemoUser.bind(this);    
     }
-
+    
     handleSubmit(e){
         e.preventDefault();
         const user = Object.assign({}, this.state);
@@ -47,14 +47,16 @@ class LoginForm extends React.Component{
 
     render(){
         return(
+            
             <div >
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
                 <form onSubmit={this.handleSubmit}>
-                    <h2>{this.props.formtype} </h2>
+                    {/* <h2>{this.props.formtype} </h2> */}
+                    <div>{this.renderErrors()} </div>
                     <br />
                   
                     {/* <div onClick={this.props.closeModal} className="close-x">X</div> */}
-                    <div> {this.renderErrors()}</div>
+    
                     <div>
                 
                     <div className="modal-input-container">   

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
 import LoginForm from './login_form';
-import { login, removeLoginErrors } from '../../actions/session_actions';
+import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 // import SessionForm from './session_form';
 
@@ -23,16 +23,15 @@ const mapDispatchToProps= dispatch =>{
         processForm: user => dispatch(login(user)),
         otherForm: (
             <button 
-                onClick={
-                    () => {
-                        dispatch(openModal('signup'));
+                onClick={() => {
+                    dispatch(openModal('signup'));
                     
-                    }
-                    }>
+                    }}>
                 Signup
             </button>
         ),
         removeErrors: ()=> dispatch(removeLoginErrors()),
+        removeSignupError: ()=> dispatch(removeSignupErrors()),
         closeModal: () => dispatch(closeModal())
         
     }

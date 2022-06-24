@@ -22,8 +22,9 @@ const mapStateToProps= (state) => {
 const mapDispatchToProps= dispatch => {
     return{
         processForm: (user) => dispatch(signup(user)),
+        removeErrors: () => dispatch(removeSignupErrors()),
       
-        closeModal: () => dispatch(closeModal()).then(()=> dispatch(removeSignupErrors()))
+        closeModal: () => dispatch(closeModal())
         
     };
 };

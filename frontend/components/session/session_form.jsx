@@ -17,6 +17,10 @@ class SessionForm extends React.Component{
         this.handleImput = this.handleInput.bind(this)
     
     }
+    componentDidMount (){
+        this.props.removeErrors();
+
+    }
 
     handleSubmit(e){
         e.preventDefault();
@@ -50,7 +54,8 @@ class SessionForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     
                     <button onClick={this.props.closeModal} className="close-x">X</button>
-                    <div> {this.renderErrors()}</div>
+                    {/* <div> {this.renderErrors()}</div> */}
+                    <div>{this.renderErrors()} </div>
                     <div>   
                         <div className="modal-input-container">   
                             <input type="text" 

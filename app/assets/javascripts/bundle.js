@@ -638,7 +638,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, this.props.formtype, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
@@ -721,6 +721,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeLoginErrors)());
     },
+    removeSignupError: function removeSignupError() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeSignupErrors)());
+    },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.closeModal)());
     }
@@ -796,6 +799,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SessionForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.removeErrors();
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -828,7 +836,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.props.closeModal,
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, " ", this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
@@ -939,10 +947,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.signup)(user));
     },
+    removeErrors: function removeErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeSignupErrors)());
+    },
     closeModal: function closeModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.closeModal)()).then(function () {
-        return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeSignupErrors)());
-      });
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.closeModal)());
     }
   };
 };
