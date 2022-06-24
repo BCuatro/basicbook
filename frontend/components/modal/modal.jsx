@@ -14,7 +14,7 @@ function Modal({modal, closeModal}) {
     //   component = <LoginFormContainer />;
     //   break;
     case 'signup':
-      component = <SignupFormContainer />;
+      component = <SignupFormContainer className="signupForm"/>;
       break;
     default:
       return null;

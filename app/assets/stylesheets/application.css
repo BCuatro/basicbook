@@ -43,63 +43,42 @@
  
   .modal-child {
     position: absolute;
+    display: inline-flex;
+    justify-content: center;
     top: 50%;
     left: 50%;
+    border: solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source:
+    linear-gradient(
+      60deg,
+      green,
+      black
+    );
     transform: translate(-50%, -50%);
+    overflow:auto
+  }
+  .errors{
+    position: relative;
+    left: -40px;
+    color: red
+
+  }
+  .signupForm{
+    position: relative;
+    left: 10%;
+    display: flex;
   }
  
   .close-x {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 40px;
     cursor: pointer;
   }
 
 
-/* .input-field {
-  position: relative;
-  top: -50%;
-  width: 250px;
-  height: 44px;
-  line-height: 44px;
-  
-}
-label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #d3d3d3;
-  transform: translate(10px, 5px);
-  transform-origin: 0 0;
-  transition: all .3s;
-  cursor: text;
-}
-input {
-  
-  border: 2px solid #111;
-  
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: none;
-  background-color: transparent;
-  color: #111;
-  top:50%
-
-}
-input:focus,
-input:valid {
-  border-color: blue;
-}
-
-input:focus~label,
-input:valid~label {
-  transform: translate(10px, 5px) scale(.8);
-  background-color: white;
-  padding-inline: 5px;
-  font-size: 14px;
-  top: -24px;
-  color: blue;
-} */
 .modal-input-container {
   position: relative;
   width: 250px;
@@ -116,7 +95,7 @@ input:valid~label {
 }
 .modal-input {
   width: 75%;
-  border-radius: 5px;
+  border-radius: 10px;
   outline: 0;
   padding: .5em;
   border: 2px solid black;

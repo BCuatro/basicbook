@@ -14,7 +14,8 @@ class SessionForm extends React.Component{
             password: ""
         }
         this.handleSubmit= this.handleSubmit.bind(this);
-        this.handleImput = this.handleInput.bind(this)
+        this.handleInput = this.handleInput.bind(this)
+        
     
     }
     componentDidMount (){
@@ -28,7 +29,7 @@ class SessionForm extends React.Component{
         this.props.processForm(user).then(this.props.closeModal);
 
     }
-
+   
     handleInput(type) {
         return e => this.setState({
             [type]: e.currentTarget.value
@@ -48,14 +49,15 @@ class SessionForm extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="signupForm">
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
-                <h2>{this.props.formtype}</h2>
+                
                 <form onSubmit={this.handleSubmit}>
+                    <h2>{this.props.formtype}</h2>
                     
                     <button onClick={this.props.closeModal} className="close-x">X</button>
                     {/* <div> {this.renderErrors()}</div> */}
-                    <div>{this.renderErrors()} </div>
+                    <div className= "errors">{this.renderErrors()} </div>
                     <div>   
                         <div className="modal-input-container">   
                             <input type="text" 
@@ -113,7 +115,7 @@ class SessionForm extends React.Component{
                             <br />
                         </div>
                         <button onClick = {this.handleSubmit}>SignUp</button>
-                        {this.props.otherForm}
+                        
                     </div>
                 </form>
 

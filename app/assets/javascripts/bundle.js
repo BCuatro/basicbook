@@ -357,11 +357,7 @@ var Homepage = function Homepage(_ref) {
       className: "login"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
       id: "title"
-    }, "Welcome To MetaBook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick() {
-        return openModal('signup');
-      }
-    }, "Signup"));
+    }, "Welcome To MetaBook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -469,7 +465,9 @@ function Modal(_ref) {
     //   component = <LoginFormContainer />;
     //   break;
     case 'signup':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        className: "signupForm"
+      });
       break;
 
     default:
@@ -595,6 +593,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     _this.handleDemoUser = _this.handleDemoUser.bind(_assertThisInitialized(_this));
+    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -614,6 +613,12 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         password: "123456"
       };
       this.props.processForm(demoUser).then(this.props.closeModal);
+    }
+  }, {
+    key: "handleOpenModal",
+    value: function handleOpenModal(e) {
+      e.preventDefault();
+      this.props.openModal();
     }
   }, {
     key: "handleInput",
@@ -666,7 +671,9 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleSubmit
       }, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleDemoUser
-      }, "DemoUser"))));
+      }, "DemoUser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.handleOpenModal
+      }, "Sign Up"))));
     }
   }]);
 
@@ -713,11 +720,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.login)(user));
     },
-    otherForm: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick() {
-        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('signup'));
-      }
-    }, "Signup"),
+    // otherForm: (
+    //     <button 
+    //         onClick={() => {
+    //             dispatch(openModal('signup'));
+    //             }}>
+    //         Signup
+    //     </button>
+    // ),
+    openModal: function openModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('signup'));
+    },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeLoginErrors)());
     },
@@ -794,7 +807,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       password: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleImput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -831,12 +844,16 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "signupForm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.props.closeModal,
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors"
+      }, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
@@ -898,7 +915,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         className: "modal-label"
       }, "Last Nanme"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit
-      }, "SignUp"), this.props.otherForm)));
+      }, "SignUp"))));
     }
   }]);
 
