@@ -18,10 +18,9 @@ class SessionForm extends React.Component{
         
     
     }
-    componentDidMount (){
-        this.props.removeErrors();
-
-    }
+    // componentWillUnmount(){
+    //     this.props.removeErrors();
+    // }
 
     handleSubmit(e){
         e.preventDefault();
@@ -55,7 +54,10 @@ class SessionForm extends React.Component{
                 <form onSubmit={this.handleSubmit}>
                     <h2>{this.props.formtype}</h2>
                     
-                    <button onClick={this.props.closeModal} className="close-x">X</button>
+                    <button onClick={()=>{
+                        this.props.closeModal();
+                        this.props.removeErrors();
+                    }} className="close-x">X</button>
                     {/* <div> {this.renderErrors()}</div> */}
                     <div className= "errors">{this.renderErrors()} </div>
                     <div>   

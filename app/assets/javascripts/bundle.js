@@ -609,8 +609,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function handleDemoUser(e) {
       e.preventDefault();
       var demoUser = {
-        username: "remember",
-        password: "123456"
+        username: "blackpanther",
+        password: "wakanda"
       };
       this.props.processForm(demoUser).then(this.props.closeModal);
     }
@@ -809,14 +809,12 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentWillUnmount(){
+  //     this.props.removeErrors();
+  // }
+
 
   _createClass(SessionForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.removeErrors();
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -844,12 +842,18 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "signupForm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: this.props.closeModal,
+        onClick: function onClick() {
+          _this3.props.closeModal();
+
+          _this3.props.removeErrors();
+        },
         className: "close-x"
       }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "errors"

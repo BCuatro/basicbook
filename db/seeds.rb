@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.delete_all
+
+blackpanther = User.create!(username:"blackpanther", first_name: "Chadwick", last_name: "Boseman", email: "blackpanther@wakanda.com", password: "wakanda")
+
