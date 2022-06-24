@@ -28,7 +28,6 @@ const mapDispatchToProps= dispatch =>{
         ),
         closeModal: () => dispatch(closeModal())
         
-        
     }
 }
 
