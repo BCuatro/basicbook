@@ -7,5 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 
-blackpanther = User.create!(username:"blackpanther", first_name: "Chadwick", last_name: "Boseman", email: "blackpanther@wakanda.com", password: "wakanda")
+blackpanther = User.create!(username:"Black Panther", first_name: "Chadwick", last_name: "Boseman", email: "kingchalla@wakanda.com", password: "wakanda", gender: "Male", bio: "Wakanda Forever!", location: "Oakland,CA")
+spiderman = User.create!(username:"Spiderman", first_name: "Peter", last_name: "Parker", email: "daspiderman@webmail.com", password: "zendaya", gender: "Male", bio: "With great powers come great responsiblity", location: "NYC")
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import LoginForm from './login_form';
 import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
@@ -21,15 +21,6 @@ const mapStateToProps= (state, ownProps) =>{
 const mapDispatchToProps= dispatch =>{
     return{
         processForm: user => dispatch(login(user)),
-        // otherForm: (
-        //     <button 
-        //         onClick={() => {
-        //             dispatch(openModal('signup'));
-                    
-        //             }}>
-        //         Signup
-        //     </button>
-        // ),
         openModal: ()=> dispatch(openModal('signup')),
         removeErrors: ()=> dispatch(removeLoginErrors()),
         removeSignupError: ()=> dispatch(removeSignupErrors()),
@@ -39,4 +30,4 @@ const mapDispatchToProps= dispatch =>{
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))

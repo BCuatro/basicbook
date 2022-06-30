@@ -25,7 +25,7 @@ class LoginForm extends React.Component{
 
     handleDemoUser(e){
         e.preventDefault();
-        const demoUser = { username: "blackpanther", password:"wakanda"}
+        const demoUser = { username: "Black Panther", password:"wakanda"}
         this.props.processForm(demoUser).then(this.props.closeModal)
     }
 
@@ -89,6 +89,22 @@ class LoginForm extends React.Component{
                         <button onClick = {this.handleSubmit}>Log In</button>
                         <button onClick = {this.handleDemoUser}>DemoUser</button>
                         <button onClick = {this.handleOpenModal}>Sign Up</button>
+                        <div className = "loader">
+                            <div className= "circle"></div>
+                            <div className= "circle"></div>
+                            <div className= "circle"></div>
+                            <div className= "circle"></div>
+                            <div className= "circle"></div>
+                        </div>
+                        <div className = "loader2">
+                            <div className= "circle2"></div>
+                            <div className= "circle2"></div>
+                            <div className= "circle2"></div>
+                            <div className= "circle2"></div>
+                        </div>
+
+
+
                     </div>
                 </form>
 

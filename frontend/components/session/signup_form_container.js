@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import SessionForm from './session_form';
 import { signup, removeSignupErrors } from '../../actions/session_actions';
@@ -9,8 +9,7 @@ import { closeModal, openModal } from '../../actions/modal_actions';
 
 
 const mapStateToProps= (state) => {
-    console.log(state)
-    // debugger
+    
     return{
 
         signupErrors: state.errors.signupErrorSession,
@@ -30,4 +29,4 @@ const mapDispatchToProps= dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionForm))

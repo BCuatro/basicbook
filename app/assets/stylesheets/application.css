@@ -13,6 +13,93 @@
  *= require_tree .
  *= require_self
  */
+
+ .loader {
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  border-radius: 50%;
+  display: flex;
+  top: 50%;
+
+ }
+
+ .loader {
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  top:50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+ 
+  
+
+ }
+ .circle2 {
+  position: absolute;
+  border: 0;
+  margin: 0;
+  height: 40%;
+  width: 40%;
+  border-radius: 50%;
+  animation: spin 2.5s ease infinite;
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+ }
+ .circle{
+  
+  width: 10px;
+  height: 10px;
+  margin: 0 4px;
+  border-radius: 30%;
+  animation: animate 2.5s infinite linear;
+ }
+
+ .circle:nth-child(1) {
+  background: black;
+  animation-delay: 0.5s;
+ }
+
+ .circle:nth-child(2) {
+  background: #1d976c;
+  animation-delay: 1s;
+ }
+
+ .circle:nth-child(3) {
+  background: #9359B9;
+  animation-delay: 1.5s;
+ }
+
+ .circle:nth-child(4) {
+  background: #1d976c;
+  animation-delay: 1s;
+ }
+
+ .circle:nth-child(5) {
+  background: black;
+  animation-delay: 0.5s;
+ }
+
+ /* .circle2:nth-child(1) {
+  background: black;
+  animation-delay: 0.5s;
+ }
+
+ .circle2:nth-child(2) {
+  background: #1d976c;
+  animation-delay: 1s;
+ }
+
+ .circle2:nth-child(3) {
+  background: #9359B9;
+  animation-delay: 1.5s;
+ }
+
+ .circle2:nth-child(4) {
+  background: #1d976c;
+  animation-delay: 1s;
+ } */
+
  .login-signup{
     position: absolute;
     top: 40%;
@@ -53,11 +140,17 @@
     border-image-source:
     linear-gradient(
       60deg,
-      green,
-      black
+      #2E2F43,
+      #A38ED2
     );
     transform: translate(-50%, -50%);
-    overflow:auto
+    overflow:auto;
+    box-shadow: 
+    5px 5px 5px #2E2F43,
+    10px 10px 10px #A38ED2;
+  
+
+
   }
   .errors{
     position: relative;
@@ -114,4 +207,14 @@
   top: -22px;
   color: black;
   padding: 0;
+}
+@keyframes animate {
+  0%,
+  100% {
+    opacity: 0;
+
+  }
+  50% { 
+    opacity: 1;
+  }
 }

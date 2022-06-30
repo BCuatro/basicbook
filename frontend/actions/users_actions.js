@@ -30,8 +30,10 @@ export const fetchUsers = () => (dispatch)=> {
 }
 
 export const fetchUser =(userId) => (dispatch) => {
+   
     return UsersApiUtil.fetchUser(userId)
     .then( user => {
+        
         return dispatch(receiveUser(user))
     })
 }

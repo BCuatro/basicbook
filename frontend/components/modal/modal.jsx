@@ -3,8 +3,13 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
+import NewPostContainer from '../posts/new_post_container';
+import EditProfileContainer from '../profile/edit_profile_container';
+import { withRouter } from 'react-router-dom';
 
-function Modal({modal, closeModal}) {
+
+
+function Modal({modal, closeModal, userId, currentUser}) {
   if (!modal) {
     return null;
   }
@@ -14,8 +19,18 @@ function Modal({modal, closeModal}) {
     //   component = <LoginFormContainer />;
     //   break;
     case 'signup':
-      component = <SignupFormContainer className="signupForm"/>;
+      component = <SignupFormContainer className="signupForm" closeModal = {closeModal}/>;
       break;
+
+    case 'createpost':
+      component = <NewPostContainer className="newPost" closeModal = {closeModal} userid ={userId} />;
+      break;
+    
+    case 'editprofile':
+      
+      component = <EditProfileContainer className="editProfile" user ={user} currentUser={currentUser}/>;
+      break;
+
     default:
       return null;
   }
@@ -40,4 +55,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Modal));

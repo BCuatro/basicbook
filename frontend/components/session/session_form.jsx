@@ -106,7 +106,7 @@ class SessionForm extends React.Component{
                         </div>
                         <br />
                         <div className="modal-input-container">
-                            <input type="text" 
+                            <input type="text"  //take a look at your label
                                 id="last_name"
                                 required
                                 className= "modal-input"
