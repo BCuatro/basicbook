@@ -22,7 +22,7 @@ class Headers extends React.Component {
       );
     });
     return (
-      <ul className='tabs-header'>
+      <ul className='tabsHeader'>
         {tabHeaders}
       </ul>
 
@@ -67,7 +67,7 @@ export default class Tabs extends React.Component {
     return (
       <div>
         <div className='tabs'>
-          <Headers
+          <Headers 
             selectedTab={this.state.selectedTab}
             chosenTab={this.selectTab}
             tabs={tabs}

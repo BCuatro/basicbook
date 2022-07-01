@@ -18,8 +18,9 @@ class Post extends React.Component {
         console.log("this is my post form")
         console.log(this.props.userId)
         return(
-            <div className="postbox">
-                <button onClick = {this.handleOpenModal}>What is on your mind....</button>
+            <div className="postbox"> 
+            {/* //div1 */}
+                <button id="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
                 <PostIndexContainer />
                
 

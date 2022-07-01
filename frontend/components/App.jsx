@@ -17,7 +17,7 @@ const App = () => (
         <Modal/>
        
         <header>
-            <h1>Metabook</h1>
+            <h1 className="welcomeTitle">Metabook</h1>
             <NavBarContainer />
         </header>
                 

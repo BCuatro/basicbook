@@ -338,7 +338,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Metabook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_8__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.ProtectedRoute, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "welcomeTitle"
+  }, "Metabook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_8__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.ProtectedRoute, {
     path: "/users/:userId",
     component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.AuthRoute, {
@@ -385,7 +387,15 @@ var Homepage = function Homepage(_ref) {
       className: "login"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
       id: "title"
-    }, "Welcome To MetaBook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+    }, "Welcome To MetaBook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "welcomeContainer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "word"
+    }, "Welcome"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "word"
+    }, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "word"
+    }, "Metabook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
   };
 
   var Home = function Home() {
@@ -515,9 +525,7 @@ function Modal(_ref) {
 
     case 'editprofile':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_edit_profile_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        className: "editProfile",
-        user: user,
-        currentUser: currentUser
+        className: "editProfile"
       });
       break;
 
@@ -532,7 +540,7 @@ function Modal(_ref) {
     onClick: function onClick(e) {
       return e.stopPropagation();
     }
-  }, component));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, component)));
 }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -690,7 +698,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: "",
-      profile_id: _this.userId,
+      profile_id: "",
       author_id: _this.props.currentUser.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -708,34 +716,64 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.removeErrors();
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       var post = Object.assign({}, this.state);
       this.props.createPost(post).then(this.props.closeModal);
-    }
+    } // renderErrors() {
+    //     return(
+    //         <ul> 
+    //             {this.props.errors.map((error, index) => (
+    //             <li key={`error-${index}`}>
+    //                 {error}
+    //             </li>
+    //             ))}
+    //         </ul>
+    //     );
+    //   }
+
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      if (!this.props.currentUser) return null; // let userId= this.props.match.params.userId
+      var buttonClassName;
+      if (!this.props.currentUser) return null;
+
+      if (this.state.body.length === 0) {
+        buttonClassName = "invalidNewPostButton";
+      } else {
+        buttonClassName = "newPostButton";
+      }
+
+      console.log(this.state.body.length); // let userId= this.props.match.params.userId
 
       console.log("this is my new post");
       console.log(this.props.currentUser.id);
       console.log(this.props.userId);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "postbox"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "postcontainer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "post"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
+        className: "postHeader"
+      }, "Create Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           _this3.props.closeModal();
         },
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Create Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
-        cols: "30",
+      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+        cols: "50",
         rows: "10",
+        placeholder: "What is on your mind?",
         value: this.state.body,
         onChange: this.handleInput("body")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -746,9 +784,11 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         type: "text",
         value: this.state.profile_id,
         onChange: this.handleInput("profile_id")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: this.handleSubmit
-      }, "Post")));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        disabled: this.state.body.length === 0,
+        onClick: this.handleSubmit,
+        className: buttonClassName
+      }, "Post"))));
     }
   }]);
 
@@ -787,7 +827,6 @@ __webpack_require__.r(__webpack_exports__);
  // import SessionForm from './session_form';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     userId: ownProps.match.params.userId,
@@ -882,8 +921,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "postbox"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "postButtonModal",
         onClick: this.handleOpenModal
-      }, "What is on your mind...."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "What is on your mind?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -1062,8 +1102,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: function fetchPosts() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
-    } //   fetchUser: (userId) => dispatch(fetchUser(userId)),
-
+    }
   };
 };
 
@@ -1090,7 +1129,7 @@ __webpack_require__.r(__webpack_exports__);
       user = _ref.user;
 
   if (user.id === parseInt(post.profile_id)) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Posted by ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, post.timestamp), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " edit"));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Posted by ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " edit"));
   }
 });
 
@@ -1420,7 +1459,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         editButton = "";
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "div1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), editButton));
     }
   }]);
 
@@ -1610,7 +1653,7 @@ var Headers = /*#__PURE__*/function (_React$Component) {
         }, tabTitle, ' ');
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-        className: "tabs-header"
+        className: "tabsHeader"
       }, tabHeaders);
     }
   }]);
@@ -1875,16 +1918,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "circle"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "loader2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "circle2"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "circle2"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "circle2"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "circle2"
-      })))));
+        className: "loader"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null)))));
     }
   }]);
 

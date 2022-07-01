@@ -96,11 +96,11 @@ class LoginForm extends React.Component{
                             <div className= "circle"></div>
                             <div className= "circle"></div>
                         </div>
-                        <div className = "loader2">
-                            <div className= "circle2"></div>
-                            <div className= "circle2"></div>
-                            <div className= "circle2"></div>
-                            <div className= "circle2"></div>
+                        <div className = "loader">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
 
 

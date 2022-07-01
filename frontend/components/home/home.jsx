@@ -11,6 +11,12 @@ import LoginFormContainer from '../session/login_form_container';
         const login = () => (
           <nav className="login">
             <h1 id="title">Welcome To MetaBook</h1>
+            <div className ="welcomeContainer">
+                <div className="word">Welcome</div>
+                <div className="word">To</div>
+                <div className="word">Metabook</div>
+
+            </div>
                 <LoginFormContainer />
             {/* <button onClick={() => openModal('signup')}>Signup</button> */}
           </nav>

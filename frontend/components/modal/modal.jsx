@@ -28,7 +28,7 @@ function Modal({modal, closeModal, userId, currentUser}) {
     
     case 'editprofile':
       
-      component = <EditProfileContainer className="editProfile" user ={user} currentUser={currentUser}/>;
+      component = <EditProfileContainer className="editProfile" />;
       break;
 
     default:
@@ -37,7 +37,7 @@ function Modal({modal, closeModal, userId, currentUser}) {
   return (
     <div className="modal-background">
       <div className="modal-child" onClick={e => e.stopPropagation()}>
-        { component }
+        <div>{ component }</div>
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import NewPost from './new_post';
 
 
 const mapStateToProps= (state, ownProps) =>{
-    debugger
     return{
         currentUser:state.entities.users[state.session.id],
         userId: ownProps.match.params.userId,

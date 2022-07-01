@@ -41,9 +41,11 @@ class Profile extends React.Component{
             
     
         return (
-            <div>
-                 {editButton}
-                <ProfileNavBarContainer />
+            <div className="profile">
+                 
+                <div className="div1"><ProfileNavBarContainer />
+                {editButton}
+                </div>
                 {/* <EditProfileContainer /> */}
                
                 
