@@ -2,6 +2,7 @@
 
 Basicbook is a social media clone  of the popular website Facebook.  Basicbook allows people to sign up and connect with other people all around the world.  Users would have access to their own profile page, which they could add pictures and inforomation about themseleves.   Users would be able to add and remove friends, and also be able to post and comment on their friend's walls.  The miminalistic approach to the interface would make it more user friendly and also allow their personality to shine 
 
+Link: https://metabook2.herokuapp.com/
 
 ## Features
 
@@ -20,4 +21,5 @@ Users would be able to add friends through making a friends request.  Users will
 ###Search
 A search bar will be available to users on their navigation bar located at the top of their screen.  Users would be able to search for other users by their first name, last name or username.  
 
-###
+###Like:
+Users can like and unlike posts
