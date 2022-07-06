@@ -12,14 +12,17 @@ Users can signup and login to Basicbook.  The signup and login forms has their o
 ### Profile:
 Users will have their own profile page which they can customize by adding a profile picture, a cover picture, and information about themseleves. The profile page will contain posts, which the user's friends have posted on their wall.  The profile page will have tabs that contain different sets of infomation allowing the users to have a clean and organized profile page.  Tabs include: Posts, About Me, Pictures, and Friends.
 
-###Posts/Comments:
+### Homepage/Newsfeed:
+Users will have a homepage which contains posts from their friends and friends list.
+
+### Posts/Comments:    
 Users will have the option to post on their wall or their friend's wall.  Users would also be able to receive posts from the friends.  Users would have the ability to add comments to posts, or to like a post.  Users would only be able to delete posts that they have authored.  
 
-###Friends
+### Friends:    
 Users would be able to add friends through making a friends request.  Users will have the option to accept or deny friend requests.  If a user accepts the request, the requestor and requestee will become friends.  If the user decides to decline a request, then the requestor will not become their friend
 
-###Search
+### Search:    
 A search bar will be available to users on their navigation bar located at the top of their screen.  Users would be able to search for other users by their first name, last name or username.  
 
-###Like:
+### Like:
 Users can like and unlike posts
