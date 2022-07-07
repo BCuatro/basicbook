@@ -7,15 +7,26 @@ class EditForm extends React.Component{
        
         this.state = this.props.currentUser
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFile = this.handleFile.bind(this)
+        this.handleProfilePic =this.handleProfilePic.bind(this)
+        
       }
     
       componentDidMount() {
         this.props.fetchUser(this.state.id)
       }
+
+
+        handleFile(e) {
+            this.setState({photoFile: e.currentTarget.value});
+        }
+
     
       handleSubmit(e) {
         e.preventDefault();
         this.props.updateUser(this.state).then(this.props.closeModal)
+        const formData = new FormData();
+        formData.append('user[profile_pic]', this.state.photoFile)
       }
     
 
@@ -25,11 +36,21 @@ class EditForm extends React.Component{
         })
     }
 
+    handleProfilePic(user){
+        if (!user.profile_picUrl) {
+            return <p>no photo</p>
+        } else {
+            return <img className="profilePic"src={user.profile_picUrl} />;
+        }
+    }
+   
+
+
    
     
     render(){ 
         return (
-            <div>
+            <div className="editform">
                 <form onSubmit={this.handleSubmit}>
                     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
              
@@ -58,6 +79,7 @@ class EditForm extends React.Component{
                         />
                         <label htmlFor= "last_name" className="modal-label">Last Name</label>
                         <br />
+                        
                     </div>
                     <div className="modal-input-container">
                         <input type="text"  //take a look at your label
@@ -69,6 +91,7 @@ class EditForm extends React.Component{
                         />
                         <label htmlFor= "bio" className="modal-label">Bio</label>
                         <br />
+                    
                     </div>
                     <div className="modal-input-container">
                         <input type="text"  //take a look at your label
@@ -81,6 +104,11 @@ class EditForm extends React.Component{
                         <label htmlFor= "location" className="modal-label">Location</label>
                         <br />
                     </div>
+                    <div>
+                        <input type="file" 
+                        onChange ={this.handleProfilePic}/>
+                    </div>
+                    
                     <button onClick = {this.handleSubmit}>Submit</button>
                 </form>
             </div>

@@ -10,21 +10,32 @@ import LoginFormContainer from '../session/login_form_container';
         
         const login = () => (
           <nav className="login">
-            <h1 id="title">Welcome To MetaBook</h1>
+            
             <div className ="welcomeContainer">
                 <div className="word">Welcome</div>
                 <div className="word">To</div>
-                <div className="word">Metabook</div>
+                <div className="word">Basicbook</div>
 
             </div>
-                <LoginFormContainer />
+          
+            <LoginFormContainer />
             {/* <button onClick={() => openModal('signup')}>Signup</button> */}
           </nav>
         );
         const Home = () => (
-          <hgroup className="header-group">
-            <h2 className="header-name">Hi, {currentUser.username}! {currentUser.id}</h2>            
-          </hgroup>
+          <div>
+            <hgroup className= "header-group">
+              <h2 className="header-group">Hi</h2>
+                
+            </hgroup>
+            
+          </div>
+
+
+          
+          // <hgroup className="header-group">
+          //   <h2 className="header-name">Hi, {currentUser.username}! {currentUser.id}</h2>            
+          // </hgroup>
         );
         
       

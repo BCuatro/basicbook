@@ -17,7 +17,7 @@ const App = () => (
         <Modal/>
        
         <header>
-            <h1 className="welcomeTitle">Metabook</h1>
+            <h1 className="logo">Basicbook</h1>
             <NavBarContainer />
         </header>
                 
@@ -26,10 +26,6 @@ const App = () => (
 
                 <ProtectedRoute path= "/users/:userId" component={ProfileContainer}/>
                 <AuthRoute exact path="/" component ={HomePageContainer} />
-                
-               
-               
-                {/* <Route exact path ="/login" component = {LoginFormContainer}/> */}
             </Switch>
          
     </div>

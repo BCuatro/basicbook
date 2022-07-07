@@ -50,9 +50,9 @@ export default class Tabs extends React.Component {
   }
 
   render() {
-    console.log("this is the tab")
-    console.log(this.props.currentUser)
-    console.log(this.props.userId)
+    // console.log("this is the tab")
+    // console.log(this.props.currentUser)
+    // console.log(this.props.userId)
     
     const tabs = [
       {title: 'Posts', content: <PostContainer userId ={this.props.userId} currentUser = {this.props.currentUser}/>},

@@ -7,13 +7,14 @@ export default ({ post, user}) => {
     if (user.id === parseInt(post.profile_id)) {
 
     return (
-      <li>
-        <h3>Posted by {user.username}</h3>
+      <li className="post_class">
+        <div className="wallPostHeader">Posted by {user.username}</div>
         
-        <h3>{post.body}</h3>
-
-        <button> like</button>
-        <button> edit</button>
+        <div className="wallPostBody">{post.body}</div>
+        {/* <div className="wallPostButton">
+          <button> like</button>
+          <button> edit</button>
+        </div> */}
       </li>
     )}
     }

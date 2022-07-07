@@ -7,7 +7,11 @@ import Tabs from './tabs';
 class Profile extends React.Component{
     constructor(props){
         super(props)
+        this.state = {
+            photoFile: null
+        }
         this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleProfilePic = this.handleProfilePic.bind(this)
            
     }
     
@@ -24,14 +28,40 @@ class Profile extends React.Component{
         e.preventDefault();
         this.props.openModal()
     }
+    handleFile(e) {
+        this.setState({photoFile: e.currentTarget.value});
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('user[profile_pic]', this.state.photoFile)
+        
+    }
+
+    handleProfilePic(user){
+        if (!user.profile_picUrl) {
+            return <p>no photo</p>
+        } else {
+            return <img className="profilePic"src={user.profile_picUrl} />;
+        }
+    }
+
+    // handleCoverPhoto(){
+    //     let coverPhoto;
+    //     if (!this.props.user.coverPhotoUrl) {
+    //         coverPhoto = ""
+    //     } else {
+    //         coverPhoto = <img className="coverphoto" src={this.props.user.coverPhotoUrl} />;
+    //     }
+
+    //     return coverPhoto
+    // }
  
    
     
     render(){ 
-        console.log("Profile JSX")
-        console.log(this.props.user)
-        console.log(this.props.match.params.userId)
-        console.log(this.props.currentUser)
+      
         let editButton
          const {user} = this.props
         if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
@@ -42,9 +72,14 @@ class Profile extends React.Component{
     
         return (
             <div className="profile">
-                 
+                <div>{editButton}</div>
                 <div className="div1"><ProfileNavBarContainer />
-                {editButton}
+                <div className="profilePic">
+                     {this.handleProfilePic(user)}
+                 </div>
+                 <input type="file" 
+                 onChange ={this.handleProfilePic.bind(this)}/>
+                
                 </div>
                 {/* <EditProfileContainer /> */}
                

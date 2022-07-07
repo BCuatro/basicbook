@@ -8,12 +8,12 @@ import { fetchUsers } from '../../actions/users_actions';
 const NavBar = ({currentUser, logout}) => {
     
     const liNavBar = currentUser ? (
-        <div>
+        <div className ="navBarItems">
             
-            <Link to={`/users/${currentUser.id}`}>Profile</Link>
+            <Link to={"/"}>Home</Link>
             
             <br />
-            <Link to={"/"}>Home</Link>
+            <Link to={`/users/${currentUser.id}`}>Profile</Link>
             
             <br />
             <button className="header-button" onClick={logout}>Log Out</button>

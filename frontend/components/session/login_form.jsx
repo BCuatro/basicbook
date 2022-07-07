@@ -58,13 +58,13 @@ class LoginForm extends React.Component{
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
                 <form onSubmit={this.handleSubmit}>
                     {/* <h2>{this.props.formtype} </h2> */}
-                    <div>{this.renderErrors()} </div>
-                    <br />
                   
                     {/* <div onClick={this.props.closeModal} className="close-x">X</div> */}
     
-                    <div>
-                
+                    <div className= "loginform">
+                    <p>Log In</p>
+                    <div className= "errors">{this.renderErrors()} </div>
+
                     <div className="modal-input-container">   
                             <input type="text" 
                                 id="username"
@@ -89,19 +89,13 @@ class LoginForm extends React.Component{
                         <button onClick = {this.handleSubmit}>Log In</button>
                         <button onClick = {this.handleDemoUser}>DemoUser</button>
                         <button onClick = {this.handleOpenModal}>Sign Up</button>
-                        <div className = "loader">
+                        {/* <div className = "loader">
                             <div className= "circle"></div>
                             <div className= "circle"></div>
                             <div className= "circle"></div>
                             <div className= "circle"></div>
                             <div className= "circle"></div>
-                        </div>
-                        <div className = "loader">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+                        </div> */}
 
 
 

@@ -13,7 +13,7 @@ class Api::PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
        
-        @post.profile_id =31
+        @post.profile_id =30
         # debugger
         if @post.save
           render :show

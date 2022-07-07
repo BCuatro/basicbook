@@ -14,9 +14,9 @@ class PostIndex extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wall">
       
-        <ul>
+        <ul className= "wall_posts">
           {
             this.props.posts.map(post => (
               <PostItem
