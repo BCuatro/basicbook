@@ -1778,9 +1778,9 @@ var Tabs = /*#__PURE__*/function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      console.log("this is the tab");
-      console.log(this.props.currentUser);
-      console.log(this.props.userId);
+      // console.log("this is the tab")
+      // console.log(this.props.currentUser)
+      // console.log(this.props.userId)
       var tabs = [{
         title: 'Posts',
         content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
