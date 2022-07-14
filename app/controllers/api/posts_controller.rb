@@ -12,8 +12,6 @@ class Api::PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
-       
-        @post.profile_id =30
         # debugger
         if @post.save
           render :show
@@ -41,7 +39,7 @@ class Api::PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:body, :author_id)
+        params.require(:post).permit(:body, :profile_id, :author_id)
     end
     
     

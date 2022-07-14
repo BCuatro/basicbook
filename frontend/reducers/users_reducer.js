@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER } from "../actions/session_actions";
-import { RECEIVE_ALL_USERS, RECEIVE_USER } from "../actions/users_actions";
+import { RECEIVE_ALL_USERS, RECEIVE_USER, RECEIVE_PROFILE} from "../actions/users_actions";
 
 
 const UsersReducer =  (state ={}, action)=> {
@@ -14,6 +14,9 @@ const UsersReducer =  (state ={}, action)=> {
             return nextState
         case RECEIVE_USER:
             nextState[action.user.id] = action.user
+            return nextState
+        case RECEIVE_PROFILE:
+            nextState[action.profile_id] = action.profile_id
             return nextState
         default:
             return state

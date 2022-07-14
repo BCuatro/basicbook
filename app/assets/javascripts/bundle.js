@@ -255,7 +255,9 @@ var signup = function signup(user) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_USERS": () => (/* binding */ RECEIVE_ALL_USERS),
+/* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
 /* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "fetchProfile": () => (/* binding */ fetchProfile),
 /* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "fetchUsers": () => (/* binding */ fetchUsers),
 /* harmony export */   "updateUser": () => (/* binding */ updateUser)
@@ -263,7 +265,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/users_api_util */ "./frontend/util/users_api_util.js");
 
 var RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
-var RECEIVE_USER = "RECEIVE_USER"; //Action creators
+var RECEIVE_USER = "RECEIVE_USER";
+var RECEIVE_PROFILE = "RECEIVE_PROFILE"; //Action creators
 
 var receiveUsers = function receiveUsers(users) {
   return {
@@ -277,6 +280,13 @@ var receiveUser = function receiveUser(user) {
     type: RECEIVE_USER,
     user: user
   };
+};
+
+var receiveProfile = function receiveProfile(user) {
+  return {
+    type: RECEIVE_PROFILE,
+    user: user
+  };
 }; //thunk Method
 
 
@@ -288,6 +298,13 @@ var fetchUsers = function fetchUsers() {
   };
 };
 var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var fetchProfile = function fetchProfile(userId) {
   return function (dispatch) {
     return _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
       return dispatch(receiveUser(user));
@@ -703,7 +720,8 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: "",
-      profile_id: "",
+      // url: this.props.location.pathname.split('/'),
+      profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
       author_id: _this.props.currentUser.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -729,6 +747,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      debugger;
       var post = Object.assign({}, this.state);
       this.props.createPost(post).then(this.props.closeModal);
     } // renderErrors() {
@@ -751,7 +770,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
       var buttonClassName;
       if (!this.props.currentUser) return null;
 
-      if (this.state.body.length === 0) {
+      if (this.state.body.trim().length === 0) {
         buttonClassName = "invalidNewPostButton";
       } else {
         buttonClassName = "newPostButton";
@@ -832,8 +851,11 @@ __webpack_require__.r(__webpack_exports__);
  // import SessionForm from './session_form';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
+    user: state.entities.users[ownProps.match.params.userId],
+    users: state.entities.users,
     userId: ownProps.match.params.userId,
     errors: state.errors.posts
   };
@@ -1308,9 +1330,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.updateUser(this.state).then(this.props.closeModal);
-      var formData = new FormData();
-      formData.append('user[profile_pic]', this.state.photoFile);
+      this.props.updateUser(this.state).then(this.props.closeModal); //     const formData = new FormData();
+      //     formData.append('user[profile_pic]', this.state.photoFile)
     }
   }, {
     key: "handleUpdate",
@@ -1320,19 +1341,14 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, type, e.currentTarget.value));
       };
-    }
-  }, {
-    key: "handleProfilePic",
-    value: function handleProfilePic(user) {
-      if (!user.profile_picUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "no photo");
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "profilePic",
-          src: user.profile_picUrl
-        });
-      }
-    }
+    } // handleProfilePic(user){
+    //     if (!user.profile_picUrl) {
+    //         return <p>no photo</p>
+    //     } else {
+    //         return <img className="profilePic"src={user.profile_picUrl} />;
+    //     }
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -1468,9 +1484,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
-    _this.state = {
-      photoFile: null
-    };
+    _this.state = _this.props.user;
     _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
     _this.handleProfilePic = _this.handleProfilePic.bind(_assertThisInitialized(_this));
     return _this;
@@ -1583,7 +1597,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var users = state.entities.users;
   var user = state.entities.users[ownProps.match.params.userId];
   var currentUser = state.entities.users[state.session.id];
-  var userId = ownProps.match.params.userId;
+  var userId = ownProps.match.params.userId; // const profile_id = 
+
   return {
     users: users,
     user: user,
@@ -2661,6 +2676,10 @@ var UsersReducer = function UsersReducer() {
 
     case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USER:
       nextState[action.user.id] = action.user;
+      return nextState;
+
+    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_PROFILE:
+      nextState[action.profile_id] = action.profile_id;
       return nextState;
 
     default:

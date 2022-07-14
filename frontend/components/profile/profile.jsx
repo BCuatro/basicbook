@@ -7,9 +7,7 @@ import Tabs from './tabs';
 class Profile extends React.Component{
     constructor(props){
         super(props)
-        this.state = {
-            photoFile: null
-        }
+        this.state = this.props.user
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleProfilePic = this.handleProfilePic.bind(this)
            

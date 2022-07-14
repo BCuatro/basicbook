@@ -6,7 +6,8 @@ class NewPost extends React.Component {
         super(props)
             this.state = {
                 body: "",
-                profile_id: "",
+                // url: this.props.location.pathname.split('/'),
+                profile_id: this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length-1],
                 author_id: this.props.currentUser.id
             }
             this.handleSubmit =this.handleSubmit.bind(this);
@@ -14,6 +15,7 @@ class NewPost extends React.Component {
     
 
     }
+    
     handleInput(type) {
         return e => { 
             this.setState({[type]: e.currentTarget.value})
@@ -25,6 +27,7 @@ class NewPost extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
+        debugger
         const post = Object.assign({}, this.state)
         this.props.createPost(post).then(this.props.closeModal)
     }
@@ -40,10 +43,11 @@ class NewPost extends React.Component {
     //     );
     //   }
     render() {
+        
         let buttonClassName
         if(!this.props.currentUser) return null
         
-        if(this.state.body.length ===0){
+        if(this.state.body.trim().length ===0){
            buttonClassName= "invalidNewPostButton"
         } else {
             buttonClassName= "newPostButton"

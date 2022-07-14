@@ -2,6 +2,7 @@ import * as UsersApiUtil from '../util/users_api_util';
 
 export const RECEIVE_ALL_USERS = `RECEIVE_ALL_USERS`;
 export const RECEIVE_USER = `RECEIVE_USER`;
+export const RECEIVE_PROFILE = `RECEIVE_PROFILE`
 
 
 //Action creators
@@ -16,6 +17,13 @@ const receiveUsers = users => {
 const receiveUser = user => {
     return {
         type: RECEIVE_USER,
+        user
+    }
+}
+
+const receiveProfile = user => {
+    return {
+        type: RECEIVE_PROFILE,
         user
     }
 }
@@ -38,6 +46,14 @@ export const fetchUser =(userId) => (dispatch) => {
     })
 }
 
+export const fetchProfile =(userId) => (dispatch) => {
+   
+    return UsersApiUtil.fetchUser(userId)
+    .then( user => {
+        
+        return dispatch(receiveUser(user))
+    })
+}
 
 
 export const updateUser= user => dispatch => {

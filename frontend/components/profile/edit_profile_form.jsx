@@ -25,8 +25,8 @@ class EditForm extends React.Component{
       handleSubmit(e) {
         e.preventDefault();
         this.props.updateUser(this.state).then(this.props.closeModal)
-        const formData = new FormData();
-        formData.append('user[profile_pic]', this.state.photoFile)
+    //     const formData = new FormData();
+    //     formData.append('user[profile_pic]', this.state.photoFile)
       }
     
 
@@ -36,13 +36,13 @@ class EditForm extends React.Component{
         })
     }
 
-    handleProfilePic(user){
-        if (!user.profile_picUrl) {
-            return <p>no photo</p>
-        } else {
-            return <img className="profilePic"src={user.profile_picUrl} />;
-        }
-    }
+    // handleProfilePic(user){
+    //     if (!user.profile_picUrl) {
+    //         return <p>no photo</p>
+    //     } else {
+    //         return <img className="profilePic"src={user.profile_picUrl} />;
+    //     }
+    // }
    
 
 
