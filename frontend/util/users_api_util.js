@@ -14,6 +14,14 @@ export const fetchUser = (userId) => {
     
 }
 
+export const fetchProfile = (userId) => {
+    return $.ajax({
+            url: `/api/users/${userId}`,
+            method: `GET`
+        })
+    
+}
+
 export const updateUser = (user) => {
     return $.ajax({
             url: `/api/users/${user.id}`,

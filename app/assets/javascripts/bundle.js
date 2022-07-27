@@ -1,6 +1,252 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@redux-devtools/extension/lib/esm/developmentOnly.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@redux-devtools/extension/lib/esm/developmentOnly.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "composeWithDevTools": () => (/* binding */ composeWithDevTools),
+/* harmony export */   "devToolsEnhancer": () => (/* binding */ devToolsEnhancer)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+
+
+
+function extensionComposeStub() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) return undefined;
+  if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(funcs[0]) === 'object') return redux__WEBPACK_IMPORTED_MODULE_2__.compose;
+  return redux__WEBPACK_IMPORTED_MODULE_2__.compose.apply(void 0, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(funcs));
+}
+
+var composeWithDevTools =  true && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : extensionComposeStub;
+var devToolsEnhancer =  true && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function () {
+  return function (noop) {
+    return noop;
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/@redux-devtools/extension/lib/esm/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@redux-devtools/extension/lib/esm/index.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "composeWithDevTools": () => (/* binding */ composeWithDevTools),
+/* harmony export */   "composeWithDevToolsDevelopmentOnly": () => (/* reexport safe */ _developmentOnly__WEBPACK_IMPORTED_MODULE_3__.composeWithDevTools),
+/* harmony export */   "composeWithDevToolsLogOnly": () => (/* reexport safe */ _logOnly__WEBPACK_IMPORTED_MODULE_4__.composeWithDevTools),
+/* harmony export */   "composeWithDevToolsLogOnlyInProduction": () => (/* reexport safe */ _logOnlyInProduction__WEBPACK_IMPORTED_MODULE_5__.composeWithDevTools),
+/* harmony export */   "devToolsEnhancer": () => (/* binding */ devToolsEnhancer),
+/* harmony export */   "devToolsEnhancerDevelopmentOnly": () => (/* reexport safe */ _developmentOnly__WEBPACK_IMPORTED_MODULE_3__.devToolsEnhancer),
+/* harmony export */   "devToolsEnhancerLogOnly": () => (/* reexport safe */ _logOnly__WEBPACK_IMPORTED_MODULE_4__.devToolsEnhancer),
+/* harmony export */   "devToolsEnhancerLogOnlyInProduction": () => (/* reexport safe */ _logOnlyInProduction__WEBPACK_IMPORTED_MODULE_5__.devToolsEnhancer)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _developmentOnly__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./developmentOnly */ "./node_modules/@redux-devtools/extension/lib/esm/developmentOnly.js");
+/* harmony import */ var _logOnly__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./logOnly */ "./node_modules/@redux-devtools/extension/lib/esm/logOnly.js");
+/* harmony import */ var _logOnlyInProduction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./logOnlyInProduction */ "./node_modules/@redux-devtools/extension/lib/esm/logOnlyInProduction.js");
+
+
+
+
+function extensionComposeStub() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) return undefined;
+  if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(funcs[0]) === 'object') return redux__WEBPACK_IMPORTED_MODULE_2__.compose;
+  return redux__WEBPACK_IMPORTED_MODULE_2__.compose.apply(void 0, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(funcs));
+}
+
+var composeWithDevTools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : extensionComposeStub;
+var devToolsEnhancer = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function () {
+  return function (noop) {
+    return noop;
+  };
+};
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@redux-devtools/extension/lib/esm/logOnly.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@redux-devtools/extension/lib/esm/logOnly.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "composeWithDevTools": () => (/* binding */ composeWithDevTools),
+/* harmony export */   "devToolsEnhancer": () => (/* binding */ devToolsEnhancer)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _utils_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/assign */ "./node_modules/@redux-devtools/extension/lib/esm/utils/assign.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+
+
+
+
+function enhancer(options) {
+  var config = options || {};
+  config.features = {
+    pause: true,
+    export: true,
+    test: true
+  };
+  config.type = 'redux';
+  if (config.autoPause === undefined) config.autoPause = true;
+  if (config.latency === undefined) config.latency = 500;
+  return function (createStore) {
+    return function (reducer, preloadedState) {
+      var store = createStore(reducer, preloadedState);
+      var origDispatch = store.dispatch;
+
+      var devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect(config);
+
+      devTools.init(store.getState());
+
+      var dispatch = function dispatch(action) {
+        var r = origDispatch(action);
+        devTools.send(action, store.getState());
+        return r;
+      };
+
+      if (Object.assign) return Object.assign(store, {
+        dispatch: dispatch
+      });
+      return (0,_utils_assign__WEBPACK_IMPORTED_MODULE_2__["default"])(store, 'dispatch', dispatch);
+    };
+  };
+}
+
+function composeWithEnhancer(config) {
+  return function () {
+    return (0,redux__WEBPACK_IMPORTED_MODULE_3__.compose)(redux__WEBPACK_IMPORTED_MODULE_3__.compose.apply(void 0, arguments), enhancer(config));
+  };
+}
+
+function composeWithDevTools() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__) {
+    if (funcs.length === 0) return enhancer();
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(funcs[0]) === 'object') return composeWithEnhancer(funcs[0]);
+    return composeWithEnhancer().apply(void 0, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(funcs));
+  }
+
+  if (funcs.length === 0) return undefined;
+  if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(funcs[0]) === 'object') return redux__WEBPACK_IMPORTED_MODULE_3__.compose;
+  return redux__WEBPACK_IMPORTED_MODULE_3__.compose.apply(void 0, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(funcs));
+}
+var devToolsEnhancer = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? enhancer : function () {
+  return function (noop) {
+    return noop;
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/@redux-devtools/extension/lib/esm/logOnlyInProduction.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@redux-devtools/extension/lib/esm/logOnlyInProduction.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "composeWithDevTools": () => (/* binding */ composeWithDevTools),
+/* harmony export */   "devToolsEnhancer": () => (/* binding */ devToolsEnhancer)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+
+
+
+
+function extensionComposeStub() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) return undefined;
+  if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(funcs[0]) === 'object') return redux__WEBPACK_IMPORTED_MODULE_2__.compose;
+  return redux__WEBPACK_IMPORTED_MODULE_2__.compose.apply(void 0, (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(funcs));
+}
+
+var composeWithDevTools =  false ? 0 : typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : extensionComposeStub;
+var devToolsEnhancer =  false ? 0 : typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__ : function () {
+  return function (noop) {
+    return noop;
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/@redux-devtools/extension/lib/esm/utils/assign.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@redux-devtools/extension/lib/esm/utils/assign.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ assign)
+/* harmony export */ });
+var objectKeys = Object.keys || function (obj) {
+  var keys = [];
+
+  for (var key in obj) {
+    if ({}.hasOwnProperty.call(obj, key)) keys.push(key);
+  }
+
+  return keys;
+};
+
+function assign(obj, newKey, newValue) {
+  var keys = objectKeys(obj);
+  var copy = {};
+
+  for (var i = 0, l = keys.length; i < l; i++) {
+    var key = keys[i];
+    copy[key] = obj[key];
+  }
+
+  copy[newKey] = newValue;
+  return copy;
+}
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -1309,8 +1555,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.currentUser;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
-    _this.handleProfilePic = _this.handleProfilePic.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this)); // this.handleProfilePic =this.handleProfilePic.bind(this)
+
     return _this;
   }
 
@@ -1484,17 +1730,18 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.user;
-    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
-    _this.handleProfilePic = _this.handleProfilePic.bind(_assertThisInitialized(_this));
+    _this.state = _this.props;
+    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this)); // this.handleProfilePic = this.handleProfilePic.bind(this)
+
     return _this;
   }
 
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(this.props.match.params.userId);
+      this.props.fetchUser(parseInt(this.props.match.params.userId));
       this.props.fetchUsers();
+      this.props.fetchProfile(parseInt(this.props.match.params.userId));
     }
   }, {
     key: "handleOpenModal",
@@ -1515,19 +1762,14 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var formData = new FormData();
       formData.append('user[profile_pic]', this.state.photoFile);
-    }
-  }, {
-    key: "handleProfilePic",
-    value: function handleProfilePic(user) {
-      if (!user.profile_picUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "no photo");
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "profilePic",
-          src: user.profile_picUrl
-        });
-      }
-    } // handleCoverPhoto(){
+    } // handleProfilePic(user){
+    //     if (!user.profile_picUrl) {
+    //         return <p>no photo</p>
+    //     } else {
+    //         return <img className="profilePic"src={user.profile_picUrl} />;
+    //     }
+    // }
+    // handleCoverPhoto(){
     //     let coverPhoto;
     //     if (!this.props.user.coverPhotoUrl) {
     //         coverPhoto = ""
@@ -1540,6 +1782,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props.currentProfile);
       var editButton;
       var user = this.props.user;
 
@@ -1549,18 +1792,14 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         }, "Edit Profile");
       } else {
         editButton = "";
-      }
+      } // debugger
+
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "div1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profilePic"
-      }, this.handleProfilePic(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "file",
-        onChange: this.handleProfilePic.bind(this)
-      })));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
   }]);
 
@@ -1592,10 +1831,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchProfile;
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var users = state.entities.users;
   var user = state.entities.users[ownProps.match.params.userId];
+  var currentProfile = state.entities.profile[ownProps.match.params.userId];
   var currentUser = state.entities.users[state.session.id];
   var userId = ownProps.match.params.userId; // const profile_id = 
 
@@ -1603,14 +1844,19 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     users: users,
     user: user,
     currentUser: currentUser,
-    userId: userId
+    userId: userId,
+    currentProfile: currentProfile
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  debugger;
   return {
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
+    },
+    fetchProfile: function fetchProfile(userId) {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchProfile)(userId));
     },
     fetchUsers: function fetchUsers() {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUsers)());
@@ -2319,15 +2565,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 
 
 
-var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  profile: _profile_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -2507,6 +2756,40 @@ var PostsReducer = function PostsReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/profile_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/profile_reducer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_actions */ "./frontend/actions/users_actions.js");
+
+
+var ProfileReducer = function ProfileReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PROFILE:
+      nextState[action.profile_id] = action.profile_id;
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileReducer);
 
 /***/ }),
 
@@ -2705,8 +2988,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/root_reducer */ "./frontend/reducers/root_reducer.js");
+/* harmony import */ var _redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @redux-devtools/extension */ "./node_modules/@redux-devtools/extension/lib/esm/index.js");
+
 
 
 
@@ -2714,7 +2999,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_3__["default"], (redux_logger__WEBPACK_IMPORTED_MODULE_0___default())));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, (0,_redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"], (redux_logger__WEBPACK_IMPORTED_MODULE_0___default()))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
@@ -2891,6 +3176,7 @@ var logout = function logout() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchProfile": () => (/* binding */ fetchProfile),
 /* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "fetchUsers": () => (/* binding */ fetchUsers),
 /* harmony export */   "updateUser": () => (/* binding */ updateUser)
@@ -2902,6 +3188,12 @@ var fetchUsers = function fetchUsers() {
   });
 };
 var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    url: "/api/users/".concat(userId),
+    method: "GET"
+  });
+};
+var fetchProfile = function fetchProfile(userId) {
   return $.ajax({
     url: "/api/users/".concat(userId),
     method: "GET"
@@ -43973,6 +44265,48 @@ function valueEqual(a, b) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _arrayLikeToArray)
+/* harmony export */ });
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _arrayWithoutHoles)
+/* harmony export */ });
+/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr);
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
@@ -44048,6 +44382,40 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _iterableToArray)
+/* harmony export */ });
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _nonIterableSpread)
+/* harmony export */ });
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 /***/ }),
@@ -44139,6 +44507,78 @@ function _setPrototypeOf(o, p) {
     return o;
   };
   return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _toConsumableArray)
+/* harmony export */ });
+/* harmony import */ var _arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithoutHoles.js */ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js");
+/* harmony import */ var _iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js");
+/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
+/* harmony import */ var _nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableSpread.js */ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js");
+
+
+
+
+function _toConsumableArray(arr) {
+  return (0,_arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr) || (0,_nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/typeof.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/typeof.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _typeof)
+/* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _unsupportedIterableToArray)
+/* harmony export */ });
+/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(o, minLen);
 }
 
 /***/ })
