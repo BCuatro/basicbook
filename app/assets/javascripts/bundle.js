@@ -1328,7 +1328,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: "".concat(post.id),
           post: post,
-          user: _this.props.user
+          user: _this.props.user,
+          author: _this.props.currentUser
         });
       })));
     }
@@ -1405,14 +1406,14 @@ __webpack_require__.r(__webpack_exports__);
   var post = _ref.post,
       user = _ref.user;
 
-  if (user.id === parseInt(post.profile_id)) {
+  if ((user === null || user === void 0 ? void 0 : user.id) === parseInt(post === null || post === void 0 ? void 0 : post.profile_id)) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "post_class"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostHeader"
-    }, "Posted by ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Posted by ", user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostBody"
-    }, post.body));
+    }, post === null || post === void 0 ? void 0 : post.body));
   }
 });
 
@@ -1436,7 +1437,7 @@ __webpack_require__.r(__webpack_exports__);
 var aboutMe = function aboutMe(user) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "title"
-  }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name: ", user.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name: ", user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender: ", user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Location: ", user.location));
+  }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name: ", user === null || user === void 0 ? void 0 : user.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name: ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender: ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Location: ", user === null || user === void 0 ? void 0 : user.location));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (aboutMe);

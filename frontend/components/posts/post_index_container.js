@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
   users: state.entities.users,
   user: state.entities.users[ownProps.match.params.userId],
   userId: ownProps.match.params.userId
+  
 });
 
 const mapDispatchToProps = (dispatch) => ({
