@@ -27,7 +27,6 @@ class NewPost extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        debugger
         const post = Object.assign({}, this.state)
         this.props.createPost(post).then(this.props.closeModal)
     }

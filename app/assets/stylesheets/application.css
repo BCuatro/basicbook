@@ -59,7 +59,10 @@
   background: black;
   animation-delay: 0.5s; */
  /* } */
+html {
+  min-height: 1000px;
 
+}
 .logo{
   -webkit-box-reflect: below -10px
   linear-gradient(to bottom,
@@ -496,4 +499,9 @@ ul{
       font-weight: 100;
       font-family: monospace;
 
+    }
+    .home{
+      position: relative;
+      height: 100%;
+      z-index: 1000;
     }

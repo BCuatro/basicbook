@@ -7,7 +7,7 @@ export default ({ post, user, users}) => {
     obj.id === post?.author_id
   )[0]
   const post_date = new Date(post?.created_at)
-    if (user?.id === parseInt(post?.profile_id)) {
+    if (user?.id !== parseInt(post?.profile_id) && parseInt(post?.profile_id) === parseInt(post?.author_id))  {
       console.log(author)
       console.log(users)
     return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import NavBarContainer from '../nav_bar/nav_bar_container';
 import GreetingContainer from '../nav_bar/nav_bar_container';
+import Post_container from '../posts/post_container';
 import ProfileContainer from '../profile/profile_container';
 import LoginFormContainer from '../session/login_form_container';
 
@@ -23,13 +24,15 @@ import LoginFormContainer from '../session/login_form_container';
           </nav>
         );
         const Home = () => (
-          <div>
+          <nav className= "home">
             <hgroup className= "header-group">
-              <h2 className="header-group">Hi</h2>
-                
+              <h2 className="header-group">`Hi ${currentUser.username}`</h2>
             </hgroup>
+            <div>
+             <h2 className="header-group">`Hi ${currentUser.username}`</h2>
+            </div>
             
-          </div>
+          </nav>
 
 
           

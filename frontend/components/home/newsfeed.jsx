@@ -1,8 +1,8 @@
 import React from 'react';
-import PostItem from './post_item';
+import NewsfeedItem from './newsfeed_item';
 
 
-class PostIndex extends React.Component {
+class Newsfeed extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -22,7 +22,7 @@ class PostIndex extends React.Component {
         <ul className= "wall_posts">
           {
             this.props.posts.map(post => (
-              <PostItem
+              <NewsfeedItem
               key={`${post.id}`}
               post={post}
               user= {this.props.user}
@@ -38,4 +38,4 @@ class PostIndex extends React.Component {
   }
 }
 
-export default PostIndex;
+export default Newsfeed;

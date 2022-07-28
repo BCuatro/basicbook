@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/posts_actions';
-import PostIndex from './post_index';
+import Newsfeed from './newsfeed';
 import { withRouter} from "react-router-dom"
 
 
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostIndex));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Newsfeed));
