@@ -55,7 +55,7 @@ export default class Tabs extends React.Component {
     // console.log(this.props.userId)
     
     const tabs = [
-      {title: 'Posts', content: <PostContainer userId ={this.props.userId} currentUser = {this.props.currentUser}/>},
+      {title: 'Posts', content: <PostContainer/>},
       {title: 'About', content: aboutMe(this.props.user)},
       {title: 'Friends', content: 'Drake said no new friends'},
       {title: 'Photo', content: 'AWS'},

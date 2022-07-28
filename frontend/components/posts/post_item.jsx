@@ -13,7 +13,7 @@ export default ({ post, user, users}) => {
     return (
       <li className="post_class">
         <div className="wallPostHeader">Posted by {author?.username}</div>
-        <div className="wallPostHeader">Posted by {post_date.toLocaleDateString()}</div>
+        <div className="wallPostHeader">Posted on {post_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {post_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
         
         <div className="wallPostBody">{post?.body}</div>
         {/* <div className="wallPostButton">
