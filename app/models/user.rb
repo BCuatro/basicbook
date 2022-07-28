@@ -19,6 +19,8 @@ class User < ApplicationRecord
     
     has_many :profile_posts, class_name: :Post, foreign_key: :profile_id
 
+    has_many :comments, class_name: :Comment, foreign_key: :author_id
+
    
 
     def self.find_by_credentials(username, password)
