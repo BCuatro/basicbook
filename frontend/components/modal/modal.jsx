@@ -12,7 +12,7 @@ import EditPostContainer from '../posts/edit_post_container';
 
 
 
-function Modal({modal, closeModal, userId, currentUser}) {
+function Modal({modal, closeModal, userId, currentUser, post}) {
   if (!modal) {
     return null;
   }
@@ -26,7 +26,7 @@ function Modal({modal, closeModal, userId, currentUser}) {
       break;
 
     case 'createpost':
-      component = <NewPostContainer className="newPost" closeModal = {closeModal} userid ={userId} />;
+      component = <NewPostContainer className="newPost" closeModal = {closeModal} />;
       break;
     
     case 'editprofile':
@@ -36,7 +36,7 @@ function Modal({modal, closeModal, userId, currentUser}) {
     
     case 'editpost':
     
-      component = <EditPostContainer className="editPost"/>;
+      component = <EditPostContainer className="editPost" post ={post}/>;
       break;
 
     default:

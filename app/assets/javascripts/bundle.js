@@ -1243,7 +1243,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _newsfeed_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./newsfeed_item */ "./frontend/components/home/newsfeed_item.jsx");
+/* harmony import */ var _posts_post_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../posts/post_item */ "./frontend/components/posts/post_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1275,9 +1275,13 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Newsfeed);
 
   function Newsfeed(props) {
+    var _this;
+
     _classCallCheck(this, Newsfeed);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Newsfeed, [{
@@ -1286,23 +1290,39 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
       this.props.fetchPosts(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
+    key: "handleOpenModal",
+    value: function handleOpenModal(e) {
+      e.preventDefault();
+      this.props.openModal();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       // console.log(Object.values(this.props.users))
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "newfeed"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "postButtonModal",
+        onClick: this.handleOpenModal
+      }, "What is on your mind?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "wall"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "wall_posts"
-      }, this.props.posts.map(function (post) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, this.props.posts.sort(function (a, b) {
+        return a.created_at > b.created_at ? -1 : 1;
+      }).map(function (post) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_post_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: "".concat(post.id),
           post: post,
-          user: _this.props.user,
-          users: Object.values(_this.props.users)
+          user: _this2.props.user,
+          users: Object.values(_this2.props.users),
+          page: "home",
+          modal: _this2.props.openModal,
+          deletePost: _this2.props.deletePost
         });
-      })));
+      }))));
     }
   }]);
 
@@ -1329,7 +1349,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _newsfeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newsfeed */ "./frontend/components/home/newsfeed.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -1351,55 +1373,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: function fetchPosts() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
+    },
+    deletePost: function deletePost(postId) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
+    },
+    openModal: function openModal(modal) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal = 'createpost'));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
-
-/***/ }),
-
-/***/ "./frontend/components/home/newsfeed_item.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/home/newsfeed_item.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var post = _ref.post,
-      user = _ref.user,
-      users = _ref.users;
-  var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
-    return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
-  })[0];
-  var post_date = new Date(post === null || post === void 0 ? void 0 : post.created_at);
-
-  if ((user === null || user === void 0 ? void 0 : user.id) !== parseInt(post === null || post === void 0 ? void 0 : post.profile_id) && parseInt(post === null || post === void 0 ? void 0 : post.profile_id) === parseInt(post === null || post === void 0 ? void 0 : post.author_id)) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-      className: "post_class"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
-    }, "Posted by ", author === null || author === void 0 ? void 0 : author.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
-    }, "Posted on ", post_date.toLocaleDateString([], {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    }), " at ", post_date.toLocaleTimeString([], {
-      timeStyle: 'short'
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostBody"
-    }, post === null || post === void 0 ? void 0 : post.body));
-  }
-});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -1438,7 +1422,8 @@ function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal,
       userId = _ref.userId,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      post = _ref.post;
 
   if (!modal) {
     return null;
@@ -1460,8 +1445,7 @@ function Modal(_ref) {
     case 'createpost':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_new_post_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
         className: "newPost",
-        closeModal: closeModal,
-        userid: userId
+        closeModal: closeModal
       });
       break;
 
@@ -1473,7 +1457,8 @@ function Modal(_ref) {
 
     case 'editpost':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_edit_post_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        className: "editPost"
+        className: "editPost",
+        post: post
       });
       break;
 
@@ -2169,19 +2154,25 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this$props$posts$,
+          _this$props$posts$2,
+          _this2 = this;
 
       // console.log(Object.values(this.props.users))
+      console.log("looky", ((_this$props$posts$ = this.props.posts[0]) === null || _this$props$posts$ === void 0 ? void 0 : _this$props$posts$.created_at) < ((_this$props$posts$2 = this.props.posts[1]) === null || _this$props$posts$2 === void 0 ? void 0 : _this$props$posts$2.created_at));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "wall"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "wall_posts"
-      }, this.props.posts.map(function (post) {
+      }, this.props.posts.sort(function (a, b) {
+        return a.created_at > b.created_at ? -1 : 1;
+      }).map(function (post) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: "".concat(post.id),
           post: post,
           user: _this2.props.user,
           users: Object.values(_this2.props.users),
+          page: "profile",
           modal: _this2.props.openModal,
           deletePost: _this2.props.deletePost
         });
@@ -2237,8 +2228,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPosts: function fetchPosts() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
     },
-    openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)());
+    openModal: function openModal(modal) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal = "editPost"));
     },
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
@@ -2263,19 +2254,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _comments_comments_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../comments/comments_index_container */ "./frontend/components/comments/comments_index_container.js");
-/* harmony import */ var _comments_new_comment_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/new_comment_container */ "./frontend/components/comments/new_comment_container.js");
-/* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../posts/edit_post_container */ "./frontend/components/posts/edit_post_container.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comments_index_container */ "./frontend/components/comments/comments_index_container.js");
+/* harmony import */ var _comments_new_comment_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/new_comment_container */ "./frontend/components/comments/new_comment_container.js");
+/* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../posts/edit_post_container */ "./frontend/components/posts/edit_post_container.js");
 
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+
+
+var PostItem = function PostItem(_ref) {
   var post = _ref.post,
       user = _ref.user,
       users = _ref.users,
-      modal = _ref.modal,
-      deletePost = _ref.deletePost;
+      deletePost = _ref.deletePost,
+      page = _ref.page;
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
   })[0];
@@ -2283,9 +2277,12 @@ __webpack_require__.r(__webpack_exports__);
   var deletebutton;
 
   if ((user === null || user === void 0 ? void 0 : user.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
-    editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_edit_post_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      post: post
-    }); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+    // editbutton = <EditPostContainer post={post} />
+    editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      onClick: function onClick() {
+        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)("editPost"));
+      }
+    }, " Edit Post"); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
 
     deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "delete button",
@@ -2304,7 +2301,7 @@ __webpack_require__.r(__webpack_exports__);
 
   var post_date = new Date(post === null || post === void 0 ? void 0 : post.created_at);
 
-  if ((user === null || user === void 0 ? void 0 : user.id) === parseInt(post === null || post === void 0 ? void 0 : post.profile_id)) {
+  var renderedPosts = function renderedPosts() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "post_class"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2321,13 +2318,26 @@ __webpack_require__.r(__webpack_exports__);
       className: "wallPostBody"
     }, post === null || post === void 0 ? void 0 : post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostButton"
-    }), deletebutton, editbutton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), deletebutton, editbutton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       post: post
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_new_comment_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_new_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       post: post
     }));
+  };
+
+  if (page === "profile") {
+    if ((user === null || user === void 0 ? void 0 : user.id) === parseInt(post === null || post === void 0 ? void 0 : post.profile_id)) {
+      return renderedPosts();
+    }
+  } else if (page === "home") {
+    // if (user?.id !== parseInt(post?.profile_id) && parseInt(post?.profile_id) === parseInt(post?.author_id)) 
+    if (parseInt(post === null || post === void 0 ? void 0 : post.profile_id) === parseInt(post === null || post === void 0 ? void 0 : post.author_id)) {
+      return renderedPosts();
+    }
   }
-});
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostItem);
 
 /***/ }),
 

@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions/posts_actions';
+import { deletePost, fetchPosts } from '../../actions/posts_actions';
 import Newsfeed from './newsfeed';
 import { withRouter} from "react-router-dom"
+import { openModal } from '../../actions/modal_actions';
+
+
 
 
 
@@ -16,11 +19,14 @@ const mapStateToProps = (state, ownProps) => {
   users: state.entities.users,
   user: state.entities.users[ownProps.match.params.userId],
   userId: ownProps.match.params.userId
+
   
 }};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
+  deletePost: (postId) => dispatch(deletePost(postId)),
+  openModal: (modal)=> dispatch(openModal(modal= 'createpost')),
   
 
 });
