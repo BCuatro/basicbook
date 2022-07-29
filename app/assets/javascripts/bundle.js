@@ -1413,8 +1413,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
     },
-    openModal: function openModal(modal) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal = 'createpost'));
+    openModal: function openModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
+        modal: 'createpost'
+      }));
     },
     fetchUsers: function fetchUsers() {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_5__.fetchUsers)());
@@ -1840,7 +1842,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       body: "",
       // url: this.props.location.pathname.split('/'),
-      profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1] === "#" ? _this.props.currentUser.id : _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
+      profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1] === '' ? _this.props.currentUser.id : _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
       author_id: _this.props.currentUser.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));

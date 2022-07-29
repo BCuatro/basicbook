@@ -8,7 +8,7 @@ class NewPost extends React.Component {
                 body: "",
                 // url: this.props.location.pathname.split('/'),
                 
-                profile_id: this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length-1] === "#" ? 
+                profile_id: this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length-1] === '' ? 
                 this.props.currentUser.id : 
                 this.props.location.pathname.split("/")[this.props.location.pathname.split("/").length-1],
                 author_id: this.props.currentUser.id
@@ -45,7 +45,6 @@ class NewPost extends React.Component {
     //     );
     //   }
     render() {
-        
         let buttonId
         if(!this.props.currentUser) return null
         

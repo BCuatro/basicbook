@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   deletePost: (postId) => dispatch(deletePost(postId)),
-  openModal: (modal)=> dispatch(openModal(modal= 'createpost')),
+  openModal: ()=> dispatch(openModal({modal:'createpost'})),
   fetchUsers: () => dispatch(fetchUsers())
   
 
