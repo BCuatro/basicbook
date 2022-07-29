@@ -26,7 +26,7 @@ class EditPost extends React.Component {
     render() {
         // if(!this.props.post) return null
 
-        console.log(this.props.post)
+        
         return(
             // <div className='editform' >
             //     <h2> Hi </h2>

@@ -18,7 +18,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser}
   if (currentUser?.id === post?.author_id){
     // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
-    editbutton =  <button onClick ={() => {updatePost}}> Edit Post</button> 
+    editbutton =  <button onClick ={() => updatePost("editpost", post)}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
     deletebutton =  <button 
     className="delete button" 

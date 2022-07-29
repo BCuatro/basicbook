@@ -5,6 +5,7 @@ import { deletePost, fetchPosts } from '../../actions/posts_actions';
 import Newsfeed from './newsfeed';
 import { withRouter} from "react-router-dom"
 import { openModal } from '../../actions/modal_actions';
+import { fetchUsers } from '../../actions/users_actions';
 
 
 
@@ -28,6 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   deletePost: (postId) => dispatch(deletePost(postId)),
   openModal: (modal)=> dispatch(openModal(modal= 'createpost')),
+  fetchUsers: () => dispatch(fetchUsers())
   
 
 });

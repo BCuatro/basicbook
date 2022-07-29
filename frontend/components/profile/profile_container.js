@@ -32,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
         fetchUser: (userId) => dispatch(fetchUser(userId)),
         fetchProfile: (userId) => dispatch(fetchProfile(userId)),
         fetchUsers: () => dispatch(fetchUsers()),
-        openModal: ()=> dispatch(openModal('editprofile')),
+        openModal: ()=> dispatch(openModal({modal: 'editprofile'})),
         closeModal: () => dispatch(closeModal())
         
 

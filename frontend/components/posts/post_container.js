@@ -22,7 +22,7 @@ const mapStateToProps= (state, ownProps) =>{
 
 const mapDispatchToProps= dispatch =>{
     return{
-        openModal: (modal, userId)=> dispatch(openModal(modal= 'createpost', userId = userId)),
+        openModal: ()=> dispatch(openModal({modal: 'createpost'})),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal())
         

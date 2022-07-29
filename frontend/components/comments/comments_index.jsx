@@ -14,7 +14,7 @@ class CommentsIndex extends React.Component {
   
   render() {
     // console.log(Object.values(this.props.users))
-    console.log(this.props.currentUser)
+  
     return (
   
       <div className="comment-container">

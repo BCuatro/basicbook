@@ -13,22 +13,17 @@ class PostIndex extends React.Component {
     // this.props.fetchUser(this.props.match.params.userId)
   }
 
-  handleOpenModal(modal) {
-    return function(e){
-      e.preventDefault();
-      this.props.openModal(modal)
-      console.log("this works")
-    }
+  handleOpenModal(modal, post) {
    
-     
-   
-    
-}
+    // return function(e){
+      // e.preventDefault();
+      this.props.openModal(modal, post)
+  }
 
   
   render() {
     // console.log(Object.values(this.props.users))
-    console.log("looky", this.props.posts[0]?.created_at < this.props.posts[1]?.created_at )
+    
     return (
       
       <div className="wall">
@@ -45,7 +40,7 @@ class PostIndex extends React.Component {
               currentUser= {this.props.currentUser}
               users= {Object.values(this.props.users)}
               page ={"profile"}
-              updatePost= {this.props.openModal("editPost")}
+              updatePost= {this.handleOpenModal}
               deletePost ={this.props.deletePost}
               />
               )

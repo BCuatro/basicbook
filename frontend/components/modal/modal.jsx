@@ -12,13 +12,12 @@ import { withRouter } from 'react-router-dom';
 
 
 
-function Modal({modal, closeModal, userId, currentUser, post}) {
-  console.log("this is in the modal",post)
+function Modal({modal, closeModal, userId, currentUser}) {
   if (!modal) {
     return null;
   }
   let component;
-  switch (modal) {
+  switch (modal.modal) {
     // case 'login':
     //   component = <LoginFormContainer />;
     //   break;
@@ -37,7 +36,7 @@ function Modal({modal, closeModal, userId, currentUser, post}) {
     
     case 'editpost':
     
-      component = <EditPostContainer post = {post}/>;
+      component = <EditPostContainer post = {modal.post}/>;
       break;
 
     default:

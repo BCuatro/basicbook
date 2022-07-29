@@ -378,7 +378,8 @@ var CLOSE_MODAL = 'CLOSE_MODAL';
 var openModal = function openModal(modal) {
   return {
     type: OPEN_MODAL,
-    modal: modal
+    modal: modal.modal,
+    post: modal.post
   };
 };
 var closeModal = function closeModal() {
@@ -757,10 +758,9 @@ __webpack_require__.r(__webpack_exports__);
   var deletebutton;
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (comment === null || comment === void 0 ? void 0 : comment.author_id)) {
-    console.log(comment); // editbutton = <EditPostContainer post={post} />
+    // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
-
     deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "delete button",
       onClick: function onClick() {
@@ -859,7 +859,6 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       // console.log(Object.values(this.props.users))
-      console.log(this.props.currentUser);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "comment-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
@@ -1319,7 +1318,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
   _createClass(Newsfeed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPosts(); // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchPosts();
+      this.props.fetchUsers(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleOpenModal",
@@ -1382,8 +1382,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _newsfeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newsfeed */ "./frontend/components/home/newsfeed.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+
 
 
 
@@ -1413,11 +1415,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal = 'createpost'));
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_5__.fetchUsers)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -1456,9 +1461,7 @@ function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal,
       userId = _ref.userId,
-      currentUser = _ref.currentUser,
-      post = _ref.post;
-  console.log("this is in the modal", post);
+      currentUser = _ref.currentUser;
 
   if (!modal) {
     return null;
@@ -1466,7 +1469,7 @@ function Modal(_ref) {
 
   var component;
 
-  switch (modal) {
+  switch (modal.modal) {
     // case 'login':
     //   component = <LoginFormContainer />;
     //   break;
@@ -1492,7 +1495,7 @@ function Modal(_ref) {
 
     case 'editpost':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_edit_post_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        post: post
+        post: modal.post
       });
       break;
 
@@ -1697,7 +1700,6 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
           _this$state;
 
       // if(!this.props.post) return null
-      console.log(this.props.post);
       return (
         /*#__PURE__*/
         // <div className='editform' >
@@ -1838,7 +1840,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       body: "",
       // url: this.props.location.pathname.split('/'),
-      profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
+      profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1] === "#" ? _this.props.currentUser.id : _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
       author_id: _this.props.currentUser.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -2106,8 +2108,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    openModal: function openModal(modal, userId) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)(modal = 'createpost', userId = userId));
+    openModal: function openModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)({
+        modal: 'createpost'
+      }));
     },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__.removeErrors)());
@@ -2183,22 +2187,17 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleOpenModal",
-    value: function handleOpenModal(modal) {
-      return function (e) {
-        e.preventDefault();
-        this.props.openModal(modal);
-        console.log("this works");
-      };
+    value: function handleOpenModal(modal, post) {
+      // return function(e){
+      // e.preventDefault();
+      this.props.openModal(modal, post);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props$posts$,
-          _this$props$posts$2,
-          _this2 = this;
+      var _this2 = this;
 
       // console.log(Object.values(this.props.users))
-      console.log("looky", ((_this$props$posts$ = this.props.posts[0]) === null || _this$props$posts$ === void 0 ? void 0 : _this$props$posts$.created_at) < ((_this$props$posts$2 = this.props.posts[1]) === null || _this$props$posts$2 === void 0 ? void 0 : _this$props$posts$2.created_at));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "wall"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
@@ -2213,7 +2212,7 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           currentUser: _this2.props.currentUser,
           users: Object.values(_this2.props.users),
           page: "profile",
-          updatePost: _this2.props.openModal("editPost"),
+          updatePost: _this2.handleOpenModal,
           deletePost: _this2.props.deletePost
         });
       })));
@@ -2269,8 +2268,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPosts: function fetchPosts() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
     },
-    openModal: function openModal(modal) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal));
+    openModal: function openModal(modal, post) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
+        modal: modal,
+        post: post
+      }));
     },
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
@@ -2324,7 +2326,7 @@ var PostItem = function PostItem(_ref) {
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: function onClick() {
-        updatePost;
+        return updatePost("editpost", post);
       }
     }, " Edit Post"); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
 
@@ -2826,7 +2828,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUsers)());
     },
     openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)('editprofile'));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)({
+        modal: 'editprofile'
+      }));
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
@@ -3263,7 +3267,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.login)(user));
     },
     openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('signup'));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
+        modal: 'signup'
+      }));
     },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.removeLoginErrors)());
@@ -3714,7 +3720,7 @@ function modalReducer() {
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.OPEN_MODAL:
-      return action.modal;
+      return action;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.CLOSE_MODAL:
       return null;
