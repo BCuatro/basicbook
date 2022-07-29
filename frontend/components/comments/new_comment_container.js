@@ -3,8 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import { createPost, removeErrors } from '../../actions/posts_actions';
-import NewPost from './new_post';
+import { createComment, removeErrors } from '../../actions/comments_actions';
+import NewComment from './new_comment';
 // import SessionForm from './session_form';
 
 
@@ -16,7 +16,7 @@ const mapStateToProps= (state, ownProps) =>{
         user: state.entities.users[ownProps.match.params.userId],
         users: state.entities.users,
         userId: ownProps.match.params.userId,
-        errors: state.errors.posts
+        errors: state.errors.comments
 
 
     }
@@ -24,12 +24,11 @@ const mapStateToProps= (state, ownProps) =>{
 
 const mapDispatchToProps= dispatch =>{
     return{
-        createPost: (post) => dispatch(createPost(post)),
+        createComment: (comment) => dispatch(createComment(comment)),
         removeErrors: ()=> dispatch(removeErrors()),
-        closeModal: () => dispatch(closeModal())
         
     }
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewPost))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewComment))

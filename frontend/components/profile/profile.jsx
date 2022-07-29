@@ -59,7 +59,6 @@ class Profile extends React.Component{
    
     
     render(){ 
-        console.log(this.props.currentProfile)
       
         let editButton
          const {user} = this.props
@@ -68,7 +67,6 @@ class Profile extends React.Component{
                 editButton =""
             } 
             
-            // debugger
         return (
             <div className="profile">
                 <div>{editButton}</div>

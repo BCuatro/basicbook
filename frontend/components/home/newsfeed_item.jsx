@@ -8,8 +8,6 @@ export default ({ post, user, users}) => {
   )[0]
   const post_date = new Date(post?.created_at)
     if (user?.id !== parseInt(post?.profile_id) && parseInt(post?.profile_id) === parseInt(post?.author_id))  {
-      console.log("WHY", author)
-      console.log("LOOK", users)
     return (
       <li className="post_class">
         <div className="wallPostHeader">Posted by {author?.username}</div>

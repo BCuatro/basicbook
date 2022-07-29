@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/posts_actions';
 import PostIndex from './post_index';
 import { withRouter} from "react-router-dom"
+import { openModal, closeModal } from '../../actions/modal_actions';
 
 
 
@@ -21,6 +22,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
+  openModal: ()=> dispatch(openModal('editpost')),
   
 
 });

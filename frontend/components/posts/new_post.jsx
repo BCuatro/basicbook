@@ -43,20 +43,17 @@ class NewPost extends React.Component {
     //   }
     render() {
         
-        let buttonClassName
+        let buttonId
         if(!this.props.currentUser) return null
         
-        if(this.state.body.trim().length ===0){
-           buttonClassName= "invalidNewPostButton"
+        if(this.state.body.replace(/ /g,'').length ===0){
+           buttonId ="invalidButton"
         } else {
-            buttonClassName= "newPostButton"
+            buttonId= "newButton"
         }
-        console.log(this.state.body.length)
         
         // let userId= this.props.match.params.userId
-        console.log("this is my new post")
-        console.log(this.props.currentUser.id)
-        console.log(this.props.userId)
+        
     
         return(
             
@@ -79,12 +76,12 @@ class NewPost extends React.Component {
                         value = {this.state.author_id}
                         onChange= {this.handleInput("author_id")}
                         />
-                        <input type="text" 
+                        <input type="hidden" 
                         value = {this.state.profile_id}
                         onChange= {this.handleInput("profile_id")}
                         />
                         <br />
-                        <button disabled={this.state.body.length ===0} onClick = {this.handleSubmit} className= {buttonClassName}>Post</button>
+                        <button disabled={this.state.body.replace(/ /g,'').length ===0} onClick = {this.handleSubmit} className= "newPostButton" id= {buttonId}>Post</button>
                         
                     </form>
                 </div>

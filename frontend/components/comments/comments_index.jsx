@@ -1,31 +1,32 @@
 import React from 'react';
-import NewsfeedItem from './newsfeed_item';
+import CommentItem from './comment_item';
 
 
-class Newsfeed extends React.Component {
+class CommentsIndex extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchComments();
     // this.props.fetchUser(this.props.match.params.userId)
   }
   
   render() {
     // console.log(Object.values(this.props.users))
     return (
+  
+      <div className="comment-container">
       
-      <div className="wall">
-      
-        <ul className= "wall_posts">
+        <ul className= "postComments">
           {
-            this.props.posts.map(post => (
-              <NewsfeedItem
-              key={`${post.id}`}
-              post={post}
-              user= {this.props.user}
+            this.props.comments.map(comment => (
+              <CommentItem
+              key={`${comment.id}`}
+              postId={this.props.post?.id}
+              comment={comment}
               users= {Object.values(this.props.users)}
+
               
               />
               )
@@ -37,4 +38,4 @@ class Newsfeed extends React.Component {
   }
 }
 
-export default Newsfeed;
+export default CommentsIndex;

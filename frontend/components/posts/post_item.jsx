@@ -1,5 +1,8 @@
 import React from 'react';
 
+import CommentIndexContainer from '../comments/comments_index_container';
+
+import NewCommentContainer from '../comments/new_comment_container';
 
 
 export default ({ post, user, users}) => {
@@ -8,18 +11,18 @@ export default ({ post, user, users}) => {
   )[0]
   const post_date = new Date(post?.created_at)
     if (user?.id === parseInt(post?.profile_id)) {
-      console.log(author)
-      console.log(users)
     return (
       <li className="post_class">
         <div className="wallPostHeader">Posted by {author?.username}</div>
         <div className="wallPostHeader">Posted on {post_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {post_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
         
         <div className="wallPostBody">{post?.body}</div>
-        {/* <div className="wallPostButton">
+        <div className="wallPostButton">
           <button> like</button>
           <button> edit</button>
-        </div> */}
+        </div>
+        <CommentIndexContainer post= {post} />
+        <NewCommentContainer post ={post} />
       </li>
     )}
     }
