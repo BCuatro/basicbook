@@ -22,8 +22,9 @@ class Api::PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        if (@post.update(post.params)) && current_user.id == author_id
-          redirect_to show
+        # if (@post.update(post_params)) && current_user.id == author_id
+        if @post.update(post_params)
+          render :show
         else
           render json: @post.errors.full_messages, status: 422
         end
@@ -31,7 +32,8 @@ class Api::PostsController < ApplicationController
 
     def destroy
         @post = Post.find_by(id: params[:id])
-        if @post.destroy && current_user.id == author_id
+        # if @post.destroy && current_user.id == author_id
+        if @post.destroy
             render :show
         else
             render json: @post.errors.full_messages, status: 422
@@ -41,6 +43,8 @@ class Api::PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:body, :profile_id, :author_id)
     end
+
+    
     
     
     

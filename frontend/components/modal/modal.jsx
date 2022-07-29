@@ -36,7 +36,7 @@ function Modal({modal, closeModal, userId, currentUser}) {
     
     case 'editpost':
     
-      component = <EditPostContainer className="editPost" />;
+      component = <EditPostContainer className="editPost"/>;
       break;
 
     default:

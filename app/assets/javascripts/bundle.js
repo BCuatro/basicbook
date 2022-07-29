@@ -1646,6 +1646,7 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, EditPost);
 
     _this = _super.call(this, props);
+    _this.state = _this.props.post;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     return _this;
@@ -1662,38 +1663,44 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchPost(this.state.id);
+    value: function componentDidMount() {// this.props.fetchPost(this.state.id)
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.updateUser(this.state).then(this.props.closeModal);
+      this.props.updatePost(this.state).then(this.props.closeModal);
     }
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      // if(!this.props.currentUser) return null
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "postbox"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: function onClick() {
-          _this3.props.closeModal();
-        },
-        className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
-        cols: "30",
-        rows: "10",
-        value: this.state.body,
-        onChange: this.handleUpdate("body")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: this.handleSubmit
-      }, "Post")));
+      if (!this.props.post) return null;
+      return (
+        /*#__PURE__*/
+        // <div className="postbox" >
+        //     <p> Hi </p>
+        //     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
+        // </div>
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "postbox"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+          onSubmit: this.handleSubmit
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: function onClick() {
+            _this3.props.closeModal();
+          },
+          className: "close-x"
+        }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+          cols: "30",
+          rows: "10",
+          value: this.state.body,
+          onChange: this.handleUpdate("body")
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: this.handleSubmit
+        }, "Post")))
+      );
     }
   }]);
 
@@ -1731,17 +1738,16 @@ __webpack_require__.r(__webpack_exports__);
  // import SessionForm from './session_form';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    currentUser: state.entities.users[state.session.id],
-    user: state.entities.users[ownProps.match.params.userId],
-    userId: ownProps.match.params.userId
+  return {// currentUser: state.entities.users[state.session.id],
+    // user: state.entities.users[ownProps.match.params.userId],
+    // userId: ownProps.match.params.userId
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createPost: function createPost(post) {
-      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.createPost)(post));
+    updatePost: function updatePost(post) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.updatePost)(post));
     },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
@@ -2176,7 +2182,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           post: post,
           user: _this2.props.user,
           users: Object.values(_this2.props.users),
-          modal: _this2.props.openModal
+          modal: _this2.props.openModal,
+          deletePost: _this2.props.deletePost
         });
       })));
     }
@@ -2231,7 +2238,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
     },
     openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)('editpost'));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)());
+    },
+    deletePost: function deletePost(postId) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
     }
   };
 };
@@ -2255,16 +2265,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _comments_comments_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../comments/comments_index_container */ "./frontend/components/comments/comments_index_container.js");
 /* harmony import */ var _comments_new_comment_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/new_comment_container */ "./frontend/components/comments/new_comment_container.js");
+/* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../posts/edit_post_container */ "./frontend/components/posts/edit_post_container.js");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var post = _ref.post,
       user = _ref.user,
-      users = _ref.users;
+      users = _ref.users,
+      modal = _ref.modal,
+      deletePost = _ref.deletePost;
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
   })[0];
+  var editbutton;
+  var deletebutton;
+
+  if ((user === null || user === void 0 ? void 0 : user.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
+    editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_edit_post_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      post: post
+    }); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+
+    deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      className: "delete button",
+      onClick: function onClick() {
+        var confirmation = window.confirm("Are you sure you want to delete this post?");
+
+        if (confirmation === true) {
+          deletePost(post.id);
+        }
+      }
+    }, "Delete Post ");
+  } else {
+    editbutton = "";
+    deletebutton = "";
+  }
+
   var post_date = new Date(post === null || post === void 0 ? void 0 : post.created_at);
 
   if ((user === null || user === void 0 ? void 0 : user.id) === parseInt(post === null || post === void 0 ? void 0 : post.profile_id)) {
@@ -2284,7 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
       className: "wallPostBody"
     }, post === null || post === void 0 ? void 0 : post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostButton"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, " edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), deletebutton, editbutton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       post: post
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_new_comment_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       post: post
@@ -4064,13 +4101,10 @@ var updatePost = function updatePost(post) {
     }
   });
 };
-var deletePost = function deletePost(post_Id) {
+var deletePost = function deletePost(postId) {
   return $.ajax({
-    url: "api/posts/".concat(post_Id),
-    method: "DELETE",
-    data: {
-      post: post
-    }
+    url: "api/posts/".concat(postId),
+    method: "DELETE"
   });
 };
 

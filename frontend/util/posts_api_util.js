@@ -32,11 +32,10 @@ export const updatePost = (post) => {
     
 }
 
-export const deletePost = (post_Id) => {
+export const deletePost = (postId) => {
     return $.ajax({
-            url: `api/posts/${post_Id}`,
+            url: `api/posts/${postId}`,
             method: `DELETE`,
-            data: {post}
         })
     
 }
