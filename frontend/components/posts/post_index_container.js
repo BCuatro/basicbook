@@ -17,13 +17,14 @@ const mapStateToProps = (state, ownProps) => {
   posts: Object.keys(state.entities.posts).map(key => state.entities.posts[key]),
   users: state.entities.users,
   user: state.entities.users[ownProps.match.params.userId],
-  userId: ownProps.match.params.userId
+  userId: ownProps.match.params.userId,
+  currentUser: state.entities.users[state.session.id],
   
 }};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
-  openModal: (modal)=> dispatch(openModal(modal = "editPost")),
+  openModal: (modal)=> dispatch(openModal(modal)),
   deletePost: (postId) => dispatch(deletePost(postId))
   
 

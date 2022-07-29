@@ -24,21 +24,22 @@ class EditPost extends React.Component {
       }
 
     render() {
-        if(!this.props.post) return null
-        
+        // if(!this.props.post) return null
+
+        console.log(this.props.post)
         return(
-            // <div className="postbox" >
-            //     <p> Hi </p>
+            // <div className='editform' >
+            //     <h2> Hi </h2>
 
             //     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
             // </div>
-            <div className="postbox">
+            <div className="editform">
                 <form onSubmit={this.handleSubmit}>
                     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
                     <h1>Edit Post</h1>
                     <textarea 
                     cols="30" rows="10" 
-                    value = {this.state.body}
+                    value = {this.state?.body}
                     onChange={this.handleUpdate("body")}
                     ></textarea>
                     <br />

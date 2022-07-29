@@ -2,10 +2,30 @@ import React from 'react';
 
 
 
-export default ({ comment, users, postId}) => {
+export default ({ comment, users, postId, deleteComment, currentUser}) => {
+  
+  // console.log(comment?.author_id)
+  // console.log(author?.id === comment?.author_id)
   const author = users?.filter(obj=>
     obj.id === comment?.author_id
   )[0]
+  let deletebutton
+  if (currentUser?.id === comment?.author_id){
+    // editbutton = <EditPostContainer post={post} />
+    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+    // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+    deletebutton =  <button 
+    className="delete button" 
+    onClick={() => { 
+      const confirmation = 
+      window.confirm("Are you sure you want to delete this comment?")
+      if (confirmation === true) {
+        deleteComment(comment.id)
+      }
+      }}>Delete Comment </button>
+  } else {
+    deletebutton = ""
+  }
   const comment_date = new Date(comment?.created_at)
     if (postId=== comment?.post_id) {
     return (
@@ -18,6 +38,7 @@ export default ({ comment, users, postId}) => {
           <button> like</button>
           <button> edit</button>
         </div> */}
+        {deletebutton}
       </li>
     )}
     }

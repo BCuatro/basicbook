@@ -14,6 +14,7 @@ class CommentsIndex extends React.Component {
   
   render() {
     // console.log(Object.values(this.props.users))
+    console.log(this.props.currentUser)
     return (
   
       <div className="comment-container">
@@ -26,8 +27,8 @@ class CommentsIndex extends React.Component {
               postId={this.props.post?.id}
               comment={comment}
               users= {Object.values(this.props.users)}
-
-              
+              deleteComment = {this.props.deleteComment}
+              currentUser = {this.props.currentUser}
               />
               )
             )

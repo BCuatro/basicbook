@@ -746,10 +746,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var comment = _ref.comment,
       users = _ref.users,
-      postId = _ref.postId;
+      postId = _ref.postId,
+      deleteComment = _ref.deleteComment,
+      currentUser = _ref.currentUser;
+  // console.log(comment?.author_id)
+  // console.log(author?.id === comment?.author_id)
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (comment === null || comment === void 0 ? void 0 : comment.author_id);
   })[0];
+  var deletebutton;
+
+  if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (comment === null || comment === void 0 ? void 0 : comment.author_id)) {
+    // editbutton = <EditPostContainer post={post} />
+    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+    // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+    deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      className: "delete button",
+      onClick: function onClick() {
+        var confirmation = window.confirm("Are you sure you want to delete this comment?");
+
+        if (confirmation === true) {
+          deleteComment(comment.id);
+        }
+      }
+    }, "Delete Comment ");
+  } else {
+    deletebutton = "";
+  }
+
   var comment_date = new Date(comment === null || comment === void 0 ? void 0 : comment.created_at);
 
   if (postId === (comment === null || comment === void 0 ? void 0 : comment.post_id)) {
@@ -767,7 +791,7 @@ __webpack_require__.r(__webpack_exports__);
       timeStyle: 'short'
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "commentBody"
-    }, comment === null || comment === void 0 ? void 0 : comment.body));
+    }, comment === null || comment === void 0 ? void 0 : comment.body), deletebutton);
   }
 });
 
@@ -834,6 +858,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       // console.log(Object.values(this.props.users))
+      console.log(this.props.currentUser);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "comment-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
@@ -845,7 +870,9 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
           key: "".concat(comment.id),
           postId: (_this$props$post = _this.props.post) === null || _this$props$post === void 0 ? void 0 : _this$props$post.id,
           comment: comment,
-          users: Object.values(_this.props.users)
+          users: Object.values(_this.props.users),
+          deleteComment: _this.props.deleteComment,
+          currentUser: _this.props.currentUser
         });
       })));
     }
@@ -887,6 +914,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       return state.entities.comments[key];
     }),
     users: state.entities.users,
+    currentUser: state.entities.users[state.session.id],
     user: state.entities.users[ownProps.match.params.userId],
     userId: ownProps.match.params.userId
   };
@@ -896,6 +924,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchComments: function fetchComments() {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__.fetchComments)());
+    },
+    deleteComment: function deleteComment(commentId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__.deleteComment)(commentId));
     }
   };
 };
@@ -1320,7 +1351,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           users: Object.values(_this2.props.users),
           page: "home",
           modal: _this2.props.openModal,
-          deletePost: _this2.props.deletePost
+          deletePost: _this2.props.deletePost,
+          currentUser: _this2.props.currentUser
         });
       }))));
     }
@@ -1365,7 +1397,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }),
     users: state.entities.users,
     user: state.entities.users[ownProps.match.params.userId],
-    userId: ownProps.match.params.userId
+    userId: ownProps.match.params.userId,
+    currentUser: state.entities.users[state.session.id]
   };
 };
 
@@ -1406,8 +1439,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/signup_form_container */ "./frontend/components/session/signup_form_container.js");
 /* harmony import */ var _posts_new_post_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../posts/new_post_container */ "./frontend/components/posts/new_post_container.js");
 /* harmony import */ var _profile_edit_profile_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/edit_profile_container */ "./frontend/components/profile/edit_profile_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../posts/edit_post_container */ "./frontend/components/posts/edit_post_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 
 
 
@@ -1424,6 +1457,7 @@ function Modal(_ref) {
       userId = _ref.userId,
       currentUser = _ref.currentUser,
       post = _ref.post;
+  console.log("this is in the modal", post);
 
   if (!modal) {
     return null;
@@ -1457,7 +1491,6 @@ function Modal(_ref) {
 
     case 'editpost':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_edit_post_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        className: "editPost",
         post: post
       });
       break;
@@ -1659,17 +1692,19 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this3 = this,
+          _this$state;
 
-      if (!this.props.post) return null;
+      // if(!this.props.post) return null
+      console.log(this.props.post);
       return (
         /*#__PURE__*/
-        // <div className="postbox" >
-        //     <p> Hi </p>
+        // <div className='editform' >
+        //     <h2> Hi </h2>
         //     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
         // </div>
         react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "postbox"
+          className: "editform"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
           onSubmit: this.handleSubmit
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -1680,7 +1715,7 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
         }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
           cols: "30",
           rows: "10",
-          value: this.state.body,
+          value: (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.body,
           onChange: this.handleUpdate("body")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: this.handleSubmit
@@ -2147,9 +2182,12 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleOpenModal",
-    value: function handleOpenModal(e) {
-      e.preventDefault();
-      this.props.openModal();
+    value: function handleOpenModal(modal) {
+      return function (e) {
+        e.preventDefault();
+        this.props.openModal(modal);
+        console.log("this works");
+      };
     }
   }, {
     key: "render",
@@ -2171,9 +2209,10 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           key: "".concat(post.id),
           post: post,
           user: _this2.props.user,
+          currentUser: _this2.props.currentUser,
           users: Object.values(_this2.props.users),
           page: "profile",
-          modal: _this2.props.openModal,
+          updatePost: _this2.props.openModal("editPost"),
           deletePost: _this2.props.deletePost
         });
       })));
@@ -2219,7 +2258,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }),
     users: state.entities.users,
     user: state.entities.users[ownProps.match.params.userId],
-    userId: ownProps.match.params.userId
+    userId: ownProps.match.params.userId,
+    currentUser: state.entities.users[state.session.id]
   };
 };
 
@@ -2229,7 +2269,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
     },
     openModal: function openModal(modal) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal = "editPost"));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(modal));
     },
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
@@ -2269,18 +2309,21 @@ var PostItem = function PostItem(_ref) {
       user = _ref.user,
       users = _ref.users,
       deletePost = _ref.deletePost,
-      page = _ref.page;
+      page = _ref.page,
+      updatePost = _ref.updatePost,
+      currentUser = _ref.currentUser;
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
   })[0];
   var editbutton;
   var deletebutton;
 
-  if ((user === null || user === void 0 ? void 0 : user.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
+  if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
     // editbutton = <EditPostContainer post={post} />
+    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: function onClick() {
-        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)("editPost"));
+        updatePost;
       }
     }, " Edit Post"); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
 

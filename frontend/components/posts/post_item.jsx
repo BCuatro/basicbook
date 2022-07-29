@@ -8,16 +8,17 @@ import EditPostContainer from '../posts/edit_post_container';
 
 
 
-const PostItem = ({ post, user, users, deletePost,page}) => {
+const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser}) => {
   const author = users?.filter(obj=>
     obj.id === post?.author_id
   )[0]
 
   let editbutton 
   let deletebutton 
-  if (user?.id === post?.author_id){
+  if (currentUser?.id === post?.author_id){
     // editbutton = <EditPostContainer post={post} />
-    editbutton =  <button onClick ={() => {dispatch(openModal("editPost"))}}> Edit Post</button> 
+    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+    editbutton =  <button onClick ={() => {updatePost}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
     deletebutton =  <button 
     className="delete button" 

@@ -13,10 +13,14 @@ class PostIndex extends React.Component {
     // this.props.fetchUser(this.props.match.params.userId)
   }
 
-  handleOpenModal(e) {
-   
+  handleOpenModal(modal) {
+    return function(e){
       e.preventDefault();
-      this.props.openModal()
+      this.props.openModal(modal)
+      console.log("this works")
+    }
+   
+     
    
     
 }
@@ -38,9 +42,10 @@ class PostIndex extends React.Component {
               key={`${post.id}`}
               post={post}
               user= {this.props.user}
+              currentUser= {this.props.currentUser}
               users= {Object.values(this.props.users)}
               page ={"profile"}
-              modal= {this.props.openModal}
+              updatePost= {this.props.openModal("editPost")}
               deletePost ={this.props.deletePost}
               />
               )

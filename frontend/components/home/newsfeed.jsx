@@ -41,6 +41,7 @@ class Newsfeed extends React.Component {
                 page = {"home"}
                 modal ={this.props.openModal}
                 deletePost ={this.props.deletePost}
+                currentUser= {this.props.currentUser}
                 
                 />
                 )

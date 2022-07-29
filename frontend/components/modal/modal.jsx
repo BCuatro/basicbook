@@ -5,14 +5,15 @@ import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import NewPostContainer from '../posts/new_post_container';
 import EditProfileContainer from '../profile/edit_profile_container';
-
-import { withRouter } from 'react-router-dom';
 import EditPostContainer from '../posts/edit_post_container';
+import { withRouter } from 'react-router-dom';
+
 
 
 
 
 function Modal({modal, closeModal, userId, currentUser, post}) {
+  console.log("this is in the modal",post)
   if (!modal) {
     return null;
   }
@@ -36,7 +37,7 @@ function Modal({modal, closeModal, userId, currentUser, post}) {
     
     case 'editpost':
     
-      component = <EditPostContainer className="editPost" post ={post}/>;
+      component = <EditPostContainer post = {post}/>;
       break;
 
     default:

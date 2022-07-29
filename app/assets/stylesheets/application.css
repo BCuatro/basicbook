@@ -133,7 +133,8 @@ html {
     box-shadow: 
     5px 5px 5px #2E2F43,
     10px 10px 10px #A38ED2;
-  
+  height:50%;
+  width: 50%;
 
 
   }
@@ -567,6 +568,12 @@ ul{
 
 #newButton{
   cursor: pointer;
+}
+
+.editpostt{
+  height: 300px;
+  width: 300px;
+  position: relative;
 }
 
     
