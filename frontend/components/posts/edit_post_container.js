@@ -21,7 +21,6 @@ const mapStateToProps= (state, ownProps) =>{
 }
 
 const mapDispatchToProps= dispatch =>{
-    // debugger
     return{
         createPost: (post) => dispatch(createPost(post)),
         removeErrors: ()=> dispatch(removeErrors()),

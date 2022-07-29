@@ -10,7 +10,6 @@ import NewPost from './new_post';
 
 
 const mapStateToProps= (state, ownProps) =>{
-    debugger
     return{
 
         currentUser:state.entities.users[state.session.id],
@@ -24,7 +23,6 @@ const mapStateToProps= (state, ownProps) =>{
 }
 
 const mapDispatchToProps= dispatch =>{
-    // debugger
     return{
         createPost: (post) => dispatch(createPost(post)),
         removeErrors: ()=> dispatch(removeErrors()),

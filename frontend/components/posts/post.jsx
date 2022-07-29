@@ -15,8 +15,6 @@ class Post extends React.Component {
     }
 
     render() {
-        console.log("this is my post form")
-        console.log(this.props.userId)
         return(
             <div className="postbox"> 
             {/* //div1 */}

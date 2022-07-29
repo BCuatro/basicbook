@@ -7,9 +7,9 @@ import Tabs from './tabs';
 class Profile extends React.Component{
     constructor(props){
         super(props)
-        this.state = this.props.user
+        this.state = this.props
         this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleProfilePic = this.handleProfilePic.bind(this)
+        // this.handleProfilePic = this.handleProfilePic.bind(this)
            
     }
     
@@ -17,9 +17,9 @@ class Profile extends React.Component{
     componentDidMount(){
         
        
-        this.props.fetchUser(this.props.match.params.userId)
+        this.props.fetchUser(parseInt(this.props.match.params.userId))
         this.props.fetchUsers()
-        
+        this.props.fetchProfile(parseInt(this.props.match.params.userId))
     }
 
     handleOpenModal(e){
@@ -37,13 +37,13 @@ class Profile extends React.Component{
         
     }
 
-    handleProfilePic(user){
-        if (!user.profile_picUrl) {
-            return <p>no photo</p>
-        } else {
-            return <img className="profilePic"src={user.profile_picUrl} />;
-        }
-    }
+    // handleProfilePic(user){
+    //     if (!user.profile_picUrl) {
+    //         return <p>no photo</p>
+    //     } else {
+    //         return <img className="profilePic"src={user.profile_picUrl} />;
+    //     }
+    // }
 
     // handleCoverPhoto(){
     //     let coverPhoto;
@@ -67,16 +67,15 @@ class Profile extends React.Component{
                 editButton =""
             } 
             
-    
         return (
             <div className="profile">
                 <div>{editButton}</div>
                 <div className="div1"><ProfileNavBarContainer />
-                <div className="profilePic">
+                {/* <div className="profilePic">
                      {this.handleProfilePic(user)}
                  </div>
                  <input type="file" 
-                 onChange ={this.handleProfilePic.bind(this)}/>
+                 onChange ={this.handleProfilePic.bind(this)}/> */}
                 
                 </div>
                 {/* <EditProfileContainer /> */}

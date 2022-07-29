@@ -8,7 +8,7 @@ class EditForm extends React.Component{
         this.state = this.props.currentUser
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this)
-        this.handleProfilePic =this.handleProfilePic.bind(this)
+        // this.handleProfilePic =this.handleProfilePic.bind(this)
         
       }
     

@@ -5,7 +5,10 @@ import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import NewPostContainer from '../posts/new_post_container';
 import EditProfileContainer from '../profile/edit_profile_container';
+post_container
 import { withRouter } from 'react-router-dom';
+import EditPostContainer from '../posts/edit_post_container';
+
 
 
 
@@ -29,6 +32,11 @@ function Modal({modal, closeModal, userId, currentUser}) {
     case 'editprofile':
       
       component = <EditProfileContainer className="editProfile" />;
+      break;
+    
+    case 'editpost':
+    
+      component = <EditPostContainer className="editPost" />;
       break;
 
     default:

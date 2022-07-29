@@ -15,7 +15,6 @@ export const fetchPost = (postId) => {
 }
 
 export const createPost = (post) => {
-    // debugger
     return $.ajax({
             url: `api/posts`,
             method: `POST`,
@@ -28,7 +27,7 @@ export const updatePost = (post) => {
     return $.ajax({
             url: `api/posts/${post.id}`,
             method: `PATCH`,
-            data: {user}
+            data: {post}
         })
     
 }

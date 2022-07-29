@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: {case_sensitive: false}
     validates :password, length: {minimum: 6}, allow_nil: true
     
+    
 
     attr_reader :password
     before_validation :ensure_session_token
@@ -17,6 +18,8 @@ class User < ApplicationRecord
     has_many :posts, class_name: :Post, foreign_key: :author_id
     
     has_many :profile_posts, class_name: :Post, foreign_key: :profile_id
+
+    has_many :comments, class_name: :Comment, foreign_key: :author_id
 
    
 
