@@ -757,9 +757,10 @@ __webpack_require__.r(__webpack_exports__);
   var deletebutton;
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (comment === null || comment === void 0 ? void 0 : comment.author_id)) {
-    // editbutton = <EditPostContainer post={post} />
+    console.log(comment); // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+
     deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "delete button",
       onClick: function onClick() {
@@ -4097,13 +4098,10 @@ var updateComment = function updateComment(comment) {
     }
   });
 };
-var deleteComment = function deleteComment(comment_Id) {
+var deleteComment = function deleteComment(commentId) {
   return $.ajax({
-    url: "api/comments/".concat(comment_Id),
-    method: "DELETE",
-    data: {
-      comment: comment
-    }
+    url: "api/comments/".concat(commentId),
+    method: "DELETE"
   });
 };
 

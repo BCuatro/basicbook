@@ -21,8 +21,8 @@ class Api::CommentsController < ApplicationController
 
     def update
         @comment = Comment.find(params[:id])
-        if (@comment.update(comment.params)) && current_user.id == author_id
-          redirect_to show
+        if (@comment.update(comment_params))
+          render :show
         else
           render json: @comment.errors.full_messages, status: 422
         end
@@ -30,7 +30,7 @@ class Api::CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find_by(id: params[:id])
-        if @comment.destroy && current_user.id == author_id
+        if @comment.destroy 
             render :show
         else
             render json: @comment.errors.full_messages, status: 422

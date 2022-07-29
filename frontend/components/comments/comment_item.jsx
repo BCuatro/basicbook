@@ -9,8 +9,10 @@ export default ({ comment, users, postId, deleteComment, currentUser}) => {
   const author = users?.filter(obj=>
     obj.id === comment?.author_id
   )[0]
+  
   let deletebutton
   if (currentUser?.id === comment?.author_id){
+    console.log(comment)
     // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
