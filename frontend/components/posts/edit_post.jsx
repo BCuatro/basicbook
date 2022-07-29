@@ -48,5 +48,5 @@ class EditPost extends React.Component {
 
 }
 
-export default withRouter(NewPost)
+export default withRouter(EditPost)
 

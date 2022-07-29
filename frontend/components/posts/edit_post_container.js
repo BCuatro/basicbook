@@ -4,9 +4,9 @@ import { connect} from 'react-redux';
 import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { createPost, removeErrors } from '../../actions/posts_actions';
-import EditForm from '../profile/edit_profile_form';
+import EditPost from './edit_post';
 // import SessionForm from './session_form';
-EditForm
+
 
 
 
