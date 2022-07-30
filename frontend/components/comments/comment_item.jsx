@@ -1,8 +1,9 @@
 import React from 'react';
+import EditCommentContainer from './edit_comment_container';
 
 
 
-export default ({ comment, users, postId, deleteComment, currentUser}) => {
+export default ({ comment, users, postId, deleteComment, currentUser, updateComment}) => {
   
   // console.log(comment?.author_id)
   // console.log(author?.id === comment?.author_id)
@@ -11,11 +12,13 @@ export default ({ comment, users, postId, deleteComment, currentUser}) => {
   )[0]
   
   let deletebutton
+  let editbutton
   if (currentUser?.id === comment?.author_id){
    
     // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+    editbutton =  <button onClick ={() => updateComment("editcomment", comment)}> Edit Comment</button> 
     deletebutton =  <button 
     className="delete button" 
     onClick={() => { 
@@ -27,6 +30,7 @@ export default ({ comment, users, postId, deleteComment, currentUser}) => {
       }}>Delete Comment </button>
   } else {
     deletebutton = ""
+    editbutton = ""
   }
   const comment_date = new Date(comment?.created_at)
     if (postId=== comment?.post_id) {
@@ -41,6 +45,7 @@ export default ({ comment, users, postId, deleteComment, currentUser}) => {
           <button> edit</button>
         </div> */}
         {deletebutton}
+        {editbutton}
       </li>
     )}
     }

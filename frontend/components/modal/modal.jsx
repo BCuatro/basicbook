@@ -7,6 +7,8 @@ import NewPostContainer from '../posts/new_post_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import EditPostContainer from '../posts/edit_post_container';
 import { withRouter } from 'react-router-dom';
+import EditCommentContainer from '../comments/edit_comment_container';
+
 
 
 
@@ -37,6 +39,10 @@ function Modal({modal, closeModal, userId, currentUser}) {
     case 'editpost':
     
       component = <EditPostContainer post = {modal.post}/>;
+      break;
+    case 'editcomment':
+  
+      component = <EditCommentContainer comment = {modal.comment}/>;
       break;
 
     default:

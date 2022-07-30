@@ -6,7 +6,8 @@ export const openModal = modal => {
   return {
     type: OPEN_MODAL,
     modal: modal.modal,
-    post: modal.post
+    post: modal.post,
+    comment: modal.comment
   };
 };
 
