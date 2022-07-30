@@ -1,5 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
+import { fetchComments } from '../../actions/comments_actions';
 
 class NewComment extends React.Component {
     constructor(props){
@@ -23,14 +24,17 @@ class NewComment extends React.Component {
             this.setState({[type]: e.currentTarget.value})
         }
     }
+    
       componentWillUnmount(){
         this.props.removeErrors();
+        
     }
 
     handleSubmit(e) {
         e.preventDefault()
         const comment = Object.assign({}, this.state)
-        this.props.createComment(comment)
+        this.props.createComment(comment).then(this.state.body = "")
+       
     }
     // renderErrors() {
     //     return(
@@ -83,7 +87,7 @@ class NewComment extends React.Component {
                         className='commentInputField'
                         cols="50" rows="1" 
                         placeholder='Write a comment...'
-                        value = {this.state.body}
+                        value = {this.state?.body}
                         onChange={this.handleInput("body")}
                         ></textarea>
 
