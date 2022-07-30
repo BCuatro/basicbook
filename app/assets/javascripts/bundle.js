@@ -1525,7 +1525,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Newsfeed);
 
     _this = _super.call(this, props);
-    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
+    _this.handleCreateOpenModal = _this.handleCreateOpenModal.bind(_assertThisInitialized(_this));
+    _this.handleEditOpenModal = _this.handleEditOpenModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1536,10 +1537,17 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
-    key: "handleOpenModal",
-    value: function handleOpenModal(e) {
+    key: "handleCreateOpenModal",
+    value: function handleCreateOpenModal(e) {
       e.preventDefault();
-      this.props.openModal();
+      this.props.openCreateModal();
+    }
+  }, {
+    key: "handleEditOpenModal",
+    value: function handleEditOpenModal(modal, post) {
+      // return function(e){
+      // e.preventDefault();
+      this.props.openEditModal(modal, post);
     }
   }, {
     key: "render",
@@ -1551,7 +1559,7 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
         className: "newfeed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         id: "postButtonModal",
-        onClick: this.handleOpenModal
+        onClick: this.handleCreateOpenModal
       }, "What is on your mind?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "wall"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
@@ -1567,7 +1575,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           page: "home",
           modal: _this2.props.openModal,
           deletePost: _this2.props.deletePost,
-          currentUser: _this2.props.currentUser
+          currentUser: _this2.props.currentUser,
+          updatePost: _this2.handleEditOpenModal
         });
       }))));
     }
@@ -1627,9 +1636,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
     },
-    openModal: function openModal() {
+    openCreateModal: function openCreateModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
         modal: 'createpost'
+      }));
+    },
+    openEditModal: function openEditModal(modal, post) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
+        modal: modal,
+        post: post
       }));
     },
     fetchUsers: function fetchUsers() {

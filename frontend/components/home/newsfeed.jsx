@@ -6,7 +6,8 @@ import PostItem from '../posts/post_item';
 class Newsfeed extends React.Component {
   constructor(props) {
     super(props);
-    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCreateOpenModal = this.handleCreateOpenModal.bind(this)
+    this.handleEditOpenModal = this.handleEditOpenModal.bind(this)
   }
 
   componentDidMount() {
@@ -15,16 +16,23 @@ class Newsfeed extends React.Component {
     // this.props.fetchUser(this.props.match.params.userId)
   }
 
-  handleOpenModal(e){
+  handleCreateOpenModal(e){
     e.preventDefault();
-    this.props.openModal();
+    this.props.openCreateModal();
 }
+
+  handleEditOpenModal(modal, post) {
+    
+    // return function(e){
+      // e.preventDefault();
+      this.props.openEditModal(modal, post)
+  }
   
   render() {
     // console.log(Object.values(this.props.users))
     return (
       <div className ="newfeed">
-        <button id="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
+        <button id="postButtonModal" onClick = {this.handleCreateOpenModal}>What is on your mind?</button>
         <div className="wall">
           
         
@@ -43,6 +51,7 @@ class Newsfeed extends React.Component {
                 modal ={this.props.openModal}
                 deletePost ={this.props.deletePost}
                 currentUser= {this.props.currentUser}
+                updatePost ={ this.handleEditOpenModal}
                 
                 />
                 )
