@@ -3,6 +3,8 @@ import { useParams, withRouter } from "react-router-dom";
 import { fetchProfile, fetchUser, fetchUsers, updateUser} from "../../actions/users_actions";
 import { openModal, closeModal } from '../../actions/modal_actions';
 import Profile from "./profile";
+import { fetchPosts } from "../../actions/posts_actions";
+
 
 
 
@@ -28,9 +30,10 @@ const mapStateToProps = (state, ownProps) => {
   const mapDispatchToProps = (dispatch) => {
 
     return {
-
+    
         fetchUser: (userId) => dispatch(fetchUser(userId)),
         fetchUsers: () => dispatch(fetchUsers()),
+        fetchPosts: () => dispatch(fetchPosts()),
         // openModal: (modal)=> dispatch(openModal({modal: modal})),
         openModal: (modal, phototype)=> dispatch(openModal({modal: modal, phototype: phototype})),
         closeModal: () => dispatch(closeModal()),

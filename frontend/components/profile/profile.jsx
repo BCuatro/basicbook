@@ -26,9 +26,9 @@ class Profile extends React.Component{
     
   
     componentDidMount(){
-        debugger
        
-        this.props.fetchUsers()
+        this.props.fetchUsers();
+        this.props.fetchPosts();
 
         // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
@@ -88,12 +88,14 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
+                <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" />
+                <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> 
                 {/* <h3>Preview</h3>
                     {preview}
                     
                     <h4>Profile Header</h4>
                     Add Name, friend count, and profile picture
-                    <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" />
+                    
                     <form onSubmit={this.handleCoverPhotoSubmit}>
                             <input type="file" 
                             onChange={this.handleFile}
@@ -106,7 +108,7 @@ class Profile extends React.Component{
                 </div>
                 
                 <div className = "profile-sidebar-1">
-                {/* <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> */}
+                
                     {/* <h5>Profile Sidebar 1</h5>
                     
                     <form onSubmit={this.handleSubmit}>

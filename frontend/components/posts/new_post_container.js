@@ -24,7 +24,7 @@ const mapStateToProps= (state, ownProps) =>{
 
 const mapDispatchToProps= dispatch =>{
     return{
-        createPost: (post) => dispatch(createPost(post)),
+        createPost: (formData) => dispatch(createPost(formData)),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal())
         

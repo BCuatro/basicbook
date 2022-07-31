@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
-import { updatePost, removeErrors } from '../../actions/posts_actions';
+import { updatePost, removeErrors, fetchPosts } from '../../actions/posts_actions';
 import EditPost from './edit_post';
 // import SessionForm from './session_form';
-
+fetchPosts
 
 
 
@@ -23,7 +23,9 @@ const mapStateToProps= (state, ownProps) =>{
 
 const mapDispatchToProps= dispatch =>{
     return{
-        updatePost: (post) => dispatch(updatePost(post)),
+        fetchPosts: () => dispatch(fetchPosts),
+        // updatePost: (post) => dispatch(updatePost(post)),
+        updatePost: (id, formData) => dispatch(updatePost(id, formData)),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal())
         
