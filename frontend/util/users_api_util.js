@@ -22,11 +22,24 @@ export const fetchProfile = (userId) => {
     
 }
 
-export const updateUser = (user) => {
+// export const updateUser = (user) => {
+//     return $.ajax({
+//             url: `/api/users/${user.id}`,
+//             method: `PATCH`,
+//             data: {user}
+//         })
+    
+// }
+
+export const updateUser = (id, formData) => {
     return $.ajax({
-            url: `/api/users/${user.id}`,
+            url: `/api/users/${id}`,
             method: `PATCH`,
-            data: {user}
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: formData
+            
         })
     
 }

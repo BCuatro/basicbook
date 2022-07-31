@@ -670,10 +670,16 @@ var fetchProfile = function fetchProfile(userId) {
       return dispatch(receiveUser(user));
     });
   };
-};
-var updateUser = function updateUser(user) {
+}; // export const updateUser= (user) => dispatch => {
+//     return UsersApiUtil.updateUser(user)
+//     .then(user =>{
+//         return dispatch(receiveUser(user))
+//     })
+// }
+
+var updateUser = function updateUser(id, formData) {
   return function (dispatch) {
-    return _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__.updateUser(user).then(function (user) {
+    return _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__.updateUser(id, formData).then(function (user) {
       return dispatch(receiveUser(user));
     });
   };
@@ -1238,24 +1244,12 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var comment = Object.assign({}, this.state);
       this.props.createComment(comment).then(this.state.body = "");
-    } // renderErrors() {
-    //     return(
-    //         <ul> 
-    //             {this.props.errors.map((error, index) => (
-    //             <li key={`error-${index}`}>
-    //                 {error}
-    //             </li>
-    //             ))}
-    //         </ul>
-    //     );
-    //   }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this$props$currentUs2, _this$props$post2, _this$state;
 
-      // console.log(this.props.post)
       // const {post, currentUser, users, user, userId, errors}= this.props
       var buttonId;
       if (!this.props.currentUser) return null;
@@ -1264,11 +1258,7 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
         buttonId = "invalidButton";
       } else {
         buttonId = "newButton";
-      } // let userId= this.props.match.params.userId
-      // console.log("this is my new post")
-      // console.log(currentUser.id)
-      // console.log(post.id)
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newCommentform"
@@ -1941,6 +1931,14 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
           _this$state;
 
       // if(!this.props.post) return null
+      var buttonId;
+
+      if (this.state.body.replace(/ /g, '').length === 0) {
+        buttonId = "invalidButton";
+      } else {
+        buttonId = "newButton";
+      }
+
       return (
         /*#__PURE__*/
         // <div className='editform' >
@@ -1962,7 +1960,10 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
           value: (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.body,
           onChange: this.handleUpdate("body")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: this.handleSubmit
+          onClick: this.handleSubmit,
+          disabled: this.state.body.replace(/ /g, '').length === 0,
+          className: "newPostButton",
+          id: buttonId
         }, "Post")))
       );
     }
@@ -2080,7 +2081,6 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: "",
-      // url: this.props.location.pathname.split('/'),
       profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1] === '' ? _this.props.currentUser.id : _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
       author_id: _this.props.currentUser.id
     };
@@ -2109,18 +2109,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var post = Object.assign({}, this.state);
       this.props.createPost(post).then(this.props.closeModal);
-    } // renderErrors() {
-    //     return(
-    //         <ul> 
-    //             {this.props.errors.map((error, index) => (
-    //             <li key={`error-${index}`}>
-    //                 {error}
-    //             </li>
-    //             ))}
-    //         </ul>
-    //     );
-    //   }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -2133,8 +2122,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         buttonId = "invalidButton";
       } else {
         buttonId = "newButton";
-      } // let userId= this.props.match.params.userId
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "postcontainer"
@@ -2164,8 +2152,8 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         value: this.state.profile_id,
         onChange: this.handleInput("profile_id")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        disabled: this.state.body.replace(/ /g, '').length === 0,
         onClick: this.handleSubmit,
+        disabled: this.state.body.replace(/ /g, '').length === 0,
         className: "newPostButton",
         id: buttonId
       }, "Post"))));
@@ -2644,6 +2632,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var aboutMe = function aboutMe(user) {
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "title"
   }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name: ", user === null || user === void 0 ? void 0 : user.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name: ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender: ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Location: ", user === null || user === void 0 ? void 0 : user.location));
@@ -2939,10 +2928,22 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Profile);
 
-    _this = _super.call(this, props);
-    _this.state = _this.props;
+    _this = _super.call(this, props); // this.state = this.props
+
+    _this.state = {
+      id: _this.props.currentUser.id,
+      email: _this.props.currentUser.email,
+      username: _this.props.currentUser.username,
+      first_name: _this.props.currentUser.first_name,
+      last_name: _this.props.currentUser.last_name,
+      location: _this.props.currentUser.location,
+      bio: _this.props.currentUser.bio,
+      photoFile: null
+    };
     _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this)); // this.handleProfilePic = this.handleProfilePic.bind(this)
 
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2962,38 +2963,24 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleFile",
     value: function handleFile(e) {
+      debugger;
       this.setState({
-        photoFile: e.currentTarget.value
+        photoFile: e.currentTarget.files[0]
       });
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var formData = new FormData();
-      formData.append('user[profile_pic]', this.state.photoFile);
-    } // handleProfilePic(user){
-    //     if (!user.profile_picUrl) {
-    //         return <p>no photo</p>
-    //     } else {
-    //         return <img className="profilePic"src={user.profile_picUrl} />;
-    //     }
-    // }
-    // handleCoverPhoto(){
-    //     let coverPhoto;
-    //     if (!this.props.user.coverPhotoUrl) {
-    //         coverPhoto = ""
-    //     } else {
-    //         coverPhoto = <img className="coverphoto" src={this.props.user.coverPhotoUrl} />;
-    //     }
-    //     return coverPhoto
-    // }
-
+      formData.append('user[profile_photo]', this.state.photoFile);
+      this.props.updateUser(this.state.id, formData);
+    }
   }, {
     key: "render",
     value: function render() {
       var editButton;
-      var user = this.props.user;
 
       if (parseInt(this.props.currentUser.id) === parseInt(this.props.match.params.userId)) {
         editButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -3005,7 +2992,19 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "file",
+        onChange: this.handleFile,
+        name: "",
+        id: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.handleSubmit
+      }, "Upload Photo")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: this.props.user.profile_photoUrl,
+        alt: ""
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "div1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
@@ -3039,7 +3038,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchProfile;
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var users = state.entities.users;
@@ -3075,6 +3073,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    updateUser: function updateUser(id, formData) {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.updateUser)(id, formData));
     }
   };
 };
@@ -4542,14 +4543,22 @@ var fetchProfile = function fetchProfile(userId) {
     url: "/api/users/".concat(userId),
     method: "GET"
   });
-};
-var updateUser = function updateUser(user) {
+}; // export const updateUser = (user) => {
+//     return $.ajax({
+//             url: `/api/users/${user.id}`,
+//             method: `PATCH`,
+//             data: {user}
+//         })
+// }
+
+var updateUser = function updateUser(id, formData) {
   return $.ajax({
-    url: "/api/users/".concat(user.id),
+    url: "/api/users/".concat(id),
     method: "PATCH",
-    data: {
-      user: user
-    }
+    processData: false,
+    contentType: false,
+    cache: false,
+    data: formData
   });
 };
 

@@ -2,8 +2,9 @@ import React from 'react'
 
 
 const aboutMe =(user) =>{
-
+  debugger
     return (
+      
      <div>
 
      <h1 id="title">About Me</h1>
@@ -16,6 +17,7 @@ const aboutMe =(user) =>{
      <label>Gender: {user?.gender}</label>
      <br />
      <label>Location: {user?.location}</label>
+     
      
    </div>
         

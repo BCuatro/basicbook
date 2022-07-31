@@ -30,12 +30,12 @@ class Api::UsersController < ApplicationController
     
     def update
         @user = User.find_by(id: params[:id])
-       
+        debugger
         if @user.update(update_params) && @user.id == current_user.id
           
           render :show
         else
-            render json: ["Something went wrong"], status: 401
+            render json: @user.errors.full_messages, status: 401
         end
     end
     
@@ -45,6 +45,6 @@ class Api::UsersController < ApplicationController
     end
 
     def update_params
-        params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :location,:bio, :profile_pic)
+        params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :location,:bio,:profile_photo)
     end
 end

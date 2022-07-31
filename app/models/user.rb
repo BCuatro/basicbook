@@ -11,9 +11,9 @@ class User < ApplicationRecord
     attr_reader :password
     before_validation :ensure_session_token
 
-    has_one_attached :profile_pic
+    has_one_attached :profile_photo
 
-    has_one_attached :cover_pic
+    has_one_attached :cover_photo
 
     has_many :posts, class_name: :Post, foreign_key: :author_id, dependent: :delete_all
     

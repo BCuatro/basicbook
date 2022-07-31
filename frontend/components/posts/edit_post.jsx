@@ -25,7 +25,14 @@ class EditPost extends React.Component {
 
     render() {
         // if(!this.props.post) return null
-
+        let buttonId
+        
+        if(this.state.body.replace(/ /g,'').length ===0){
+           buttonId ="invalidButton"
+        } else {
+            buttonId= "newButton"
+        }
+        
         
         return(
             // <div className='editform' >
@@ -43,7 +50,11 @@ class EditPost extends React.Component {
                     onChange={this.handleUpdate("body")}
                     ></textarea>
                     <br />
-                    <button onClick = {this.handleSubmit}>Post</button>
+                    <button 
+                    onClick = {this.handleSubmit} 
+                    disabled={this.state.body.replace(/ /g,'').length ===0} 
+                    className= "newPostButton" 
+                    id= {buttonId}>Post</button>
                 </form>
 
             </div>
