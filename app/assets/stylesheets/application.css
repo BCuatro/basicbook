@@ -599,8 +599,10 @@ ul{
 .profile-sidebar-2 {grid-area: 2 / 3 / 3 / 4; }
 
 .profile-photo-preview{
-  z-index: 10000000;
+  height: 300px;
+  width: auto;
 }
+
 
 /* .profile-body{
   display: flex;

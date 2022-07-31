@@ -8,6 +8,7 @@ import EditProfileContainer from '../profile/edit_profile_container';
 import EditPostContainer from '../posts/edit_post_container';
 import { withRouter } from 'react-router-dom';
 import EditCommentContainer from '../comments/edit_comment_container';
+import PhotoContainer from '../profile/photo_container';
 
 
 
@@ -43,6 +44,11 @@ function Modal({modal, closeModal, userId, currentUser}) {
     case 'editcomment':
   
       component = <EditCommentContainer comment = {modal.comment}/>;
+      break;
+    
+    case 'editphoto':
+
+      component = <PhotoContainer phototype = {modal.phototype}/>;
       break;
 
     default:

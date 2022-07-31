@@ -7,7 +7,8 @@ export const openModal = modal => {
     type: OPEN_MODAL,
     modal: modal.modal,
     post: modal.post,
-    comment: modal.comment
+    comment: modal.comment,
+    phototype: modal.phototype
   };
 };
 

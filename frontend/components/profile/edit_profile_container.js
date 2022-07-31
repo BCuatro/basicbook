@@ -24,7 +24,7 @@ const mapDispatchToProps= dispatch => {
         removeErrors: () => dispatch(removeSignupErrors()),
         fetchUser: (userId) => dispatch(fetchUser(userId)),
         closeModal: () => dispatch(closeModal()),
-        updateUser: (user)=> dispatch(updateUser(user))
+        updateUser: (id, formData)=> dispatch(updateUser(id, formData))
         
     };
 };

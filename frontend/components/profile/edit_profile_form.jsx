@@ -7,7 +7,7 @@ class EditForm extends React.Component{
        
         this.state = this.props.currentUser
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleFile = this.handleFile.bind(this)
+        // this.handleFile = this.handleFile.bind(this)
         // this.handleProfilePic =this.handleProfilePic.bind(this)
         
       }
@@ -17,14 +17,19 @@ class EditForm extends React.Component{
       }
 
 
-        handleFile(e) {
-            this.setState({photoFile: e.currentTarget.value});
-        }
+        // handleFile(e) {
+        //     this.setState({photoFile: e.currentTarget.value});
+        // }
 
     
       handleSubmit(e) {
         e.preventDefault();
-        this.props.updateUser(this.state).then(this.props.closeModal)
+        const formData = new FormData();
+        formData.append('user[first_name]', this.state.first_name)
+        formData.append('user[last_name]', this.state.last_name)
+        formData.append('user[location]', this.state.location)
+        formData.append('user[bio]', this.state.bio)
+        this.props.updateUser(this.state.id, formData).then(this.props.closeModal)
     //     const formData = new FormData();
     //     formData.append('user[profile_pic]', this.state.photoFile)
       }
@@ -104,10 +109,10 @@ class EditForm extends React.Component{
                         <label htmlFor= "location" className="modal-label">Location</label>
                         <br />
                     </div>
-                    <div>
+                    {/* <div>
                         <input type="file" 
                         onChange ={this.handleProfilePic}/>
-                    </div>
+                    </div> */}
                     
                     <button onClick = {this.handleSubmit}>Submit</button>
                 </form>
