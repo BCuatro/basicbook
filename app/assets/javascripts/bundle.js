@@ -2641,7 +2641,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var aboutMe = function aboutMe(user) {
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "title"
   }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name: ", user === null || user === void 0 ? void 0 : user.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name: ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender: ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Location: ", user === null || user === void 0 ? void 0 : user.location));
@@ -3002,31 +3001,44 @@ var Photo = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      // let submitButton
-      // if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
-      //     editButton = <button onClick = {this.handleOpenModal}>Edit Profile</button> } else{
-      //         editButton =""
-      //     } 
       var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "profile-photo-preview",
+        className: "photo-preview",
+        id: this.props.phototype,
         src: this.state.photoUrl
       }) : null;
       console.log(this.props.phototype);
+      var photoform;
+
+      if (this.props.phototype === "profilephoto") {
+        photoform = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Profile Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+          onSubmit: this.handleProfilePhotoSubmit
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+          type: "file",
+          onChange: this.handleFile,
+          name: "",
+          id: ""
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: this.handleProfilePhotoSubmit
+        }, "Upload Profile Photo")));
+      } else if (this.props.phototype === "coverphoto") {
+        photoform = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+          onSubmit: this.handleCoverPhotoSubmit
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+          type: "file",
+          onChange: this.handleFile,
+          name: "",
+          id: ""
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: this.handleCoverPhotoSubmit
+        }, "Upload Cover Photo")));
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           _this3.props.closeModal();
         },
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Preview"), preview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        onSubmit: this.handleProfilePhotoSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "file",
-        onChange: this.handleFile,
-        name: "",
-        id: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: this.handleProfilePhotoSubmit
-      }, "Upload Profile Photo"))));
+      }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, photoform));
     }
   }]);
 
@@ -3147,35 +3159,28 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Profile);
 
-    _this = _super.call(this, props); // this.state = this.props
+    _this = _super.call(this, props);
+    _this.state = _this.props; // this.state = {
+    //     id: this.props.currentUser.id,
+    //     email:this.props.currentUser.email,
+    //     username: this.props.currentUser.username,
+    //     first_name: this.props.currentUser.first_name,
+    //     last_name: this.props.currentUser.last_name,
+    //     location: this.props.currentUser.location,
+    //     bio:this.props.currentUser.bio,
+    //     photoFile: null,
+    //     photoUrl: null
+    // };
 
-    _this.state = {
-      id: _this.props.currentUser.id,
-      email: _this.props.currentUser.email,
-      username: _this.props.currentUser.username,
-      first_name: _this.props.currentUser.first_name,
-      last_name: _this.props.currentUser.last_name,
-      location: _this.props.currentUser.location,
-      bio: _this.props.currentUser.bio,
-      photoFile: null,
-      photoUrl: null
-    };
-    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this)); // this.handleProfilePic = this.handleProfilePic.bind(this)
-    // this.handleFile = this.handleFile.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
-    // this.handleCoverPhotoSubmit= this.handleCoverPhotoSubmit.bind(this)
-    // this.handleOpenProfilePhotoModal = this.handleOpenProfilePhotoModal.bind(this)
-    // this.handleOpenCoverPhotoModal = this.handleOpenCoverPhotoModal.bind(this)
-
+    _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(parseInt(this.props.match.params.userId));
-      this.props.fetchUsers();
-      this.props.fetchProfile(parseInt(this.props.match.params.userId));
+      debugger;
+      this.props.fetchUsers(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
   }, {
     key: "handleOpenModal",
@@ -3190,26 +3195,17 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     // handleOpenProfilePhotoModal(){
     //     this.props.openPhotoModal("editphoto","profilephoto")
     // }
-
-  }, {
-    key: "handleFile",
-    value: function handleFile(e) {
-      var _this2 = this;
-
-      var file = e.currentTarget.files[0];
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this2.setState({
-          photoFile: file,
-          photoUrl: fileReader.result
-        });
-      };
-
-      if (file) {
-        fileReader.readAsDataURL(file);
-      }
-    } // handleSubmit(e) {
+    // handleFile(e) {
+    //     const file = e.currentTarget.files[0]
+    //     const fileReader = new FileReader();
+    //     fileReader.onloadend = () => {
+    //         this.setState({photoFile: file, photoUrl: fileReader.result});
+    //     }
+    //     if (file){
+    //         fileReader.readAsDataURL(file);
+    //     }
+    // }
+    // handleSubmit(e) {
     //     e.preventDefault();
     //     const formData = new FormData();
     //     formData.append('user[profile_photo]', this.state.photoFile);
@@ -3225,14 +3221,14 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var editButton;
 
       if (parseInt(this.props.currentUser.id) === parseInt(this.props.match.params.userId)) {
         editButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: function onClick() {
-            _this3.handleOpenModal("editprofile");
+            _this2.handleOpenModal("editprofile");
           }
         }, "Edit Profile");
       } else {
@@ -3247,13 +3243,13 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
-          _this3.handleOpenModal("editphoto", "profilephoto");
+          _this2.handleOpenModal("editphoto", "profilephoto");
         }
       }, "Edit Profile Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
-          _this3.handleOpenModal("editphoto", "coverphoto");
+          _this2.handleOpenModal("editphoto", "coverphoto");
         }
-      }, "Edit Profile Picture")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Edit Cover Picture")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-sidebar-1"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-main"
@@ -3313,9 +3309,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
     },
-    fetchProfile: function fetchProfile(userId) {
-      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchProfile)(userId));
-    },
     fetchUsers: function fetchUsers() {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUsers)());
     },
@@ -3328,10 +3321,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
-    },
-    updateUser: function updateUser(id, formData) {
-      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.updateUser)(id, formData));
-    }
+    } // updateUser: (id, formData)=> dispatch(updateUser(id, formData))
+
   };
 };
 

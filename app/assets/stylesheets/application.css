@@ -598,11 +598,15 @@ ul{
 }
 .profile-sidebar-2 {grid-area: 2 / 3 / 3 / 4; }
 
-.profile-photo-preview{
+#profilephoto{
   height: 300px;
   width: auto;
 }
 
+#coverphoto{
+  height: 200px;
+  width: 500px;
+}
 
 /* .profile-body{
   display: flex;

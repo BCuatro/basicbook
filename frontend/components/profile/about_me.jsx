@@ -2,7 +2,6 @@ import React from 'react'
 
 
 const aboutMe =(user) =>{
-  debugger
     return (
       
      <div>

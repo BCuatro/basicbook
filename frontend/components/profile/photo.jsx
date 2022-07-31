@@ -67,34 +67,17 @@ class Photo extends React.Component{
    
     
     render(){ 
-        // let submitButton
-        // if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
-        //     editButton = <button onClick = {this.handleOpenModal}>Edit Profile</button> } else{
-        //         editButton =""
-        //     } 
-        const preview = this.state.photoUrl ? <img className = "profile-photo-preview" src={this.state.photoUrl} /> : null;
+       
+        const preview = this.state.photoUrl ? <img className = "photo-preview" id = {this.props.phototype}src={this.state.photoUrl} /> : null;
             console.log(this.props.phototype)
 
-        return (
+        let photoform
+        if (this.props.phototype ==="profilephoto"){
+            photoform = 
             <div>
-                <div>
-                    <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
-                    <h3>Preview</h3>
-                        {preview}
-                </div>
-                    
-                    {/* Add Name, friend count, and profile picture */}
-                    {/* <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" /> */}
-                    {/* <form onSubmit={this.handleCoverPhotoSubmit}>
-                            <input type="file" 
-                            onChange={this.handleFile}
-                            name="" id="" />
-                            <button onClick={this.handleCoverPhotoSubmit}>Upload Cover Photo</button>
-                    </form> */}
-                
-                <div>
-                    <h5>Profile Picture</h5>
-                    {/* <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> */}
+                    <h4>Profile Picture</h4>
+                    <h5>Preview</h5>
+                    {preview}
                     <form onSubmit={this.handleProfilePhotoSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}
@@ -104,6 +87,32 @@ class Photo extends React.Component{
 
                     </form>
                     
+                </div>
+        } else if (this.props.phototype ==="coverphoto"){
+            photoform = 
+            <div>
+                <h4>Cover Picture</h4>
+                    <h5>Preview</h5>
+                    {preview}
+                <form onSubmit={this.handleCoverPhotoSubmit}>
+                        <input type="file" 
+                        onChange={this.handleFile}
+                        name="" id="" />
+                        <button onClick={this.handleCoverPhotoSubmit}>Upload Cover Photo</button>
+                </form>
+            </div>
+
+        }
+
+        return (
+            <div>
+                <div>
+                    <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
+                    
+                </div>
+                    
+                <div>
+                    {photoform}
                 </div>
                 
             </div>

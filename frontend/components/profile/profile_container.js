@@ -30,12 +30,11 @@ const mapStateToProps = (state, ownProps) => {
     return {
 
         fetchUser: (userId) => dispatch(fetchUser(userId)),
-        fetchProfile: (userId) => dispatch(fetchProfile(userId)),
         fetchUsers: () => dispatch(fetchUsers()),
         // openModal: (modal)=> dispatch(openModal({modal: modal})),
         openModal: (modal, phototype)=> dispatch(openModal({modal: modal, phototype: phototype})),
         closeModal: () => dispatch(closeModal()),
-        updateUser: (id, formData)=> dispatch(updateUser(id, formData))
+        // updateUser: (id, formData)=> dispatch(updateUser(id, formData))
         
 
     };

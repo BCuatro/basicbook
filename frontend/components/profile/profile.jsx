@@ -7,35 +7,30 @@ import Tabs from './tabs';
 class Profile extends React.Component{
     constructor(props){
         super(props)
-        // this.state = this.props
-        this.state = {
-            id: this.props.currentUser.id,
-            email:this.props.currentUser.email,
-            username: this.props.currentUser.username,
-            first_name: this.props.currentUser.first_name,
-            last_name: this.props.currentUser.last_name,
-            location: this.props.currentUser.location,
-            bio:this.props.currentUser.bio,
-            photoFile: null,
-            photoUrl: null
-        };
+        this.state = this.props
+        // this.state = {
+        //     id: this.props.currentUser.id,
+        //     email:this.props.currentUser.email,
+        //     username: this.props.currentUser.username,
+        //     first_name: this.props.currentUser.first_name,
+        //     last_name: this.props.currentUser.last_name,
+        //     location: this.props.currentUser.location,
+        //     bio:this.props.currentUser.bio,
+        //     photoFile: null,
+        //     photoUrl: null
+        // };
         this.handleOpenModal = this.handleOpenModal.bind(this);
-        // this.handleProfilePic = this.handleProfilePic.bind(this)
-        // this.handleFile = this.handleFile.bind(this)
-        // this.handleSubmit = this.handleSubmit.bind(this)
-        // this.handleCoverPhotoSubmit= this.handleCoverPhotoSubmit.bind(this)
-        // this.handleOpenProfilePhotoModal = this.handleOpenProfilePhotoModal.bind(this)
-        // this.handleOpenCoverPhotoModal = this.handleOpenCoverPhotoModal.bind(this)
+        
            
     }
     
   
     componentDidMount(){
-        
+        debugger
        
-        this.props.fetchUser(parseInt(this.props.match.params.userId))
         this.props.fetchUsers()
-        this.props.fetchProfile(parseInt(this.props.match.params.userId))
+
+        // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
 
     handleOpenModal(modal, phototype =""){
@@ -52,17 +47,17 @@ class Profile extends React.Component{
     //     this.props.openPhotoModal("editphoto","profilephoto")
     // }
     
-    handleFile(e) {
-        const file = e.currentTarget.files[0]
-        const fileReader = new FileReader();
-        fileReader.onloadend = () => {
-            this.setState({photoFile: file, photoUrl: fileReader.result});
-        }
-        if (file){
+    // handleFile(e) {
+    //     const file = e.currentTarget.files[0]
+    //     const fileReader = new FileReader();
+    //     fileReader.onloadend = () => {
+    //         this.setState({photoFile: file, photoUrl: fileReader.result});
+    //     }
+    //     if (file){
             
-            fileReader.readAsDataURL(file);
-        }
-    }
+    //         fileReader.readAsDataURL(file);
+    //     }
+    // }
 
     // handleSubmit(e) {
     //     e.preventDefault();
@@ -107,7 +102,7 @@ class Profile extends React.Component{
                     </form> */}
 
                     <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button> 
-                    <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Profile Picture</button>
+                    <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button>
                 </div>
                 
                 <div className = "profile-sidebar-1">
