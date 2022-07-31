@@ -2938,12 +2938,14 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       last_name: _this.props.currentUser.last_name,
       location: _this.props.currentUser.location,
       bio: _this.props.currentUser.bio,
-      photoFile: null
+      photoFile: null,
+      photoUrl: null
     };
     _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this)); // this.handleProfilePic = this.handleProfilePic.bind(this)
 
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleCoverPhotoSubmit = _this.handleCoverPhotoSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2963,18 +2965,36 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      debugger;
-      this.setState({
-        photoFile: e.currentTarget.files[0]
-      });
+      var _this2 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this2.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       var formData = new FormData();
       formData.append('user[profile_photo]', this.state.photoFile);
+      this.props.updateUser(this.state.id, formData);
+    }
+  }, {
+    key: "handleCoverPhotoSubmit",
+    value: function handleCoverPhotoSubmit(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('user[cover_photo]', this.state.photoFile);
       this.props.updateUser(this.state.id, formData);
     }
   }, {
@@ -2990,9 +3010,27 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         editButton = "";
       }
 
+      var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "profile-photo-preview",
+        src: this.state.photoUrl
+      }) : null;
+      console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "profile-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Profile Header"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        onSubmit: this.handleCoverPhotoSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "file",
+        onChange: this.handleFile,
+        name: "",
+        id: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.handleCoverPhotoSubmit
+      }, "Upload Photo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-sidebar-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "file",
@@ -3001,12 +3039,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         id: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit
-      }, "Upload Photo")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: this.props.user.profile_photoUrl,
-        alt: ""
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "div1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+      }, "Upload Photo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Proile Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-sidebar-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 2")));
     }
   }]);
 
