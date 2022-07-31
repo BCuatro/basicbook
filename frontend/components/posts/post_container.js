@@ -3,6 +3,7 @@ import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { removeErrors } from '../../actions/posts_actions';
+import { fetchPosts } from '../../actions/posts_actions';
 import Post from './post';
 // import SessionForm from './session_form';
 
@@ -24,7 +25,8 @@ const mapDispatchToProps= dispatch =>{
     return{
         openModal: ()=> dispatch(openModal({modal: 'createpost'})),
         removeErrors: ()=> dispatch(removeErrors()),
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        fetchPosts: () => dispatch(fetchPosts()),
         
     }
 }

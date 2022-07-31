@@ -66,9 +66,9 @@ export const fetchProfile =(userId) => (dispatch) => {
 
 export const updateUser= (id, formData) => dispatch => {
     return UsersApiUtil.updateUser(id, formData)
-    .then(user =>{
-        return dispatch(receiveUser(user))
-    })
+    .then(user =>(
+         dispatch(receiveUser(user))
+    ))
 
 }
 

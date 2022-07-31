@@ -474,18 +474,18 @@ var fetchPost = function fetchPost(postId) {
     });
   };
 };
-var createPost = function createPost(post) {
+var createPost = function createPost(formData) {
   return function (dispatch) {
-    return _util_posts_api_util__WEBPACK_IMPORTED_MODULE_0__.createPost(post).then(function (post) {
+    return _util_posts_api_util__WEBPACK_IMPORTED_MODULE_0__.createPost(formData).then(function (post) {
       return dispatch(receivePost(post));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
-var updatePost = function updatePost(post) {
+var updatePost = function updatePost(id, formData) {
   return function (dispatch) {
-    return _util_posts_api_util__WEBPACK_IMPORTED_MODULE_0__.updatePost(post).then(function (post) {
+    return _util_posts_api_util__WEBPACK_IMPORTED_MODULE_0__.updatePost(id, formData).then(function (post) {
       return dispatch(receivePost(post));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
@@ -1907,10 +1907,17 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, EditPost);
 
-    _this = _super.call(this, props);
-    _this.state = _this.props.post;
+    _this = _super.call(this, props); // this.state = this.props.post
+
+    _this.state = {
+      id: _this.props.post.id,
+      body: _this.props.post.body,
+      photoFile: null,
+      photoUrl: _this.props.post.post_photoUrl
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1925,18 +1932,50 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchPost(this.state.id)
+    value: function componentDidMount() {
+      // this.props.fetchPost(this.state.id)
+      this.props.fetchPosts();
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this3 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this3.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.updatePost(this.state).then(this.props.closeModal);
-    }
+      var formData = new FormData();
+      formData.append('post[body]', this.state.body);
+
+      if (this.state.photoFile) {
+        formData.append('post[post_photo]', this.state.photoFile);
+      }
+
+      this.props.updatePost(this.state.id, formData).then(this.props.closeModal);
+    } // handleSubmit(e) {
+    //     e.preventDefault();
+    //     this.props.updatePost(this.state).then(this.props.closeModal)
+    //   }
+
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this,
+      var _this4 = this,
           _this$state;
 
       // if(!this.props.post) return null
@@ -1948,6 +1987,11 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
         buttonId = "newButton";
       }
 
+      var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "post-photo-preview",
+        src: this.state.photoUrl
+      }) : null;
+      console.log(this.props.phototype);
       return (
         /*#__PURE__*/
         // <div className='editform' >
@@ -1960,7 +2004,7 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
           onSubmit: this.handleSubmit
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: function onClick() {
-            _this3.props.closeModal();
+            _this4.props.closeModal();
           },
           className: "close-x"
         }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit Post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
@@ -1968,6 +2012,11 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
           rows: "10",
           value: (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.body,
           onChange: this.handleUpdate("body")
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+          type: "file",
+          onChange: this.handleFile,
+          name: "",
+          id: ""
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: this.handleSubmit,
           disabled: this.state.body.replace(/ /g, '').length === 0,
@@ -2011,6 +2060,8 @@ __webpack_require__.r(__webpack_exports__);
 
  // import SessionForm from './session_form';
 
+_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPosts;
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {// currentUser: state.entities.users[state.session.id],
     // user: state.entities.users[ownProps.match.params.userId],
@@ -2020,8 +2071,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    updatePost: function updatePost(post) {
-      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.updatePost)(post));
+    fetchPosts: function fetchPosts() {
+      return dispatch(_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPosts);
+    },
+    // updatePost: (post) => dispatch(updatePost(post)),
+    updatePost: function updatePost(id, formData) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.updatePost)(id, formData));
     },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
@@ -2091,10 +2146,13 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       body: "",
       profile_id: _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1] === '' ? _this.props.currentUser.id : _this.props.location.pathname.split("/")[_this.props.location.pathname.split("/").length - 1],
-      author_id: _this.props.currentUser.id
+      author_id: _this.props.currentUser.id,
+      photoFile: null,
+      photoUrl: null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2113,16 +2171,44 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
       this.props.removeErrors();
     }
   }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this3 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this3.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var post = Object.assign({}, this.state);
-      this.props.createPost(post).then(this.props.closeModal);
+      var formData = new FormData();
+      formData.append('post[body]', this.state.body);
+      formData.append('post[profile_id]', this.state.profile_id);
+      formData.append('post[author_id]]', this.state.author_id);
+
+      if (this.state.photoFile) {
+        formData.append('post[post_photo]', this.state.photoFile);
+      } // const post = Object.assign({}, this.state);
+
+
+      this.props.createPost(formData).then(this.props.closeModal);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var buttonId;
       if (!this.props.currentUser) return null;
@@ -2133,6 +2219,11 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         buttonId = "newButton";
       }
 
+      var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "post-photo-preview",
+        src: this.state.photoUrl
+      }) : null;
+      console.log(this.props.phototype);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "postcontainer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2143,7 +2234,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
-          _this3.props.closeModal();
+          _this4.props.closeModal();
         },
         className: "close-x"
       }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
@@ -2152,6 +2243,11 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
         placeholder: "What is on your mind?",
         value: this.state.body,
         onChange: this.handleInput("body")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "file",
+        onChange: this.handleFile,
+        name: "",
+        id: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "hidden",
         value: this.state.author_id,
@@ -2215,8 +2311,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createPost: function createPost(post) {
-      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.createPost)(post));
+    createPost: function createPost(formData) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.createPost)(formData));
     },
     removeErrors: function removeErrors() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
@@ -2286,6 +2382,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Post, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPosts(); // this.props.fetchUser(this.props.match.params.userId)
+    }
+  }, {
     key: "handleOpenModal",
     value: function handleOpenModal(e) {
       e.preventDefault();
@@ -2333,6 +2434,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  // import SessionForm from './session_form';
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
@@ -2356,6 +2458,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    fetchPosts: function fetchPosts() {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__.fetchPosts)());
     }
   };
 };
@@ -2503,6 +2608,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchPost: function fetchPost(postId) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPost)(postId));
+    },
     fetchPosts: function fetchPosts() {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.fetchPosts)());
     },
@@ -2538,8 +2646,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comments_index_container */ "./frontend/components/comments/comments_index_container.js");
 /* harmony import */ var _comments_new_comment_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comments/new_comment_container */ "./frontend/components/comments/new_comment_container.js");
-/* harmony import */ var _posts_edit_post_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../posts/edit_post_container */ "./frontend/components/posts/edit_post_container.js");
-
 
 
 
@@ -2558,6 +2664,17 @@ var PostItem = function PostItem(_ref) {
   })[0];
   var editbutton;
   var deletebutton;
+  var postImage;
+
+  if (post.post_photoUrl) {
+    postImage = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      className: "post-photo",
+      src: post.post_photoUrl,
+      alt: ""
+    });
+  } else {
+    postImage = "";
+  }
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
     // editbutton = <EditPostContainer post={post} />
@@ -2600,7 +2717,7 @@ var PostItem = function PostItem(_ref) {
       timeStyle: 'short'
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostBody"
-    }, post === null || post === void 0 ? void 0 : post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, post.body, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), postImage), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostButton"
     }), deletebutton, editbutton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       post: post
@@ -3179,8 +3296,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-      this.props.fetchUsers(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
+      this.props.fetchUsers();
+      this.props.fetchPosts(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
   }, {
     key: "handleOpenModal",
@@ -3241,7 +3358,15 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "cover-photo",
+        src: this.props.user.cover_photoUrl,
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "profile-photo",
+        src: this.props.user.profile_photoUrl,
+        alt: ""
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           _this2.handleOpenModal("editphoto", "profilephoto");
         }
@@ -3278,10 +3403,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+
 
 
 
@@ -3312,6 +3439,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUsers: function fetchUsers() {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUsers)());
     },
+    fetchPosts: function fetchPosts() {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.fetchPosts)());
+    },
     // openModal: (modal)=> dispatch(openModal({modal: modal})),
     openModal: function openModal(modal, phototype) {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)({
@@ -3326,7 +3456,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -4628,22 +4758,24 @@ var fetchPost = function fetchPost(postId) {
     method: "GET"
   });
 };
-var createPost = function createPost(post) {
+var createPost = function createPost(formData) {
   return $.ajax({
     url: "api/posts",
     method: "POST",
-    data: {
-      post: post
-    }
+    processData: false,
+    contentType: false,
+    cache: false,
+    data: formData
   });
 };
-var updatePost = function updatePost(post) {
+var updatePost = function updatePost(id, formData) {
   return $.ajax({
-    url: "api/posts/".concat(post.id),
+    url: "api/posts/".concat(id),
     method: "PATCH",
-    data: {
-      post: post
-    }
+    processData: false,
+    contentType: false,
+    cache: false,
+    data: formData
   });
 };
 var deletePost = function deletePost(postId) {

@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { fetchPosts, deletePost} from '../../actions/posts_actions';
+import { fetchPosts, deletePost, fetchPost} from '../../actions/posts_actions';
 import PostIndex from './post_index';
 import { withRouter} from "react-router-dom"
 import { openModal, closeModal } from '../../actions/modal_actions';
+
 
 
 
@@ -23,6 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 }};
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchPost:(postId) => dispatch(fetchPost(postId)),
   fetchPosts: () => dispatch(fetchPosts()),
   openModal: (modal, post)=> dispatch(openModal({modal: modal, post: post})),
   deletePost: (postId) => dispatch(deletePost(postId))

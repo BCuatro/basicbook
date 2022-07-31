@@ -74,8 +74,8 @@ export const fetchPost =(postId) => (dispatch) => (
 )
   
 
-export const createPost= post => dispatch => (
-    PostsApiUtil.createPost(post)
+export const createPost= formData => dispatch => (
+    PostsApiUtil.createPost(formData)
     .then(post =>(
         dispatch(receivePost(post))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
@@ -85,8 +85,8 @@ export const createPost= post => dispatch => (
 )
 
 
-export const updatePost= post => dispatch => (
-    PostsApiUtil.updatePost(post)
+export const updatePost= (id, formData)=> dispatch => (
+    PostsApiUtil.updatePost(id, formData)
     .then(post =>(
         dispatch(receivePost(post))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))

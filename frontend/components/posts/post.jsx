@@ -8,6 +8,10 @@ class Post extends React.Component {
         this.handleOpenModal = this.handleOpenModal.bind(this);
            
     }
+    componentDidMount() {
+        this.props.fetchPosts();
+        // this.props.fetchUser(this.props.match.params.userId)
+      }
 
     handleOpenModal(e){
         e.preventDefault();

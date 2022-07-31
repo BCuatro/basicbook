@@ -7,4 +7,6 @@ class Post < ApplicationRecord
     belongs_to :user_profile, class_name: :User, foreign_key: :profile_id
 
     has_many :comments, class_name: :Comment, foreign_key: :post_id, dependent: :delete_all
+
+    has_one_attached :post_photo
 end

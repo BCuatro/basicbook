@@ -14,20 +14,26 @@ export const fetchPost = (postId) => {
     
 }
 
-export const createPost = (post) => {
+export const createPost = (formData) => {
     return $.ajax({
             url: `api/posts`,
             method: `POST`,
-            data: {post}
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: formData
         })
     
 }
 
-export const updatePost = (post) => {
+export const updatePost = (id, formData) => {
     return $.ajax({
-            url: `api/posts/${post.id}`,
+            url: `api/posts/${id}`,
             method: `PATCH`,
-            data: {post}
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: formData
         })
     
 }

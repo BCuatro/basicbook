@@ -607,7 +607,24 @@ ul{
   height: 200px;
   width: 500px;
 }
+.post-photo-preview{
+  height: 200px;
+  width: auto;
+}
 
+.post-photo{
+  height: 200px;
+  width: auto;
+}
+.cover-photo{
+  height: 200px;
+  width: auto;
+}
+
+.profile-photo{
+  height: 200px;
+  width: auto;
+}
 /* .profile-body{
   display: flex;
   flex-direction: column;
