@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
     has_many :comments, class_name: :Comment, foreign_key: :author_id, dependent: :delete_all
 
+    has_many :friends, class_name: :Friend, foreign_key: :user_id
+
+    has_many :friendships, class_name: :Friend, foreign_key: :friend_id
+
    
 
     def self.find_by_credentials(username, password)

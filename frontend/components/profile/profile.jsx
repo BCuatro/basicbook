@@ -88,8 +88,10 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
-                <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" />
-                <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> 
+                    <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" />
+                    <br />
+                    <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> 
+                    <br />
                 {/* <h3>Preview</h3>
                     {preview}
                     
@@ -109,9 +111,9 @@ class Profile extends React.Component{
                 
                 <div className = "profile-sidebar-1">
                 
-                    {/* <h5>Profile Sidebar 1</h5>
+                   <h5>Profile Sidebar 1</h5>
                     
-                    <form onSubmit={this.handleSubmit}>
+                     {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}
                         name="" id="" />

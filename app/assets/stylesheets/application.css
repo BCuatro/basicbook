@@ -618,7 +618,8 @@ ul{
 }
 .cover-photo{
   height: 200px;
-  width: auto;
+  width: 85%;
+  margin-left: 7.5%;
 }
 
 .profile-photo{
