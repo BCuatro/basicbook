@@ -1980,6 +1980,7 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
 
       // if(!this.props.post) return null
       var buttonId;
+      console.log(this.state.postPhoto);
 
       if (this.state.body.replace(/ /g, '').length === 0) {
         buttonId = "invalidButton";

@@ -9,12 +9,13 @@ class EditPost extends React.Component {
             id: this.props.post.id,
             body:this.props.post.body,
             photoFile: null,
-            photoUrl: this.props.post.post_photoUrl
+            photoUrl: this.props.post.post_photoUrl,
         };
         
         this.handleSubmit =this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleFile = this.handleFile.bind(this)
+        
     }
     handleUpdate(type) {
         return e => { 
@@ -58,6 +59,7 @@ class EditPost extends React.Component {
     render() {
         // if(!this.props.post) return null
         let buttonId
+        console.log(this.state.postPhoto)
         
         if(this.state.body.replace(/ /g,'').length ===0){
            buttonId ="invalidButton"
@@ -95,6 +97,7 @@ class EditPost extends React.Component {
                     disabled={this.state.body.replace(/ /g,'').length ===0} 
                     className= "newPostButton" 
                     id= {buttonId}>Post</button>
+
                 </form>
 
             </div>
