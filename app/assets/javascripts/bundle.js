@@ -1474,15 +1474,24 @@ __webpack_require__.r(__webpack_exports__);
       users = _ref.users,
       user = _ref.user,
       currentUser = _ref.currentUser;
-  var theFriend = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
+  var theFriend;
+
+  if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id)) {
+    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
+  } else if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) {
+    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
+  }
+
   console.log("this is from friend item", theFriend);
 
   if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) {
+    var _theFriend, _theFriend2;
+
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "friend-class"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Friend's List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-      href: "/#/users/".concat(friend === null || friend === void 0 ? void 0 : friend.friend_id)
-    }, theFriend === null || theFriend === void 0 ? void 0 : theFriend.username));
+      href: "/#/users/".concat((_theFriend = theFriend) === null || _theFriend === void 0 ? void 0 : _theFriend.id)
+    }, (_theFriend2 = theFriend) === null || _theFriend2 === void 0 ? void 0 : _theFriend2.username));
   }
 });
 
