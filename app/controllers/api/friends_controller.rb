@@ -1,5 +1,10 @@
 class Api::FriendsController < ApplicationController
 
+    def index
+        @friends = Friend.all
+        render :index
+    end
+    
     def create
         @friend = Friend.new(friend_params)
         

@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileNavBarContainer from './profile_nav_bar_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import Tabs from './tabs';
+import FriendItem from '../friends/friend_item';
 
 
 class Profile extends React.Component{
@@ -29,6 +30,7 @@ class Profile extends React.Component{
        
         this.props.fetchUsers();
         this.props.fetchPosts();
+        this.props.fetchFriends();
 
         // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
@@ -77,6 +79,8 @@ class Profile extends React.Component{
    
     
     render(){ 
+        // console.log("Look at this", this.props.users[this.props.friends[0]?.friend_id]?.username)
+       
         let editButton
         if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
             editButton = <button onClick = {() => {this.handleOpenModal("editprofile")}}>Edit Profile</button> } else{
@@ -132,6 +136,23 @@ class Profile extends React.Component{
                 </div>
                 <div className="profile-sidebar-2">
                     <h5>Profile Sidebar 2</h5>
+                    <ul className= "wall_posts">
+                        {
+                            this.props?.friends
+                            // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                            .map(friend => (
+                                // this.props.users[friend?.friend_id]?.username
+                                <FriendItem
+                                    key={`${friend.id}`}
+                                    friend={friend}
+                                    user= {this.props.user}
+                                    currentUser= {this.props.currentUser}
+                                    users= {(this.props.users)}
+                                />
+                            )
+                            )
+                        }
+                    </ul>
                 </div>
                 
                
