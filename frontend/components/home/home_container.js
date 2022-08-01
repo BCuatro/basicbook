@@ -10,6 +10,7 @@ import HomePage from "./home";
     const currentUser= state.entities.users[state.session.id]
     const user= state.entities.users[ownProps.match.params.userId]
     // userId: parseInt(ownProps.match.params.user.id),
+    debugger
     return {
         currentUser,
         user

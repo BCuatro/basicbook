@@ -36,7 +36,7 @@ class Api::FriendsController < ApplicationController
     end
 
     def friend_params
-        params.require(:friend).permit(:user_id, :friend_id, :status)
+        params.require(:friend).permit(:user_id, :friend_id, :friendship_status)
     end
 
 end

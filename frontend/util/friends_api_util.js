@@ -6,7 +6,15 @@ export const fetchFriends = () => {
     
 }
 
-export const createFriend = (formData) => {
+export const fetchFriend = (friendId) => {
+    return $.ajax({
+            url: `/api/friends/${friendId}`,
+            method: `GET`
+        })
+    
+}
+
+export const addFriend = (formData) => {
     return $.ajax({
             url: `api/friends`,
             method: `POST`,

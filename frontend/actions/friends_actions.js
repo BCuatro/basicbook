@@ -2,10 +2,12 @@ import * as FriendsApiUtil from '../util/friends_api_util';
 
 
 export const RECEIVE_ALL_FRIENDS = `RECEIVE_ALL_FRIENDS`;
-// export const RECEIVE_FRIEND = `RECEIVE_FRIEND`;
+export const ADD_FRIEND = `ADD_FRIEND`;
+export const RECEIVE_FRIEND= `RECEIVE_FRIEND`;
+export const DELETE_FRIEND = `DELETE_FRIEND`
+
 export const RECEIVE_ERRORS= `RECEIVE_ERRORS`;
 export const REMOVE_ERRORS =`REMOVE_ERRORS`;
-export const REMOVE_POST = `REMOVE_POST`
 
 
 
@@ -18,35 +20,42 @@ const receiveFriends = friends => {
     }
 }
 
-// const receiveFriend = friend => {
-//     return {
-//         type: RECEIVE_FRIEND,
-//         post
-//     }
-// }
+const receiveFriend = friend => {
+    return {
+        type: RECEIVE_FRIEND,
+        friend
+    }
+}
 
-// const removePost = postId => {
-//     return {
-//         type: REMOVE_POST,
-//         postId,
-//     }
-// }
+const addFriend = friend => {
+    return {
+        type: ADD_FRIEND,
+        friend
+    }
+}
 
-// const receiveErrors = errors =>{
-//     return{
-//         type: RECEIVE_ERRORS,
-//         errors
-//     }
+const deleteFriend = friendId => {
+    return {
+        type: DELETE_FRIEND,
+        friendId,
+    }
+}
+
+const receiveErrors = errors =>{
+    return{
+        type: RECEIVE_ERRORS,
+        errors
+    }
     
-// }
+}
 
-// export const removeErrors = errors =>{
-//     return{
-//         type: REMOVE_ERRORS,
-//         errors
-//     }
+export const removeErrors = errors =>{
+    return{
+        type: REMOVE_ERRORS,
+        errors
+    }
     
-// }
+}
 
 
 
@@ -56,6 +65,16 @@ export const fetchFriends = () => (dispatch)=> (
     FriendsApiUtil.fetchFriends()
     .then(friends => (
         dispatch(receiveFriends(friends))
+        ), errors => (dispatch(receiveErrors(errors.responseJSON))
+        )
+    )
+
+)
+
+export const fetchFriend = () => (dispatch)=> (
+    FriendsApiUtil.fetchFriend()
+    .then(friend => (
+        dispatch(receiveFriend(friend))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
         )
     )
@@ -74,10 +93,10 @@ export const fetchFriends = () => (dispatch)=> (
 // )
   
 
-export const createPost= formData => dispatch => (
-    PostsApiUtil.createPost(formData)
-    .then(post =>(
-        dispatch(receivePost(post))
+export const createFriendship= formData => dispatch => (
+    FriendsApiUtil.addFriend(formData)
+    .then(friend =>(
+        dispatch(addFriend(friend))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
         )
     )
@@ -85,20 +104,20 @@ export const createPost= formData => dispatch => (
 )
 
 
-export const updatePost= (id, formData)=> dispatch => (
+export const updateFriendship= (id, formData)=> dispatch => (
     PostsApiUtil.updatePost(id, formData)
-    .then(post =>(
-        dispatch(receivePost(post))
+    .then(friend =>(
+        dispatch(receivePost(friend))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
         )
     )
 
 )
 
-export const deletePost= postId => dispatch => (
-    PostsApiUtil.deletePost(postId)
+export const deleteFriendship= friendId => dispatch => (
+    FriendsApiUtil.deleteFriend(friendId)
     .then(()=> (
-        dispatch(removePost(postId))
+        dispatch(deleteFriend(friendId))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
         )
     )

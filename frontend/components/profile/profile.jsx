@@ -3,6 +3,8 @@ import ProfileNavBarContainer from './profile_nav_bar_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import Tabs from './tabs';
 import FriendItem from '../friends/friend_item';
+import FriendRequestContainer from '../friends/friend_container';
+
 
 
 class Profile extends React.Component{
@@ -92,9 +94,9 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
-                    <img className = "cover-photo" src={this.props.user.cover_photoUrl} alt="" />
+                    <img className = "cover-photo" src={this.props.user?.cover_photoUrl} alt="" />
                     <br />
-                    <img className = "profile-photo" src={this.props.user.profile_photoUrl} alt="" /> 
+                    <img className = "profile-photo" src={this.props.user?.profile_photoUrl} alt="" /> 
                     <br />
                 {/* <h3>Preview</h3>
                     {preview}
@@ -111,6 +113,9 @@ class Profile extends React.Component{
 
                     <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button> 
                     <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button>
+                    <br />
+                    <div><FriendRequestContainer /></div>
+                    
                 </div>
                 
                 <div className = "profile-sidebar-1">
@@ -131,6 +136,7 @@ class Profile extends React.Component{
                     <h5>Proile Main</h5>
                     <div>{editButton}</div>
                     <ProfileNavBarContainer />
+                
                     {/* Need to combine about me and post in one page*/}
                     
                 </div>

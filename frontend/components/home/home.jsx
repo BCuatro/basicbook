@@ -22,10 +22,10 @@ import NewsfeedContainer from './newsfeed_container'
             {/* <button onClick={() => openModal('signup')}>Signup</button> */}
           </nav>
         );
-        const Home = () => (
+        const Home = (user) => (
           <div className= "home">
             <div>
-                <h2 className="header-group"> Hi ${currentUser.username} </h2>
+                <h2 className="header-group"> Hi ${user?.username} </h2>
             </div>
 
             <div className ="newsfeed">
@@ -42,7 +42,7 @@ import NewsfeedContainer from './newsfeed_container'
           // </hgroup>
         );
         
-      
+      debugger
         return (
           currentUser ?
           Home(currentUser) :
