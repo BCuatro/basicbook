@@ -25,6 +25,13 @@ class User < ApplicationRecord
 
     has_many :friendships, class_name: :Friend, foreign_key: :friend_id
 
+    has_many :liked_comments, through: :likes, source: :likeable, source_type: :Comment
+
+    has_many :liked_posts, through: :likes, source: :likeable, source_type: :Post
+            
+
+
+
    
 
     def self.find_by_credentials(username, password)

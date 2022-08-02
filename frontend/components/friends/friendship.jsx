@@ -69,6 +69,7 @@ class Friendship extends React.Component {
 
 
     handleUpdate() {
+        
         this.setState({ friend_id: this.props.user?.id });
         this.setState({ user_id: this.props.currentUser?.id });
         this.setState({ friendship_status: "pending" });

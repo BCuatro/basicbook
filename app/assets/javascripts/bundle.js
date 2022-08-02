@@ -488,6 +488,108 @@ var deleteFriendship = function deleteFriendship(friendId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/likes_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/likes_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_ALL_LIKES": () => (/* binding */ RECEIVE_ALL_LIKES),
+/* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "RECEIVE_LIKE": () => (/* binding */ RECEIVE_LIKE),
+/* harmony export */   "REMOVE_ERRORS": () => (/* binding */ REMOVE_ERRORS),
+/* harmony export */   "REMOVE_LIKE": () => (/* binding */ REMOVE_LIKE),
+/* harmony export */   "createLike": () => (/* binding */ createLike),
+/* harmony export */   "deleteLike": () => (/* binding */ deleteLike),
+/* harmony export */   "fetchLike": () => (/* binding */ fetchLike),
+/* harmony export */   "fetchLikes": () => (/* binding */ fetchLikes),
+/* harmony export */   "removeErrors": () => (/* binding */ removeErrors)
+/* harmony export */ });
+/* harmony import */ var _util_likes_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/likes_api_util */ "./frontend/util/likes_api_util.js");
+
+var RECEIVE_ALL_LIKES = "RECEIVE_ALL_LIKES";
+var RECEIVE_LIKE = "RECEIVE_LIKE";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
+var REMOVE_ERRORS = "REMOVE_ERRORS";
+var REMOVE_LIKE = "REMOVE_LIKE"; //Action creators
+
+var receiveLikes = function receiveLikes(likes) {
+  return {
+    type: RECEIVE_ALL_LIKES,
+    likes: likes
+  };
+};
+
+var receiveLike = function receiveLike(like) {
+  return {
+    type: RECEIVE_LIKE,
+    like: like
+  };
+};
+
+var removeLike = function removeLike(likeId) {
+  return {
+    type: REMOVE_LIKE,
+    likeId: likeId
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_ERRORS,
+    errors: errors
+  };
+};
+
+var removeErrors = function removeErrors(errors) {
+  return {
+    type: REMOVE_ERRORS,
+    errors: errors
+  };
+}; //thunk Method
+
+var fetchLikes = function fetchLikes() {
+  return function (dispatch) {
+    return _util_likes_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLikes().then(function (likes) {
+      return dispatch(receiveLikes(likes));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var fetchLike = function fetchLike(likeId) {
+  return function (dispatch) {
+    return _util_likes_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchLike(likeId).then(function (like) {
+      return dispatch(receiveLike(like));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var createLike = function createLike(like) {
+  return function (dispatch) {
+    return _util_likes_api_util__WEBPACK_IMPORTED_MODULE_0__.createLike(like).then(function (like) {
+      return dispatch(receiveLike(like));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var deleteLike = function deleteLike(likeId) {
+  return function (dispatch) {
+    return _util_likes_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteLike(likeId).then(function () {
+      return dispatch(removeLike(likeId));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -4069,11 +4171,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "cover-photo",
-        src: !((_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl) ? "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q" : (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl,
+        src: (_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl ? (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "profile-photo",
-        src: !((_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl) ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl,
+        src: (_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl ? (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
@@ -4980,9 +5082,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
 /* harmony import */ var _comments_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments_reducer */ "./frontend/reducers/comments_reducer.js");
-/* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _friends_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./friends_reducer */ "./frontend/reducers/friends_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _friends_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./friends_reducer */ "./frontend/reducers/friends_reducer.js");
+/* harmony import */ var _likes_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./likes_reducer */ "./frontend/reducers/likes_reducer.js");
 
 
 
@@ -4990,11 +5092,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EntitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   comments: _comments_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  // profile: ProfileReducer,
-  friends: _friends_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  likes: _likes_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  friends: _friends_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EntitiesReducer);
 
@@ -5073,6 +5175,48 @@ var FriendsReducer = function FriendsReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FriendsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/likes_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/likes_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var LikesReducer = function LikesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_LIKES:
+      return action.likes;
+
+    case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKE:
+      return Object.assign({}, state, _defineProperty({}, action.like.id, action.like));
+
+    case _actions_likes_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_LIKE:
+      delete nextState[action.likeId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LikesReducer);
 
 /***/ }),
 
@@ -5222,40 +5366,6 @@ var PostsReducer = function PostsReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostsReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/profile_reducer.js":
-/*!**********************************************!*\
-  !*** ./frontend/reducers/profile_reducer.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_actions */ "./frontend/actions/users_actions.js");
-
-
-var ProfileReducer = function ProfileReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-  var nextState = Object.assign({}, state);
-
-  switch (action.type) {
-    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PROFILE:
-      nextState[action.profile_id] = action.profile_id;
-      return nextState;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileReducer);
 
 /***/ }),
 
@@ -5576,6 +5686,43 @@ var updateFriend = function updateFriend(id, formData) {
 var deleteFriend = function deleteFriend(friendId) {
   return $.ajax({
     url: "api/friends/".concat(friendId),
+    method: "DELETE"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/likes_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/likes_api_util.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createLike": () => (/* binding */ createLike),
+/* harmony export */   "deleteLike": () => (/* binding */ deleteLike),
+/* harmony export */   "fetchLikes": () => (/* binding */ fetchLikes)
+/* harmony export */ });
+var fetchLikes = function fetchLikes() {
+  return $.ajax({
+    url: "/api/likes",
+    method: "GET"
+  });
+};
+var createLike = function createLike(like) {
+  return $.ajax({
+    url: "api/likes",
+    method: "POST",
+    data: {
+      like: like
+    }
+  });
+};
+var deleteLike = function deleteLike(likeId) {
+  return $.ajax({
+    url: "api/likes/".concat(likeId),
     method: "DELETE"
   });
 };

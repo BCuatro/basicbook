@@ -65,10 +65,10 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
-                    <img className = "cover-photo" src={!this.props.user?.cover_photoUrl ?
-                        "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q" : this.props.user?.cover_photoUrl  } alt="" />
+                    <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
+                        this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
                     <br />
-                    <img className = "profile-photo" src={!this.props.user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : this.props.user?.profile_photoUrl} alt="" /> 
+                    <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
                     {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
                     <br />
                 {/* <h3>Preview</h3>
