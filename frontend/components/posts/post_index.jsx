@@ -42,6 +42,7 @@ class PostIndex extends React.Component {
               page ={"profile"}
               updatePost= {this.handleOpenModal}
               deletePost ={this.props.deletePost}
+              likes = {this.props.likes}
               />
               )
             )

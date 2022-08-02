@@ -4,11 +4,24 @@ import { openModal } from '../../actions/modal_actions';
 import CommentIndexContainer from '../comments/comments_index_container';
 
 import NewCommentContainer from '../comments/new_comment_container';
+import LikeContainer from '../likes/like_container';
 
 
 
 
-const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,}) => {
+
+const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,likes}) => {
+   let likesCount = 0
+   let displayLikesCount
+
+   Object.values(likes).forEach(like => {
+    if (like.likeable_id === post.id && like.likeable_type === "Post") {
+      likesCount++
+    }
+  })
+
+  likesCount > 0 ? displayLikesCount = likesCount : displayLikesCount= ""
+
   const author = users?.filter(obj=>
     obj.id === post?.author_id
   )[0]
@@ -50,9 +63,11 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
         {post.body}
         <br />
         {postImage} 
+
         
       
       </div>
+      {displayLikesCount}
       <div className="wallPostButton">
         {/* <button> like</button> */}
         {/* <button onClick ={() => {modal}}> edit</button> */}
@@ -60,7 +75,14 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
       
       {deletebutton}
       {editbutton}
-      <CommentIndexContainer post= {post} />
+      <LikeContainer 
+      likeable_id ={post?.id}
+      currentUser_id ={currentUser?.id}
+      likeable_type ={"Post"}
+      />
+      
+      <br />
+      <CommentIndexContainer post= {post} likes = {likes}/>
       <NewCommentContainer post ={post} />
     </li>
   )

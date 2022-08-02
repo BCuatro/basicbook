@@ -38,6 +38,7 @@ class CommentsIndex extends React.Component {
               deleteComment = {this.props.deleteComment}
               currentUser = {this.props.currentUser}
               updateComment= {this.handleOpenModal}
+              likes = {this.props.likes}
               />
               )
             )

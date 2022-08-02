@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
   user: state.entities.users[ownProps.match.params.userId],
   userId: ownProps.match.params.userId,
   currentUser: state.entities.users[state.session.id],
+  likes: Object.keys(state.entities.likes).map(key => state.entities.likes[key])
 
   
 }};

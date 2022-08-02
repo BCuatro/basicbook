@@ -7,11 +7,14 @@ export const fetchLikes = () => {
 }
 
 
-export const createLike = (like) => {
+export const createLike = (formData) => {
     return $.ajax({
             url: `api/likes`,
             method: `POST`,
-            data: {like}
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: formData
         })
     
 }

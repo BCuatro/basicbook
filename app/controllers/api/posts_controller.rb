@@ -44,6 +44,8 @@ class Api::PostsController < ApplicationController
         params.require(:post).permit(:body, :profile_id, :author_id, :post_photo)
     end
 
+
+
     
     
     

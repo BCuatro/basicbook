@@ -1,12 +1,21 @@
 import React from 'react';
+import LikeContainer from '../likes/like_container';
 import EditCommentContainer from './edit_comment_container';
 
 
 
-export default ({ comment, users, postId, deleteComment, currentUser, updateComment}) => {
+export default ({ comment, users, postId, deleteComment, currentUser, updateComment, likes}) => {
   
-  // console.log(comment?.author_id)
-  // console.log(author?.id === comment?.author_id)
+  let likesCount = 0
+   let displayCommentLikesCount
+
+   Object.values(likes).forEach(like => {
+    if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
+      likesCount++
+    }
+  })
+
+  likesCount > 0 ? displayCommentLikesCount = likesCount : displayCommentLikesCount= ""
   const author = users?.filter(obj=>
     obj.id === comment?.author_id
   )[0]
@@ -44,6 +53,12 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
           <button> like</button>
           <button> edit</button>
         </div> */}
+         <LikeContainer 
+        likeable_id ={comment.id}
+        currentUser_id ={currentUser?.id}
+        likeable_type ={"Comment"}
+        />
+        {displayCommentLikesCount}
         {deletebutton}
         {editbutton}
       </li>

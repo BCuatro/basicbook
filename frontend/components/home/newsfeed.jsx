@@ -52,6 +52,7 @@ class Newsfeed extends React.Component {
                 deletePost ={this.props.deletePost}
                 currentUser= {this.props.currentUser}
                 updatePost ={ this.handleEditOpenModal}
+                likes = {this.props.likes}
                 
                 />
                 )
