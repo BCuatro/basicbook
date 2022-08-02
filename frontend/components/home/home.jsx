@@ -42,7 +42,6 @@ import NewsfeedContainer from './newsfeed_container'
           // </hgroup>
         );
         
-      debugger
         return (
           currentUser ?
           Home(currentUser) :

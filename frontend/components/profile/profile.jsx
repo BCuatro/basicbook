@@ -3,14 +3,20 @@ import ProfileNavBarContainer from './profile_nav_bar_container';
 import EditProfileContainer from '../profile/edit_profile_container';
 import Tabs from './tabs';
 import FriendItem from '../friends/friend_item';
-import FriendRequestContainer from '../friends/friend_container';
+// import FriendRequestContainer from '../friends/friend_container';
+import FriendRequestItem from '../friends/friend_request_item';
+import FriendshipContainer from '../friends/friendship_container';
+
+
+
+
 
 
 
 class Profile extends React.Component{
     constructor(props){
         super(props)
-        this.state = this.props
+        this.state = this.props.user
         // this.state = {
         //     id: this.props.currentUser.id,
         //     email:this.props.currentUser.email,
@@ -42,42 +48,7 @@ class Profile extends React.Component{
         this.props.openModal(modal,phototype)
     }
 
-    // handleOpenCoverPhotoModal(){
-    //     // e.preventDefault();
-    //     this.props.openPhotoModal("editphoto","coverphoto")
-    // }
-
-    // handleOpenProfilePhotoModal(){
-    //     this.props.openPhotoModal("editphoto","profilephoto")
-    // }
-    
-    // handleFile(e) {
-    //     const file = e.currentTarget.files[0]
-    //     const fileReader = new FileReader();
-    //     fileReader.onloadend = () => {
-    //         this.setState({photoFile: file, photoUrl: fileReader.result});
-    //     }
-    //     if (file){
-            
-    //         fileReader.readAsDataURL(file);
-    //     }
-    // }
-
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('user[profile_photo]', this.state.photoFile);
-    //     this.props.updateUser(this.state.id, formData)
-        
-    // }
-
-    // handleCoverPhotoSubmit(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('user[cover_photo]', this.state.photoFile);
-    //     this.props.updateUser(this.state.id, formData)
-        
-    // }
+ 
    
     
     render(){ 
@@ -94,9 +65,11 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
-                    <img className = "cover-photo" src={this.props.user?.cover_photoUrl} alt="" />
+                    <img className = "cover-photo" src={!this.props.user?.cover_photoUrl ?
+                        "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q" : this.props.user?.cover_photoUrl  } alt="" />
                     <br />
-                    <img className = "profile-photo" src={this.props.user?.profile_photoUrl} alt="" /> 
+                    <img className = "profile-photo" src={!this.props.user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : this.props.user?.profile_photoUrl} alt="" /> 
+                    {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
                     <br />
                 {/* <h3>Preview</h3>
                     {preview}
@@ -113,14 +86,37 @@ class Profile extends React.Component{
 
                     <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button> 
                     <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button>
+                    <FriendshipContainer />
+                
                     <br />
-                    <div><FriendRequestContainer /></div>
+                    {/* <div><FriendRequestContainer /></div> */}
                     
                 </div>
                 
                 <div className = "profile-sidebar-1">
-                
-                   <h5>Profile Sidebar 1</h5>
+                <h5>Friend Request</h5>
+                    <ul className= "wall_posts">
+                            { 
+                                this.props.friends 
+                                // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                                .map(friend => (
+                                    // this.props.users[friend?.friend_id]?.username
+                                    <FriendRequestItem
+                                        key={`${friend?.id}`}
+                                        friend={friend}
+                                        user= {this.props.user}
+                                        currentUser= {this.props.currentUser}
+                                        users= {(this.props.users)}
+                                    />
+                                )
+                                )
+                                }
+                            
+                        </ul>
+
+                  
+
+
                     
                      {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
@@ -143,22 +139,26 @@ class Profile extends React.Component{
                 <div className="profile-sidebar-2">
                     <h5>Profile Sidebar 2</h5>
                     <ul className= "wall_posts">
-                        {
-                            this.props?.friends
-                            // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-                            .map(friend => (
-                                // this.props.users[friend?.friend_id]?.username
-                                <FriendItem
-                                    key={`${friend.id}`}
-                                    friend={friend}
-                                    user= {this.props.user}
-                                    currentUser= {this.props.currentUser}
-                                    users= {(this.props.users)}
-                                />
-                            )
-                            )
-                        }
+                            {
+                                this.props.friends
+                                // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                                .map(friend => (
+                                    // this.props.users[friend?.friend_id]?.username
+                                    <FriendItem
+                                        key={`${friend?.id}`}
+                                        friend={friend}
+                                        user= {this.props.user}
+                                        currentUser= {this.props.currentUser}
+                                        users= {(this.props.users)}
+                                    />
+                                )
+                                )
+                            }
+                        
                     </ul>
+                        <br />
+                 
+                    
                 </div>
                 
                

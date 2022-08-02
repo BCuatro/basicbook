@@ -11,8 +11,8 @@ export default ({ friend, users, user, currentUser}) => {
     theFriend = users[friend?.user_id]
   }
   
-  console.log("this is from friend item", theFriend)
-  if(user?.id === friend?.user_id || user?.id === friend?.friend_id) {
+  
+  if((user?.id === friend?.user_id || user?.id === friend?.friend_id) && friend?.friendship_status === "accepted"){
     return (
       <li className="friend-class">
         <h4>Friend's List</h4>

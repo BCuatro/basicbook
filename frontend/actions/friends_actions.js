@@ -105,9 +105,9 @@ export const createFriendship= formData => dispatch => (
 
 
 export const updateFriendship= (id, formData)=> dispatch => (
-    PostsApiUtil.updatePost(id, formData)
+    FriendsApiUtil.updateFriend(id, formData)
     .then(friend =>(
-        dispatch(receivePost(friend))
+        dispatch(receiveFriend(friend))
         ), errors => (dispatch(receiveErrors(errors.responseJSON))
         )
     )

@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 import { login, removeLoginErrors, removeSignupErrors} from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { createPost, removeErrors } from '../../actions/posts_actions';
-import { createFriendship, deleteFriendship } from '../../actions/friends_actions';
+import { createFriendship, deleteFriendship, updateFriendship } from '../../actions/friends_actions';
 import FriendRequest from './friend_request';
 import { fetchFriends, fetchFriend } from "../../actions/friends_actions";
 import { fetchUser, fetchUsers } from '../../actions/users_actions';
@@ -33,7 +33,7 @@ const mapStateToProps= (state, ownProps) =>{
 const mapDispatchToProps= dispatch =>{
     return{
         
-        updateFriendship: (id,formData) => dispatch(createFriendship(id, formData)),
+        updateFriendship: (id,formData) => dispatch(updateFriendship(id, formData)),
         deleteFriendship: (friendId) => dispatch(deleteFriendship(friendId)),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal()),

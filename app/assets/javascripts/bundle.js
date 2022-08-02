@@ -469,8 +469,8 @@ var createFriendship = function createFriendship(formData) {
 };
 var updateFriendship = function updateFriendship(id, formData) {
   return function (dispatch) {
-    return PostsApiUtil.updatePost(id, formData).then(function (friend) {
-      return dispatch(receivePost(friend));
+    return _util_friends_api_util__WEBPACK_IMPORTED_MODULE_0__.updateFriend(id, formData).then(function (friend) {
+      return dispatch(receiveFriend(friend));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -1479,79 +1479,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/friends/friend_container.js":
-/*!*********************************************************!*\
-  !*** ./frontend/components/friends/friend_container.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
-/* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
-/* harmony import */ var _friend_request__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./friend_request */ "./frontend/components/friends/friend_request.jsx");
-/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-
- // import SessionForm from './session_form';
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    currentUser: state.entities.users[state.session.id],
-    user: state.entities.users[ownProps.match.params.userId],
-    users: state.entities.users,
-    userId: ownProps.match.params.userId,
-    friends: Object.keys(state.entities.friends).map(function (key) {
-      return state.entities.friends[key];
-    })
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  var _ref;
-
-  return _ref = {
-    createFriendship: function createFriendship(formData) {
-      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.createFriendship)(formData));
-    },
-    deleteFriendship: function deleteFriendship(friendId) {
-      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.deleteFriendship)(friendId));
-    }
-  }, _defineProperty(_ref, "deleteFriendship", function deleteFriendship(friendId) {
-    return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.deleteFriendship)(friendId));
-  }), _defineProperty(_ref, "removeErrors", function removeErrors() {
-    return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
-  }), _defineProperty(_ref, "closeModal", function closeModal() {
-    return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
-  }), _defineProperty(_ref, "fetchFriends", function fetchFriends() {
-    return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.fetchFriends)());
-  }), _defineProperty(_ref, "fetchUsers", function fetchUsers() {
-    return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_7__.fetchUsers)());
-  }), _ref;
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_friend_request__WEBPACK_IMPORTED_MODULE_6__["default"])));
-
-/***/ }),
-
 /***/ "./frontend/components/friends/friend_item.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/friends/friend_item.jsx ***!
@@ -1579,9 +1506,7 @@ __webpack_require__.r(__webpack_exports__);
     theFriend = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
   }
 
-  console.log("this is from friend item", theFriend);
-
-  if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) {
+  if (((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "accepted") {
     var _theFriend, _theFriend2;
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
@@ -1644,6 +1569,269 @@ var FriendRequest = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, FriendRequest);
 
     _this = _super.call(this, props);
+    _this.state = _this.props.friend; // this.handleAddFriendSubmit = this.handleAddFriendSubmit.bind(this);
+    // this.handleDeleteFriendSubmit = this.handleDeleteFriendSubmit.bind(this)
+    // // this.handleFriendRequestSubmit= this.handleFriendRequestSubmit.bind(this)
+    // this.handleUpdate = this.handleUpdate.bind(this)
+    // this.handleFriendRequestSubmit = this.handleAddFriendSubmit.bind(this);
+
+    _this.handleFriendRequestAccepted = _this.handleFriendRequestAccepted.bind(_assertThisInitialized(_this));
+    _this.handleFriendRequestDenied = _this.handleFriendRequestDenied.bind(_assertThisInitialized(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this)); // this.handleDeleteFriendSubmit = this.handleDeleteFriendSubmit.bind(this)
+
+    return _this;
+  } // componentWillUnmount() {
+  //     this.props.removeErrors();
+  // }
+
+
+  _createClass(FriendRequest, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {//    this.props.fetchFriends
+      //    this.props.fetchUsers
+      //    this.props.fetchFriend
+    } // handleFriendRequestSubmit(){
+    //     this.setState({friend_id: this.props.user.id})
+    //     this.setState({user_id: this.props.currentUser.id})
+    //     this.setState({friendship_status: "pending"})
+    //     formData.append('friend[user_id]', this.state.user_id);
+    //     formData.append('friend[friend_id]', this.state.friend_id);
+    //     formData.append('friend[friendship_status]', this.state.friendship_status);
+    //     console.log("tooooo",this.state.friend_id)
+    //     this.props.createFriendship(formData);
+    // }
+    // handleFriendRequestAccepted(){
+    //     this.setState({friendship_status: "accepted"})
+    //     formData.append('friend[friendship_status]', this.state.friendship_status);
+    //     console.log("tooooo",this.state.friend_id)
+    // }
+    // handleFriendRequestDenied(){
+    // }
+    // handleDeleteFriendSubmit(){
+    // }
+    //original
+
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate() {
+      this.setState({
+        friendship_status: "accepted"
+      });
+    }
+  }, {
+    key: "handleFriendRequestAccepted",
+    value: function handleFriendRequestAccepted(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('friend[friendship_status]', this.state.friendship_status);
+      this.props.updateFriendship(this.state.id, formData);
+    }
+  }, {
+    key: "handleFriendRequestDenied",
+    value: function handleFriendRequestDenied() {
+      this.props.deleteFriendship(this.state.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      // let friendshipButton;
+      // if (this.props.currentUser.id === this.props.user?.id) 
+      // {friendshipButton = ""}
+      //  else if (this.props.friends.length !==0){
+      //     friendshipButton =  <button onClick={this.handleDeleteFriendSubmit}>Delete Request</button>
+      // } else{
+      //    friendshipButton = 
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "friend-request-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        onSubmit: this.handleFriendRequestAccepted
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: function onClick() {
+          _this2.handleUpdate();
+        }
+      }, "Accept")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: function onClick() {
+          _this2.handleFriendRequestDenied();
+        }
+      }, "Reject")); // if (this.state.body.replace(/ /g, '').length === 0) {
+      //     buttonId = "invalidButton";
+      // } else {
+      //     buttonId = "newButton";
+      // }
+      // const preview = this.state.photoUrl ? <img className = "post-photo-preview" src={this.state.photoUrl} /> : null;
+      //     console.log(this.props.phototype)
+    }
+  }]);
+
+  return FriendRequest;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.withRouter)(FriendRequest));
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_request_container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/friends/friend_request_container.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+/* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
+/* harmony import */ var _friend_request__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./friend_request */ "./frontend/components/friends/friend_request.jsx");
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+
+
+
+
+
+
+
+
+
+ // import SessionForm from './session_form';
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    user: state.entities.users[ownProps.match.params.userId],
+    users: state.entities.users,
+    friends: Object.keys(state.entities.friends).map(function (key) {
+      return state.entities.friends[key];
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateFriendship: function updateFriendship(id, formData) {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.updateFriendship)(id, formData));
+    },
+    deleteFriendship: function deleteFriendship(friendId) {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.deleteFriendship)(friendId));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    fetchFriends: function fetchFriends() {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.fetchFriends)());
+    },
+    fetchFriend: function fetchFriend(friendId) {
+      return dispatch(_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.fetchFriend);
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_7__.fetchUsers)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_friend_request__WEBPACK_IMPORTED_MODULE_6__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_request_item.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/friends/friend_request_item.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _friend_request_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./friend_request_container */ "./frontend/components/friends/friend_request_container.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+  var friend = _ref.friend,
+      users = _ref.users,
+      user = _ref.user,
+      currentUser = _ref.currentUser;
+  var requestee = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
+  var requester = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
+
+  if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (requestee === null || requestee === void 0 ? void 0 : requestee.id) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "pending" && (currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (user === null || user === void 0 ? void 0 : user.id)) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      className: "friend-request-class"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Friend's Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      href: "/#/users/".concat(requester === null || requester === void 0 ? void 0 : requester.id)
+    }, requester === null || requester === void 0 ? void 0 : requester.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_request_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      friend: friend
+    }));
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friendship.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/friends/friendship.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var Friendship = /*#__PURE__*/function (_React$Component) {
+  _inherits(Friendship, _React$Component);
+
+  var _super = _createSuper(Friendship);
+
+  function Friendship(props) {
+    var _this;
+
+    _classCallCheck(this, Friendship);
+
+    _this = _super.call(this, props);
     _this.state = {
       user_id: "",
       friend_id: "",
@@ -1663,7 +1851,7 @@ var FriendRequest = /*#__PURE__*/function (_React$Component) {
   // }
 
 
-  _createClass(FriendRequest, [{
+  _createClass(Friendship, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchFriends;
@@ -1702,50 +1890,96 @@ var FriendRequest = /*#__PURE__*/function (_React$Component) {
         user_id: (_this$props$currentUs = this.props.currentUser) === null || _this$props$currentUs === void 0 ? void 0 : _this$props$currentUs.id
       });
       this.setState({
-        friendship_status: "accepted"
+        friendship_status: "pending"
       });
     }
   }, {
     key: "handleAddFriendSubmit",
-    value: function handleAddFriendSubmit() {
+    value: function handleAddFriendSubmit(e) {
+      e.preventDefault();
       var formData = new FormData();
       formData.append('friend[user_id]', this.state.user_id);
       formData.append('friend[friend_id]', this.state.friend_id);
       formData.append('friend[friendship_status]', this.state.friendship_status);
-      console.log("tooooo", this.state);
       this.props.createFriendship(formData);
     }
   }, {
     key: "handleDeleteFriendSubmit",
-    value: function handleDeleteFriendSubmit(e) {
-      e.preventDefault();
-      this.props.deleteFriendship(this.props.friends[0].id);
+    value: function handleDeleteFriendSubmit(friendId) {
+      this.props.deleteFriendship(friendId);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props$user2,
+          _this$props$user3,
           _this2 = this;
 
+      console.log(this.props.currentUser.id === ((_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id));
       var friendshipButton;
 
-      if (this.props.currentUser.id === ((_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id)) {
-        friendshipButton = "";
-      } else if (this.props.friends.length !== 0) {
-        friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: this.handleDeleteFriendSubmit
-        }, "Delete Request");
+      if (this.props.currentUser.id === ((_this$props$user3 = this.props.user) === null || _this$props$user3 === void 0 ? void 0 : _this$props$user3.id)) {
+        return friendshipButton = "";
       } else {
-        friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "friend-request"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-          onSubmit: this.handleAddFriendSubmit
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: function onClick() {
-            _this2.handleUpdate();
+        var _this$props$friends;
+
+        if (this.props.friends.length === 0) {
+          return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+            onSubmit: this.handleAddFriendSubmit
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            onClick: function onClick() {
+              _this2.handleUpdate();
+            }
+          }, "Friend Request"));
+        }
+
+        (_this$props$friends = this.props.friends) === null || _this$props$friends === void 0 ? void 0 : _this$props$friends.forEach(function (friend) {
+          var _this2$props$user, _this2$props$user2, _this2$props$user3, _this2$props$user4;
+
+          if (friend.friendship_status === "accepted" && (_this2.props.currentUser.id === friend.user_id && ((_this2$props$user = _this2.props.user) === null || _this2$props$user === void 0 ? void 0 : _this2$props$user.id) === friend.friend_id || _this2.props.currentUser.id === friend.friend_id && ((_this2$props$user2 = _this2.props.user) === null || _this2$props$user2 === void 0 ? void 0 : _this2$props$user2.id) === friend.user_id)) {
+            var friendId = friend === null || friend === void 0 ? void 0 : friend.id;
+            return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              onClick: function onClick() {
+                _this2.handleDeleteFriendSubmit(friendId);
+              }
+            }, "Delete Friend");
+          } else if (friend.friendship_status === "pending" && (_this2.props.currentUser.id === friend.user_id && ((_this2$props$user3 = _this2.props.user) === null || _this2$props$user3 === void 0 ? void 0 : _this2$props$user3.id) === friend.friend_id || _this2.props.currentUser.id === friend.friend_id && ((_this2$props$user4 = _this2.props.user) === null || _this2$props$user4 === void 0 ? void 0 : _this2$props$user4.id) === friend.user_id)) {
+            return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              disabled: true
+            }, "Pending Friend Request");
+          } else {
+            return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+              onSubmit: _this2.handleAddFriendSubmit
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              onClick: function onClick() {
+                _this2.handleUpdate();
+              }
+            }, "Friend Request"));
           }
-        }, "Friend Request")));
-      } // if (this.state.body.replace(/ /g, '').length === 0) {
+        });
+      } // });
+      //  else if (this.props.friends?.length !==0 && this.props.friends[0].friendship_status === "accepted" ){
+      //     friendshipButton =  <button onClick={this.handleDeleteFriendSubmit}>Delete Request</button>
+      // } else if (this.props.friends.length !==0 && this.props.friends[0].friendship_status === "pending" ){
+      //     friendshipButton =  <button disabled>Pending Friend Request</button>
+      // }
+      // else{
+      //    friendshipButton = 
+      //     <div className="friend-request">
+      //         <form onSubmit={this.handleAddFriendSubmit}>
+      //             {/* <button onClick={() =>{
+      //                 this.handleUpdate().then(
+      //                 this.handleAddFriendSubmit())
+      //             }
+      //             }>Friend Request</button> */}
+      //              <button onClick={() =>{
+      //                 this.handleUpdate()
+      //             }
+      //             }>Friend Request</button>
+      //         </form>
+      //     </div>
+      // }
+      // if (this.state.body.replace(/ /g, '').length === 0) {
       //     buttonId = "invalidButton";
       // } else {
       //     buttonId = "newButton";
@@ -1762,10 +1996,81 @@ var FriendRequest = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return FriendRequest;
+  return Friendship;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.withRouter)(FriendRequest));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.withRouter)(Friendship));
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friendship_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/friends/friendship_container.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+/* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
+/* harmony import */ var _friendship__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./friendship */ "./frontend/components/friends/friendship.jsx");
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+
+
+
+
+
+
+
+
+
+ // import SessionForm from './session_form';
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    user: state.entities.users[ownProps.match.params.userId],
+    users: state.entities.users,
+    userId: ownProps.match.params.userId,
+    friends: Object.keys(state.entities.friends).map(function (key) {
+      return state.entities.friends[key];
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createFriendship: function createFriendship(formData) {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.createFriendship)(formData));
+    },
+    deleteFriendship: function deleteFriendship(friendId) {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.deleteFriendship)(friendId));
+    },
+    removeErrors: function removeErrors() {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__.removeErrors)());
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    fetchFriends: function fetchFriends() {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__.fetchFriends)());
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_7__.fetchUsers)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_friendship__WEBPACK_IMPORTED_MODULE_6__["default"])));
 
 /***/ }),
 
@@ -1828,7 +2133,6 @@ var Homepage = function Homepage(_ref) {
     ;
   };
 
-  debugger;
   return currentUser ? Home(currentUser) : login();
 };
 
@@ -1864,7 +2168,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var currentUser = state.entities.users[state.session.id];
   var user = state.entities.users[ownProps.match.params.userId]; // userId: parseInt(ownProps.match.params.user.id),
 
-  debugger;
   return {
     currentUser: currentUser,
     user: user
@@ -3662,7 +3965,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_edit_profile_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/edit_profile_container */ "./frontend/components/profile/edit_profile_container.js");
 /* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs */ "./frontend/components/profile/tabs.jsx");
 /* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
-/* harmony import */ var _friends_friend_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../friends/friend_container */ "./frontend/components/friends/friend_container.js");
+/* harmony import */ var _friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../friends/friend_request_item */ "./frontend/components/friends/friend_request_item.jsx");
+/* harmony import */ var _friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../friends/friendship_container */ "./frontend/components/friends/friendship_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3689,6 +3993,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+ // import FriendRequestContainer from '../friends/friend_container';
+
 
 
 
@@ -3703,7 +4009,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
-    _this.state = _this.props; // this.state = {
+    _this.state = _this.props.user; // this.state = {
     //     id: this.props.currentUser.id,
     //     email:this.props.currentUser.email,
     //     username: this.props.currentUser.username,
@@ -3732,43 +4038,15 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       var phototype = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       // e.preventDefault();
       this.props.openModal(modal, phototype);
-    } // handleOpenCoverPhotoModal(){
-    //     // e.preventDefault();
-    //     this.props.openPhotoModal("editphoto","coverphoto")
-    // }
-    // handleOpenProfilePhotoModal(){
-    //     this.props.openPhotoModal("editphoto","profilephoto")
-    // }
-    // handleFile(e) {
-    //     const file = e.currentTarget.files[0]
-    //     const fileReader = new FileReader();
-    //     fileReader.onloadend = () => {
-    //         this.setState({photoFile: file, photoUrl: fileReader.result});
-    //     }
-    //     if (file){
-    //         fileReader.readAsDataURL(file);
-    //     }
-    // }
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('user[profile_photo]', this.state.photoFile);
-    //     this.props.updateUser(this.state.id, formData)
-    // }
-    // handleCoverPhotoSubmit(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('user[cover_photo]', this.state.photoFile);
-    //     this.props.updateUser(this.state.id, formData)
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this,
           _this$props$user,
           _this$props$user2,
-          _this$props;
+          _this$props$user3,
+          _this$props$user4;
 
       // console.log("Look at this", this.props.users[this.props.friends[0]?.friend_id]?.username)
       var editButton;
@@ -3791,11 +4069,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "cover-photo",
-        src: (_this$props$user = this.props.user) === null || _this$props$user === void 0 ? void 0 : _this$props$user.cover_photoUrl,
+        src: !((_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl) ? "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q" : (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl,
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "profile-photo",
-        src: (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.profile_photoUrl,
+        src: !((_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl) ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl,
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
@@ -3805,28 +4083,43 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           _this2.handleOpenModal("editphoto", "coverphoto");
         }
-      }, "Edit Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_container__WEBPACK_IMPORTED_MODULE_5__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Edit Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-sidebar-1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-main"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Proile Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-sidebar-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Friend Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "wall_posts"
-      }, (_this$props = this.props) === null || _this$props === void 0 ? void 0 : _this$props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+      }, this.props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
       .map(function (friend) {
         return (
           /*#__PURE__*/
           // this.props.users[friend?.friend_id]?.username
-          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            key: "".concat(friend.id),
+          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            key: "".concat(friend === null || friend === void 0 ? void 0 : friend.id),
             friend: friend,
             user: _this2.props.user,
             currentUser: _this2.props.currentUser,
             users: _this2.props.users
           })
         );
-      }))));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Proile Main"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-sidebar-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+        className: "wall_posts"
+      }, this.props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+      .map(function (friend) {
+        return (
+          /*#__PURE__*/
+          // this.props.users[friend?.friend_id]?.username
+          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            key: "".concat(friend === null || friend === void 0 ? void 0 : friend.id),
+            friend: friend,
+            user: _this2.props.user,
+            currentUser: _this2.props.currentUser,
+            users: _this2.props.users
+          })
+        );
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)));
     }
   }]);
 
@@ -4765,7 +5058,7 @@ var FriendsReducer = function FriendsReducer() {
       return action.friends;
 
     case _actions_friends_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_FRIEND:
-      return next[action.friend.id] = action.friend;
+      return nextState[action.friend.id] = action.friend;
 
     case _actions_friends_actions__WEBPACK_IMPORTED_MODULE_0__.ADD_FRIEND:
       return Object.assign({}, state, _defineProperty({}, action.friend.id, action.friend));

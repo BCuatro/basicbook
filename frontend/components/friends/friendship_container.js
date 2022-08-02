@@ -5,7 +5,7 @@ import { login, removeLoginErrors, removeSignupErrors} from '../../actions/sessi
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { createPost, removeErrors } from '../../actions/posts_actions';
 import { createFriendship, deleteFriendship } from '../../actions/friends_actions';
-import FriendRequest from './friend_request';
+import Friendship from './friendship';
 import { fetchFriends } from "../../actions/friends_actions";
 import { fetchUser, fetchUsers } from '../../actions/users_actions';
 
@@ -35,7 +35,6 @@ const mapDispatchToProps= dispatch =>{
     return{
         createFriendship: (formData) => dispatch(createFriendship(formData)),
         deleteFriendship: (friendId) => dispatch(deleteFriendship(friendId)),
-        deleteFriendship: (friendId) => dispatch(deleteFriendship(friendId)),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal()),
         fetchFriends: () => dispatch(fetchFriends()),
@@ -46,4 +45,4 @@ const mapDispatchToProps= dispatch =>{
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FriendRequest))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Friendship))

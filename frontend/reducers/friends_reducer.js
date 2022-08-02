@@ -11,7 +11,7 @@ const FriendsReducer =(state = {}, action) =>{
             return action.friends
 
         case RECEIVE_FRIEND:
-            return next[action.friend.id] = action.friend
+            return nextState[action.friend.id] = action.friend
             
         case ADD_FRIEND:
             return Object.assign({}, state, {[action.friend.id]: action.friend})
