@@ -2611,7 +2611,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
         }
       }, "Like"));
       this.props.likes.forEach(function (like) {
-        if (like.likeable_type === "Post" && like.likeable_id === _this2.props.likeable_id) {
+        if (_this2.props.currentUser_id === like.user_id && like.likeable_type === "Post" && like.likeable_id === _this2.props.likeable_id) {
           likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             className: "like-button",
             id: "unlike",
@@ -2619,7 +2619,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
               _this2.handleUnlike(like.id);
             }
           }, "Liked");
-        } else if (like.likeable_type === "Comment" && like.likeable_id === _this2.props.likeable_id) {
+        } else if (_this2.props.currentUser_id === like.user_id && like.likeable_type === "Comment" && like.likeable_id === _this2.props.likeable_id) {
           likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             className: "like-button",
             id: "unlike",

@@ -65,14 +65,14 @@ class LikeButton extends React.Component {
         
 
         this.props.likes.forEach(like => { 
-            if(like.likeable_type === "Post" && like.likeable_id === this.props.likeable_id){
+            if(this.props.currentUser_id === like.user_id && like.likeable_type === "Post" && like.likeable_id === this.props.likeable_id){
                 likeButton = <button 
                         className = "like-button"
                         id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
                 
             }
-            else if(like.likeable_type === "Comment" && like.likeable_id === this.props.likeable_id){
+            else if(this.props.currentUser_id === like.user_id && like.likeable_type === "Comment" && like.likeable_id === this.props.likeable_id){
                 likeButton = <button 
                         className = "like-button"
                         id = "unlike"
