@@ -2563,6 +2563,12 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchLikes();
+
+      if (this.props.likeable_type === "Post") {
+        this.props.fetchPost(this.props.likeable_id);
+      } else if (this.props.likeable_type === "Comment") {
+        this.props.fetchComment(this.props.likeable_id);
+      }
     }
   }, {
     key: "handleInput",
@@ -2579,8 +2585,8 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleLike",
-    value: function handleLike(e) {
-      e.preventDefault();
+    value: function handleLike() {
+      // e.preventDefault()
       var formData = new FormData();
       formData.append('like[user_id]', this.state.user_id);
       formData.append('like[likeable_id]', this.state.likeable_id);
@@ -2589,8 +2595,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleUnlike",
-    value: function handleUnlike(e) {
-      e.preventDefault();
+    value: function handleUnlike(likeId) {
       this.props.deleteLike(likeId);
     }
   }, {
@@ -2598,21 +2603,54 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      // const {post, currentUser, users, user, userId, errors}= this.props
-      // let buttonId;
-      // if (!this.props.currentUser) return null;
-      // if (this.state.body.replace(/ /g, '').length === 0) {
-      //     buttonId = "invalidButton";
-      // } else {
-      //     buttonId = "newButton";
-      // }
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      var likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleLike
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           _this2.handleInput();
         }
-      }, "Like")));
+      }, "Like"));
+      this.props.likes.forEach(function (like) {
+        if (like.likeable_type === "Post" && like.likeable_id === _this2.props.likeable_id) {
+          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            className: "like-button",
+            id: "unlike",
+            onClick: function onClick() {
+              _this2.handleUnlike(like.id);
+            }
+          }, "Liked");
+        } else if (like.likeable_type === "Comment" && like.likeable_id === _this2.props.likeable_id) {
+          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            className: "like-button",
+            id: "unlike",
+            onClick: function onClick() {
+              _this2.handleUnlike(like.id);
+            }
+          }, "Liked");
+        }
+      }); //     if (like.likeable_type === this.props.currentUser_id && 
+      //     like.likeable_id === this.props.likeable_id &&
+      //     like.likeable_type === "Post")
+      //     {
+      //        likeButton = <button 
+      //         className = "like-button"
+      //         id = "unlike"
+      //         onClick={() => {
+      //             this.handleUnlike(like.id)
+      //         }
+      //         }>Liked</button>
+      //     } else{
+      //         return likeButton = 
+      //         <form onSubmit={this.handleLike}>
+      //         <button onClick={() => {
+      //             this.handleInput()
+      //         }
+      //         }>Like</button>
+      //     </form>
+      //     }
+      // // })
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, likeButton);
     }
   }]);
 
@@ -2636,25 +2674,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 /* harmony import */ var _like__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./like */ "./frontend/components/likes/like.jsx");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
 
 
 
 
 
 
-_actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__.fetchLikes;
+
+
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {// currentUser:state.entities.users[state.session.id],
-    // user: state.entities.users[ownProps.match.params.userId],
-    // users: state.entities.users,
-    // userId: ownProps.match.params.userId,
-    // friends: Object.keys(state.entities.friends).map(key => state.entities.friends[key])
+  return {
+    likes: Object.keys(state.entities.likes).map(function (key) {
+      return state.entities.likes[key];
+    })
   };
 };
 
@@ -2694,11 +2734,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }),
     fetchLikes: function fetchLikes() {
       return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__.fetchLikes)());
+    },
+    fetchComment: function fetchComment(commentId) {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_6__.fetchComment)(commentId));
+    },
+    fetchPost: function fetchPost(postId) {
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__.fetchPost)(postId));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_like__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_like__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 

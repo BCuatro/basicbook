@@ -5,20 +5,19 @@ import { connect} from 'react-redux';
 import { fetchUser, fetchUsers } from '../../actions/users_actions';
 import { createLike, deleteLike, fetchLikes } from '../../actions/likes_actions';
 import LikeButton from './like';
+import { fetchPost } from '../../actions/posts_actions';
+import { fetchComment } from '../../actions/comments_actions';
 
-fetchLikes
+
+
+
 
 
 const mapStateToProps= (state, ownProps) =>{
     
     return{
         
-        // currentUser:state.entities.users[state.session.id],
-        // user: state.entities.users[ownProps.match.params.userId],
-        // users: state.entities.users,
-        // userId: ownProps.match.params.userId,
-        // friends: Object.keys(state.entities.friends).map(key => state.entities.friends[key])
-
+        likes: Object.keys(state.entities.likes).map(key => state.entities.likes[key]),
 
     }
 }
@@ -29,7 +28,10 @@ const mapDispatchToProps= dispatch =>{
         deleteLike: (likeId) => dispatch(deleteLike(likeId)),
         removeErrors: ()=> dispatch(removeErrors()),
         fetchFriends: () => dispatch(fetchFriends()),
-        fetchLikes: () => dispatch(fetchLikes())
+        fetchLikes: () => dispatch(fetchLikes()),
+        fetchComment:(commentId) => dispatch(fetchComment(commentId)),
+        fetchPost: (postId) => dispatch(fetchPost(postId))
+
         
         
     }

@@ -23,6 +23,11 @@ class LikeButton extends React.Component {
     // }
     componentDidMount(){
         this.props.fetchLikes()
+        if (this.props.likeable_type === "Post"){
+            this.props.fetchPost(this.props.likeable_id)
+        } else if (this.props.likeable_type === "Comment"){
+            this.props.fetchComment(this.props.likeable_id)
+        }
     }
 
     handleInput() {
@@ -33,8 +38,8 @@ class LikeButton extends React.Component {
         this.setState({ likeable_type: this.props.likeable_type });
     }
 
-    handleLike(e) {
-        e.preventDefault()
+    handleLike() {
+        // e.preventDefault()
 
         const formData = new FormData();
 
@@ -46,41 +51,77 @@ class LikeButton extends React.Component {
 
     }
 
-    handleUnlike(e) {
-        e.preventDefault();
+    handleUnlike(likeId) {
         this.props.deleteLike(likeId)
 
     }
 
     render() {
 
-        // const {post, currentUser, users, user, userId, errors}= this.props
-        // let buttonId;
-        // if (!this.props.currentUser) return null;
+        let likeButton = 
+        <form onSubmit={this.handleLike}>
+            <button onClick={() => {this.handleInput()}}>Like</button>
+        </form>
+        
 
-        // if (this.state.body.replace(/ /g, '').length === 0) {
-        //     buttonId = "invalidButton";
-        // } else {
-        //     buttonId = "newButton";
-        // }
+        this.props.likes.forEach(like => { 
+            if(like.likeable_type === "Post" && like.likeable_id === this.props.likeable_id){
+                likeButton = <button 
+                        className = "like-button"
+                        id = "unlike"
+                        onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
+                
+            }
+            else if(like.likeable_type === "Comment" && like.likeable_id === this.props.likeable_id){
+                likeButton = <button 
+                        className = "like-button"
+                        id = "unlike"
+                        onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
+                
+            }
+            
+        })
+
+  
+            
+            
+        //     if (like.likeable_type === this.props.currentUser_id && 
+        //     like.likeable_id === this.props.likeable_id &&
+        //     like.likeable_type === "Post")
+        //     {
+        //        likeButton = <button 
+        //         className = "like-button"
+        //         id = "unlike"
+        //         onClick={() => {
+        //             this.handleUnlike(like.id)
+        //         }
+        //         }>Liked</button>
+        //     } else{
+        //         return likeButton = 
+        //         <form onSubmit={this.handleLike}>
+                
+        //         <button onClick={() => {
+        //             this.handleInput()
+        //         }
+        //         }>Like</button>
+
+        //     </form>
+        //     }
+        // // })
+
+
+                
         return (
-
             <div>
-                <form onSubmit={this.handleLike}>
-                            {/* <button onClick={() =>{
-                            this.handleUpdate().then(
-                            this.handleAddFriendSubmit())
-                        }
-                        }>Friend Request</button> */}
-                            <button onClick={() => {
-                                this.handleInput()
-                            }
-                            }>Like</button>
-
-                        </form>
-
+                {likeButton}
+                {/* <form onSubmit={this.handleLike}>
+                
+               <button onClick={() => {
+                   this.handleInput()
+                }
+                }>Like</button>
+                </form> */}
             </div>
-           
         );
     }
 }

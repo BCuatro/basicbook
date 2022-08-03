@@ -130,7 +130,7 @@ class Friendship extends React.Component {
                     
                     )  {
                         const friendId = friend?.id
-                    return friendshipButton =
+                        return friendshipButton =
                 
                             <button onClick={() =>
                                 {this.handleDeleteFriendSubmit(friendId)}
