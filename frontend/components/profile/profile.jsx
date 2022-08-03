@@ -71,7 +71,7 @@ class Profile extends React.Component{
                     <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
                     {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
                     
-                {/* <h3>Preview</h3>
+                    {/* <h3>Preview</h3>
                     {preview}
                     
                     <h4>Profile Header</h4>
@@ -92,75 +92,73 @@ class Profile extends React.Component{
                     {/* <div><FriendRequestContainer /></div> */}
                     
                 </div>
-                <ProfileNavBarContainer />
+                
+
                 <div className = "profile-body">
-                 <div className = "sidebar-left">
-                <h5>Friend Request</h5>
-                    <ul className= "wall_posts">
-                            { 
-                                this.props.friends 
-                                // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-                                .map(friend => (
-                                    // this.props.users[friend?.friend_id]?.username
-                                    <FriendRequestItem
-                                        key={`${friend?.id}`}
-                                        friend={friend}
-                                        user= {this.props.user}
-                                        currentUser= {this.props.currentUser}
-                                        users= {(this.props.users)}
-                                    />
-                                )
-                                )
-                                }
-                            
-                        </ul>
+                    <div className = "sidebar-left">
+                        <h5>Friend Request</h5>
+                        <ul className= "wall_posts">
+                                { 
+                                    this.props.friends 
+                                    // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                                    .map(friend => (
+                                        // this.props.users[friend?.friend_id]?.username
+                                        <FriendRequestItem
+                                            key={`${friend?.id}`}
+                                            friend={friend}
+                                            user= {this.props.user}
+                                            currentUser= {this.props.currentUser}
+                                            users= {(this.props.users)}
+                                        />
+                                    )
+                                    )
+                                    }
+                                
+                            </ul>
 
-                  
-
-
-                    
-                     <form onSubmit={this.handleSubmit}>
+                    </div> 
+                     {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}
                         name="" id="" />
                         <button onClick={this.handleSubmit}>Upload Photo</button>
                         
 
-                    </form>
+                    </form> */}
                     
-                </div> 
-                <div className = "main-content">
-                    <h5>Proile Main</h5>
-                    
+                
+                    <div className = "main-content">
+                        <h5>Proile Main</h5>
+                        <ProfileNavBarContainer />
                     
                 
                     {/* Need to combine about me and post in one page*/}
                     
-                </div>
-                <div className="sidebar-right">
-                    <h5>Profile Sidebar 2</h5>
-                    <ul className= "wall_posts">
-                            {
-                                this.props.friends
-                                // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-                                .map(friend => (
-                                    // this.props.users[friend?.friend_id]?.username
-                                    <FriendItem
-                                        key={`${friend?.id}`}
-                                        friend={friend}
-                                        user= {this.props.user}
-                                        currentUser= {this.props.currentUser}
-                                        users= {(this.props.users)}
-                                    />
-                                )
-                                )
-                            }
-                        
-                    </ul>
-                        <br />
-                 
+                    </div>
+                    <div className="sidebar-right">
+                        <h5>Profile Sidebar 2</h5>
+                        <ul className= "wall_posts">
+                                {
+                                    this.props.friends
+                                    // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                                    .map(friend => (
+                                        // this.props.users[friend?.friend_id]?.username
+                                        <FriendItem
+                                            key={`${friend?.id}`}
+                                            friend={friend}
+                                            user= {this.props.user}
+                                            currentUser= {this.props.currentUser}
+                                            users= {(this.props.users)}
+                                        />
+                                    )
+                                    )
+                                }
+                            
+                        </ul>
+                            <br />
                     
-                </div>
+                        
+                    </div>
                 
                
             

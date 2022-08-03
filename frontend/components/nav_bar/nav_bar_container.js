@@ -9,7 +9,8 @@ import NavBar from './nav_bar';
 const mapStateToProps =(state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.id],
-        users: state.entities.users
+        users: state.entities.users,
+        // user: state.entities.users[ownProps.match.params.userId],
         
         
     }
