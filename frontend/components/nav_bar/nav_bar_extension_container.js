@@ -1,12 +1,14 @@
 import {connect} from 'react-redux'
 import { logout } from '../../actions/session_actions';
 import { fetchUsers } from '../../actions/users_actions';
-import NavBar from './nav_bar';
+import NavBarExtension from './nav_bar_extension';
+
 
 
 
 
 const mapStateToProps =(state, ownProps) => {
+    debugger
     
     return {
         currentUser: state.entities.users[state.session.id],
@@ -23,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
     
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar)
+export default connect(mapStateToProps,mapDispatchToProps)(NavBarExtension)
 
 
 

@@ -8,6 +8,7 @@ import HomePageContainer from './home/home_container';
 import ProfileContainer from './profile/profile_container';
 import Profile from './profile/profile';
 import NavBarContainer from './nav_bar/nav_bar_container';
+import NavBarExtensionContainer from './nav_bar/nav_bar_extension_container';
 
 
 
@@ -19,7 +20,10 @@ const App = () => (
         <header>
             {/* <div className ="logo-container"><h1 className="logo">Basicbook</h1></div> */}
             {/* <div className= "navbar-container"> <NavBarContainer /></div> */}
-            <NavBarContainer />
+            <div className ="navbar-container">
+                <Route path = "/" component = {NavBarContainer} />
+                <Route path = "/users/:userId" component ={NavBarExtensionContainer} />
+            </div>
         </header>
                 
             

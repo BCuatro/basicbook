@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useParams, matchPath } from 'react-router-dom'
 import { logout } from '../../actions/session_actions';
 import ReactDOM from 'react-dom';
 import { fetchUsers } from '../../actions/users_actions';
 
 
-const NavBar = ({currentUser, logout, user}) => {
-    
+
+const NavBar = ({currentUser, logout, users}) => {
+   
+    // const params = useParams()
+    console.log ("this is my useParams test", state)
     const [state, setState] = useState(false)
     const changevalueonScroll = () => {
         const scrollvalue = document.documentElement.scrollTop
@@ -20,7 +23,7 @@ const NavBar = ({currentUser, logout, user}) => {
     window.addEventListener('scroll', changevalueonScroll)
     
     const liNavBar = currentUser ? (
-        <div className ="navbar-container">
+        // <div className ="navbar-container">
             <div className="navbar-item-container">
                 <div className ="logo-container">
                     <h1 className="logo">Basicbook</h1>
@@ -34,10 +37,8 @@ const NavBar = ({currentUser, logout, user}) => {
                     </div>
                 </div>
             </div>
-            <div className = "navbar-extension" id = {state ? "visible-navbar" : "hidden-navbar"}>
-                {currentUser.username}
-            </div>
-        </div>
+            
+        // </div>
         
     ) : ""
     
