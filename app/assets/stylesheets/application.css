@@ -60,31 +60,22 @@
   animation-delay: 0.5s; */
  /* } */
 html {
-  max-height: 100%;
+  min-height: 100 vh;
+  max-width: 100 vw;
+  min-width: 320px;
+
 
 }
-.logo{
-  -webkit-box-reflect: below -10px
-  linear-gradient(to bottom,
-  rgba(0,0,0,0.0),
-  rgba(0,0,0,0.5));
-  color: #082a3a;
-  font-family: monospace;
+
+header{
+  height: 56px;
+  width: 100%;
+  padding: 0px, 110px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
-.logo::first-letter{
-  color:#1f6cab;
-  font-size: larger;
-  font-family: monospace, cursive;
-}
- .login-signup{
-    position: absolute;
-    top: 40%;
-    bottom:0;
-    left:35%;
-    right:0;
-   
-  }
   .word::first-letter{
     color:#1f6cab;
     font-size: larger;
@@ -406,20 +397,7 @@ input:focus, textarea {
 ul{
   list-style-type: none;
 }
-.profile {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  }
-  
-  .div1 { grid-area: 1 / 2 / 6 / 5; }
-  .div2 { grid-area: 1 / 1 / 6 / 2; }
-  .div3 { grid-area: 1 / 5 / 6 / 6; }
-  .wall{
-    position: relative;
-  }
+
   .wall_posts{
     padding:0;
    
@@ -576,7 +554,7 @@ ul{
   position: relative;
 }
 
-.profile-container{
+/* .profile-container{
   max-height: 100%;
   position: relative;
   display: grid;
@@ -585,9 +563,9 @@ ul{
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 
-}
+} */
 
-.profile-header { grid-area: 1 / 1 / 2 / 4; 
+/* .profile-header { grid-area: 1 / 1 / 2 / 4; 
 }
 
 .profile-sidebar-1 { grid-area: 2 / 1 / 3 / 2; }
@@ -596,7 +574,7 @@ ul{
  
 
 }
-.profile-sidebar-2 {grid-area: 2 / 3 / 3 / 4; }
+.profile-sidebar-2 {grid-area: 2 / 3 / 3 / 4; } */
 
 #profilephoto{
   height: 300px;
@@ -616,7 +594,7 @@ ul{
   height: 200px;
   width: auto;
 }
-.cover-photo{
+/* .cover-photo{
   height: 200px;
   width: 85%;
   margin-left: 7.5%;
@@ -625,7 +603,7 @@ ul{
 .profile-photo{
   height: 200px;
   width: auto;
-}
+} */
 /* .profile-body{
   display: flex;
   flex-direction: column;

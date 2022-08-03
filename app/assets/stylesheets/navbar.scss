@@ -1,0 +1,51 @@
+.logo{
+    -webkit-box-reflect: below -10px
+    linear-gradient(to bottom,
+    rgba(0,0,0,0.0),
+    rgba(0,0,0,0.5));
+    color: #082a3a;
+    font-family: monospace;
+    margin: 0;
+  }
+  
+  .logo::first-letter{
+    color:#1f6cab;
+    font-size: larger;
+    font-family: monospace, cursive;
+    
+  }
+   .login-signup{
+      position: absolute;
+      top: 40%;
+      bottom:0;
+      left:35%;
+      right:0;
+     
+    }
+
+    .logo-container{
+        width: 30%;
+    }
+    .navbar-container{
+        width: 70%;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-items{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    #home-link{
+        margin-left: 25%;
+    }
+    #profile-link{
+        margin-right: 10px;
+        display: flex;
+        justify-content: space-around;
+        width: 20%
+    }
+    .logout-button{
+        color: #1f6cab;
+    }

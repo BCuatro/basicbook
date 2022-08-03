@@ -24,14 +24,22 @@ import NewsfeedContainer from './newsfeed_container'
         );
         const Home = (user) => (
           <div className= "home">
-            <div>
-                <h2 className="header-group"> Hi ${user?.username} </h2>
-            </div>
+            <aside className ="sidebar-left" id="sidebar-left-home">
 
-            <div className ="newsfeed">
-              <NewsfeedContainer />
-              
-            </div>
+            </aside>
+            
+            <main className ="main-content" id = "main-home">
+              <div>
+                  <h2 className="header-group"> Hi ${user?.username} </h2>
+              </div>
+
+              <div className ="newsfeed">
+                <NewsfeedContainer />
+              </div>
+            </main>
+            <aside className ="sidebar-right" id= "sidebar-right-home">
+
+            </aside>
             
           </div>
 

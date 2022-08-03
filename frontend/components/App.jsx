@@ -17,8 +17,9 @@ const App = () => (
         <Modal/>
        
         <header>
-            <h1 className="logo">Basicbook</h1>
-            <NavBarContainer />
+            <div className ="logo-container"><h1 className="logo">Basicbook</h1></div>
+            <div className= "navbar-container"> <NavBarContainer /></div>
+            
         </header>
                 
             

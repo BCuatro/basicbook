@@ -1,0 +1,22 @@
+.home {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+   
+    
+}
+
+.main-content{
+    width: min(60%, 870px) ;
+    padding: 32px;
+}
+
+.sidebar-right{
+    width: min(20%, 290px);
+    padding: 8px 0px 0px 0px;
+}
+
+.sidebar-left{
+    width: min(20%, 290px);
+    padding: 8px 0px 0px 0px;
+}

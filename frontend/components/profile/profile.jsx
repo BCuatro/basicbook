@@ -70,7 +70,7 @@ class Profile extends React.Component{
                     <br />
                     <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
                     {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
-                    <br />
+                    
                 {/* <h3>Preview</h3>
                     {preview}
                     
@@ -83,7 +83,7 @@ class Profile extends React.Component{
                             name="" id="" />
                             <button onClick={this.handleCoverPhotoSubmit}>Upload Photo</button>
                     </form> */}
-
+                    <div>{editButton}</div>
                     <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button> 
                     <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button>
                     <FriendshipContainer />
@@ -92,8 +92,9 @@ class Profile extends React.Component{
                     {/* <div><FriendRequestContainer /></div> */}
                     
                 </div>
-                
-                <div className = "profile-sidebar-1">
+                <ProfileNavBarContainer />
+                <div className = "profile-body">
+                 <div className = "sidebar-left">
                 <h5>Friend Request</h5>
                     <ul className= "wall_posts">
                             { 
@@ -118,25 +119,25 @@ class Profile extends React.Component{
 
 
                     
-                     {/* <form onSubmit={this.handleSubmit}>
+                     <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}
                         name="" id="" />
                         <button onClick={this.handleSubmit}>Upload Photo</button>
                         
 
-                    </form> */}
+                    </form>
                     
-                </div>
-                <div className = "profile-main">
+                </div> 
+                <div className = "main-content">
                     <h5>Proile Main</h5>
-                    <div>{editButton}</div>
-                    <ProfileNavBarContainer />
+                    
+                    
                 
                     {/* Need to combine about me and post in one page*/}
                     
                 </div>
-                <div className="profile-sidebar-2">
+                <div className="sidebar-right">
                     <h5>Profile Sidebar 2</h5>
                     <ul className= "wall_posts">
                             {
@@ -166,7 +167,7 @@ class Profile extends React.Component{
                 
                 
                 
-               
+                </div>
                 
             </div>
         )
