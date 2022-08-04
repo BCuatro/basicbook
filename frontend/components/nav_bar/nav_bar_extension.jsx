@@ -6,7 +6,7 @@ import { fetchUsers } from '../../actions/users_actions';
 
 
 
-const NavBarExtension = ({currentUser, logout}) => {
+const NavBarExtension = ({currentUser,  logout}) => {
    
     const params = useParams()
     console.log ("this is my useParams test", params)

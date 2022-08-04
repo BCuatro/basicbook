@@ -29,8 +29,8 @@ class Friendship extends React.Component {
     //     this.props.removeErrors();
     // }
     componentDidMount() {
-        this.props.fetchFriends();
-        this.props.fetchUsers();
+        // this.props.fetchFriends();
+        // this.props.fetchUsers();
         // this.props.fetchFriend();
     }
 

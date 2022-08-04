@@ -59,7 +59,7 @@ class EditPost extends React.Component {
     render() {
         // if(!this.props.post) return null
         let buttonId
-        console.log(this.state.postPhoto)
+        // console.log(this.state.postPhoto)
         
         if(this.state.body.replace(/ /g,'').length ===0){
            buttonId ="invalidButton"
@@ -67,7 +67,7 @@ class EditPost extends React.Component {
             buttonId= "newButton"
         }
         const preview = this.state.photoUrl ? <img className = "post-photo-preview" src={this.state.photoUrl} /> : null;
-            console.log(this.props.phototype)
+            // console.log(this.props.phototype)
         
         return(
             // <div className='editform' >

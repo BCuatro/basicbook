@@ -29,6 +29,7 @@ class Profile extends React.Component{
         //     photoUrl: null
         // };
         this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this)
         
            
     }
@@ -36,7 +37,9 @@ class Profile extends React.Component{
   
     componentDidMount(){
        
-        this.props.fetchUsers();
+        this.props.fetchUsers().then(
+            (data) => this.handleRedirect(data.users)
+        );
         this.props.fetchPosts();
         this.props.fetchFriends();
 
@@ -48,6 +51,11 @@ class Profile extends React.Component{
         this.props.openModal(modal,phototype)
     }
 
+    handleRedirect(users){
+        if(!(this.props.userId in users)){
+            this.props.history.push("/404")
+        }
+    }
  
    
     
@@ -101,10 +109,10 @@ class Profile extends React.Component{
                                 { 
                                     this.props.friends 
                                     // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-                                    .map(friend => (
+                                    .map((friend , i) => (
                                         // this.props.users[friend?.friend_id]?.username
                                         <FriendRequestItem
-                                            key={`${friend?.id}`}
+                                        key={`fRi-${i}`}
                                             friend={friend}
                                             user= {this.props.user}
                                             currentUser= {this.props.currentUser}
@@ -141,10 +149,10 @@ class Profile extends React.Component{
                                 {
                                     this.props.friends
                                     // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-                                    .map(friend => (
+                                    .map((friend, ind) => (
                                         // this.props.users[friend?.friend_id]?.username
                                         <FriendItem
-                                            key={`${friend?.id}`}
+                                            key={`fi-${ind}`}
                                             friend={friend}
                                             user= {this.props.user}
                                             currentUser= {this.props.currentUser}

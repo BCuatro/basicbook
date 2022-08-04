@@ -72,7 +72,7 @@ class NewPost extends React.Component {
         }
 
         const preview = this.state.photoUrl ? <img className = "post-photo-preview" src={this.state.photoUrl} /> : null;
-            console.log(this.props.phototype)
+            // console.log(this.props.phototype)
 
 
 
