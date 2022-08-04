@@ -8,7 +8,6 @@ import NavBarExtension from './nav_bar_extension';
 
 
 const mapStateToProps =(state, ownProps) => {
-    debugger
     
     return {
         currentUser: state.entities.users[state.session.id],

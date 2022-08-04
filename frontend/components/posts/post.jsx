@@ -1,5 +1,7 @@
 import React from 'react'
 import PostIndexContainer from './post_index_container';
+import FriendItem from '../friends/friend_item';
+import aboutMe from '../profile/about_me';
 
 
 class Post extends React.Component {
@@ -10,7 +12,6 @@ class Post extends React.Component {
     }
     componentDidMount() {
         this.props.fetchPosts();
-        // this.props.fetchUser(this.props.match.params.userId)
       }
 
     handleOpenModal(e){
@@ -20,17 +21,43 @@ class Post extends React.Component {
 
     render() {
         return(
-            <div className="postbox"> 
-            {/* //div1 */}
-                <button id="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
-                <PostIndexContainer />
-               
-
+            <div className = "post-tab-content">
+                <div className="post-container"> 
+                    
+                    <div className= "post-tab-sidebar">
+                        <div className= "aboutMe-container">
+                            {aboutMe(this.props.user)}
+                            </div>
+                        <div className="friends-list-container">
+                            <h5>Friend's List2</h5>
+                                <ul className= "friends-list">
+                                        {
+                                            this.props.friends
+                                            .sort((a,b) => a.username > b.username ? -1 : 1)
+                                            .map((friend, ind) => (
+                                                <FriendItem
+                                                    key={`fi-${ind}`}
+                                                    friend={friend}
+                                                    user= {this.props.user}
+                                                    currentUser= {this.props.currentUser}
+                                                    users= {(this.props.users)}
+                                                />
+                                            ))
+                                        }
+                                </ul>
+                        </div>
+                    </div>
+                    <div className= "post-item-container" >
+                        <div className= "postButtonModalContainter">
+                            
+                            <button id="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
+                        </div>
+                        <PostIndexContainer />
+                    </div>
+                </div>
             </div>
         )
     }
-
-
 }
 
 export default Post

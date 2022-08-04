@@ -103,7 +103,7 @@ class Profile extends React.Component{
                 
 
                 <div className = "profile-body">
-                    <div className = "sidebar-left">
+                    {/* <div className = "sidebar-left">
                         <h5>Friend Request</h5>
                         <ul className= "wall_posts">
                                 { 
@@ -124,7 +124,7 @@ class Profile extends React.Component{
                                 
                             </ul>
 
-                    </div> 
+                    </div>  */}
                      {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}
@@ -133,17 +133,16 @@ class Profile extends React.Component{
                         
 
                     </form> */}
-                    
+                    <ProfileNavBarContainer />
                 
-                    <div className = "main-content">
-                        <h5>Proile Main</h5>
-                        <ProfileNavBarContainer />
+                    
+                        
                     
                 
                     {/* Need to combine about me and post in one page*/}
                     
-                    </div>
-                    <div className="sidebar-right">
+                
+                    {/* <div className="sidebar-right">
                         <h5>Profile Sidebar 2</h5>
                         <ul className= "wall_posts">
                                 {
@@ -166,7 +165,7 @@ class Profile extends React.Component{
                             <br />
                     
                         
-                    </div>
+                    </div> */}
                 
                
             

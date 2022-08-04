@@ -39,9 +39,8 @@ export default class Tabs extends React.Component {
     this.selectTab = this.selectTab.bind(this);
   }
   componentDidMount(){
-    
-      this.props.fetchUser(this.props.match.params.userId)
       this.props.fetchUsers()
+      this.props.friends
   }
     
  
@@ -53,8 +52,7 @@ export default class Tabs extends React.Component {
    
     
     const tabs = [
-      {title: 'Posts', content: <PostContainer/>},
-      {title: 'About', content: aboutMe(this.props.user)},
+      {title: 'Posts', content: <PostContainer friends= {this.props.friends} user = {this.props.user}  />},
       {title: 'Friends', content: 'Drake said no new friends'},
       {title: 'Photo', content: 'AWS'},
       

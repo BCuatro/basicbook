@@ -1,0 +1,52 @@
+.profile-tab-content{
+
+    position: relative;
+    width: 100%;
+    
+    
+}
+.post-tab-sidebar{
+    width: 40%;
+}
+.friends-list-container{
+    height: 400px;
+    border: solid white;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    opacity: 90%;
+  
+}
+
+.aboutMe-container{
+   
+    height: 284px;
+    border: solid white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    opacity: 90%;
+    
+  
+}
+
+
+.post-container{
+    position: relative;
+    display: flex;
+    width: 100%;
+    
+   
+    
+}
+.post-item-container{
+    position: relative;
+    width: 60%;
+    margin: 0;
+    justify-content: space-between;
+    margin:0 0 0 10px;
+
+
+   
+    
+}

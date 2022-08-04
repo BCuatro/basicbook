@@ -1,0 +1,52 @@
+.wall{
+
+}
+
+.wall_posts li{
+    background-color: #ffffff;
+    margin: 0;
+    width: 100%
+
+}
+
+
+.postButtonModalContainter {
+    background-color: #ffffff;
+    position: relative;
+    height: 123px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    width: 95.5%;
+    padding: 0 20px 0 20px
+   
+
+}
+
+
+
+.wall_posts li{
+    
+    /* display: inline-flex; */
+    justify-content: center;
+    height: 300px;
+  
+    border: solid white;
+    border-radius: 15px;
+    // border-image-slice: 1;
+    // border-width: 5px;
+    background-color: #ffffff;
+    /* border-image-source:
+    linear-gradient(
+      60deg,
+      #2E2F43,
+      #A38ED2
+    ); */
+    overflow:auto;
+    // box-shadow: 
+    // 10px 10px 10px #A38ED2;
+    padding: 0;
+    align-items: stretch;
+    margin: 10px 0 15px 0;
+    
+  }

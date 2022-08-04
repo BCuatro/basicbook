@@ -63,6 +63,7 @@ html {
   min-height: 100 vh;
   max-width: 100 vw;
   min-width: 320px;
+  background-color: #F1F2F5;
 
 
 }
@@ -408,9 +409,9 @@ ul{
    
    
   }
-  .wall_posts li{
+  /* .wall_posts li{
     
-    /* display: inline-flex; */
+    display: inline-flex;
     justify-content: center;
     height: 300px;
   
@@ -419,19 +420,13 @@ ul{
     border-image-slice: 1;
     border-width: 5px;
     background-color: transparent;
-    /* border-image-source:
-    linear-gradient(
-      60deg,
-      #2E2F43,
-      #A38ED2
-    ); */
     overflow:auto;
     box-shadow: 
     10px 10px 10px #A38ED2;
     padding: 0;
     margin: 50px;
     align-items: stretch;
-  }
+  } */
   .post_class{
     align-items: flex-end;
   }

@@ -55,7 +55,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
   const post_date = new Date(post?.created_at)
    
   const renderedPosts = () => (
-    <li className="post_class">
+    <li className="post_item">
       <div className="wallPostHeader">Posted by {author?.username}</div>
       <div className="wallPostHeader">Posted on {post_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {post_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
       
