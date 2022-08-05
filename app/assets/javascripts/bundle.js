@@ -1779,14 +1779,14 @@ __webpack_require__.r(__webpack_exports__);
       likes = _ref.likes;
   var likesCount = 0;
   var displayCommentLikesCount;
-  likesCount > 0 ? displayCommentLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-    className: "fa-regular fa-thumbs-up"
-  }), " ", likesCount) : displayCommentLikesCount = "";
   Object.values(likes).forEach(function (like) {
     if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
       likesCount++;
     }
   });
+  likesCount > 0 ? displayCommentLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    className: "fa-regular fa-thumbs-up"
+  }), " ", likesCount) : displayCommentLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (comment === null || comment === void 0 ? void 0 : comment.author_id);
   })[0];
@@ -1831,6 +1831,8 @@ __webpack_require__.r(__webpack_exports__);
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment_class-and-like-button"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-body-with-likes"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment_class"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "post-header"
@@ -1847,14 +1849,14 @@ __webpack_require__.r(__webpack_exports__);
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "comment-body-content"
     }, comment === null || comment === void 0 ? void 0 : comment.body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-likes"
+    }, displayCommentLikesCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment-like-button"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       likeable_id: comment.id,
       currentUser_id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.id,
       likeable_type: "Comment"
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "comment-likes"
-    }, displayCommentLikesCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "dropdown"
     }, deletebutton, editbutton)));
   }
@@ -2296,7 +2298,7 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props$currentUs2, _this$props$post2, _this$state;
+      var _this$props$currentUs2, _this$props$post2, _this$props$currentUs3, _this$props$currentUs4, _this$state;
 
       // const {post, currentUser, users, user, userId, errors}= this.props
       var buttonId;
@@ -2321,6 +2323,14 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
         value: (_this$props$post2 = this.props.post) === null || _this$props$post2 === void 0 ? void 0 : _this$props$post2.id,
         onChange: this.handleInput("post_id")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "new-comment-container-with-photo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "comment-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: (_this$props$currentUs3 = this.props.currentUser) !== null && _this$props$currentUs3 !== void 0 && _this$props$currentUs3.profile_photoUrl ? (_this$props$currentUs4 = this.props.currentUser) === null || _this$props$currentUs4 === void 0 ? void 0 : _this$props$currentUs4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+        className: "post-photo",
+        id: "profile-picture"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newCommentContainer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         className: "commentInputField",
@@ -2334,7 +2344,7 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
         id: buttonId,
         disabled: this.state.body.replace(/ /g, '').length === 0,
         onClick: this.handleSubmit
-      }, "Submit"))));
+      }, " Submit")))));
     }
   }]);
 

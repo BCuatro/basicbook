@@ -67,20 +67,28 @@ class NewComment extends React.Component {
                         value={this.props.post?.id}
                         onChange={this.handleInput("post_id")}
                     />
-                    <div className="newCommentContainer">
-                        <textarea
-                            className='commentInputField'
-                            cols="50" rows="1"
-                            placeholder='Write a comment...'
-                            value={this.state?.body}
-                            onChange={this.handleInput("body")}
-                        ></textarea>
-
-                        <button
-                            className="newCButton"
-                            id={buttonId}
-                            disabled={this.state.body.replace(/ /g, '').length === 0}
-                            onClick={this.handleSubmit} >Submit</button>
+                    <div className= "new-comment-container-with-photo">
+                        <div className= "comment-photo-container" >
+                                <img  src={this.props.currentUser?.profile_photoUrl ? this.props.currentUser?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
+                        </div>
+                        <div className="newCommentContainer">
+                            
+                            <textarea
+                                className='commentInputField'
+                                cols="50" rows="1"
+                                placeholder='Write a comment...'
+                                value={this.state?.body}
+                                onChange={this.handleInput("body")}
+                            ></textarea>
+                            
+                            <button
+                                
+                                className="newCButton"
+                                id={buttonId}
+                                disabled={this.state.body.replace(/ /g, '').length === 0}
+                                onClick={this.handleSubmit}> Submit
+                            </button>
+                        </div>
                     </div>
                 </form>
 

@@ -7,18 +7,19 @@ import EditCommentContainer from './edit_comment_container';
 export default ({ comment, users, postId, deleteComment, currentUser, updateComment, likes}) => {
   
   let likesCount = 0
-   let displayCommentLikesCount
+  let displayCommentLikesCount
+   Object.values(likes).forEach(like => {
+    if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
+      likesCount++
+    }
+  })
    
   likesCount > 0 ? displayCommentLikesCount = 
   <div>
     <i className="fa-regular fa-thumbs-up"></i> {likesCount}
   </div> : displayCommentLikesCount= ""
 
-   Object.values(likes).forEach(like => {
-    if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
-      likesCount++
-    }
-  })
+  
 
 
   const author = users?.filter(obj=>
@@ -55,35 +56,39 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                 <img  src={author?.profile_photoUrl ? author?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
           </div>
           <div className="comment_class-and-like-button">
-            <div className ="comment_class">
-              <div className = "post-header">
-                <div className ="post-header-content">
-                  
-
-                  <div id = "comment-content">
-                    <div id="comment-header-name"> {author?.first_name} {author?.last_name} </div>
-                    <div id="comment-header-name-sub"> @{author?.username}</div>
+            <div className="comment-body-with-likes">
+              <div className ="comment_class">
+                <div className = "post-header">
+                  <div className ="post-header-content">
                     
+
+                    <div id = "comment-content">
+                      <div id="comment-header-name"> {author?.first_name} {author?.last_name} </div>
+                      <div id="comment-header-name-sub"> @{author?.username}</div>
+                      
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="comment-body">
-                <div id= "comment-body-content">{comment?.body}</div>
                 
+                  <div className="comment-body">
+                    <div id= "comment-body-content">{comment?.body}</div>
+                  </div>
               </div>
-              
+              <div className= "comment-likes">{displayCommentLikesCount}</div>
             </div>
+            
             <div className="comment-like-button">
-        
+
                   <LikeContainer 
                   likeable_id ={comment.id}
                   currentUser_id ={currentUser?.id}
                   likeable_type ={"Comment"}
                   />
+                  
             </div>
           </div>
           
-        <div className= "comment-likes">{displayCommentLikesCount}</div>
+        
         
         <div className="dropdown"> 
           {deletebutton}

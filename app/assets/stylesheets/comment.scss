@@ -1,4 +1,5 @@
 
+
 .postComments li{
     margin-bottom: 15px;
 }
@@ -55,30 +56,64 @@
     padding: 8px 12px;
     
   }
+  .comment-body-with-likes{
+    display: flex;
+    margin-bottom: 5px;
+   
+  }
+  .comment-likes{
+    transform: translate(-15%,85%);
+  }
 
   .comment-body{
     margin: -5px 0 0 4px
   }
 
+.new-comment-container-with-photo{
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+}
+
 .newCommentContainer{
     display: flex;
     width: 100%;
-    margin-top: 50px;
-    padding: 1%;
+    height: 40px;
+    background-color: #F1F2F5;
+    border-radius: 32px;
     
   }
 
 .commentInputField{
-  border: solid black;
-  width: 85%;
-  padding: 1%;
-  border-radius: 50px;
+    
+    width: 87%;
+    padding: 1%;
+    
 }
 .newCButton {
-  border-radius: 15%;
-  width: 10%;
-  margin-left: 5px;
-  background-color: #00e6f6;
-  color: black
+	background:linear-gradient(to bottom, #bec1c4 5%, #d7dade 100%);
+	background-color:#bec1c4;
+	border-radius:5px;
+	border:1px solid #bec1c4;
+	display:inline-block;
+	cursor:pointer;
+	color:#050505;
+	font-family:Arial;
+	font-size:15px;
+	// font-weight:bold;
+	// padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #bec1c4;
+    height: 80%;
+    transform: translateY(11%);
+}
+.newCButton:hover {
+	background:linear-gradient(to bottom, #d7dade 5%, #bec1c4 100%);
+	background-color:#d7dade;
+}
+.newCButton:active {
+	position:relative;
+	top:1px;
 }
 
