@@ -73,10 +73,19 @@ class Profile extends React.Component{
             <div className="profile-container">
                 
                 <div className= "profile-header">
-                    <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
-                        this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
+                    <div className= "profile-cover-container">
+                        <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
+                            this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
+                        <div className= "edit-cover-button-container">
+                        <div id= "edit-cover-content"  ><i onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}} className="fa-solid fa-3x fa-camera-retro"></i></div>
+                            {/* <button id= "edit-cover-button" onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
+                        </div>
+                    </div>   
                     <br />
-                    <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
+                    <div className= "profile-photo-container">
+                        <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
+                        <div className =" edit-photo-container" ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
+                    </div>
                     {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
                     
                     {/* <h3>Preview</h3>
@@ -92,8 +101,8 @@ class Profile extends React.Component{
                             <button onClick={this.handleCoverPhotoSubmit}>Upload Photo</button>
                     </form> */}
                     <div>{editButton}</div>
-                    <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button> 
-                    <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button>
+                    {/* <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button>  */}
+                    {/* <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
                     <FriendshipContainer />
                 
                     <br />

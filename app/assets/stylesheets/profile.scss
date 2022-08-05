@@ -38,7 +38,7 @@
     // -o-border-radius: 166px;
     // border: solid 3px red;
     outline: solid 3px white;
-    transform: translateY(-50px);
+    transform: translateY(-75px);
     
 }
 
@@ -48,3 +48,55 @@
 
     
   }
+.edit-photo-container{
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f2f5;
+    transform: translate(-120%, 175%);
+    
+}
+.edit-photo-container:hover{
+    background-color: #d4d4d6;
+}
+
+.profile-photo-container{
+    position: relative;
+    display: flex;
+}
+
+#edit-cover-content{
+
+    padding: 0;
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    display: flex;
+    background-color: #f1f2f5;   
+    border-radius: 100px;  
+    align-items: center;
+    justify-content: center;
+    transform: translateY(410%);
+}
+
+.edit-cover-button-container{
+    width: 100%;
+    position: absolute;
+    border-radius: 100%;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+#edit-cover-content:hover{
+    background-color: #d4d4d6;
+}
+
+.profile-cover-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}

@@ -3171,15 +3171,25 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this$props$currentUs,
+          _this$props$currentUs2,
+          _this2 = this;
 
       // console.log(Object.values(this.props.users))
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newfeed"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        id: "postButtonModal",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "postButtonModalContainter"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "post-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: (_this$props$currentUs = this.props.currentUser) !== null && _this$props$currentUs !== void 0 && _this$props$currentUs.profile_photoUrl ? (_this$props$currentUs2 = this.props.currentUser) === null || _this$props$currentUs2 === void 0 ? void 0 : _this$props$currentUs2.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+        className: "post-photo",
+        id: "profile-picture"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "newFeedButtonModal",
         onClick: this.handleCreateOpenModal
-      }, "What is on your mind?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "What is on your mind?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "wall"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "wall_posts"
@@ -4532,7 +4542,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "postButtonModalContainter"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        id: "postButtonModal",
+        className: "postButtonModal",
         onClick: this.handleOpenModal
       }, "What is on your mind?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null))));
     }
@@ -5567,23 +5577,35 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-cover-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "cover-photo",
         src: (_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl ? (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q",
         alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-cover-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "edit-cover-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+        onClick: function onClick() {
+          _this3.handleOpenModal("editphoto", "coverphoto");
+        },
+        className: "fa-solid fa-3x fa-camera-retro"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "profile-photo",
         src: (_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl ? (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
         alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: " edit-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
         onClick: function onClick() {
           _this3.handleOpenModal("editphoto", "profilephoto");
-        }
-      }, "Edit Profile Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: function onClick() {
-          _this3.handleOpenModal("editphoto", "coverphoto");
-        }
-      }, "Edit Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        },
+        className: "fa-solid fa-lg fa-camera-retro"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "sidebar-left"

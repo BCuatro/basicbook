@@ -53,7 +53,7 @@ class Post extends React.Component {
                     <div className= "post-item-container" >
                         <div className= "postButtonModalContainter">
                             
-                            <button id="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
+                            <button className="postButtonModal" onClick = {this.handleOpenModal}>What is on your mind?</button>
                         </div>
                         <PostIndexContainer />
                     </div>

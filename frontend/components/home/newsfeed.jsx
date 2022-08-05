@@ -32,7 +32,12 @@ class Newsfeed extends React.Component {
     // console.log(Object.values(this.props.users))
     return (
       <div className ="newfeed">
-        <button id="postButtonModal" onClick = {this.handleCreateOpenModal}>What is on your mind?</button>
+        <div className= "postButtonModalContainter" >
+        <div className= "post-photo-container" >
+            <img  src={this.props.currentUser?.profile_photoUrl ? this.props.currentUser?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
+        </div>
+          <button id="newFeedButtonModal" onClick = {this.handleCreateOpenModal}>What is on your mind?</button>
+        </div>
         <div className="wall">
           
         
