@@ -18,8 +18,10 @@ class Post extends React.Component {
         e.preventDefault();
         this.props.openModal();
     }
+    
 
     render() {
+        
         return(
             <div className = "post-tab-content">
                 <div className="post-container"> 
@@ -29,11 +31,11 @@ class Post extends React.Component {
                             {aboutMe(this.props.user)}
                             </div>
                         <div className="friends-list-container">
-                            <h5>Friend's List2</h5>
+                            <h5 className="friends-list-title">Friends</h5>
                                 <ul className= "friends-list">
                                         {
                                             this.props.friends
-                                            .sort((a,b) => a.username > b.username ? -1 : 1)
+                                            .sort((a,b) => a.username > b.username ? 1 : -1)
                                             .map((friend, ind) => (
                                                 <FriendItem
                                                     key={`fi-${ind}`}
@@ -41,6 +43,7 @@ class Post extends React.Component {
                                                     user= {this.props.user}
                                                     currentUser= {this.props.currentUser}
                                                     users= {(this.props.users)}
+                                                    
                                                 />
                                             ))
                                         }

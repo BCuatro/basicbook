@@ -2332,8 +2332,9 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
         id: "profile-picture"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newCommentContainer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
-        className: "commentInputField",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        id: "commentInputField",
         cols: "50",
         rows: "1",
         placeholder: "Write a comment...",
@@ -2341,6 +2342,7 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleInput("body")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "newCButton",
+        type: "submit",
         id: buttonId,
         disabled: this.state.body.replace(/ /g, '').length === 0,
         onClick: this.handleSubmit
@@ -2425,23 +2427,35 @@ __webpack_require__.r(__webpack_exports__);
   var friend = _ref.friend,
       users = _ref.users,
       user = _ref.user,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      friendcount = _ref.friendcount;
   var theFriend;
 
   if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id)) {
     theFriend = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
+    friendcount++;
   } else if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) {
     theFriend = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
+    friendcount++;
   }
 
   if (((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "accepted") {
-    var _theFriend, _theFriend2;
+    var _theFriend, _theFriend2, _theFriend3, _theFriend4;
 
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "friend-class"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Friend's List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "/#/users/".concat((_theFriend = theFriend) === null || _theFriend === void 0 ? void 0 : _theFriend.id)
-    }, (_theFriend2 = theFriend) === null || _theFriend2 === void 0 ? void 0 : _theFriend2.username));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "friend-profile-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "friend-profile-photo-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      className: "friend-photo",
+      src: (_theFriend2 = theFriend) !== null && _theFriend2 !== void 0 && _theFriend2.profile_photoUrl ? (_theFriend3 = theFriend) === null || _theFriend3 === void 0 ? void 0 : _theFriend3.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "friend-profile-name"
+    }, (_theFriend4 = theFriend) === null || _theFriend4 === void 0 ? void 0 : _theFriend4.username))));
   }
 });
 
@@ -2517,6 +2531,7 @@ var FriendRequest = /*#__PURE__*/function (_React$Component) {
       var formData = new FormData();
       formData.append('friend[friendship_status]', this.state.friendship_status);
       this.props.updateFriendship(this.state.id, formData);
+      this.forceUpdate();
     }
   }, {
     key: "handleFriendRequestDenied",
@@ -4498,10 +4513,12 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "aboutMe-container"
       }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_3__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "friends-list-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Friend's List2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+        className: "friends-list-title"
+      }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "friends-list"
       }, this.props.friends.sort(function (a, b) {
-        return a.username > b.username ? -1 : 1;
+        return a.username > b.username ? 1 : -1;
       }).map(function (friend, ind) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: "fi-".concat(ind),
@@ -4559,7 +4576,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     currentUser: state.entities.users[state.session.id],
     user: state.entities.users[ownProps.match.params.userId],
     userId: ownProps.match.params.userId,
-    errors: state.errors.posts
+    errors: state.errors.posts,
+    users: state.entities.users
   };
 };
 
@@ -4790,7 +4808,9 @@ var PostItem = function PostItem(_ref) {
       likesCount++;
     }
   });
-  likesCount > 0 ? displayLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+  likesCount > 0 ? displayLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "post-likes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     className: "fa-regular fa-thumbs-up"
   }), " ", likesCount) : displayLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
@@ -4936,15 +4956,15 @@ var aboutMe = function aboutMe(user) {
   }, "Intro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "aboutMe-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    id: !user.gender ? "non-visible" : "bio"
+    id: !(user !== null && user !== void 0 && user.bio) ? "non-visible" : "bio"
   }, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: !user.username ? "non-visible" : "aboutMe",
+    className: !(user !== null && user !== void 0 && user.username) ? "non-visible" : "aboutMe",
     id: "username"
   }, " Username: ", user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: !user.gender ? "non-visible" : "aboutMe",
+    className: !(user !== null && user !== void 0 && user.gender) ? "non-visible" : "aboutMe",
     id: "gender"
   }, " My pronouns are ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: !user.location ? "non-visible" : "aboutMe",
+    className: !(user !== null && user !== void 0 && user.location) ? "non-visible" : "aboutMe",
     id: "location"
   }, " I live in ", user === null || user === void 0 ? void 0 : user.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "aboutMe",
@@ -5565,7 +5585,24 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         }
       }, "Edit Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "sidebar-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Friend Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+        className: "wall_posts"
+      }, this.props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+      .map(function (friend, i) {
+        return (
+          /*#__PURE__*/
+          // this.props.users[friend?.friend_id]?.username
+          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            key: "fRi-".concat(i),
+            friend: friend,
+            user: _this3.props.user,
+            currentUser: _this3.props.currentUser,
+            users: _this3.props.users
+          })
+        );
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
   }]);
 
@@ -7053,11 +7090,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createLike": () => (/* binding */ createLike),
 /* harmony export */   "deleteLike": () => (/* binding */ deleteLike),
+/* harmony export */   "fetchLike": () => (/* binding */ fetchLike),
 /* harmony export */   "fetchLikes": () => (/* binding */ fetchLikes)
 /* harmony export */ });
 var fetchLikes = function fetchLikes() {
   return $.ajax({
     url: "/api/likes",
+    method: "GET"
+  });
+};
+var fetchLike = function fetchLike(likeId) {
+  return $.ajax({
+    url: "/api/likes/".concat(userId),
     method: "GET"
   });
 };

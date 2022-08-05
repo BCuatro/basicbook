@@ -22,7 +22,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
   })
 
   likesCount > 0 ? displayLikesCount = 
-  <div>
+  <div className="post-likes">
     <i className="fa-regular fa-thumbs-up"></i> {likesCount}
   </div> : displayLikesCount= ""
 

@@ -81,7 +81,9 @@ header{
   justify-content: space-between;
   
 }
-
+a{
+  text-decoration: none;
+}
   .word::first-letter{
     color:#1f6cab;
     font-size: larger;

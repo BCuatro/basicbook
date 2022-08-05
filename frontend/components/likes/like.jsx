@@ -80,6 +80,7 @@ class LikeButton extends React.Component {
                 likeButton = 
                 <div className="like-form"> 
                     <button 
+                
                         id = "like-button"
                         // id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>

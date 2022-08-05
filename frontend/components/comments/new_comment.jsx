@@ -73,17 +73,19 @@ class NewComment extends React.Component {
                         </div>
                         <div className="newCommentContainer">
                             
-                            <textarea
-                                className='commentInputField'
+                            <input
+                                type = "text"
+                                id='commentInputField'
                                 cols="50" rows="1"
                                 placeholder='Write a comment...'
                                 value={this.state?.body}
                                 onChange={this.handleInput("body")}
-                            ></textarea>
+                            ></input>
                             
                             <button
                                 
                                 className="newCButton"
+                                type= "submit"
                                 id={buttonId}
                                 disabled={this.state.body.replace(/ /g, '').length === 0}
                                 onClick={this.handleSubmit}> Submit

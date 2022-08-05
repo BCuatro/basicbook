@@ -3,6 +3,9 @@
 .postComments li{
     margin-bottom: 15px;
 }
+.newCommentform{
+  bottom: -100%
+}
 #comment-header-name{
     color: #050505;
     font-size: 13px;
@@ -72,8 +75,10 @@
 .new-comment-container-with-photo{
     width: 100%;
     display: flex;
-    position: relative;
+   
     align-items: flex-start;
+    position: relative;
+    
 }
 
 .newCommentContainer{
@@ -83,37 +88,51 @@
     background-color: #F1F2F5;
     border-radius: 32px;
     
+    
+    
   }
 
-.commentInputField{
+#commentInputField{
     
-    width: 87%;
-    padding: 1%;
-    
+    width: 100%;
+    height:100%;
+    padding: 10 0 10 0;
+    margin: 0 20px 0 20px;
+    border-radius: 100px;
+    background-color: transparent;
+    border: #f1f2f5;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #050505;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.newCButton {
-	background:linear-gradient(to bottom, #bec1c4 5%, #d7dade 100%);
-	background-color:#bec1c4;
-	border-radius:5px;
-	border:1px solid #bec1c4;
-	display:inline-block;
-	cursor:pointer;
-	color:#050505;
-	font-family:Arial;
-	font-size:15px;
-	// font-weight:bold;
-	// padding:12px 44px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #bec1c4;
-    height: 80%;
-    transform: translateY(11%);
-}
-.newCButton:hover {
-	background:linear-gradient(to bottom, #d7dade 5%, #bec1c4 100%);
-	background-color:#d7dade;
-}
-.newCButton:active {
-	position:relative;
-	top:1px;
-}
+// .newCButton {
+// 	background:linear-gradient(to bottom, #bec1c4 5%, #d7dade 100%);
+// 	background-color:#bec1c4;
+// 	border-radius:5px;
+// 	border:1px solid #bec1c4;
+// 	display:inline-block;
+// 	cursor:pointer;
+// 	color:#050505;
+// 	font-family:Arial;
+// 	font-size:15px;
+// 	// font-weight:bold;
+// 	// padding:12px 44px;
+// 	text-decoration:none;
+// 	text-shadow:0px 1px 0px #bec1c4;
+//     height: 80%;
+//     transform: translateY(11%);
+// }
+// .newCButton:hover {
+// 	background:linear-gradient(to bottom, #d7dade 5%, #bec1c4 100%);
+// 	background-color:#d7dade;
+// }
+// .newCButton:active {
+// 	position:relative;
+// 	top:1px;
+// }
 
+.newCButton{
+  display: none;
+}

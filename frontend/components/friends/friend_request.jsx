@@ -27,6 +27,7 @@ class FriendRequest extends React.Component {
         const formData = new FormData();
         formData.append('friend[friendship_status]', this.state.friendship_status);
         this.props.updateFriendship(this.state.id, formData)
+        this.forceUpdate()
     
     }
 
