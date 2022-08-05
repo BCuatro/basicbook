@@ -3381,6 +3381,7 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
         className: "like-form",
         onSubmit: this.handleLike
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "like-button",
         onClick: function onClick() {
           _this2.handleInput();
         }
@@ -3390,8 +3391,8 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
           likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
             className: "like-form"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-            className: "like-button",
-            id: "unlike",
+            id: "like-button" // id = "unlike"
+            ,
             onClick: function onClick() {
               _this2.handleUnlike(like.id);
             }
@@ -3400,8 +3401,8 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
           likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
             className: "like-form"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-            className: "like-button",
-            id: "unlike",
+            id: "like-button" // id = "unlike"
+            ,
             onClick: function onClick() {
               _this2.handleUnlike(like.id);
             }
@@ -4927,9 +4928,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var aboutMe = function aboutMe(user) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    id: "title"
-  }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name: ", user === null || user === void 0 ? void 0 : user.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name: ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender: ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Location: ", user === null || user === void 0 ? void 0 : user.location));
+  var joined_date = new Date(user === null || user === void 0 ? void 0 : user.created_at);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "aboutMe-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    id: "aboutMe-title"
+  }, "Intro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "aboutMe-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+    id: !user.gender ? "non-visible" : "bio"
+  }, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: !user.username ? "non-visible" : "aboutMe",
+    id: "username"
+  }, " Username: ", user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: !user.gender ? "non-visible" : "aboutMe",
+    id: "gender"
+  }, " My pronouns are ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: !user.location ? "non-visible" : "aboutMe",
+    id: "location"
+  }, " I live in ", user === null || user === void 0 ? void 0 : user.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "aboutMe",
+    id: "created"
+  }, "Joined Basicbook on ", joined_date.toLocaleDateString([], {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (aboutMe);

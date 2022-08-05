@@ -459,12 +459,12 @@ ul{
     .loginHeader { grid-area: 1 / 1 / 2 / 6; }
     .loginfooter { grid-area: 5 / 1 / 6 / 6; }
 
-    p {
+    /* p {
       font-size: 3em;
       font-weight: 100;
       font-family: monospace;
 
-    }
+    } */
     .home{
       position: relative;
       height: 100%;

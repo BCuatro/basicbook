@@ -61,7 +61,7 @@ class LikeButton extends React.Component {
         let likeButton = 
         <div className= "like-container"> 
             <form className="like-form" onSubmit={this.handleLike}>
-                <button onClick={() => {this.handleInput()}}>Like</button>
+                <button id = "like-button" onClick={() => {this.handleInput()}}>Like</button>
             </form>
         </div>
         
@@ -71,8 +71,8 @@ class LikeButton extends React.Component {
                 likeButton = 
                 <div className="like-form">
                     <button 
-                        className = "like-button"
-                        id = "unlike"
+                        id = "like-button"
+                        // id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
                 </div>
             }
@@ -80,8 +80,8 @@ class LikeButton extends React.Component {
                 likeButton = 
                 <div className="like-form"> 
                     <button 
-                        className = "like-button"
-                        id = "unlike"
+                        id = "like-button"
+                        // id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
                 </div>
             }

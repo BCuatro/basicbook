@@ -2,22 +2,21 @@ import React from 'react'
 
 
 const aboutMe =(user) =>{
+  const joined_date = new Date(user?.created_at)
+ 
     return (
       
-     <div>
-
-     <h1 id="title">About Me</h1>
-     <h2>{user?.username}</h2>
-     <h3>{user?.bio}</h3>
-     <label>First Name: {user?.first_name}</label>
-     <br />
-     <label>Last Name: {user?.last_name}</label>
-     <br />
-     <label>Gender: {user?.gender}</label>
-     <br />
-     <label>Location: {user?.location}</label>
-     
-     
+    <div className = "aboutMe-container">
+      <h2 id="aboutMe-title">Intro</h2>
+    
+      <div className = "aboutMe-content">
+      
+      <h3  id = {!user.gender ? "non-visible" : "bio" }>{user?.bio}</h3>
+      <p className = {!user.username ? "non-visible": "aboutMe" }id= "username"> Username: {user?.username}</p>
+      <p className = {!user.gender ? "non-visible" : "aboutMe" } id="gender"> My pronouns are {user?.gender}</p>
+      <p className = {!user.location ? "non-visible" : "aboutMe" }  id="location"> I live in {user?.location}</p>
+      <p className = "aboutMe" id="created">Joined Basicbook on {joined_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })}</p>   
+      </div>  
    </div>
         
       )
