@@ -1779,12 +1779,14 @@ __webpack_require__.r(__webpack_exports__);
       likes = _ref.likes;
   var likesCount = 0;
   var displayCommentLikesCount;
+  likesCount > 0 ? displayCommentLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    className: "fa-regular fa-thumbs-up"
+  }), " ", likesCount) : displayCommentLikesCount = "";
   Object.values(likes).forEach(function (like) {
     if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
       likesCount++;
     }
   });
-  likesCount > 0 ? displayCommentLikesCount = likesCount : displayCommentLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (comment === null || comment === void 0 ? void 0 : comment.author_id);
   })[0];
@@ -1815,28 +1817,46 @@ __webpack_require__.r(__webpack_exports__);
     editbutton = "";
   }
 
-  var comment_date = new Date(comment === null || comment === void 0 ? void 0 : comment.created_at);
-
   if (postId === (comment === null || comment === void 0 ? void 0 : comment.post_id)) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      className: "comment-class-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-class-and-header"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-photo-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: author !== null && author !== void 0 && author.profile_photoUrl ? author === null || author === void 0 ? void 0 : author.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+      className: "post-photo",
+      id: "profile-picture"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment_class-and-like-button"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment_class"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
-    }, "Posted by ", author === null || author === void 0 ? void 0 : author.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
-    }, "Posted on ", comment_date.toLocaleDateString([], {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    }), " at ", comment_date.toLocaleTimeString([], {
-      timeStyle: 'short'
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "commentBody"
-    }, comment === null || comment === void 0 ? void 0 : comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "post-header"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-header-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      id: "comment-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      id: "comment-header-name"
+    }, " ", author === null || author === void 0 ? void 0 : author.first_name, " ", author === null || author === void 0 ? void 0 : author.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      id: "comment-header-name-sub"
+    }, " @", author === null || author === void 0 ? void 0 : author.username)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-body"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      id: "comment-body-content"
+    }, comment === null || comment === void 0 ? void 0 : comment.body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-like-button"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       likeable_id: comment.id,
       currentUser_id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.id,
       likeable_type: "Comment"
-    }), displayCommentLikesCount, deletebutton, editbutton);
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "comment-likes"
+    }, displayCommentLikesCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown"
+    }, deletebutton, editbutton)));
   }
 });
 
@@ -3345,30 +3365,37 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      var likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "like-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "like-form",
         onSubmit: this.handleLike
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           _this2.handleInput();
         }
-      }, "Like"));
+      }, "Like")));
       this.props.likes.forEach(function (like) {
         if (_this2.props.currentUser_id === like.user_id && like.likeable_type === "Post" && like.likeable_id === _this2.props.likeable_id) {
-          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "like-form"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             className: "like-button",
             id: "unlike",
             onClick: function onClick() {
               _this2.handleUnlike(like.id);
             }
-          }, "Liked");
+          }, "Liked"));
         } else if (_this2.props.currentUser_id === like.user_id && like.likeable_type === "Comment" && like.likeable_id === _this2.props.likeable_id) {
-          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          likeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "like-form"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             className: "like-button",
             id: "unlike",
             onClick: function onClick() {
               _this2.handleUnlike(like.id);
             }
-          }, "Liked");
+          }, "Liked"));
         }
       }); //     if (like.likeable_type === this.props.currentUser_id && 
       //     like.likeable_id === this.props.likeable_id &&
@@ -3392,7 +3419,9 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
       //     }
       // // })
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, likeButton);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "like-container"
+      }, likeButton);
     }
   }]);
 
@@ -4750,7 +4779,9 @@ var PostItem = function PostItem(_ref) {
       likesCount++;
     }
   });
-  likesCount > 0 ? displayLikesCount = likesCount : displayLikesCount = "";
+  likesCount > 0 ? displayLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    className: "fa-regular fa-thumbs-up"
+  }), " ", likesCount) : displayLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
   })[0];
@@ -4772,8 +4803,11 @@ var PostItem = function PostItem(_ref) {
     // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick() {
-        return updatePost("editpost", post);
+      className: "edit-button",
+      onClick: function onClick(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        updatePost("editpost", post);
       }
     }, " Edit Post"); // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
 
@@ -4798,24 +4832,52 @@ var PostItem = function PostItem(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       className: "post_item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
-    }, "Posted by ", author === null || author === void 0 ? void 0 : author.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostHeader"
+      className: "post-header"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-header-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-photo-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: author !== null && author !== void 0 && author.profile_photoUrl ? author === null || author === void 0 ? void 0 : author.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+      className: "post-photo",
+      id: "profile-picture"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-header-name"
+    }, " ", author === null || author === void 0 ? void 0 : author.first_name, " ", author === null || author === void 0 ? void 0 : author.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-header-name-sub"
+    }, " @", author === null || author === void 0 ? void 0 : author.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-header-name-sub"
     }, "Posted on ", post_date.toLocaleDateString([], {
       month: 'long',
       day: 'numeric',
       year: 'numeric'
     }), " at ", post_date.toLocaleTimeString([], {
       timeStyle: 'short'
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "wallPostBody"
-    }, post.body, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), postImage), displayLikesCount, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-menu"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-menu-items"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-menu-item"
+    }, editbutton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-menu-item"
+    }, deletebutton))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-body"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "post-body-content"
+    }, post.body, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), postImage), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, displayLikesCount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "wallPostButton"
-    }), deletebutton, editbutton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      id: "like-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
       likeable_id: post === null || post === void 0 ? void 0 : post.id,
       currentUser_id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.id,
       likeable_type: "Post"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       post: post,
       likes: likes
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_new_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {

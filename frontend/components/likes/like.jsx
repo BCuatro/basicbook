@@ -59,25 +59,31 @@ class LikeButton extends React.Component {
     render() {
 
         let likeButton = 
-        <form onSubmit={this.handleLike}>
-            <button onClick={() => {this.handleInput()}}>Like</button>
-        </form>
+        <div className= "like-container"> 
+            <form className="like-form" onSubmit={this.handleLike}>
+                <button onClick={() => {this.handleInput()}}>Like</button>
+            </form>
+        </div>
         
 
         this.props.likes.forEach(like => { 
             if(this.props.currentUser_id === like.user_id && like.likeable_type === "Post" && like.likeable_id === this.props.likeable_id){
-                likeButton = <button 
+                likeButton = 
+                <div className="like-form">
+                    <button 
                         className = "like-button"
                         id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
-                
+                </div>
             }
             else if(this.props.currentUser_id === like.user_id && like.likeable_type === "Comment" && like.likeable_id === this.props.likeable_id){
-                likeButton = <button 
+                likeButton = 
+                <div className="like-form"> 
+                    <button 
                         className = "like-button"
                         id = "unlike"
                         onClick={() => {this.handleUnlike(like.id)}}>Liked</button>
-                
+                </div>
             }
             
         })
@@ -112,7 +118,7 @@ class LikeButton extends React.Component {
 
                 
         return (
-            <div>
+            <div className= "like-container">
                 {likeButton}
                 {/* <form onSubmit={this.handleLike}>
                 

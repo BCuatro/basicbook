@@ -8,6 +8,11 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
   
   let likesCount = 0
    let displayCommentLikesCount
+   
+  likesCount > 0 ? displayCommentLikesCount = 
+  <div>
+    <i className="fa-regular fa-thumbs-up"></i> {likesCount}
+  </div> : displayCommentLikesCount= ""
 
    Object.values(likes).forEach(like => {
     if (like.likeable_id === comment.id && like.likeable_type === "Comment") {
@@ -15,7 +20,7 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
     }
   })
 
-  likesCount > 0 ? displayCommentLikesCount = likesCount : displayCommentLikesCount= ""
+
   const author = users?.filter(obj=>
     obj.id === comment?.author_id
   )[0]
@@ -41,26 +46,53 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
     deletebutton = ""
     editbutton = ""
   }
-  const comment_date = new Date(comment?.created_at)
     if (postId=== comment?.post_id) {
     return (
-      <li className="comment_class">
-        <div className="wallPostHeader">Posted by {author?.username}</div>
-        <div className="wallPostHeader">Posted on {comment_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {comment_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
+      
+      <li className="comment-class-container">
+        <div className= "comment-class-and-header">
+          <div className= "comment-photo-container" >
+                <img  src={author?.profile_photoUrl ? author?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
+          </div>
+          <div className="comment_class-and-like-button">
+            <div className ="comment_class">
+              <div className = "post-header">
+                <div className ="post-header-content">
+                  
+
+                  <div id = "comment-content">
+                    <div id="comment-header-name"> {author?.first_name} {author?.last_name} </div>
+                    <div id="comment-header-name-sub"> @{author?.username}</div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="comment-body">
+                <div id= "comment-body-content">{comment?.body}</div>
+                
+              </div>
+              
+            </div>
+            <div className="comment-like-button">
         
-        <div className="commentBody">{comment?.body}</div>
-        {/* <div className="wallPostButton">
-          <button> like</button>
-          <button> edit</button>
-        </div> */}
-         <LikeContainer 
-        likeable_id ={comment.id}
-        currentUser_id ={currentUser?.id}
-        likeable_type ={"Comment"}
-        />
-        {displayCommentLikesCount}
-        {deletebutton}
-        {editbutton}
+                  <LikeContainer 
+                  likeable_id ={comment.id}
+                  currentUser_id ={currentUser?.id}
+                  likeable_type ={"Comment"}
+                  />
+            </div>
+          </div>
+          
+        <div className= "comment-likes">{displayCommentLikesCount}</div>
+        
+        <div className="dropdown"> 
+          {deletebutton}
+          {editbutton}
+        </div>
+        </div>
+
+        
+        
       </li>
     )}
     }
