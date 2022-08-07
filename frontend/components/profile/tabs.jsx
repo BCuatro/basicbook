@@ -1,7 +1,9 @@
 import React from 'react';
+import FriendIndex from '../posts/friend_index';
 import PostContainer from '../posts/post_container';
-import PostIndexContainer from '../posts/post_index_container';
-import aboutMe from './about_me';
+// import PostIndexContainer from '../posts/post_index_container';
+// import aboutMe from './about_me';
+// FriendIndex
 
 
 
@@ -39,8 +41,8 @@ export default class Tabs extends React.Component {
     this.selectTab = this.selectTab.bind(this);
   }
   componentDidMount(){
-      this.props.fetchUsers()
-      this.props.friends
+      // this.props.fetchUsers()
+      // this.props.friends
   }
     
  
@@ -53,7 +55,13 @@ export default class Tabs extends React.Component {
     
     const tabs = [
       {title: 'Posts', content: <PostContainer friends= {this.props.friends} user = {this.props.user}  />},
-      {title: 'Friends', content: 'Drake said no new friends'},
+      {title: 'Friends', content:  
+                                  <FriendIndex 
+                                  user = {this.props.user}
+                                  users = {this.props.users}
+                                  currentUser = {this.props.currentUser}
+                                  friends = {this.props.friends} />
+                                },
       {title: 'Photo', content: 'AWS'},
       
     ];

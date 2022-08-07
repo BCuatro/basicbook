@@ -4,9 +4,9 @@
     rgba(0,0,0,0.0),
     rgba(0,0,0,0.5));
     color: #082a3a;
-    font-family: monospace;
+    font-family: monospace;    
     margin: 0;
-    
+        
   }
   
   .logo::first-letter{
@@ -27,7 +27,9 @@
     .logo-container{
         width: 30%;
         height: 100%;
-       
+        font-size: 12px;
+        padding: 0 10px 0 10px;
+        font-family: monospace
     }
     .navbar-container{
         width: 100%;
@@ -62,18 +64,62 @@
     }
 
     .navbar-extension{
-        margin-top: 10px;
+        height:100%;
+        width: 100%;
         background-color: white;
-        // width: 100%;
-        // height: 56px;
-        // position: relative;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        display: flex;
+        justify-content: flex-start; 
+        padding: 3px; 
+        width: 100%;
+        color: #050505;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 20px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        
+       
+        
+
+    }
+    .navbar-extension-container{
+       
+        width: 100%;
+        height: 60px;
+        padding-top: 2px;
+        background-color:#F1F2F5;
+        transform: translateY(-4px);
+        
+       
+        
+       
+        
+    }
+    .navbarext-photo{
+        height: 40px;
+        width: 40px;
+        border-radius: 40px;
+            
     }
 
     #visible-navbar{
-        display: flex
+        display: flex;  
+        
     }
-
+    #navbarext-username-name{
+        font-size: 13px;
+    }
+    
     #hidden-navbar {
         display: none;
-        top: 0;
     }
+    .navbarext-extension-content{
+        padding-left: 5px;
+    }
+    // .navbar-extension-background{
+    //     background-color:black;
+    //     width: 100%;
+    //     height: 50%;
+
+    // }

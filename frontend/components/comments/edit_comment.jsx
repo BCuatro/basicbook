@@ -27,7 +27,7 @@ class EditComment extends React.Component {
     
     render() {
         // console.log(this.props.post)
-        console.log("this is the form")
+       
         // const {post, currentUser, users, user, userId, errors}= this.props
         let buttonId
         // if(!this.props.currentUser) return null

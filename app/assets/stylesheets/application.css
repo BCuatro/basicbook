@@ -59,7 +59,8 @@
   background: black;
   animation-delay: 0.5s; */
  /* } */
-html {
+ html{
+  
   min-height: 100 vh;
   max-width: 100 vw;
   min-width: 320px;
@@ -71,7 +72,7 @@ html {
 header{
   height: 56px;
   width: 100%;
-  padding: 0px, 110px;
+  /* padding: 0px, 110px; */
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -349,54 +350,7 @@ input:focus, textarea {
   outline: none !important;
 }
 
-.tabsHeader{
-  display: flex;
-  list-style-type: none;
-  height: 60px;
-  width: 100%;
-  justify-content: flex-start;
-  padding: 0;
-  margin-bottom: 10px;
 
-  border-top: #65676b solid 1px;
-}
-
-.tabsHeader > li{
-  width: 65px;
-  padding-top: 4px;
-  text-align: center;
-  cursor: pointer;
-  justify-content: center;
-  background-color: transparent;
-  padding:0;
-  margin:0;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 20px;
-  color: #65676b;
-  transform: translateY(20%);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-.tabsHeader > li:hover{
-  width: 65px;
-  height: 25px;
-  border-top: 2px solid #082a3a;
-  border-left: 1px solid #082a3a;
-  border-right: 1px solid #082a3a;
-  border-bottom: 2px solid #082a3a;
-  padding-top: 4px;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: lightgray;
-  
-}
-
-.tabsHeader > li:focus{
-
-  background-color: #1f6cab;  
-
-}
 
 
 ul{

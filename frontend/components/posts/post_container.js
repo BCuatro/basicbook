@@ -16,7 +16,10 @@ const mapStateToProps= (state, ownProps) =>{
         user: state.entities.users[ownProps.match.params.userId],
         userId: ownProps.match.params.userId,
         errors: state.errors.posts,
-        users: state.entities.users
+        users: state.entities.users,
+        posts: Object.keys(state.entities.posts).map(key => state.entities.posts[key]),
+        likes: Object.keys(state.entities.likes).map(key => state.entities.likes[key]),
+        
 
 
     }

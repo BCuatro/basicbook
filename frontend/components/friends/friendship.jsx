@@ -97,7 +97,6 @@ class Friendship extends React.Component {
 
 
     render() {
-        console.log (this.props.currentUser.id === this.props.user?.id) 
         let friendshipButton;
         if (this.props.currentUser.id === this.props.user?.id) {
             return friendshipButton = "";
@@ -110,10 +109,11 @@ class Friendship extends React.Component {
                             this.handleAddFriendSubmit())
                         }
                         }>Friend Request</button> */}
-                            <button onClick={() => {
-                                this.handleUpdate();
-                            }
-                            }>Friend Request</button>
+                            <button 
+                                id = "edit-button" 
+                                onClick={() => {this.handleUpdate();}}>
+                                    <i class="fa fa-solid fa-user"></i> Add Friend 
+                            </button>
 
                         </form>
             }
@@ -132,9 +132,11 @@ class Friendship extends React.Component {
                         const friendId = friend?.id
                         return friendshipButton =
                 
-                            <button onClick={() =>
-                                {this.handleDeleteFriendSubmit(friendId)}
-                            }>Delete Friend</button>
+                            <button 
+                                id = "edit-button" 
+                                onClick={() =>{this.handleDeleteFriendSubmit(friendId)}}>
+                                    <i class="fa fa-solid fa-user-check"></i> Friends
+                            </button>
                     
                 }
 
@@ -151,7 +153,11 @@ class Friendship extends React.Component {
                     ) {
                     return friendshipButton =
                         
-                            <button disabled>Pending Friend Request</button>
+                            <button 
+                                id = "pending-friend-request-button" 
+                                disabled>
+                                    Pending Response
+                            </button>
                        
                 }
 
@@ -163,10 +169,11 @@ class Friendship extends React.Component {
                             this.handleAddFriendSubmit())
                         }
                         }>Friend Request</button> */}
-                            <button onClick={() => {
-                                this.handleUpdate();
-                            }
-                            }>Friend Request</button>
+                            <button 
+                                id = "add-friend-button" 
+                                onClick={() => {this.handleUpdate()}}>
+                                    <i class="fa fa-solid fa-user"></i> Add Friend
+                            </button>
 
                         </form>
                    

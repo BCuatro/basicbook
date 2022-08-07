@@ -11,7 +11,7 @@ import LikeContainer from '../likes/like_container';
 
 
 
-const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,likes}) => {
+const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,likes, comments}) => {
    let likesCount = 0
    let displayLikesCount
 
@@ -115,11 +115,12 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
         likeable_id ={post?.id}
         currentUser_id ={currentUser?.id}
         likeable_type ={"Post"}
+        post = {post}
         />
       </div>
       
       <br />
-      <CommentIndexContainer post= {post} likes = {likes}/>
+      <CommentIndexContainer post= {post} likes = {likes} comments= {comments}/>
       <NewCommentContainer post ={post} />
     </li>
   )

@@ -6,6 +6,8 @@ import FriendItem from '../friends/friend_item';
 // import FriendRequestContainer from '../friends/friend_container';
 import FriendRequestItem from '../friends/friend_request_item';
 import FriendshipContainer from '../friends/friendship_container';
+import NavBarExtension from '../nav_bar/nav_bar_extension';
+
 
 
 
@@ -42,6 +44,8 @@ class Profile extends React.Component{
         );
         this.props.fetchPosts();
         this.props.fetchFriends();
+        this.props.fetchLikes();
+        
 
         // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
@@ -66,7 +70,7 @@ class Profile extends React.Component{
         if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
             editButton = <button id = "edit-button" 
             onClick = {() => {this.handleOpenModal("editprofile")}}>
-                <i class="fa fa-pencil"></i> Edit Profile
+                <i className="fa fa-pencil"></i> Edit Profile
                 </button> } else{
                 editButton =""
             } 
@@ -74,6 +78,7 @@ class Profile extends React.Component{
         //     console.log(this.state)
         return (
             <div className="profile-container">
+                <div><NavBarExtension users ={this.props.users}/></div>
                 
                 <div className= "profile-header">
                     <div className= "profile-cover-container">
@@ -92,32 +97,15 @@ class Profile extends React.Component{
                             <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
                             <div className =" edit-photo-container" ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
                             <div className="user-information-container">
-                                <div className = "user-information">{this.state.first_name} {this.state.last_name} </div>
-                                <div className = "user-username">@{this.state.username}</div>
+                                <div className = "user-information">{this.props.user?.first_name} {this.props.user?.last_name} </div>
+                                <div className = "user-username">@{this.props.user?.username}</div>
+                                
                             </div>
                         </div>
                             <div className = "edit-profile-button-container">{editButton}</div>
+                            <div className = "edit-profile-button-container"> <FriendshipContainer /> </div>
                     </div>
-                    {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
-                    
-                    {/* <h3>Preview</h3>
-                    {preview}
-                    
-                    <h4>Profile Header</h4>
-                    Add Name, friend count, and profile picture
-                    
-                    <form onSubmit={this.handleCoverPhotoSubmit}>
-                            <input type="file" 
-                            onChange={this.handleFile}
-                            name="" id="" />
-                            <button onClick={this.handleCoverPhotoSubmit}>Upload Photo</button>
-                    </form> */}
-                    
-                    {/* <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button>  */}
-                    {/* <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
-                    <FriendshipContainer />
-                    {/* <div><FriendRequestContainer /></div> */}
-                    
+                 
                 </div>
                 <div className = "profile-body">
                     {/* <div className = "sidebar-left">

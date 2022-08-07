@@ -22,12 +22,12 @@ class LikeButton extends React.Component {
     //     };
     // }
     componentDidMount(){
-        this.props.fetchLikes()
-        if (this.props.likeable_type === "Post"){
-            this.props.fetchPost(this.props.likeable_id)
-        } else if (this.props.likeable_type === "Comment"){
-            this.props.fetchComment(this.props.likeable_id)
-        }
+        // this.props.fetchLikes()
+        // if (this.props.likeable_type === "Post"){
+        //     this.props.fetchPost(this.props.likeable_id)
+        // } else if (this.props.likeable_type === "Comment"){
+        //     this.props.fetchComment(this.props.likeable_id)
+        // }
     }
 
     handleInput() {

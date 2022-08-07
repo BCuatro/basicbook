@@ -69,7 +69,6 @@ class Photo extends React.Component{
     render(){ 
        
         const preview = this.state.photoUrl ? <img className = "photo-preview" id = {this.props.phototype}src={this.state.photoUrl} /> : null;
-            console.log(this.props.phototype)
 
         let photoform
         if (this.props.phototype ==="profilephoto"){

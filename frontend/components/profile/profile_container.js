@@ -5,7 +5,7 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import Profile from "./profile";
 import { fetchPosts } from "../../actions/posts_actions";
 import { fetchFriends } from "../../actions/friends_actions";
-
+import {  fetchLikes } from '../../actions/likes_actions';
 
 
 
@@ -41,6 +41,7 @@ const mapStateToProps = (state, ownProps) => {
         // openModal: (modal)=> dispatch(openModal({modal: modal})),
         openModal: (modal, phototype)=> dispatch(openModal({modal: modal, phototype: phototype})),
         closeModal: () => dispatch(closeModal()),
+        fetchLikes: () => dispatch(fetchLikes()),
         // updateUser: (id, formData)=> dispatch(updateUser(id, formData))
         
 

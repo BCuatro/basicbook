@@ -9,18 +9,18 @@ import { fetchUsers } from '../../actions/users_actions';
 const NavBar = ({currentUser, logout, users}) => {
    
     // const params = useParams()
-    console.log ("this is my useParams test", state)
-    const [state, setState] = useState(false)
-    const changevalueonScroll = () => {
-        const scrollvalue = document.documentElement.scrollTop
-        if (scrollvalue > 700){
-            setState(true)
-        }
-        else{
-            setState(false)
-        }
-    }
-    window.addEventListener('scroll', changevalueonScroll)
+    
+    // const [state, setState] = useState(false)
+    // const changevalueonScroll = () => {
+    //     const scrollvalue = document.documentElement.scrollTop
+    //     if (scrollvalue > 700){
+    //         setState(true)
+    //     }
+    //     else{
+    //         setState(false)
+    //     }
+    // }
+    // window.addEventListener('scroll', changevalueonScroll)
     
     const liNavBar = currentUser ? (
         // <div className ="navbar-container">

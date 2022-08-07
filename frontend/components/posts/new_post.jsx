@@ -28,7 +28,7 @@ class NewPost extends React.Component {
         };
     }
     componentWillUnmount() {
-        this.props.removeErrors();
+        // this.props.removeErrors();
     }
 
     handleFile(e) {

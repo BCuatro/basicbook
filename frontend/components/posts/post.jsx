@@ -2,6 +2,7 @@ import React from 'react'
 import PostIndexContainer from './post_index_container';
 import FriendItem from '../friends/friend_item';
 import aboutMe from '../profile/about_me';
+import FriendIndex from './friend_index';
 
 
 class Post extends React.Component {
@@ -11,7 +12,10 @@ class Post extends React.Component {
            
     }
     componentDidMount() {
-        this.props.fetchPosts();
+        // this.props.fetchPosts();
+        // this.props.fetchComments();
+        // this.props.fetchLikes;
+
       }
 
     handleOpenModal(e){
@@ -29,9 +33,9 @@ class Post extends React.Component {
                     <div className= "post-tab-sidebar">
                         <div className= "aboutMe-container">
                             {aboutMe(this.props.user)}
-                            </div>
-                        <div className="friends-list-container">
-                            <h5 className="friends-list-title">Friends</h5>
+                        </div>
+        
+                           {/*  <h5 className="friends-list-title">Friends</h5>
                                 <ul className= "friends-list">
                                         {
                                             this.props.friends
@@ -48,7 +52,17 @@ class Post extends React.Component {
                                             ))
                                         }
                                 </ul>
+                        </div> */}
+                        <div>
+                            <FriendIndex 
+                            classname = {"friends-list-container"}
+                            user = {this.props.user}
+                            users = {this.props.users}
+                            currentUser = {this.props.currentUser}
+                            friends = {this.props.friends} />
                         </div>
+                    
+
                     </div>
                     <div className= "post-item-container" >
                         <div className= "postButtonModalContainter">

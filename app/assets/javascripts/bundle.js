@@ -1727,7 +1727,7 @@ function App() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setTimeout(function () {
       setloading("loaded");
-    }, 1000);
+    }, 3000);
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, loading === "loading" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_loading_loading_screen__WEBPACK_IMPORTED_MODULE_10__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "navbar-container"
@@ -1855,7 +1855,8 @@ __webpack_require__.r(__webpack_exports__);
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       likeable_id: comment.id,
       currentUser_id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.id,
-      likeable_type: "Comment"
+      likeable_type: "Comment",
+      comment: comment
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "dropdown"
     }, deletebutton, editbutton)));
@@ -1920,8 +1921,8 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
 
   _createClass(CommentsIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchComments(); // this.props.fetchUser(this.props.match.params.userId)
+    value: function componentDidMount() {// this.props.fetchComments();
+      // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleOpenModal",
@@ -2105,8 +2106,7 @@ var EditComment = /*#__PURE__*/function (_React$Component) {
           _this$state;
 
       // console.log(this.props.post)
-      console.log("this is the form"); // const {post, currentUser, users, user, userId, errors}= this.props
-
+      // const {post, currentUser, users, user, userId, errors}= this.props
       var buttonId; // if(!this.props.currentUser) return null
 
       if (this.state.body.replace(/ /g, '').length === 0) {
@@ -2285,8 +2285,7 @@ var NewComment = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.removeErrors();
+    value: function componentWillUnmount() {// this.props.removeErrors();
     }
   }, {
     key: "handleSubmit",
@@ -2805,13 +2804,11 @@ var Friendship = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props$user2,
-          _this$props$user3,
           _this2 = this;
 
-      console.log(this.props.currentUser.id === ((_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id));
       var friendshipButton;
 
-      if (this.props.currentUser.id === ((_this$props$user3 = this.props.user) === null || _this$props$user3 === void 0 ? void 0 : _this$props$user3.id)) {
+      if (this.props.currentUser.id === ((_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id)) {
         return friendshipButton = "";
       } else {
         var _this$props$friends;
@@ -2820,10 +2817,13 @@ var Friendship = /*#__PURE__*/function (_React$Component) {
           return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
             onSubmit: this.handleAddFriendSubmit
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            id: "edit-button",
             onClick: function onClick() {
               _this2.handleUpdate();
             }
-          }, "Friend Request"));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+            "class": "fa fa-solid fa-user"
+          }), " Add Friend"));
         }
 
         (_this$props$friends = this.props.friends) === null || _this$props$friends === void 0 ? void 0 : _this$props$friends.forEach(function (friend) {
@@ -2832,22 +2832,29 @@ var Friendship = /*#__PURE__*/function (_React$Component) {
           if (friend.friendship_status === "accepted" && (_this2.props.currentUser.id === friend.user_id && ((_this2$props$user = _this2.props.user) === null || _this2$props$user === void 0 ? void 0 : _this2$props$user.id) === friend.friend_id || _this2.props.currentUser.id === friend.friend_id && ((_this2$props$user2 = _this2.props.user) === null || _this2$props$user2 === void 0 ? void 0 : _this2$props$user2.id) === friend.user_id)) {
             var friendId = friend === null || friend === void 0 ? void 0 : friend.id;
             return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              id: "edit-button",
               onClick: function onClick() {
                 _this2.handleDeleteFriendSubmit(friendId);
               }
-            }, "Delete Friend");
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+              "class": "fa fa-solid fa-user-check"
+            }), " Friends");
           } else if (friend.friendship_status === "pending" && (_this2.props.currentUser.id === friend.user_id && ((_this2$props$user3 = _this2.props.user) === null || _this2$props$user3 === void 0 ? void 0 : _this2$props$user3.id) === friend.friend_id || _this2.props.currentUser.id === friend.friend_id && ((_this2$props$user4 = _this2.props.user) === null || _this2$props$user4 === void 0 ? void 0 : _this2$props$user4.id) === friend.user_id)) {
             return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              id: "pending-friend-request-button",
               disabled: true
-            }, "Pending Friend Request");
+            }, "Pending Response");
           } else {
             return friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
               onSubmit: _this2.handleAddFriendSubmit
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+              id: "add-friend-button",
               onClick: function onClick() {
                 _this2.handleUpdate();
               }
-            }, "Friend Request"));
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+              "class": "fa fa-solid fa-user"
+            }), " Add Friend"));
           }
         });
       } // });
@@ -3153,7 +3160,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchPosts();
-      this.props.fetchUsers(); // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchUsers();
+      this.props.fetchLikes(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleCreateOpenModal",
@@ -3235,9 +3243,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _newsfeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newsfeed */ "./frontend/components/home/newsfeed.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+
 
 
 
@@ -3282,11 +3292,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchUsers: function fetchUsers() {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_5__.fetchUsers)());
+    },
+    fetchLikes: function fetchLikes() {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__.fetchLikes)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -3358,14 +3371,12 @@ var LikeButton = /*#__PURE__*/function (_React$Component) {
 
   _createClass(LikeButton, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchLikes();
-
-      if (this.props.likeable_type === "Post") {
-        this.props.fetchPost(this.props.likeable_id);
-      } else if (this.props.likeable_type === "Comment") {
-        this.props.fetchComment(this.props.likeable_id);
-      }
+    value: function componentDidMount() {// this.props.fetchLikes()
+      // if (this.props.likeable_type === "Post"){
+      //     this.props.fetchPost(this.props.likeable_id)
+      // } else if (this.props.likeable_type === "Comment"){
+      //     this.props.fetchComment(this.props.likeable_id)
+      // }
     }
   }, {
     key: "handleInput",
@@ -3726,18 +3737,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -3749,24 +3748,17 @@ var NavBar = function NavBar(_ref) {
       logout = _ref.logout,
       users = _ref.users;
   // const params = useParams()
-  console.log("this is my useParams test", state);
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      state = _useState2[0],
-      setState = _useState2[1];
-
-  var changevalueonScroll = function changevalueonScroll() {
-    var scrollvalue = document.documentElement.scrollTop;
-
-    if (scrollvalue > 700) {
-      setState(true);
-    } else {
-      setState(false);
-    }
-  };
-
-  window.addEventListener('scroll', changevalueonScroll);
+  // const [state, setState] = useState(false)
+  // const changevalueonScroll = () => {
+  //     const scrollvalue = document.documentElement.scrollTop
+  //     if (scrollvalue > 700){
+  //         setState(true)
+  //     }
+  //     else{
+  //         setState(false)
+  //     }
+  // }
+  // window.addEventListener('scroll', changevalueonScroll)
   var liNavBar = currentUser ?
   /*#__PURE__*/
   // <div className ="navbar-container">
@@ -3854,10 +3846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3873,14 +3862,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
 var NavBarExtension = function NavBarExtension(_ref) {
-  var currentUser = _ref.currentUser,
-      logout = _ref.logout;
-  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)();
-  console.log("this is my useParams test", params);
+  var _users$id, _users$id2, _users$id3, _users$id4, _users$id5;
+
+  var users = _ref.users;
+  var id = parseInt((0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)().userId);
+  console.log(id);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3892,36 +3879,33 @@ var NavBarExtension = function NavBarExtension(_ref) {
 
     if (scrollvalue > 700) {
       setState(true);
+      console.log("THIS WORKED");
     } else {
       setState(false);
     }
   };
 
   window.addEventListener('scroll', changevalueonScroll);
-  var liNavBar = currentUser ?
-  /*#__PURE__*/
-  // <div className ="navbar-container">
-  //     <div className="navbar-item-container">
-  //         <div className ="logo-container">
-  //             <h1 className="logo">Basicbook</h1>
-  //         </div>
-  //         <div className ="navbar-items">
-  //             <div id = "home-link"> <Link to={"/"}>Home</Link> </div>
-  //             <div id ="profile-link">
-  //                 <Link to={`/users/${currentUser.id}`}>Profile</Link>
-  //                 <button className="logout-button" onClick={logout}>Log Out</button>
-  //             </div>
-  //         </div>
-  //     </div>
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "navbar-extension",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "navbar-extension-container",
     id: state ? "visible-navbar" : "hidden-navbar"
-  }, currentUser.username) // </div>
-  : "";
-  return liNavBar;
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    classname: "navbar-extension-background"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "navbar-extension"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: !((_users$id = users[id]) !== null && _users$id !== void 0 && _users$id.profile_photoUrl) ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : (_users$id2 = users[id]) === null || _users$id2 === void 0 ? void 0 : _users$id2.profile_photoUrl,
+    className: "navbarext-photo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "navbarext-extension-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "navbarext-name"
+  }, (_users$id3 = users[id]) === null || _users$id3 === void 0 ? void 0 : _users$id3.first_name, " ", (_users$id4 = users[id]) === null || _users$id4 === void 0 ? void 0 : _users$id4.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "navbarext-username-name"
+  }, "@", (_users$id5 = users[id]) === null || _users$id5 === void 0 ? void 0 : _users$id5.username))));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBarExtension);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBarExtension); // !user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : user?.profile_photoUrl
 
 /***/ }),
 
@@ -4044,9 +4028,8 @@ var EditPost = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      // this.props.fetchPost(this.state.id)
-      this.props.fetchPosts();
+    value: function componentDidMount() {// this.props.fetchPost(this.state.id)
+      // this.props.fetchPosts()
     }
   }, {
     key: "handleFile",
@@ -4203,6 +4186,52 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/posts/friend_index.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/posts/friend_index.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
+
+
+
+var FriendIndex = function FriendIndex(_ref) {
+  var currentUser = _ref.currentUser,
+      user = _ref.user,
+      users = _ref.users,
+      friends = _ref.friends,
+      classname = _ref.classname;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: classname
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "friends-list-title"
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "friends-list"
+  }, friends.sort(function (a, b) {
+    return a.username > b.username ? 1 : -1;
+  }).map(function (friend, ind) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: "fi-".concat(ind),
+      friend: friend,
+      user: user,
+      currentUser: currentUser,
+      users: users
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FriendIndex);
+
+/***/ }),
+
 /***/ "./frontend/components/posts/new_post.jsx":
 /*!************************************************!*\
   !*** ./frontend/components/posts/new_post.jsx ***!
@@ -4279,8 +4308,7 @@ var NewPost = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.removeErrors();
+    value: function componentWillUnmount() {// this.props.removeErrors();
     }
   }, {
     key: "handleFile",
@@ -4455,6 +4483,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _post_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index_container */ "./frontend/components/posts/post_index_container.js");
 /* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
 /* harmony import */ var _profile_about_me__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/about_me */ "./frontend/components/profile/about_me.jsx");
+/* harmony import */ var _friend_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./friend_index */ "./frontend/components/posts/friend_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4482,6 +4511,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Post = /*#__PURE__*/function (_React$Component) {
   _inherits(Post, _React$Component);
 
@@ -4499,8 +4529,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
   _createClass(Post, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchPosts();
+    value: function componentDidMount() {// this.props.fetchPosts();
+      // this.props.fetchComments();
+      // this.props.fetchLikes;
     }
   }, {
     key: "handleOpenModal",
@@ -4511,8 +4542,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "post-tab-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4521,23 +4550,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-tab-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "aboutMe-container"
-      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_3__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "friends-list-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-        className: "friends-list-title"
-      }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-        className: "friends-list"
-      }, this.props.friends.sort(function (a, b) {
-        return a.username > b.username ? 1 : -1;
-      }).map(function (friend, ind) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: "fi-".concat(ind),
-          friend: friend,
-          user: _this2.props.user,
-          currentUser: _this2.props.currentUser,
-          users: _this2.props.users
-        });
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_3__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        classname: "friends-list-container",
+        user: this.props.user,
+        users: this.props.users,
+        currentUser: this.props.currentUser,
+        friends: this.props.friends
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "post-item-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "postButtonModalContainter"
@@ -4587,7 +4606,13 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     user: state.entities.users[ownProps.match.params.userId],
     userId: ownProps.match.params.userId,
     errors: state.errors.posts,
-    users: state.entities.users
+    users: state.entities.users,
+    posts: Object.keys(state.entities.posts).map(function (key) {
+      return state.entities.posts[key];
+    }),
+    likes: Object.keys(state.entities.likes).map(function (key) {
+      return state.entities.likes[key];
+    })
   };
 };
 
@@ -4670,8 +4695,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
 
   _createClass(PostIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchPosts(); // this.props.fetchUser(this.props.match.params.userId)
+    value: function componentDidMount() {// this.props.fetchComments();
+      // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleOpenModal",
@@ -4702,7 +4727,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           page: "profile",
           updatePost: _this2.handleOpenModal,
           deletePost: _this2.props.deletePost,
-          likes: _this2.props.likes
+          likes: _this2.props.likes,
+          comments: _this2.props.comments
         });
       })));
     }
@@ -4731,8 +4757,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/post_index.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+
 
 
 
@@ -4747,6 +4775,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }),
     likes: Object.keys(state.entities.likes).map(function (key) {
       return state.entities.likes[key];
+    }),
+    comments: Object.keys(state.entities.comments).map(function (key) {
+      return state.entities.comments[key];
     }),
     users: state.entities.users,
     user: state.entities.users[ownProps.match.params.userId],
@@ -4771,11 +4802,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     deletePost: function deletePost(postId) {
       return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__.deletePost)(postId));
+    },
+    fetchComments: function fetchComments() {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_5__.fetchComments)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -4810,7 +4844,8 @@ var PostItem = function PostItem(_ref) {
       page = _ref.page,
       updatePost = _ref.updatePost,
       currentUser = _ref.currentUser,
-      likes = _ref.likes;
+      likes = _ref.likes,
+      comments = _ref.comments;
   var likesCount = 0;
   var displayLikesCount;
   Object.values(likes).forEach(function (like) {
@@ -4917,10 +4952,12 @@ var PostItem = function PostItem(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
       likeable_id: post === null || post === void 0 ? void 0 : post.id,
       currentUser_id: currentUser === null || currentUser === void 0 ? void 0 : currentUser.id,
-      likeable_type: "Post"
+      likeable_type: "Post",
+      post: post
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_comments_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
       post: post,
-      likes: likes
+      likes: likes,
+      comments: comments
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_comments_new_comment_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       post: post
     }));
@@ -5349,7 +5386,6 @@ var Photo = /*#__PURE__*/function (_React$Component) {
         id: this.props.phototype,
         src: this.state.photoUrl
       }) : null;
-      console.log(this.props.phototype);
       var photoform;
 
       if (this.props.phototype === "profilephoto") {
@@ -5468,6 +5504,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
 /* harmony import */ var _friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../friends/friend_request_item */ "./frontend/components/friends/friend_request_item.jsx");
 /* harmony import */ var _friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../friends/friendship_container */ "./frontend/components/friends/friendship_container.js");
+/* harmony import */ var _nav_bar_nav_bar_extension__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../nav_bar/nav_bar_extension */ "./frontend/components/nav_bar/nav_bar_extension.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5495,6 +5532,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
  // import FriendRequestContainer from '../friends/friend_container';
+
 
 
 
@@ -5536,7 +5574,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         return _this2.handleRedirect(data.users);
       });
       this.props.fetchPosts();
-      this.props.fetchFriends(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
+      this.props.fetchFriends();
+      this.props.fetchLikes(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
     }
   }, {
     key: "handleOpenModal",
@@ -5559,7 +5598,10 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           _this$props$user,
           _this$props$user2,
           _this$props$user3,
-          _this$props$user4;
+          _this$props$user4,
+          _this$props$user5,
+          _this$props$user6,
+          _this$props$user7;
 
       // console.log("Look at this", this.props.users[this.props.friends[0]?.friend_id]?.username)
       var editButton;
@@ -5571,7 +5613,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
             _this3.handleOpenModal("editprofile");
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-          "class": "fa fa-pencil"
+          className: "fa fa-pencil"
         }), " Edit Profile");
       } else {
         editButton = "";
@@ -5581,7 +5623,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_nav_bar_nav_bar_extension__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        users: this.props.users
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-cover-container"
@@ -5617,11 +5661,13 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "user-information-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "user-information"
-      }, this.state.first_name, " ", this.state.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, (_this$props$user5 = this.props.user) === null || _this$props$user5 === void 0 ? void 0 : _this$props$user5.first_name, " ", (_this$props$user6 = this.props.user) === null || _this$props$user6 === void 0 ? void 0 : _this$props$user6.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "user-username"
-      }, "@", this.state.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "@", (_this$props$user7 = this.props.user) === null || _this$props$user7 === void 0 ? void 0 : _this$props$user7.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-profile-button-container"
-      }, editButton)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-profile-button-container"
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
@@ -5646,12 +5692,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+
 
 
 
@@ -5702,12 +5750,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    fetchLikes: function fetchLikes() {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__.fetchLikes)());
     } // updateUser: (id, formData)=> dispatch(updateUser(id, formData))
 
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -5784,9 +5835,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
-/* harmony import */ var _posts_post_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../posts/post_index_container */ "./frontend/components/posts/post_index_container.js");
-/* harmony import */ var _about_me__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./about_me */ "./frontend/components/profile/about_me.jsx");
+/* harmony import */ var _posts_friend_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../posts/friend_index */ "./frontend/components/posts/friend_index.jsx");
+/* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5811,8 +5861,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
+ // import PostIndexContainer from '../posts/post_index_container';
+// import aboutMe from './about_me';
+// FriendIndex
 
 var Headers = /*#__PURE__*/function (_React$Component) {
   _inherits(Headers, _React$Component);
@@ -5871,9 +5922,8 @@ var Tabs = /*#__PURE__*/function (_React$Component2) {
 
   _createClass(Tabs, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchUsers();
-      this.props.friends;
+    value: function componentDidMount() {// this.props.fetchUsers()
+      // this.props.friends
     }
   }, {
     key: "selectTab",
@@ -5887,13 +5937,18 @@ var Tabs = /*#__PURE__*/function (_React$Component2) {
     value: function render() {
       var tabs = [{
         title: 'Posts',
-        content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_post_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
           friends: this.props.friends,
           user: this.props.user
         })
       }, {
         title: 'Friends',
-        content: 'Drake said no new friends'
+        content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_friend_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          user: this.props.user,
+          users: this.props.users,
+          currentUser: this.props.currentUser,
+          friends: this.props.friends
+        })
       }, {
         title: 'Photo',
         content: 'AWS'

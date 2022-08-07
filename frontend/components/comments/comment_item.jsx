@@ -83,6 +83,7 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                   likeable_id ={comment.id}
                   currentUser_id ={currentUser?.id}
                   likeable_type ={"Comment"}
+                  comment ={comment}
                   />
                   
             </div>

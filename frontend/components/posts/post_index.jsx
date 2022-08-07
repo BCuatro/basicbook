@@ -9,7 +9,7 @@ class PostIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPosts();
+    // this.props.fetchComments();
     // this.props.fetchUser(this.props.match.params.userId)
   }
 
@@ -43,6 +43,7 @@ class PostIndex extends React.Component {
               updatePost= {this.handleOpenModal}
               deletePost ={this.props.deletePost}
               likes = {this.props.likes}
+              comments= {this.props.comments}
               />
               )
             )

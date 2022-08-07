@@ -26,7 +26,7 @@ class NewComment extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.removeErrors();
+        // this.props.removeErrors();
 
     }
 

@@ -24,7 +24,7 @@ class EditPost extends React.Component {
     }
     componentDidMount(){
         // this.props.fetchPost(this.state.id)
-        this.props.fetchPosts()
+        // this.props.fetchPosts()
     }
 
     handleFile(e) {

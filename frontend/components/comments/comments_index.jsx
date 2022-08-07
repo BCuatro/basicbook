@@ -9,7 +9,7 @@ class CommentsIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchComments();
+    // this.props.fetchComments();
     // this.props.fetchUser(this.props.match.params.userId)
   }
 

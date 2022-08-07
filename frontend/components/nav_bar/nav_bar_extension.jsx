@@ -1,52 +1,47 @@
 import React, {useState} from 'react';
-import { Link, useParams, matchPath } from 'react-router-dom'
-import { logout } from '../../actions/session_actions';
-import ReactDOM from 'react-dom';
-import { fetchUsers } from '../../actions/users_actions';
+import {useParams } from 'react-router-dom'
 
 
 
-const NavBarExtension = ({currentUser,  logout}) => {
-   
-    const params = useParams()
-    console.log ("this is my useParams test", params)
+
+
+const NavBarExtension = ({users}) => {
+    const id = parseInt(useParams().userId)
+
+   console.log(id)
     const [state, setState] = useState(false)
     const changevalueonScroll = () => {
         const scrollvalue = document.documentElement.scrollTop
         if (scrollvalue > 700){
             setState(true)
+            console.log("THIS WORKED")
         }
         else{
             setState(false)
         }
     }
     window.addEventListener('scroll', changevalueonScroll)
-    
-    const liNavBar = currentUser ? (
-        // <div className ="navbar-container">
-        //     <div className="navbar-item-container">
-        //         <div className ="logo-container">
-        //             <h1 className="logo">Basicbook</h1>
-        //         </div>
-        //         <div className ="navbar-items">
-        //             <div id = "home-link"> <Link to={"/"}>Home</Link> </div>
-
-        //             <div id ="profile-link">
-        //                 <Link to={`/users/${currentUser.id}`}>Profile</Link>
-        //                 <button className="logout-button" onClick={logout}>Log Out</button>
-        //             </div>
-        //         </div>
-        //     </div>
-            <div className = "navbar-extension" id = {state ? "visible-navbar" : "hidden-navbar"}>
-                {currentUser.username}
+    return(
+        <div className = "navbar-extension-container" id = {state ? "visible-navbar" : "hidden-navbar"}>
+                    <div classname= "navbar-extension-background"></div>
+                    <div className="navbar-extension">
+                        <img src={!users[id]?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : users[id]?.profile_photoUrl} className="navbarext-photo" />
+                    
+                    
+                        <div className="navbarext-extension-content">
+                            <div id="navbarext-name">{users[id]?.first_name} {users[id]?.last_name} </div>
+                            <div id="navbarext-username-name">@{users[id]?.username}</div>
+                        </div>
+                    
+                    </div>
             </div>
-        // </div>
         
-    ) : ""
-    
-    return (
-        liNavBar
-    )    
-   
+    ) 
 }
+    
+
 export default NavBarExtension
+
+
+
+// !user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : user?.profile_photoUrl
