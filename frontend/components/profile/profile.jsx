@@ -64,7 +64,10 @@ class Profile extends React.Component{
        
         let editButton
         if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
-            editButton = <button onClick = {() => {this.handleOpenModal("editprofile")}}>Edit Profile</button> } else{
+            editButton = <button id = "edit-button" 
+            onClick = {() => {this.handleOpenModal("editprofile")}}>
+                <i class="fa fa-pencil"></i> Edit Profile
+                </button> } else{
                 editButton =""
             } 
         // const preview = this.state.photoUrl ? <img className = "profile-photo-preview" src={this.state.photoUrl} /> : null;
@@ -80,11 +83,20 @@ class Profile extends React.Component{
                         <div id= "edit-cover-content"  ><i onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}} className="fa-solid fa-3x fa-camera-retro"></i></div>
                             {/* <button id= "edit-cover-button" onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
                         </div>
+                        
+
                     </div>   
                     <br />
                     <div className= "profile-photo-container">
-                        <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
-                        <div className =" edit-photo-container" ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
+                        <div className="profile-banner">
+                            <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
+                            <div className =" edit-photo-container" ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
+                            <div className="user-information-container">
+                                <div className = "user-information">{this.state.first_name} {this.state.last_name} </div>
+                                <div className = "user-username">@{this.state.username}</div>
+                            </div>
+                        </div>
+                            <div className = "edit-profile-button-container">{editButton}</div>
                     </div>
                     {/* <img className = "profile-photo" src="https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" alt="" />  */}
                     
@@ -100,19 +112,15 @@ class Profile extends React.Component{
                             name="" id="" />
                             <button onClick={this.handleCoverPhotoSubmit}>Upload Photo</button>
                     </form> */}
-                    <div>{editButton}</div>
+                    
                     {/* <button onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}}>Edit Profile Picture</button>  */}
                     {/* <button onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
                     <FriendshipContainer />
-                
-                    <br />
                     {/* <div><FriendRequestContainer /></div> */}
                     
                 </div>
-                
-
                 <div className = "profile-body">
-                    <div className = "sidebar-left">
+                    {/* <div className = "sidebar-left">
                         <h5>Friend Request</h5>
                         <ul className= "wall_posts">
                                 { 
@@ -133,7 +141,7 @@ class Profile extends React.Component{
                                 
                             </ul>
 
-                    </div> 
+                    </div>  */}
                      {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}

@@ -4970,7 +4970,10 @@ var aboutMe = function aboutMe(user) {
   }, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: !(user !== null && user !== void 0 && user.username) ? "non-visible" : "aboutMe",
     id: "username"
-  }, " Username: ", user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+  }, " Username: @", user === null || user === void 0 ? void 0 : user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: !(user !== null && user !== void 0 && user.email) ? "non-visible" : "aboutMe",
+    id: "email"
+  }, " Email: ", user === null || user === void 0 ? void 0 : user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: !(user !== null && user !== void 0 && user.gender) ? "non-visible" : "aboutMe",
     id: "gender"
   }, " My pronouns are ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -5563,10 +5566,13 @@ var Profile = /*#__PURE__*/function (_React$Component) {
 
       if (parseInt(this.props.currentUser.id) === parseInt(this.props.match.params.userId)) {
         editButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          id: "edit-button",
           onClick: function onClick() {
             _this3.handleOpenModal("editprofile");
           }
-        }, "Edit Profile");
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+          "class": "fa fa-pencil"
+        }), " Edit Profile");
       } else {
         editButton = "";
       } // const preview = this.state.photoUrl ? <img className = "profile-photo-preview" src={this.state.photoUrl} /> : null;
@@ -5594,6 +5600,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "fa-solid fa-3x fa-camera-retro"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-photo-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-banner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "profile-photo",
         src: (_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl ? (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
@@ -5605,26 +5613,17 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           _this3.handleOpenModal("editphoto", "profilephoto");
         },
         className: "fa-solid fa-lg fa-camera-retro"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-body"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "user-information-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "sidebar-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Friend Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-        className: "wall_posts"
-      }, this.props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-      .map(function (friend, i) {
-        return (
-          /*#__PURE__*/
-          // this.props.users[friend?.friend_id]?.username
-          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            key: "fRi-".concat(i),
-            friend: friend,
-            user: _this3.props.user,
-            currentUser: _this3.props.currentUser,
-            users: _this3.props.users
-          })
-        );
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+        className: "user-information"
+      }, this.state.first_name, " ", this.state.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "user-username"
+      }, "@", this.state.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-profile-button-container"
+      }, editButton)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
   }]);
 
