@@ -6178,7 +6178,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "modal-label",
         id: "label-password"
       }, "Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "errors"
+        className: "errors",
+        id: "login-errors-render"
       }, this.renderErrors(), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "login-form-button",
         onClick: this.handleSubmit
@@ -6190,7 +6191,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "login-form-signup",
         onClick: this.handleOpenModal
-      }, "Sign Up")))));
+      }, "Create New Account")))));
     }
   }]);
 
@@ -6356,83 +6357,137 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      console.log();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "signupForm"
+        className: "signup-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "signup-form-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+        className: "signup-form-title"
+      }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "signup=form-subtitle"
+      }, "Just a basic sign up form"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: function onClick() {
           _this3.props.closeModal();
 
           _this3.props.removeErrors();
         },
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "errors"
-      }, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "modal-input-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text",
-        id: "username",
-        required: true,
-        className: "modal-input",
-        value: this.state.username,
-        onChange: this.handleInput('username')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-        htmlFor: "username",
-        className: "modal-label"
-      }, "Username:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "modal-input-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "password",
-        id: "password",
-        required: true,
-        className: "modal-input",
-        value: this.state.password,
-        onChange: this.handleInput('password')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-        htmlFor: "password",
-        className: "modal-label"
-      }, "Password:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "modal-input-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text",
-        id: "email",
-        required: true,
-        className: "modal-input",
-        value: this.state.email,
-        onChange: this.handleInput('email')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-        htmlFor: "email",
-        className: "modal-label"
-      }, "Email:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+        className: "fa fa-lg fa-x"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "signup-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "full-name-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         id: "first_name",
         required: true,
+        style: this.props.signupErrors.join(" ").includes("First") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         className: "modal-input",
         value: this.state.first_name,
         onChange: this.handleInput('first_name')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "first_name",
-        className: "modal-label"
-      }, "First Name:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "modal-label",
+        id: "first-name-label"
+      }, "First Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.signupErrors.join(" ").includes("First") ? "signup-errors" : "non-visible"
+      }, "First name is invalid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text" //take a look at your label
         ,
         id: "last_name",
         required: true,
+        style: this.props.signupErrors.join(" ").includes("Last") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         className: "modal-input",
         value: this.state.last_name,
         onChange: this.handleInput('last_name')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "last_name",
+        className: "modal-label",
+        id: "last-name-label"
+      }, "Last Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.signupErrors.join(" ").includes("Last") ? "signup-errors" : "non-visible"
+      }, "Last name is invalid"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "modal-input-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        id: "signup-email",
+        required: true,
+        style: this.props.signupErrors.length > 0 ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
+        className: "modal-input",
+        value: this.state.email,
+        onChange: this.handleInput('email')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        htmlFor: "signup-email",
         className: "modal-label"
-      }, "Last Nanme"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.signupErrors.join(" ").includes("Email") ? "signup-errors" : "non-visible"
+      }, "Email is invalid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "modal-input-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        id: "signup-username",
+        required: true,
+        style: this.props.signupErrors.join(" ").includes("Username") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
+        className: "modal-input",
+        value: this.state.username,
+        onChange: this.handleInput('username')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        htmlFor: "signup-username",
+        className: "modal-label"
+      }, "Username:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.signupErrors.join(" ").includes("Username") ? "signup-errors" : "non-visible"
+      }, "Username is invalid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "modal-input-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "password",
+        id: "signup-password",
+        required: true,
+        style: this.props.signupErrors.join(" ").includes("Password") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
+        className: "modal-input",
+        value: this.state.password,
+        onChange: this.handleInput('password')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        htmlFor: "signup-password",
+        className: "modal-label"
+      }, "Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.signupErrors.join(" ").includes("Password") ? "signup-errors" : "non-visible"
+      }, "Password is invalid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "login-form-signup",
         onClick: this.handleSubmit
-      }, "SignUp"))));
+      }, "Sign Up"))));
     }
   }]);
 

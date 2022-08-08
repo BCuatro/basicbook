@@ -107,52 +107,10 @@ a{
 i::after{
   text-decoration: none;
 }
- .modal-background {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: transparent;
-    z-index: 1000;
-
-    border-radius: 5px;
-    border: solid white;
-    z-index: 10000;
-   
-    backdrop-filter: blur(10px) ;
-    box-shadow: 0 0 6px 0 rgba(29, 29, 29, 0.203);
-  }
  
-  .modal-child {
-    position: absolute;
-    display: inline-flex;
-    justify-content: center;
-    top: 50%;
-    left: 50%;
-    border: solid;
-    border-radius: 15px;
-    border-image-slice: 1;
-    border-width: 5px;
-    background-color: white;
-    /* border-image-source:
-    linear-gradient(
-      60deg,
-      #2E2F43,
-      #A38ED2
-    ); */
-    transform: translate(-50%, -50%);
-    overflow:auto;
-    box-shadow: 
-    5px 5px 5px #2E2F43,
-    10px 10px 10px #A38ED2;
-  height:50%;
-  width: 50%;
+ 
+  
 
-
-  }
   
   .signupForm{
     position: relative;
@@ -171,29 +129,10 @@ i::after{
     padding: 5px;
   }
  
-  .close-x {
-    position: absolute;
-    top: 5px;
-    right: 40px;
-    cursor: pointer;
-    border-radius: 70%;
-    background-color: rgb(234, 234, 234);
-    font-size: larger;
-    font-family: sans-serif;
-  }
+  
 
 
-/* 364 */
-/* @keyframes animate {
-  0%,
-  100% {
-    opacity: 0;
 
-  }
-  50% { 
-    opacity: 1;
-  }
-} */
 
 
 /* New Post CSS */
@@ -237,8 +176,6 @@ i::after{
   from {background-position: 0% 50%;}
   to {background-position: 100% 100%;}
 } */
-
-
 
 
 

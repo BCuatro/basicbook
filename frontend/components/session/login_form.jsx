@@ -97,7 +97,7 @@ class LoginForm extends React.Component{
                             />
                             <label htmlFor= "password" className="modal-label" id="label-password">Password:</label>
 
-                            <div className= "errors">{this.renderErrors()} </div>
+                            <div className= "errors" id="login-errors-render">{this.renderErrors()} </div>
                         </div>
                         <button className="login-form-button"onClick = {this.handleSubmit}>Log In</button>
                         {/* <button className="login-form-demo-user"onClick = {this.handleDemoUser}>DemoUser</button> */}
@@ -106,7 +106,7 @@ class LoginForm extends React.Component{
                         onClick = {this.handleDemoUser}> 
                         Don't want to sign up?{here}</div>
                         <div className="login-form-signup-container">
-                            <button className="login-form-signup"onClick = {this.handleOpenModal}>Sign Up</button>
+                            <button className="login-form-signup"onClick = {this.handleOpenModal}>Create New Account</button>
                         </div>
                     </div>
                         

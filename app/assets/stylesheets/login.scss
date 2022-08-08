@@ -143,9 +143,7 @@
 
   }
 
-  #label-password{
-    transform: translateY(-4px);
-  }
+  
 
   .errors{
     position: relative;
@@ -235,8 +233,15 @@
 .login-form-signup:active {
 	position:relative;
 	top:1px;
-    transform: scale(95%); 
-    transition: all 0.2s ease-in-out;
+  transform: scale(95%); 
+  transition: all 0.2s ease-in-out;
    
 }  
+
+#login-errors-render{
+  
+  transform: translateY(100%);
+}
+
+
 

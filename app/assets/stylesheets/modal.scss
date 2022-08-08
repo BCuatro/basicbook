@@ -1,0 +1,71 @@
+.modal-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    z-index: 1000;
+
+    border-radius: 5px;
+    border: solid white;
+   
+    backdrop-filter: blur(10px) ;
+    box-shadow: 0 0 6px 0 rgba(29, 29, 29, 0.203);
+  }
+
+  .modal-child {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    border: solid;
+    border-radius: 15px;
+    border-image-slice: 1;
+    border-width: 5px;
+    background-color: white;
+    /* border-image-source:
+    linear-gradient(
+      60deg,
+      #2E2F43,
+      #A38ED2
+    ); */
+    transform: translate(-50%, -50%);
+    overflow:auto;
+    box-shadow: 
+    5px 5px 5px #2E2F43,
+    10px 10px 10px #A38ED2;
+    height:547px;
+    width: 432px;
+  }
+
+  .close-x {
+    position: absolute;
+    right: 5%;
+    cursor: pointer;
+    border-radius: 70%;
+    font-size: larger;
+    font-family: sans-serif;
+    text-decoration: none;
+  }
+
+  .close-x:hover {
+    animation-name: spin;
+    animation-duration: 20000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+  }
+
+ 
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
