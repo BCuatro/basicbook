@@ -25,7 +25,7 @@ return (
     <div>
         {loading === "loading" ?
         <LoadingScreen /> :
-        <div>
+        <div >
             <Modal/>
         
             <header>

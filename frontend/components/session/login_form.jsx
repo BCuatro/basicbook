@@ -52,43 +52,64 @@ class LoginForm extends React.Component{
       }
 
     render(){
+        let colo 
+        console.log(colo)
+        console.log(this.props.loginErrors.length)
+        
+        if(this.props.loginErrors.length> 0) colo = "red"
+        const here =  <div 
+        className="login-form-demo-user"
+        id= "here"
+        onClick = {this.handleDemoUser}>Click here to try Demo User</div>
         return(
             
-            <div>
+
+            
+            <div className= "login-form">
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}
                 <form onSubmit={this.handleSubmit}>
                     {/* <h2>{this.props.formtype} </h2> */}
                   
                     {/* <div onClick={this.props.closeModal} className="close-x">X</div> */}
     
-                    <div className= "loginform">
-                    <p>Log In</p>
-                    <div className= "errors">{this.renderErrors()} </div>
-
-                    <div className="modal-input-container">   
-                            <input type="text" 
-                                id="username"
-                                required
-                                className= "modal-input"
-                                value={this.state.username}
-                                onChange={this.handleInput('username')}
-                            />
-                            <label htmlFor= "username" className="modal-label">Username:</label>
+                    
+                    <div className= "login-input">
+                        <div className="modal-input-container" >   
+                                <input type="text" 
+                                    id="username"
+                                    required
+                                    className= "modal-input"
+                                    style={this.props.loginErrors.length > 0 ? {borderColor: "red"} : {borderColor:""}}
+                                    value={this.state.username}
+                                    onChange={this.handleInput('username')}
+                                />
+                                <label htmlFor= "username" className="modal-label">Username:</label>
                         </div> 
-                        <br />
+                        
                         <div className="modal-input-container">
                             <input type="password" 
                                 id="password"
                                 required
                                 className = "modal-input"
+                                style={this.props.loginErrors.length > 0 ? {borderColor: "red"} : {borderColor:""}}
                                 value={this.state.password}
                                 onChange={this.handleInput('password')}
                             />
-                            <label htmlFor= "password" className="modal-label">Password:</label>
+                            <label htmlFor= "password" className="modal-label" id="label-password">Password:</label>
+
+                            <div className= "errors">{this.renderErrors()} </div>
                         </div>
-                        <button onClick = {this.handleSubmit}>Log In</button>
-                        <button onClick = {this.handleDemoUser}>DemoUser</button>
-                        <button onClick = {this.handleOpenModal}>Sign Up</button>
+                        <button className="login-form-button"onClick = {this.handleSubmit}>Log In</button>
+                        {/* <button className="login-form-demo-user"onClick = {this.handleDemoUser}>DemoUser</button> */}
+                        <div 
+                        className="login-form-demo-user"
+                        onClick = {this.handleDemoUser}> 
+                        Don't want to sign up?{here}</div>
+                        <div className="login-form-signup-container">
+                            <button className="login-form-signup"onClick = {this.handleOpenModal}>Sign Up</button>
+                        </div>
+                    </div>
+                        
                         {/* <div className = "loader">
                             <div className= "circle"></div>
                             <div className= "circle"></div>
@@ -99,7 +120,7 @@ class LoginForm extends React.Component{
 
 
 
-                    </div>
+                    
                 </form>
 
             </div>

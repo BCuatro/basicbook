@@ -9,18 +9,18 @@ import NewsfeedContainer from './newsfeed_container'
     
     const Homepage = ({ currentUser, logout, openModal}) => {
         const login = () => (
-          <nav className="login">
+          <div className="login">
             
             <div className ="welcomeContainer">
                 <div className="word">Welcome</div>
                 <div className="word">To</div>
                 <div className="word">Basicbook</div>
-
+              
             </div>
+            <div className="login-form-container"><LoginFormContainer /></div>
           
-            <LoginFormContainer />
-            {/* <button onClick={() => openModal('signup')}>Signup</button> */}
-          </nav>
+          </div>
+          
         );
         const Home = (user) => (
           <div className= "home">

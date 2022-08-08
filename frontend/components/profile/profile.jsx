@@ -82,8 +82,8 @@ class Profile extends React.Component{
                 
                 <div className= "profile-header">
                     <div className= "profile-cover-container">
-                        <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
-                            this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
+                        {/* <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
+                            this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" /> */}
                         <div className= "edit-cover-button-container">
                         <div id= "edit-cover-content"  ><i onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}} className="fa-solid fa-3x fa-camera-retro"></i></div>
                             {/* <button id= "edit-cover-button" onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}

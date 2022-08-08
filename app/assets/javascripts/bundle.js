@@ -3007,7 +3007,7 @@ var Homepage = function Homepage(_ref) {
       openModal = _ref.openModal;
 
   var login = function login() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "login"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "welcomeContainer"
@@ -3017,7 +3017,9 @@ var Homepage = function Homepage(_ref) {
       className: "word"
     }, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "word"
-    }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+    }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "login-form-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
   };
 
   var Home = function Home(user) {
@@ -3733,10 +3735,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
+/* harmony import */ var _friends_friend_request_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../friends/friend_request_container */ "./frontend/components/friends/friend_request_container.js");
+
 
 
 
@@ -3771,12 +3775,29 @@ var NavBar = function NavBar(_ref) {
   }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "navbar-items"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    id: "home-link"
-  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    id: "home-links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+    id: "home-link",
     to: "/"
-  }, "Home"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    "class": "fa fa-solid fa-2x fa-house"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "notification-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "notification-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+    "class": "fa fa-regular fa-2x fa-bell"
+  }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "notification-list"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "notification-links"
+  }, "Link 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "notification-links"
+  }, "Link 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "notification-links"
+  }, "Link 3"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "profile-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     to: "/users/".concat(currentUser.id)
   }, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "logout-button",
@@ -5599,9 +5620,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           _this$props$user2,
           _this$props$user3,
           _this$props$user4,
-          _this$props$user5,
-          _this$props$user6,
-          _this$props$user7;
+          _this$props$user5;
 
       // console.log("Look at this", this.props.users[this.props.friends[0]?.friend_id]?.username)
       var editButton;
@@ -5629,11 +5648,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-cover-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "cover-photo",
-        src: (_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl ? (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q",
-        alt: ""
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-cover-button-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         id: "edit-cover-content"
@@ -5648,7 +5663,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "profile-photo",
-        src: (_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl ? (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+        src: (_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.profile_photoUrl ? (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: " edit-photo-container"
@@ -5661,9 +5676,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "user-information-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "user-information"
-      }, (_this$props$user5 = this.props.user) === null || _this$props$user5 === void 0 ? void 0 : _this$props$user5.first_name, " ", (_this$props$user6 = this.props.user) === null || _this$props$user6 === void 0 ? void 0 : _this$props$user6.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, (_this$props$user3 = this.props.user) === null || _this$props$user3 === void 0 ? void 0 : _this$props$user3.first_name, " ", (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "user-username"
-      }, "@", (_this$props$user7 = this.props.user) === null || _this$props$user7 === void 0 ? void 0 : _this$props$user7.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "@", (_this$props$user5 = this.props.user) === null || _this$props$user5 === void 0 ? void 0 : _this$props$user5.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-profile-button-container"
       }, editButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-profile-button-container"
@@ -6112,43 +6127,70 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      var colo;
+      console.log(colo);
+      console.log(this.props.loginErrors.length);
+      if (this.props.loginErrors.length > 0) colo = "red";
+      var here = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "login-form-demo-user",
+        id: "here",
+        onClick: this.handleDemoUser
+      }, "Click here to try Demo User");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "login-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "loginform"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "errors"
-      }, this.renderErrors(), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "login-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         id: "username",
         required: true,
         className: "modal-input",
+        style: this.props.loginErrors.length > 0 ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         value: this.state.username,
         onChange: this.handleInput('username')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "username",
         className: "modal-label"
-      }, "Username:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Username:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "password",
         id: "password",
         required: true,
         className: "modal-input",
+        style: this.props.loginErrors.length > 0 ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         value: this.state.password,
         onChange: this.handleInput('password')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "password",
-        className: "modal-label"
-      }, "Password:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "modal-label",
+        id: "label-password"
+      }, "Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors"
+      }, this.renderErrors(), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "login-form-button",
         onClick: this.handleSubmit
-      }, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "login-form-demo-user",
         onClick: this.handleDemoUser
-      }, "DemoUser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, "Don't want to sign up?", here), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "login-form-signup-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "login-form-signup",
         onClick: this.handleOpenModal
-      }, "Sign Up"))));
+      }, "Sign Up")))));
     }
   }]);
 
