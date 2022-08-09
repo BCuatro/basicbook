@@ -4,20 +4,20 @@ import { Hearts} from 'react-loader-spinner'
 
 const LoadingScreen = () => {
     return (
-        <div>
-            <div> We</div>
+        <div className= "loading-container">
+            <div className= "loading-text"> We</div>
             <div>
             <Hearts
-                height = "80"
-                width = "80"
+                height = "240"
+                width = "240"
                 radius = "9"
-                color = 'red'
+                color = 'blue'
                 ariaLabel = 'three-dots-loading'     
                 wrapperStyle
                 wrapperClass
             />
             </div>
-            <div> BasicBook</div>
+            <div className= "loading-text"> BasicBook</div>
             
         </div>
     )

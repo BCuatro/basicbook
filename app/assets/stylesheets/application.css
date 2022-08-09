@@ -84,13 +84,13 @@ header{
   height: 56px;
   width: 100%;
   /* padding: 0px, 110px; */
-  position: -webkit-sticky;
-  position: sticky;
+  /* position: -webkit-sticky; */
+  position: fixed;
   top: 0;
   display: flex;
   /* background-color: #fff; */
-  z-index: 100;
   justify-content: space-between;
+  z-index: 1;
   
 }
 a{
@@ -118,16 +118,7 @@ i::after{
     display: flex;
   }
 
-  .editform{
-    position: relative;
-    left: 10%;
-    display: flex;
-    align-items: stretch;
-  }
-
-  .editform form div{
-    padding: 5px;
-  }
+ 
  
   
 
@@ -136,7 +127,7 @@ i::after{
 
 
 /* New Post CSS */
-.newPostButton{
+/* .newPostButton{
   height: 40px;
   color: #fff;
   font-size: 18px;
@@ -146,7 +137,7 @@ i::after{
   background: #00e6f6;
   transition: all 0.3s ease;
   width: 100%;
-}
+} */
 
 /* .invalidNewPostButton{
   height: 40px;
@@ -179,27 +170,11 @@ i::after{
 
 
 
-.postcontainer{
-  background-color: transparent;
-  border-radius: 10px;
-  z-index: 11;
-}
-.postHeader{
-  font-size: 25px;
-  font-weight: 500;
-  text-align: center;
-  padding: 10px 0;
-  border-bottom: 3px solid #082a3a;
-  border-radius: 5px;
-  font-family: sans-serif
 
-}
 
-.post form{
-  margin: 5px 25px;
-  background: transparent;
-}
-/* textarea{
+
+
+textarea{
   resize: none;
   border: none;
   overflow: scroll;
@@ -210,7 +185,7 @@ i::after{
 }
 input:focus, textarea {
   outline: none !important;
-} */
+}
 
 
 
@@ -293,7 +268,6 @@ ul{
     .home{
       position: relative;
       height: 100%;
-      z-index: 1000;
     }
 
     

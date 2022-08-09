@@ -5,6 +5,7 @@ import {useParams } from 'react-router-dom'
 
 
 
+
 const NavBarExtension = ({users}) => {
     const id = parseInt(useParams().userId)
 
@@ -14,7 +15,7 @@ const NavBarExtension = ({users}) => {
         const scrollvalue = document.documentElement.scrollTop
         if (scrollvalue > 700){
             setState(true)
-            console.log("THIS WORKED")
+
         }
         else{
             setState(false)

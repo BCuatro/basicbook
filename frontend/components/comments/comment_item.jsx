@@ -91,10 +91,10 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
           
         
         
-        <div className="dropdown"> 
+        {/* <div className="dropdown"> 
           {deletebutton}
           {editbutton}
-        </div>
+        </div> */}
         </div>
 
         

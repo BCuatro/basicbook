@@ -45,6 +45,7 @@ class Profile extends React.Component{
         this.props.fetchPosts();
         this.props.fetchFriends();
         this.props.fetchLikes();
+        this.props.fetchComments();
         
 
         // this.props.fetchUser(parseInt(this.props.match.params.userId))
@@ -82,8 +83,8 @@ class Profile extends React.Component{
                 
                 <div className= "profile-header">
                     <div className= "profile-cover-container">
-                        {/* <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
-                            this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" /> */}
+                        <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
+                            this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
                         <div className= "edit-cover-button-container">
                         <div id= "edit-cover-content"  ><i onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}} className="fa-solid fa-3x fa-camera-retro"></i></div>
                             {/* <button id= "edit-cover-button" onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
@@ -108,7 +109,7 @@ class Profile extends React.Component{
                  
                 </div>
                 <div className = "profile-body">
-                    {/* <div className = "sidebar-left">
+                    <div className = "sidebar-left">
                         <h5>Friend Request</h5>
                         <ul className= "wall_posts">
                                 { 
@@ -129,7 +130,7 @@ class Profile extends React.Component{
                                 
                             </ul>
 
-                    </div>  */}
+                    </div> 
                      {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}

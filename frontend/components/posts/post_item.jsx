@@ -40,14 +40,12 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
   }
   if (currentUser?.id === post?.author_id){
     // editbutton = <EditPostContainer post={post} />
-    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
-    editbutton =  <button 
-    className ="edit-button"
-    onClick ={(e) => {
-      e.stopPropagation()
-      e.preventDefault()
-      updatePost("editpost", post)
-    }}> Edit Post</button> 
+    editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+    // editbutton =  <button 
+    // className ="edit-button"
+    // onClick ={(e) => {
+    //   updatePost("editpost", post)
+    // }}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
     deletebutton =  <button 
     className="delete button" 
@@ -72,27 +70,40 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
           <div className= "post-photo-container" >
             <img  src={author?.profile_photoUrl ? author?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
           </div>
+          
 
           <div className = "post-content">
             <div className="post-header-name"> {author?.first_name} {author?.last_name} </div>
             <div className="post-header-name-sub"> @{author?.username}</div>
             <div className="post-header-name-sub">Posted on {post_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {post_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
           </div>
-        </div>
-       
 
-        <div className ="dropdown">
-          <div className="dropdown-menu">
-            {/* <button className="dropdown-menu-button">...</button> */}
-              <div className= "dropdown-menu-items">
-
-                  <div className="dropdown-menu-item">{editbutton}</div>
-                  <div className="dropdown-menu-item">{deletebutton}</div>
-                </div>
+          <div className="dropdown-container">
+            <div className="dropdown">
+              <div className="dropdown-menu">
+                <button className= "dropdown-menu-button">...</button>
+                <ul>
+                  <li onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post </li>
+                  <li>{deletebutton}</li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+        
 
-      </div>
+        {/* <div className ="dropdown">
+          <div className="dropdown-menu">
+            <button className="dropdown-menu-button" onclick="myFunction()" >...</button>
+              <ul className= "dropdown-menu-items">
+
+                  <li className="dropdown-menu-item">{editbutton}</li>
+                  <li className="dropdown-menu-item">{deletebutton}</li>
+              </ul>
+            </div>
+        </div>*/}
+
+      </div> 
         <div className="post-body">
         
           <div className= "post-body-content">{post.body} </div>

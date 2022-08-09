@@ -42,6 +42,9 @@
         display: flex;
         height: 100%;
         align-items: center;
+        background-color: #fff;
+        z-index: inherit;
+        
         
     }
 
@@ -118,21 +121,72 @@
         padding-left: 5px;
     }
     
+    // .notification-container{
+    //     position: relative;
+    //     width: 200px;
+    //     height:min-content;
+
+    // }
+    // .notification-links{
+    //     padding:12px;
+    //     border: none;
+    //     outline: none;
+    //     width: 200px;
+
+
+    // }
+
+    // .notification-list{
+    //    position:absolute
+    // }
+
     .notification-container{
-        position: relative;
-        width: 200px;
-        height:min-content;
+        width: 300px;
+        background: #f2eef9;
+        margin: 40px auto;
+        
+      }
 
-    }
-    .notification-links{
-        padding:12px;
-        border: none;
-        outline: none;
-        width: 200px;
-
-
+    .notify{
+        transform: translateX(50%);
     }
 
+    .notification-button{
+       
+        background:#2d2f31;
+        color: white;
+        font-size: 1.2em;
+        cursor: pointer;
+        display: block;
+        z-index: 10000000;
+      }
+      
+      .notification-button::after{
+        float: right;
+        right: 10%;
+        content: "+";
+        z-index: 10000001;
+        
+      }
+    
     .notification-list{
-       position:absolute
-    }
+        clear: both;
+        width: 100%;
+        height:0px;
+        overflow:hidden;
+        text-align: center;
+        transition: height .4s ease;
+        z-index: 10000000;
+      }
+
+    .notification-list li {padding: 30px;}
+    #touch{position: absolute; opacity: 0; height:0px;}
+    #touch:checked + .notification-list {height: 300px;}
+
+    .navbar-photo{
+        height: 40px;
+        width: 40px;
+        border-radius: 40px;
+        transform:translate(10px, -5px)
+        
+      }

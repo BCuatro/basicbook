@@ -80,11 +80,17 @@ class NewPost extends React.Component {
         return (
 
 
-            <div className="postcontainer">
+            <div className="post-container">
                 <div className="post">
-                    <header className="postHeader">Create Post</header>
+                    <div className="new-post-header">
+                    <div
+                        onClick={()=>{
+                            this.props.closeModal();
+                        }}className="close-x"><i className="fa fa-xs fa-x"></i></div>
+                        <div>Create Post</div>
+                    </div>
                     <form onSubmit={this.handleSubmit}>
-                        <button onClick={() => { this.props.closeModal(); }} className="close-x">X</button>
+                        
 
                         <textarea
                             cols="50" rows="10"

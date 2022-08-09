@@ -38,8 +38,9 @@
     box-shadow: 
     5px 5px 5px #2E2F43,
     10px 10px 10px #A38ED2;
-    height:547px;
-    width: 432px;
+    max-height:547px;
+    min-width: 432px;
+   
   }
 
   .close-x {

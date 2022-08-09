@@ -19,8 +19,8 @@ const mapStateToProps =(state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchUsers :()=> dispatch(fetchUsers()),
-    logout: () => dispatch(logout())
+    // fetchUsers :()=> dispatch(fetchUsers()),
+    // logout: () => dispatch(logout())
     
 })
 
