@@ -1803,38 +1803,40 @@ __webpack_require__.r(__webpack_exports__);
       likesCount++;
     }
   });
-  likesCount > 0 ? displayCommentLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+  likesCount > 0 ? displayCommentLikesCount = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "like-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     className: "fa-regular fa-thumbs-up"
   }), " ", likesCount) : displayCommentLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (comment === null || comment === void 0 ? void 0 : comment.author_id);
   })[0];
-  var deletebutton;
-  var editbutton;
+  var dropdownId;
+  var visibility;
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (comment === null || comment === void 0 ? void 0 : comment.author_id)) {
-    // editbutton = <EditPostContainer post={post} />
-    // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
-    // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
-    editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick() {
-        return updateComment("editcomment", comment);
-      }
-    }, " Edit Comment");
-    deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      className: "delete button",
-      onClick: function onClick() {
-        var confirmation = window.confirm("Are you sure you want to delete this comment?");
-
-        if (confirmation === true) {
-          deleteComment(comment.id);
-        }
-      }
-    }, "Delete Comment ");
+    dropdownId = "comment-dropdown";
+    visibility = "non-visibility";
   } else {
-    deletebutton = "";
-    editbutton = "";
-  }
+    dropdownId = "dropdown-nonvisible";
+    visibility = "";
+  } // editbutton = <EditPostContainer post={post} />
+  // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+  // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
+  //   editbutton =  <button onClick ={() => updateComment("editcomment", comment)}> Edit Comment</button> 
+  //   deletebutton =  <button 
+  //   className="delete button" 
+  //   onClick={() => { 
+  //     const confirmation = 
+  //     window.confirm("Are you sure you want to delete this comment?")
+  //     if (confirmation === true) {
+  //       deleteComment(comment.id)
+  //     }
+  //     }}>Delete Comment </button>
+  // } else {
+  //   deletebutton = ""
+  //   editbutton = ""
+
 
   if (postId === (comment === null || comment === void 0 ? void 0 : comment.post_id)) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
@@ -1868,8 +1870,32 @@ __webpack_require__.r(__webpack_exports__);
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "comment-body-content"
     }, comment === null || comment === void 0 ? void 0 : comment.body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "like-and-dropdown"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      "class": "dropdown",
+      id: dropdownId
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      "class": "dropdown-menu"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-links",
+      onClick: function onClick() {
+        return updateComment("editcomment", comment);
+      }
+    }, "Edit Comment")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-links",
+      onClick: function onClick() {
+        var confirmation = window.confirm("Are you sure you want to delete this comment?");
+
+        if (confirmation === true) {
+          deleteComment(comment.id);
+        }
+      }
+    }, "Delete Comment "))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "spaceholder",
+      id: visibility
+    }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment-likes"
-    }, displayCommentLikesCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, displayCommentLikesCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment-like-button"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_likes_like_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       likeable_id: comment.id,
@@ -4929,7 +4955,7 @@ var PostItem = function PostItem(_ref) {
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
     // editbutton = <EditPostContainer post={post} />
     editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick(modal, post) {
+      onClick: function onClick() {
         dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)({
           modal: "editpost",
           post: post
@@ -4948,7 +4974,7 @@ var PostItem = function PostItem(_ref) {
         var confirmation = window.confirm("Are you sure you want to delete this post?");
 
         if (confirmation === true) {
-          deletePost(post.id);
+          deletePost(post === null || post === void 0 ? void 0 : post.id);
         }
       }
     }, "Delete Post ");
@@ -4986,22 +5012,28 @@ var PostItem = function PostItem(_ref) {
       year: 'numeric'
     }), " at ", post_date.toLocaleTimeString([], {
       timeStyle: 'short'
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-container"
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      "class": "dropdown"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-menu"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      className: "dropdown-menu-button"
-    }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-      onClick: function onClick(modal, post) {
+      "class": "dropdown-menu"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-links",
+      onClick: function onClick() {
         dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)({
           modal: "editpost",
           post: post
         }));
       }
-    }, " Edit Post "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, deletebutton))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Edit Post")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "dropdown-links",
+      onClick: function onClick() {
+        var confirmation = window.confirm("Are you sure you want to delete this post?");
+
+        if (confirmation === true) {
+          deletePost(post === null || post === void 0 ? void 0 : post.id);
+        }
+      }
+    }, "Delete Post ")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "post-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "post-body-content"

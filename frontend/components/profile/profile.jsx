@@ -138,7 +138,9 @@ class Profile extends React.Component{
                         <button onClick={this.handleSubmit}>Upload Photo</button>
                         
 
+                        
                     </form> */}
+                       
                     <ProfileNavBarContainer />
                 
                     

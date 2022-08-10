@@ -15,7 +15,7 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
   })
    
   likesCount > 0 ? displayCommentLikesCount = 
-  <div>
+  <div className="like-container">
     <i className="fa-regular fa-thumbs-up"></i> {likesCount}
   </div> : displayCommentLikesCount= ""
 
@@ -26,27 +26,35 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
     obj.id === comment?.author_id
   )[0]
   
-  let deletebutton
-  let editbutton
+  let dropdownId
+  let visibility
   if (currentUser?.id === comment?.author_id){
+    dropdownId = "comment-dropdown"
+    visibility= "non-visibility"
+  }
+  else{
+    dropdownId = "dropdown-nonvisible"
+    visibility = ""
+  }
+
    
     // editbutton = <EditPostContainer post={post} />
     // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
-    editbutton =  <button onClick ={() => updateComment("editcomment", comment)}> Edit Comment</button> 
-    deletebutton =  <button 
-    className="delete button" 
-    onClick={() => { 
-      const confirmation = 
-      window.confirm("Are you sure you want to delete this comment?")
-      if (confirmation === true) {
-        deleteComment(comment.id)
-      }
-      }}>Delete Comment </button>
-  } else {
-    deletebutton = ""
-    editbutton = ""
-  }
+  //   editbutton =  <button onClick ={() => updateComment("editcomment", comment)}> Edit Comment</button> 
+  //   deletebutton =  <button 
+  //   className="delete button" 
+  //   onClick={() => { 
+  //     const confirmation = 
+  //     window.confirm("Are you sure you want to delete this comment?")
+  //     if (confirmation === true) {
+  //       deleteComment(comment.id)
+  //     }
+  //     }}>Delete Comment </button>
+  // } else {
+  //   deletebutton = ""
+  //   editbutton = ""
+  
     if (postId=== comment?.post_id) {
     return (
       
@@ -65,16 +73,49 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                     <div id = "comment-content">
                       <div id="comment-header-name"> {author?.first_name} {author?.last_name} </div>
                       <div id="comment-header-name-sub"> @{author?.username}</div>
-                      
                     </div>
+
+                     
+                                
                   </div>
+                  
                 </div>
-                
+
+ 
                   <div className="comment-body">
                     <div id= "comment-body-content">{comment?.body}</div>
                   </div>
               </div>
-              <div className= "comment-likes">{displayCommentLikesCount}</div>
+              <div className="like-and-dropdown" >
+                <div class="dropdown" id={dropdownId}>
+                  <div class="dropdown-menu">
+                    <button>...</button>
+                      <ul>
+                        <li><div className="dropdown-links" 
+                                  onClick ={() => 
+                                  updateComment("editcomment", comment)}>
+                                  Edit Comment</div></li>
+
+                        <li><div className= "dropdown-links"
+                                onClick={() => { 
+                                  const confirmation = 
+                                  window.confirm("Are you sure you want to delete this comment?")
+                                  if (confirmation === true) {
+                                    deleteComment(comment.id)
+                                  }
+                                  }}>Delete Comment </div></li>
+                      </ul>
+                  </div>
+                </div>
+                <div className= "spaceholder" id={visibility}>...</div>
+
+                <div className= "comment-likes">{displayCommentLikesCount}</div>
+              </div>
+
+              
+
+
+
             </div>
             
             <div className="comment-like-button">

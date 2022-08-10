@@ -40,7 +40,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
   }
   if (currentUser?.id === post?.author_id){
     // editbutton = <EditPostContainer post={post} />
-    editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
+    editbutton =  <button onClick ={() => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
     // editbutton =  <button 
     // className ="edit-button"
     // onClick ={(e) => {
@@ -53,7 +53,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
       const confirmation = 
       window.confirm("Are you sure you want to delete this post?")
       if (confirmation === true) {
-        deletePost(post.id)
+        deletePost(post?.id)
       }
       }}>Delete Post </button>
   } else {
@@ -77,33 +77,30 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
             <div className="post-header-name-sub"> @{author?.username}</div>
             <div className="post-header-name-sub">Posted on {post_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })} at {post_date.toLocaleTimeString([], {timeStyle: 'short'})}</div>
           </div>
-
-          <div className="dropdown-container">
-            <div className="dropdown">
-              <div className="dropdown-menu">
-                <button className= "dropdown-menu-button">...</button>
-                <ul>
-                  <li onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post </li>
-                  <li>{deletebutton}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          
         </div>
-        
+        <div class="dropdown">
+          <div class="dropdown-menu">
+            <button>...</button>
+              <ul>
+                <li><div className="dropdown-links" 
+                          onClick ={() => 
+                          {dispatch(openModal({modal: "editpost", post: post}))}}>
+                          Edit Post</div></li>
 
-        {/* <div className ="dropdown">
-          <div className="dropdown-menu">
-            <button className="dropdown-menu-button" onclick="myFunction()" >...</button>
-              <ul className= "dropdown-menu-items">
-
-                  <li className="dropdown-menu-item">{editbutton}</li>
-                  <li className="dropdown-menu-item">{deletebutton}</li>
+                <li><div className= "dropdown-links"
+                        onClick={() => { 
+                        const confirmation = 
+                        window.confirm("Are you sure you want to delete this post?")
+                        if (confirmation === true) {
+                          deletePost(post?.id)
+                        }
+                        }}>Delete Post </div></li>
               </ul>
-            </div>
-        </div>*/}
-
-      </div> 
+          </div>
+        </div> 
+      </div>
+              
         <div className="post-body">
         
           <div className= "post-body-content">{post.body} </div>

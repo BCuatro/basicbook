@@ -47,9 +47,7 @@
   }
   .postComments li .comment_class{
     justify-content: center;
-    height: -moz-fit-content;
     height: fit-content;
-    width: -moz-fit-content;
     width: fit-content;
     border: solid #F1F2F5;
     border-radius: 15px;
@@ -57,6 +55,7 @@
     background-color: #F1F2F5;
     overflow:auto;
     padding: 8px 12px;
+    min-width:65%;
     
   }
   .comment-body-with-likes{
@@ -64,9 +63,13 @@
     margin-bottom: 5px;
    
   }
-  .comment-likes{
-    transform: translate(-15%,85%);
+
+  .like-and-dropdown{
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
   }
+
 
   .comment-body{
     margin: -5px 0 0 4px
@@ -107,32 +110,12 @@
     color: #050505;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-// .newCButton {
-// 	background:linear-gradient(to bottom, #bec1c4 5%, #d7dade 100%);
-// 	background-color:#bec1c4;
-// 	border-radius:5px;
-// 	border:1px solid #bec1c4;
-// 	display:inline-block;
-// 	cursor:pointer;
-// 	color:#050505;
-// 	font-family:Arial;
-// 	font-size:15px;
-// 	// font-weight:bold;
-// 	// padding:12px 44px;
-// 	text-decoration:none;
-// 	text-shadow:0px 1px 0px #bec1c4;
-//     height: 80%;
-//     transform: translateY(11%);
-// }
-// .newCButton:hover {
-// 	background:linear-gradient(to bottom, #d7dade 5%, #bec1c4 100%);
-// 	background-color:#d7dade;
-// }
-// .newCButton:active {
-// 	position:relative;
-// 	top:1px;
-// }
+
 
 .newCButton{
   display: none;
+}
+
+.comment-likes{
+  width: 50px;
 }
