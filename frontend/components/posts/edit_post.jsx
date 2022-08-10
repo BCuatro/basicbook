@@ -75,28 +75,35 @@ class EditPost extends React.Component {
 
             //     <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
             // </div>
-            <div className="editform">
+            <div className="edit-post-form">
                 <form onSubmit={this.handleSubmit}>
-                    <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
-                    <h1>Edit Post</h1>
-                    <textarea 
-                    cols="30" rows="10" 
-                    value = {this.state?.body}
-                    onChange={this.handleUpdate("body")}
-                    ></textarea>
-                    <br />
-                    <h5>Preview</h5>
-                            {preview}
-                        <br />
-                        <input type="file" 
-                        onChange={this.handleFile}
-                        name="" id="" />
-                        <br />
-                    <button 
-                    onClick = {this.handleSubmit} 
-                    disabled={this.state.body.replace(/ /g,'').length ===0} 
-                    className= "newPostButton" 
-                    id= {buttonId}>Post</button>
+                    <div className ="edit-post-header">
+                            <h2 className= "edit-form-title">Edit Post</h2>
+                            <div
+                            onClick={()=>{
+                                this.props.closeModal();
+                            }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
+                    </div>
+                    <div className="edit-post-container">
+                        <textarea 
+                        cols="30" rows="5" 
+                        value = {this.state?.body}
+                        onChange={this.handleUpdate("body")}
+                        ></textarea>
+                        <div className= "post-preview-container">
+                            <h5>Preview</h5>
+                                    {preview}
+                                <br />
+                                <input type="file" 
+                                onChange={this.handleFile}
+                                name="" id="" />
+                        </div>
+                        <button 
+                        onClick = {this.handleSubmit} 
+                        disabled={this.state.body.replace(/ /g,'').length ===0} 
+                        className= "newPostButton" 
+                        id= {buttonId}>Post</button>
+                    </div>
 
                 </form>
 

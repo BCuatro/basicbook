@@ -82,44 +82,44 @@ class NewPost extends React.Component {
 
             <div className="post-container">
                 <div className="post">
-                    <div className="new-post-header">
-                    <div
-                        onClick={()=>{
-                            this.props.closeModal();
-                        }}className="close-x"><i className="fa fa-xs fa-x"></i></div>
-                        <div>Create Post</div>
-                    </div>
                     <form onSubmit={this.handleSubmit}>
-                        
-
-                        <textarea
-                            cols="50" rows="10"
-                            placeholder='What is on your mind?'
-                            value={this.state.body}
-                            onChange={this.handleInput("body")}
-                        ></textarea>
-                        <h5>Preview</h5>
-                            {preview}
-                        <br />
-                        <input type="file" 
-                        onChange={this.handleFile}
-                        name="" id="" />
-                        <br />
-                        <input type="hidden"
-                            value={this.state.author_id}
-                            onChange={this.handleInput("author_id")}
-                        />
-                        <input type="hidden"
-                            value={this.state.profile_id}
-                            onChange={this.handleInput("profile_id")}
-                        />
-                        <br />
-                        <button
-                            onClick={this.handleSubmit}
-                            disabled={this.state.body.replace(/ /g, '').length === 0}
-                            className="newPostButton"
-                            id={buttonId}>Post</button>
-
+                        <div className ="edit-post-header">
+                            <h2 className= "edit-form-title">New Post</h2>
+                            <div
+                            onClick={()=>{
+                                this.props.closeModal();
+                            }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
+                        </div>
+                        <div className="edit-post-container">
+                            <textarea
+                                cols="50" rows="5"
+                                placeholder='What is on your mind?'
+                                value={this.state.body}
+                                onChange={this.handleInput("body")}
+                            ></textarea>
+                             <div className= "post-preview-container">
+                                <h5>Preview</h5>
+                                        {preview}
+                                    <br />
+                                    <input type="file" 
+                                    onChange={this.handleFile}
+                                    name="" id="" />
+                            </div>
+                            <input type="hidden"
+                                value={this.state.author_id}
+                                onChange={this.handleInput("author_id")}
+                            />
+                            <input type="hidden"
+                                value={this.state.profile_id}
+                                onChange={this.handleInput("profile_id")}
+                            />
+                            <br />
+                            <button
+                                onClick={this.handleSubmit}
+                                disabled={this.state.body.replace(/ /g, '').length === 0}
+                                className="newPostButton"
+                                id={buttonId}>Post</button>
+                        </div>
                     </form>
                 </div>
 
