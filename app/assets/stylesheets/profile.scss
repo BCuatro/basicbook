@@ -176,7 +176,7 @@
     display: flex;
     width: 712px;
     height: 600px;
-    padding: 16px 16px 20px ;
+    padding: 10px 16px 20px ;
     justify-content: space-around;
     align-items: stretch;
     
@@ -184,7 +184,7 @@
 
   .edit-form form{
     position: relative;
-    height:95%;
+    height:100%;
     width: 100%;
     
   }
@@ -227,7 +227,7 @@
     display: flex;
     justify-content: space-between;
     width: 75%;
-    transform: translateY(-10%);
+    transform: translateY(0%);
 
 }
 

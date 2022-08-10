@@ -3,6 +3,8 @@ import * as UsersApiUtil from '../util/users_api_util';
 export const RECEIVE_ALL_USERS = `RECEIVE_ALL_USERS`;
 export const RECEIVE_USER = `RECEIVE_USER`;
 export const RECEIVE_PROFILE = `RECEIVE_PROFILE`
+export const RECEIVE_EDIT_ERRORS= "RECEIVE_EDIT_ERRORS";
+export const REMOVE_EDIT_ERRORS ="REMOVE_EDIT_ERRORS";
 
 
 //Action creators
@@ -25,6 +27,18 @@ const receiveProfile = user => {
     return {
         type: RECEIVE_PROFILE,
         user
+    }
+}
+const receiveEditErrors = editErrors =>{
+    return{
+        type: RECEIVE_EDIT_ERRORS,
+        editErrors
+    }
+    
+}
+export const removeEditErrors = () => {
+    return{
+        type:REMOVE_EDIT_ERRORS
     }
 }
 
@@ -64,12 +78,11 @@ export const fetchProfile =(userId) => (dispatch) => {
 
 // }
 
-export const updateUser= (id, formData) => dispatch => {
-    return UsersApiUtil.updateUser(id, formData)
+export const updateUser= (id, formData) => dispatch => (
+    UsersApiUtil.updateUser(id, formData)
     .then(user =>(
-         dispatch(receiveUser(user))
-    ))
-
-}
-
-
+    dispatch(receiveUser(user))
+    ), errors => (dispatch(receiveEditErrors(errors.responseJSON))
+        )
+    )
+)

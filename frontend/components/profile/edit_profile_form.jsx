@@ -7,19 +7,12 @@ class EditForm extends React.Component{
        
         this.state = this.props.currentUser
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleFile = this.handleFile.bind(this)
-        // this.handleProfilePic =this.handleProfilePic.bind(this)
-        
+        this.renderErrors = this.renderErrors.bind(this);
       }
     
       componentDidMount() {
         this.props.fetchUser(this.state.id)
       }
-
-
-        // handleFile(e) {
-        //     this.setState({photoFile: e.currentTarget.value});
-        // }
 
     
       handleSubmit(e) {
@@ -30,8 +23,7 @@ class EditForm extends React.Component{
         formData.append('user[location]', this.state.location)
         formData.append('user[bio]', this.state.bio)
         this.props.updateUser(this.state.id, formData).then(this.props.closeModal)
-    //     const formData = new FormData();
-    //     formData.append('user[profile_pic]', this.state.photoFile)
+   
       }
     
 
@@ -41,14 +33,17 @@ class EditForm extends React.Component{
         })
     }
 
-    // handleProfilePic(user){
-    //     if (!user.profile_picUrl) {
-    //         return <p>no photo</p>
-    //     } else {
-    //         return <img className="profilePic"src={user.profile_picUrl} />;
-    //     }
-    // }
-   
+    renderErrors() {
+        return(
+            <ul> 
+                {this.props.signupErrors.map((error, index) => (
+                <li key={`error-${index}`}>
+                    {error}
+                </li>
+                ))}
+            </ul>
+        );
+      }
 
 
    
@@ -56,9 +51,6 @@ class EditForm extends React.Component{
     render(){ 
         const today = new Date(Date.now())
        
-
-       
-        // console.log(Date.now() - Date.now().getTimezoneOffset())
         return (
             <div className="edit-form">
                     <form onSubmit={this.handleSubmit}>
@@ -71,74 +63,46 @@ class EditForm extends React.Component{
                             <div
                             onClick={()=>{
                                 this.props.closeModal();
-                                this.props.removeErrors();
+                                this.props.removeEditErrors();
                             }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
-                            {/* <button onClick={()=>{
-                                    this.props.closeModal();
-                                    this.props.removeErrors();
-                                }} className="close-x"><i className="fa fa-lg fa-x"></i></button> */}
+                            
                     </div>
-                    {/* <h3>Username: {this.state.username}</h3>
-                    <h4>Email: {this.state.email}</h4> */}
-                    {/* <div className="modal-input-container">
-                        <input type="text" 
-                            id="first_name"
-                            required
-                            className="modal-input"
-                            value={this.state.first_name}
-                            onChange={this.handleUpdate('first_name')}
-                        />
-                        <label htmlFor= "first_name" className="modal-label">First Name:</label>
-                    </div>
-
-                    <br />
-                    <div className="modal-input-container">
-                        <input type="text"  //take a look at your label
-                            id="last_name"
-                            required
-                            className= "modal-input"
-                            value={this.state.last_name}
-                            onChange={this.handleUpdate('last_name')}
-                        />
-                        <label htmlFor= "last_name" className="modal-label">Last Name</label>
-                        <br />
-                        
-                    </div> */}
+                  
                     <div className = "edit-form-content-container">
                         <div className = "full-name-container"> 
                                 <div className="modal-input-container">
                                     <input type="text" 
                                         id="first_name"
                                         required
-                                        // style={this.props.signupErrors.join(" ").includes("First") ? {borderColor: "red"} : {borderColor:""}}
+                                        style={this.props.editErrors.join(" ").includes("First") ? {borderColor: "red"} : {borderColor:""}}
                                         className="modal-input"
                                         value={this.state.first_name}
                                         onChange={this.handleUpdate('first_name')}
                                     />
                                     <label htmlFor= "first_name" className="modal-label" id= "first-name-label">First Name:</label>
-                                    {/* <div className= "errors" 
-                                        id={this.props.signupErrors.join(" ").includes("First") ? "signup-errors": "non-visible"}>
+                                    <div className= "errors" 
+                                        id={this.props.editErrors.join(" ").includes("First") ? "signup-errors": "non-visible"}>
                                         First name is invalid 
-                                    </div> */}
+                                    </div>
                                 </div>
                                 <div className="modal-input-container">
-                                    <input type="text"  //take a look at your label
+                                    <input type="text"  
                                         id="last_name"
                                         required
-                                        // style={this.props.signupErrors.join(" ").includes("Last")? {borderColor: "red"} : {borderColor:""}}
+                                        style={this.props.editErrors.join(" ").includes("Last")? {borderColor: "red"} : {borderColor:""}}
                                         className= "modal-input"
                                         value={this.state.last_name}
                                         onChange={this.handleUpdate('last_name')}
                                     />
                                     <label htmlFor= "last_name" className="modal-label" id="last-name-label">Last Name:</label>
-                                    {/* <div className= "errors" 
-                                        id={this.props.signupErrors.join(" ").includes("Last") ? "signup-errors": "non-visible"}>
+                                    <div className= "errors" 
+                                        id={this.props.editErrors.join(" ").includes("Last") ? "signup-errors": "non-visible"}>
                                         Last name is invalid 
-                                    </div> */}
+                                    </div>
                                 </div>
                             </div>
                             <div className="modal-input-container">
-                                <input type="date"  //take a look at your label
+                                <input type="date"  
                                     id="birthday"
                                     required
                                     max= {today.toISOString().split('T')[0]}
@@ -149,18 +113,18 @@ class EditForm extends React.Component{
                                 <label htmlFor= "birthday" className="modal-label">Birthday</label>
                             </div> 
                             <div className="modal-input-container">
-                            <input type="text"  //take a look at your label
+                            <input type="text"  
                                 id="pronouns"
                                 required
                                 className= "modal-input"
                                 value={this.state.pronouns}
                                 onChange={this.handleUpdate('gender')}
                             />
-                            <label htmlFor= "pronouns" className="modal-label">pronouns</label>
+                            <label htmlFor= "pronouns" className="modal-label">Pronouns</label>
                             </div> 
               
                         <div className="modal-input-container">
-                            <input type="text"  //take a look at your label
+                            <input type="text"  
                                 id="location"
                                 required
                                 className= "modal-input"
@@ -170,7 +134,7 @@ class EditForm extends React.Component{
                             <label htmlFor= "location" className="modal-label">Location</label>
                         </div>   
                         <div className="modal-input-container">
-                            <input type="text"  //take a look at your label
+                            <input type="text"  
                                 id="bio"
                                 required
                                 className= "modal-input"
@@ -180,12 +144,6 @@ class EditForm extends React.Component{
                             <label htmlFor= "bio" className="modal-label">Bio</label>
                         
                         </div>
-                        
-                        
-                    {/* <div>
-                        <input type="file" 
-                        onChange ={this.handleProfilePic}/>
-                    </div> */}
                     
                     <button className="edit-submit-button" onClick = {this.handleSubmit}>Update Info</button>
                     </div>

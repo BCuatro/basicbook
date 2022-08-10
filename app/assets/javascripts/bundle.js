@@ -1597,18 +1597,23 @@ var signup = function signup(user) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_USERS": () => (/* binding */ RECEIVE_ALL_USERS),
+/* harmony export */   "RECEIVE_EDIT_ERRORS": () => (/* binding */ RECEIVE_EDIT_ERRORS),
 /* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
 /* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "REMOVE_EDIT_ERRORS": () => (/* binding */ REMOVE_EDIT_ERRORS),
 /* harmony export */   "fetchProfile": () => (/* binding */ fetchProfile),
 /* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "fetchUsers": () => (/* binding */ fetchUsers),
+/* harmony export */   "removeEditErrors": () => (/* binding */ removeEditErrors),
 /* harmony export */   "updateUser": () => (/* binding */ updateUser)
 /* harmony export */ });
 /* harmony import */ var _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/users_api_util */ "./frontend/util/users_api_util.js");
 
 var RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 var RECEIVE_USER = "RECEIVE_USER";
-var RECEIVE_PROFILE = "RECEIVE_PROFILE"; //Action creators
+var RECEIVE_PROFILE = "RECEIVE_PROFILE";
+var RECEIVE_EDIT_ERRORS = "RECEIVE_EDIT_ERRORS";
+var REMOVE_EDIT_ERRORS = "REMOVE_EDIT_ERRORS"; //Action creators
 
 var receiveUsers = function receiveUsers(users) {
   return {
@@ -1629,8 +1634,20 @@ var receiveProfile = function receiveProfile(user) {
     type: RECEIVE_PROFILE,
     user: user
   };
-}; //thunk Method
+};
 
+var receiveEditErrors = function receiveEditErrors(editErrors) {
+  return {
+    type: RECEIVE_EDIT_ERRORS,
+    editErrors: editErrors
+  };
+};
+
+var removeEditErrors = function removeEditErrors() {
+  return {
+    type: REMOVE_EDIT_ERRORS
+  };
+}; //thunk Method
 
 var fetchUsers = function fetchUsers() {
   return function (dispatch) {
@@ -1663,6 +1680,8 @@ var updateUser = function updateUser(id, formData) {
   return function (dispatch) {
     return _util_users_api_util__WEBPACK_IMPORTED_MODULE_0__.updateUser(id, formData).then(function (user) {
       return dispatch(receiveUser(user));
+    }, function (errors) {
+      return dispatch(receiveEditErrors(errors.responseJSON));
     });
   };
 };
@@ -5102,7 +5121,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     user: state.entities.users[ownProps.match.params.userId],
-    userId: ownProps.match.params.userId // signupErrors: state.errors.signupErrorSession,
+    userId: ownProps.match.params.userId,
+    editErrors: state.errors.usersErrors // signupErrors: state.errors.signupErrorSession,
 
   };
 };
@@ -5112,8 +5132,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.signup)(user));
     },
-    removeErrors: function removeErrors() {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.removeSignupErrors)());
+    removeEditErrors: function removeEditErrors() {
+      return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_4__.removeEditErrors)());
     },
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_users_actions__WEBPACK_IMPORTED_MODULE_4__.fetchUser)(userId));
@@ -5182,9 +5202,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = _this.props.currentUser;
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.handleFile = this.handleFile.bind(this)
-    // this.handleProfilePic =this.handleProfilePic.bind(this)
-
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -5192,10 +5211,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchUser(this.state.id);
-    } // handleFile(e) {
-    //     this.setState({photoFile: e.currentTarget.value});
-    // }
-
+    }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -5205,8 +5221,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       formData.append('user[last_name]', this.state.last_name);
       formData.append('user[location]', this.state.location);
       formData.append('user[bio]', this.state.bio);
-      this.props.updateUser(this.state.id, formData).then(this.props.closeModal); //     const formData = new FormData();
-      //     formData.append('user[profile_pic]', this.state.photoFile)
+      this.props.updateUser(this.state.id, formData).then(this.props.closeModal);
     }
   }, {
     key: "handleUpdate",
@@ -5216,21 +5231,22 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, type, e.currentTarget.value));
       };
-    } // handleProfilePic(user){
-    //     if (!user.profile_picUrl) {
-    //         return <p>no photo</p>
-    //     } else {
-    //         return <img className="profilePic"src={user.profile_picUrl} />;
-    //     }
-    // }
-
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, this.props.signupErrors.map(function (error, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+          key: "error-".concat(index)
+        }, error);
+      }));
+    }
   }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      var today = new Date(Date.now()); // console.log(Date.now() - Date.now().getTimezoneOffset())
-
+      var today = new Date(Date.now());
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -5249,7 +5265,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           _this3.props.closeModal();
 
-          _this3.props.removeErrors();
+          _this3.props.removeEditErrors();
         },
         className: "close-x"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
@@ -5263,8 +5279,12 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         id: "first_name",
-        required: true // style={this.props.signupErrors.join(" ").includes("First") ? {borderColor: "red"} : {borderColor:""}}
-        ,
+        required: true,
+        style: this.props.editErrors.join(" ").includes("First") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         className: "modal-input",
         value: this.state.first_name,
         onChange: this.handleUpdate('first_name')
@@ -5272,14 +5292,20 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "first_name",
         className: "modal-label",
         id: "first-name-label"
-      }, "First Name:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "First Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.editErrors.join(" ").includes("First") ? "signup-errors" : "non-visible"
+      }, "First name is invalid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text" //take a look at your label
-        ,
+        type: "text",
         id: "last_name",
-        required: true // style={this.props.signupErrors.join(" ").includes("Last")? {borderColor: "red"} : {borderColor:""}}
-        ,
+        required: true,
+        style: this.props.editErrors.join(" ").includes("Last") ? {
+          borderColor: "red"
+        } : {
+          borderColor: ""
+        },
         className: "modal-input",
         value: this.state.last_name,
         onChange: this.handleUpdate('last_name')
@@ -5287,11 +5313,13 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "last_name",
         className: "modal-label",
         id: "last-name-label"
-      }, "Last Name:"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Last Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "errors",
+        id: this.props.editErrors.join(" ").includes("Last") ? "signup-errors" : "non-visible"
+      }, "Last name is invalid"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "date" //take a look at your label
-        ,
+        type: "date",
         id: "birthday",
         required: true,
         max: today.toISOString().split('T')[0],
@@ -5304,8 +5332,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       }, "Birthday")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text" //take a look at your label
-        ,
+        type: "text",
         id: "pronouns",
         required: true,
         className: "modal-input",
@@ -5314,11 +5341,10 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "pronouns",
         className: "modal-label"
-      }, "pronouns")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Pronouns")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text" //take a look at your label
-        ,
+        type: "text",
         id: "location",
         required: true,
         className: "modal-input",
@@ -5330,8 +5356,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       }, "Location")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text" //take a look at your label
-        ,
+        type: "text",
         id: "bio",
         required: true,
         className: "modal-input",
@@ -6757,21 +6782,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _login_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login_errors_reducer */ "./frontend/reducers/login_errors_reducer.js");
 /* harmony import */ var _posts_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./posts_errors_reducer */ "./frontend/reducers/posts_errors_reducer.js");
 /* harmony import */ var _comments_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comments_errors_reducer */ "./frontend/reducers/comments_errors_reducer.js");
 /* harmony import */ var _signup_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./signup_errors_reducer */ "./frontend/reducers/signup_errors_reducer.js");
+/* harmony import */ var _users_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users_errors_reducer */ "./frontend/reducers/users_errors_reducer.js");
 
 
 
 
 
-var ErrorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
+
+var ErrorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
   signupErrorSession: _signup_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   loginErrorSession: _login_errors_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
   posts: _posts_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  comments: _comments_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  comments: _comments_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  usersErrors: _users_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ErrorsReducer);
 
@@ -7143,6 +7171,42 @@ __webpack_require__.r(__webpack_exports__);
   //   filters,
   modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
 }));
+
+/***/ }),
+
+/***/ "./frontend/reducers/users_errors_reducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/users_errors_reducer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/users_actions */ "./frontend/actions/users_actions.js");
+
+_actions_users_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_EDIT_ERRORS;
+
+var UsersErrorReducer = function UsersErrorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EDIT_ERRORS:
+      return action.editErrors;
+
+    case _actions_users_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_EDIT_ERRORS:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UsersErrorReducer);
 
 /***/ }),
 
