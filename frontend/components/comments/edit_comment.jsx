@@ -45,26 +45,35 @@ class EditComment extends React.Component {
         
         return(
             
-            <div className="editCommentform">
+            <div className="edit-comment-form">
                 {/* <div className= "comment">
                     <header className ="postHeader">Create Post</header> */}
                     
                 <form onSubmit={this.handleSubmit}>
-                    <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
-                    <h1>Edit Comment</h1>
-                    <div className="newCommentContainer">
-                        <textarea 
-                        // className='commentInputField'
-                        cols="50" rows="1" 
-                        value = {this.state?.body}
-                        onChange={this.handleUpdate("body")}
-                        ></textarea>
-
-                        <button 
-                        className = "newCButton" 
-                        id= {buttonId}
-                        disabled={this.state.body.replace(/ /g,'').length ===0} 
-                        onClick = {this.handleSubmit} >Submit</button>
+                    <div className ="edit-comment-header">
+                        <h2 className= "edit-form-title">Edit Comment</h2>
+                        <div
+                        onClick={()=>{
+                            this.props.closeModal();
+                        }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
+                    </div>
+                    <div className="edit-comment-container">
+                        <input
+                            type = "text"
+                            id='commentInputField'
+                            cols="50" rows="1"
+                            value={this.state?.body}
+                            onChange={this.handleUpdate("body")}
+                        ></input>
+                        
+                        <button
+                            
+                            className="newCButton"
+                            type= "submit"
+                            id={buttonId}
+                            disabled={this.state.body.replace(/ /g, '').length === 0}
+                            onClick={this.handleSubmit}> Submit
+                        </button>
                     </div>
                 </form>
 

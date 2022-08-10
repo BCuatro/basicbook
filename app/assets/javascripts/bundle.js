@@ -1890,7 +1890,7 @@ __webpack_require__.r(__webpack_exports__);
           deleteComment(comment.id);
         }
       }
-    }, "Delete Comment "))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Delete Comment"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "spaceholder",
       id: visibility
     }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2163,28 +2163,36 @@ var EditComment = /*#__PURE__*/function (_React$Component) {
 
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "editCommentform"
+        className: "edit-comment-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-comment-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+        className: "edit-form-title"
+      }, "Edit Comment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: function onClick() {
           _this3.props.closeModal();
         },
         className: "close-x"
-      }, "X"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Edit Comment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "newCommentContainer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
-        // className='commentInputField'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+        className: "fa fa-lg fa-x"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-comment-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        id: "commentInputField",
         cols: "50",
         rows: "1",
         value: (_this$state = this.state) === null || _this$state === void 0 ? void 0 : _this$state.body,
         onChange: this.handleUpdate("body")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "newCButton",
+        type: "submit",
         id: buttonId,
         disabled: this.state.body.replace(/ /g, '').length === 0,
         onClick: this.handleSubmit
-      }, "Submit"))));
+      }, " Submit"))));
     }
   }]);
 

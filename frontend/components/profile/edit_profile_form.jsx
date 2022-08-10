@@ -65,7 +65,6 @@ class EditForm extends React.Component{
                                 this.props.closeModal();
                                 this.props.removeEditErrors();
                             }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
-                            
                     </div>
                   
                     <div className = "edit-form-content-container">

@@ -86,7 +86,7 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                     <div id= "comment-body-content">{comment?.body}</div>
                   </div>
               </div>
-              <div className="like-and-dropdown" >
+              <div className="like-and-dropdown">
                 <div class="dropdown" id={dropdownId}>
                   <div class="dropdown-menu">
                     <button>...</button>
@@ -97,13 +97,13 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                                   Edit Comment</div></li>
 
                         <li><div className= "dropdown-links"
-                                onClick={() => { 
+                                  onClick={() => { 
                                   const confirmation = 
                                   window.confirm("Are you sure you want to delete this comment?")
                                   if (confirmation === true) {
                                     deleteComment(comment.id)
                                   }
-                                  }}>Delete Comment </div></li>
+                                  }}>Delete Comment</div></li>
                       </ul>
                   </div>
                 </div>
