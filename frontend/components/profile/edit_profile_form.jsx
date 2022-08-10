@@ -54,6 +54,11 @@ class EditForm extends React.Component{
    
     
     render(){ 
+        const today = new Date(Date.now())
+       
+
+       
+        // console.log(Date.now() - Date.now().getTimezoneOffset())
         return (
             <div className="edit-form">
                     <form onSubmit={this.handleSubmit}>
@@ -132,11 +137,11 @@ class EditForm extends React.Component{
                                     </div> */}
                                 </div>
                             </div>
-                        <div className = "full-name-container">
                             <div className="modal-input-container">
                                 <input type="date"  //take a look at your label
                                     id="birthday"
                                     required
+                                    max= {today.toISOString().split('T')[0]}
                                     className= "modal-input"
                                     value={this.state.birthday}
                                     onChange={this.handleUpdate('birthday')}
@@ -153,7 +158,7 @@ class EditForm extends React.Component{
                             />
                             <label htmlFor= "pronouns" className="modal-label">pronouns</label>
                             </div> 
-                        </div>    
+              
                         <div className="modal-input-container">
                             <input type="text"  //take a look at your label
                                 id="location"

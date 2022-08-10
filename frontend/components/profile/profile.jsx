@@ -109,7 +109,7 @@ class Profile extends React.Component{
                  
                 </div>
                 <div className = "profile-body">
-                    <div className = "sidebar-left">
+                    {/* <div className = "sidebar-left">
                         <h5>Friend Request</h5>
                         <ul className= "wall_posts">
                                 { 
@@ -130,7 +130,7 @@ class Profile extends React.Component{
                                 
                             </ul>
 
-                    </div> 
+                    </div>  */}
                      {/* <form onSubmit={this.handleSubmit}>
                         <input type="file" 
                         onChange={this.handleFile}

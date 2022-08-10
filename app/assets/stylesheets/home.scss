@@ -14,11 +14,13 @@
 .sidebar-right{
     width: min(20%, 290px);
     padding: 8px 0px 0px 0px;
+    z-index: 10000;
 }
 
 .sidebar-left{
     width: min(20%, 290px);
     padding: 8px 0px 0px 0px;
+    z-index: 10000;
 }
 
 #newFeedButtonModal{

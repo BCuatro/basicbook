@@ -175,8 +175,8 @@
     position: relative;
     display: flex;
     width: 712px;
-    height: 500px;
-    padding: 16px 16px 0px;
+    height: 600px;
+    padding: 16px 16px 20px ;
     justify-content: space-around;
     align-items: stretch;
     
@@ -184,7 +184,7 @@
 
   .edit-form form{
     position: relative;
-    height:100%;
+    height:95%;
     width: 100%;
     
   }
@@ -242,33 +242,40 @@
 .edit-form-content-container{
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px 0px 10px;
     width: 100%;
-    height: 80%;
+    height: 85%;
     justify-content: space-between;
     align-items: center;
     
 }
 
 #birthday{
-    height: 20px;
-    width: 90%;
+    height: 18px;
     padding: 11px;
-    margin-right: 9%;
-    
     
 
 }
 
 #pronouns{
     height: 18px;
-    width: 90%;
     padding: 11px;
-    margin-left: 9%;
-   
     
 }
 
+#location{
+    height: 18px;
+    padding: 11px;
+}
+
+#pronouns{
+    height: 18px;
+    padding: 11px;
+}
+#bio{
+    height: 18px;
+    padding: 11px;
+}
 
 
     

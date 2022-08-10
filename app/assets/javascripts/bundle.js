@@ -2985,11 +2985,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/nav_bar_container */ "./frontend/components/nav_bar/nav_bar_container.js");
-/* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/profile_container */ "./frontend/components/profile/profile_container.js");
-/* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
-/* harmony import */ var _newsfeed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./newsfeed_container */ "./frontend/components/home/newsfeed_container.js");
+/* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
+/* harmony import */ var _nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../nav_bar/nav_bar_container */ "./frontend/components/nav_bar/nav_bar_container.js");
+/* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/profile_container */ "./frontend/components/profile/profile_container.js");
+/* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
+/* harmony import */ var _newsfeed_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./newsfeed_container */ "./frontend/components/home/newsfeed_container.js");
+
 
 
 
@@ -3001,6 +3003,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Homepage = function Homepage(_ref) {
   var currentUser = _ref.currentUser,
+      users = _ref.users,
+      user = _ref.user,
+      friends = _ref.friends,
       logout = _ref.logout,
       openModal = _ref.openModal;
 
@@ -3017,10 +3022,10 @@ var Homepage = function Homepage(_ref) {
       className: "word"
     }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "login-form-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
   };
 
-  var Home = function Home(user) {
+  var Home = function Home(currentUser, users, user, friends) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("aside", {
@@ -3031,18 +3036,15 @@ var Homepage = function Homepage(_ref) {
       id: "main-home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
       className: "header-group"
-    }, " Hi $", user === null || user === void 0 ? void 0 : user.username, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, " Hi $", currentUser === null || currentUser === void 0 ? void 0 : currentUser.username, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "newsfeed"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_5__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("aside", {
-      className: "sidebar-right",
-      id: "sidebar-right-home"
-    })) // <hgroup className="header-group">
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)))) // <hgroup className="header-group">
     //   <h2 className="header-name">Hi, {currentUser.username}! {currentUser.id}</h2>            
     // </hgroup>
     ;
   };
 
-  return currentUser ? Home(currentUser) : login();
+  return currentUser ? Home(currentUser, users, user, friends) : login();
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Homepage);
@@ -3075,11 +3077,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var currentUser = state.entities.users[state.session.id];
-  var user = state.entities.users[ownProps.match.params.userId]; // userId: parseInt(ownProps.match.params.user.id),
+  var user = state.entities.users[ownProps.match.params.userId];
+  var friends = Object.keys(state.entities.friends).map(function (key) {
+    return state.entities.friends[key];
+  });
+  var users = state.entities.users; // userId: parseInt(ownProps.match.params.user.id),
 
   return {
     currentUser: currentUser,
-    user: user
+    user: user,
+    friends: friends,
+    users: users
   };
 };
 
@@ -5221,6 +5229,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      var today = new Date(Date.now()); // console.log(Date.now() - Date.now().getTimezoneOffset())
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "edit-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
@@ -5278,14 +5288,13 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         className: "modal-label",
         id: "last-name-label"
       }, "Last Name:"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "full-name-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "date" //take a look at your label
         ,
         id: "birthday",
         required: true,
+        max: today.toISOString().split('T')[0],
         className: "modal-input",
         value: this.state.birthday,
         onChange: this.handleUpdate('birthday')
@@ -5305,7 +5314,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "pronouns",
         className: "modal-label"
-      }, "pronouns"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "pronouns")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "modal-input-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text" //take a look at your label
@@ -5754,24 +5763,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "edit-profile-button-container"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "sidebar-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Friend Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-        className: "wall_posts"
-      }, this.props.friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
-      .map(function (friend, i) {
-        return (
-          /*#__PURE__*/
-          // this.props.users[friend?.friend_id]?.username
-          react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
-            key: "fRi-".concat(i),
-            friend: friend,
-            user: _this3.props.user,
-            currentUser: _this3.props.currentUser,
-            users: _this3.props.users
-          })
-        );
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
   }]);
 
