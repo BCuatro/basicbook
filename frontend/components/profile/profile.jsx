@@ -86,10 +86,12 @@ class Profile extends React.Component{
         // const preview = this.state.photoUrl ? <img className = "profile-photo-preview" src={this.state.photoUrl} /> : null;
         //     console.log(this.state)
         return (
+            <div className="profile-header-background">
             <div className="profile-container">
                 <div><NavBarExtension users ={this.props.users}/></div>
                 
                 <div className= "profile-header">
+                    <div className="profile-header-background"></div>
                     <div className= "profile-cover-container">
                         <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
                             this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
@@ -190,6 +192,7 @@ class Profile extends React.Component{
                 
                 </div>
                 
+            </div>
             </div>
         )
     }
