@@ -2713,12 +2713,24 @@ __webpack_require__.r(__webpack_exports__);
   var requestee = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
   var requester = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
 
-  if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (requestee === null || requestee === void 0 ? void 0 : requestee.id) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "pending" && (currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (user === null || user === void 0 ? void 0 : user.id)) {
+  if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (requestee === null || requestee === void 0 ? void 0 : requestee.id) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "pending") {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-      className: "friend-request-class"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Friend's Request"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      className: "notification-dropdown-items"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       href: "/#/users/".concat(requester === null || requester === void 0 ? void 0 : requester.id)
-    }, requester === null || requester === void 0 ? void 0 : requester.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_request_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "info-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      className: "notification-photo",
+      src: user !== null && user !== void 0 && user.profile_photoUrl ? user === null || user === void 0 ? void 0 : user.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
+      alt: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "notification-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "notification-name"
+    }), requester === null || requester === void 0 ? void 0 : requester.first_name, " ", requester === null || requester === void 0 ? void 0 : requester.last_name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "notification-username"
+    }, requester === null || requester === void 0 ? void 0 : requester.username)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_request_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
       friend: friend
     }));
   }
@@ -3817,8 +3829,13 @@ __webpack_require__.r(__webpack_exports__);
 var NavBar = function NavBar(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
-      usersArray = _ref.usersArray;
-  console.log("Looky", usersArray);
+      usersArray = _ref.usersArray,
+      users = _ref.users,
+      user = _ref.user,
+      friends = _ref.friends;
+  console.log("Looky", friends);
+  console.log("Users", users);
+  console.log("USer", currentUser);
   var liNavBar = currentUser ?
   /*#__PURE__*/
   // <div className ="navbar-container">
@@ -3840,10 +3857,28 @@ var NavBar = function NavBar(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     "class": "fa fa-solid fa-2x fa-house"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "notify"
+    "class": "notification-dropdown"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    "class": "notification-dropdown-menu"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    id: "bell"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     "class": " fa fa-solid fa-2x fa-bell"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: "notification-title"
+  }, "Friend Request"), friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+  .map(function (friend, i) {
+    return (
+      /*#__PURE__*/
+      // this.props.users[friend?.friend_id]?.username
+      react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_request_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        key: "fRi-".concat(i),
+        friend: friend,
+        currentUser: currentUser,
+        users: users
+      })
+    );
+  }))), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "profile-link"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/users/".concat(currentUser.id)
@@ -4973,7 +5008,6 @@ var PostItem = function PostItem(_ref) {
   }
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
-    // editbutton = <EditPostContainer post={post} />
     editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       onClick: function onClick() {
         dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)({
@@ -4981,13 +5015,7 @@ var PostItem = function PostItem(_ref) {
           post: post
         }));
       }
-    }, " Edit Post"); // editbutton =  <button 
-    // className ="edit-button"
-    // onClick ={(e) => {
-    //   updatePost("editpost", post)
-    // }}> Edit Post</button> 
-    // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
-
+    }, " Edit Post");
     deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       className: "delete button",
       onClick: function onClick() {
@@ -5053,7 +5081,7 @@ var PostItem = function PostItem(_ref) {
           deletePost(post === null || post === void 0 ? void 0 : post.id);
         }
       }
-    }, "Delete Post ")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Delete Post")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "post-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "post-body-content"

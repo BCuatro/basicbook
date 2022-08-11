@@ -11,13 +11,19 @@ export default ({ friend, users, user, currentUser}) => {
   
   
   
-  if(currentUser?.id === requestee?.id && friend?.friendship_status === "pending" && currentUser?.id === user?.id) {
+  if(currentUser?.id === requestee?.id && friend?.friendship_status === "pending") {
     return (
-      <li className="friend-request-class">
-        <h4>Friend's Request</h4>
-      <a href={`/#/users/${requester?.id }`}>{requester?.username}</a>
-        {/* <div className="friend-name">{theFriend?.username}</div> */}
-        {/* <div className="friend-profile">{theFriend?.profile_photo}</div> */}
+      <li className= "notification-dropdown-items" >
+          <a href={`/#/users/${requester?.id }`}>
+        <div className= "info-container">
+            <img className = "notification-photo"  src={user?.profile_photoUrl ? user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" />
+
+            <div className="notification-info">
+                <div className= "notification-name"></div>{requester?.first_name} {requester?.last_name}
+                <div className= "notification-username">{requester?.username}</div>
+            </div>
+        </div>
+          </a>
         <FriendRequestContainer friend = {friend} />
       </li>
     )}

@@ -11,8 +11,10 @@ import Search from '../search/search_index';
 
 
 
-const NavBar = ({currentUser, logout, usersArray}) => {
-    console.log("Looky", usersArray)
+const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
+    console.log("Looky", friends)
+    console.log("Users", users)
+    console.log("USer", currentUser)
     const liNavBar = currentUser ? (
         
         // <div className ="navbar-container">
@@ -26,7 +28,7 @@ const NavBar = ({currentUser, logout, usersArray}) => {
                     <Link id = "home-link" to={"/"}><i class="fa fa-solid fa-2x fa-house"></i></Link> 
                     
                     </div>
-                    <div className="notify" ><i class=" fa fa-solid fa-2x fa-bell"></i></div>
+                    {/* <div className="notify" ></div> */}
 
                     {/* <div className = "notification-container">  */}
                         
@@ -56,7 +58,35 @@ const NavBar = ({currentUser, logout, usersArray}) => {
 
                         {/* </ul> */}
                     {/* </div> */}
-                    
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-menu">
+                            <button id = "bell"><i class=" fa fa-solid fa-2x fa-bell"></i></button>
+
+                        <ul>
+                                <p className="notification-title">Friend Request</p>
+                            { 
+                                friends 
+                                // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
+                                .map((friend , i) => (
+                                    // this.props.users[friend?.friend_id]?.username
+                                    <FriendRequestItem
+                                    key={`fRi-${i}`}
+                                        friend={friend}
+                                        currentUser= {currentUser}
+                                        users= {users}
+                                    />
+                                ))
+                            }
+                        </ul>
+ 
+
+
+
+
+
+
+                        </div> {/* */}
+                    </div> 
 
                     <div id ="profile-link">
                         <Link to={`/users/${currentUser.id}`}>
