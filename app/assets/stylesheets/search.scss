@@ -1,0 +1,18 @@
+.search-user-container{
+    position: relative;
+    height: 100%;
+    width:100%;
+}
+
+#nonvisible{
+    opacity: 0;
+    pointer-events: 0;
+    cursor: pointer;
+}
+
+.search-results-container{
+    width: 200px;
+    min-height:100px;
+    position: absolute;
+    background-color: #ffffff;
+}

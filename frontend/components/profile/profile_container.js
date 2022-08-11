@@ -21,13 +21,15 @@ const mapStateToProps = (state, ownProps) => {
     const currentUser =state.entities.users[state.session.id]
     const userId= ownProps.match.params.userId
     const friends = Object.keys(state.entities.friends).map(key => state.entities.friends[key])
+    const usersArray = Object.keys(state.entities.users).map(key => state.entities.users[key])
     // const profile_id = 
     return{
       users,
       user,
       currentUser,
       userId,
-      friends
+      friends,
+      usersArray
     }
       
   };
