@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
-import SearchFormat from './search_format';
+import { Redirect, useHistory } from 'react-router-dom';
+import SearchItem from './search_item';
 
 
 
  const Search = ({users}) => {
+    const history = useHistory()
     
     const [searchState, setSearchState]= useState("")
+    const handleChange=(e) =>{
+        setSearchState(e.target.value)
+    }
+
+    
+    const ResetSearchBar =(userId) =>{
+        // history.push(`users/${userId}`)
+        setSearchState("")
+        
+        
+    }
 
     let visible
     if(searchState.replace(/ /g, '').length ===0){visible= "nonvisible"}
@@ -15,7 +28,11 @@ import SearchFormat from './search_format';
             <input type="search" 
             className="searchbar" 
             placeholder='Search Basicbook' 
-            onChange={((e)=>setSearchState(e.target.value))}/>
+            // value= {e.target.value}
+            // onChange={((e)=>setSearchState(e.target.value))}/>
+            value={searchState}
+            onChange={handleChange}
+            />
 
             <div className="search-results-container" >
                 <ul className= "search-results" id = {visible}>
@@ -28,9 +45,11 @@ import SearchFormat from './search_format';
                         user.username.split(" ").join("").toLocaleLowerCase().includes(searchState.toLocaleLowerCase()))
                         .sort((a,b) => a.first_name > b.first_name ? 1 : -1)
                         .map((user) => (
-                            <SearchFormat
+                            <SearchItem
                                 key={user.id}
-                                user={user}/>
+                                user={user}
+                                reset={ResetSearchBar}
+                                />
                             )
                         )
                     }

@@ -8,7 +8,7 @@ import FriendRequestItem from '../friends/friend_request_item';
 import FriendshipContainer from '../friends/friendship_container';
 import NavBarExtension from '../nav_bar/nav_bar_extension';
 
-import Search from '../search/search_index';
+
 
 
 
@@ -178,12 +178,7 @@ class Profile extends React.Component{
                     
                         
                     </div> */}
-                    <div className="sidebar-right">
-                        <h5>Profile Sidebar 2</h5>
-                        <Search users= {this.props.usersArray}/>
-                    
-                        
-                    </div>
+                   
                
             
                 

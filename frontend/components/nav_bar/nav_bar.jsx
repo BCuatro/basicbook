@@ -4,35 +4,24 @@ import { logout } from '../../actions/session_actions';
 import ReactDOM from 'react-dom';
 import { fetchUsers } from '../../actions/users_actions';
 import FriendRequestItem from '../friends/friend_request_item';
+import Search from '../search/search_index';
 
 
 
 
 
-const NavBar = ({currentUser, logout, users}) => {
-   
-    // const params = useParams()
-    
-    // const [state, setState] = useState(false)
-    // const changevalueonScroll = () => {
-    //     const scrollvalue = document.documentElement.scrollTop
-    //     if (scrollvalue > 700){
-    //         setState(true)
-    //     }
-    //     else{
-    //         setState(false)
-    //     }
-    // }
-    // window.addEventListener('scroll', changevalueonScroll)
-   
-    
+
+const NavBar = ({currentUser, logout, usersArray}) => {
+    console.log("Looky", usersArray)
     const liNavBar = currentUser ? (
+        
         // <div className ="navbar-container">
             <div className="navbar-item-container">
                 <div className ="logo-container">
                     <h1 className="logo">Basicbook</h1>
                 </div>
                 <div className ="navbar-items">
+                    <Search users = {usersArray}/>
                     <div id = "home-links"> 
                     <Link id = "home-link" to={"/"}><i class="fa fa-solid fa-2x fa-house"></i></Link> 
                     
@@ -67,6 +56,7 @@ const NavBar = ({currentUser, logout, users}) => {
 
                         {/* </ul> */}
                     {/* </div> */}
+                    
 
                     <div id ="profile-link">
                         <Link to={`/users/${currentUser.id}`}>

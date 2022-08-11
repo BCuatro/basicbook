@@ -3800,11 +3800,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _friends_friend_request_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../friends/friend_request_item */ "./frontend/components/friends/friend_request_item.jsx");
+/* harmony import */ var _search_search_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../search/search_index */ "./frontend/components/search/search_index.jsx");
+
 
 
 
@@ -3815,19 +3817,8 @@ __webpack_require__.r(__webpack_exports__);
 var NavBar = function NavBar(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
-      users = _ref.users;
-  // const params = useParams()
-  // const [state, setState] = useState(false)
-  // const changevalueonScroll = () => {
-  //     const scrollvalue = document.documentElement.scrollTop
-  //     if (scrollvalue > 700){
-  //         setState(true)
-  //     }
-  //     else{
-  //         setState(false)
-  //     }
-  // }
-  // window.addEventListener('scroll', changevalueonScroll)
+      usersArray = _ref.usersArray;
+  console.log("Looky", usersArray);
   var liNavBar = currentUser ?
   /*#__PURE__*/
   // <div className ="navbar-container">
@@ -3839,9 +3830,11 @@ var NavBar = function NavBar(_ref) {
     className: "logo"
   }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "navbar-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_search_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    users: usersArray
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "home-links"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     id: "home-link",
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
@@ -3852,7 +3845,7 @@ var NavBar = function NavBar(_ref) {
     "class": " fa fa-solid fa-2x fa-bell"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "profile-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/users/".concat(currentUser.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: currentUser !== null && currentUser !== void 0 && currentUser.profile_photoUrl ? currentUser === null || currentUser === void 0 ? void 0 : currentUser.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
@@ -3902,7 +3895,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     friends: Object.keys(state.entities.friends).map(function (key) {
       return state.entities.friends[key];
     }),
-    user: state.entities.users[ownProps.match.params.userId] // user: state.entities.users[ownProps.match.params.userId],
+    user: state.entities.users[ownProps.match.params.userId],
+    usersArray: Object.keys(state.entities.users).map(function (key) {
+      return state.entities.users[key];
+    }) // user: state.entities.users[ownProps.match.params.userId],
 
   };
 };
@@ -5679,7 +5675,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _friends_friend_request_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../friends/friend_request_item */ "./frontend/components/friends/friend_request_item.jsx");
 /* harmony import */ var _friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../friends/friendship_container */ "./frontend/components/friends/friendship_container.js");
 /* harmony import */ var _nav_bar_nav_bar_extension__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../nav_bar/nav_bar_extension */ "./frontend/components/nav_bar/nav_bar_extension.jsx");
-/* harmony import */ var _search_search_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../search/search_index */ "./frontend/components/search/search_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5707,7 +5702,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
  // import FriendRequestContainer from '../friends/friend_container';
-
 
 
 
@@ -5847,11 +5841,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "edit-profile-button-container"
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friendship_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), " "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "sidebar-right"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Profile Sidebar 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_search_index__WEBPACK_IMPORTED_MODULE_8__["default"], {
-        users: this.props.usersArray
-      }))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
   }]);
 
@@ -5900,9 +5890,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var userId = ownProps.match.params.userId;
   var friends = Object.keys(state.entities.friends).map(function (key) {
     return state.entities.friends[key];
-  });
-  var usersArray = Object.keys(state.entities.users).map(function (key) {
-    return state.entities.users[key];
   }); // const profile_id = 
 
   return {
@@ -5910,8 +5897,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     user: user,
     currentUser: currentUser,
     userId: userId,
-    friends: friends,
-    usersArray: usersArray
+    friends: friends
   };
 };
 
@@ -6196,38 +6182,6 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
-/***/ "./frontend/components/search/search_format.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/search/search_format.jsx ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var SearchFormat = function SearchFormat(_ref) {
-  var user = _ref.user;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "search-user-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "search-user-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "search-user-full-name"
-  }, user === null || user === void 0 ? void 0 : user.first_name, " ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "search-user-username"
-  }, user === null || user === void 0 ? void 0 : user.username)));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchFormat);
-
-/***/ }),
-
 /***/ "./frontend/components/search/search_index.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/search/search_index.jsx ***!
@@ -6241,7 +6195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _search_format__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_format */ "./frontend/components/search/search_format.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _search_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_item */ "./frontend/components/search/search_item.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6257,13 +6212,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Search = function Search(_ref) {
   var users = _ref.users;
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       searchState = _useState2[0],
       setSearchState = _useState2[1];
+
+  var handleChange = function handleChange(e) {
+    setSearchState(e.target.value);
+  };
+
+  var ResetSearchBar = function ResetSearchBar(userId) {
+    // history.push(`users/${userId}`)
+    setSearchState("");
+  };
 
   var visible;
 
@@ -6276,10 +6242,11 @@ var Search = function Search(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "search",
     className: "searchbar",
-    placeholder: "Search Basicbook",
-    onChange: function onChange(e) {
-      return setSearchState(e.target.value);
-    }
+    placeholder: "Search Basicbook" // value= {e.target.value}
+    // onChange={((e)=>setSearchState(e.target.value))}/>
+    ,
+    value: searchState,
+    onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "search-results-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
@@ -6290,14 +6257,53 @@ var Search = function Search(_ref) {
   }).sort(function (a, b) {
     return a.first_name > b.first_name ? 1 : -1;
   }).map(function (user) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_format__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: user.id,
-      user: user
+      user: user,
+      reset: ResetSearchBar
     });
   }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
+
+/***/ }),
+
+/***/ "./frontend/components/search/search_item.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/search/search_item.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SearchItem = function SearchItem(_ref) {
+  var user = _ref.user,
+      reset = _ref.reset;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "/#/users/".concat(user.id),
+    onClick: function onClick() {
+      reset();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-user-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-user-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-user-full-name"
+  }, user === null || user === void 0 ? void 0 : user.first_name, " ", user === null || user === void 0 ? void 0 : user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-user-username"
+  }, user === null || user === void 0 ? void 0 : user.username)))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchItem);
 
 /***/ }),
 
