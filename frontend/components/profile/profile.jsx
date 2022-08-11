@@ -7,6 +7,9 @@ import FriendItem from '../friends/friend_item';
 import FriendRequestItem from '../friends/friend_request_item';
 import FriendshipContainer from '../friends/friendship_container';
 import NavBarExtension from '../nav_bar/nav_bar_extension';
+import { Redirect } from 'react-router-dom';
+
+
 
 
 
@@ -62,7 +65,8 @@ class Profile extends React.Component{
 
     handleRedirect(users){
         if(!(this.props.userId in users)){
-            this.props.history.push("/404")
+            this.props.history.push("/PageNotFound")
+            // <Redirect to="/404NotFound" />
         }
     }
  

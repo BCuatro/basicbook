@@ -10,6 +10,9 @@ import Profile from './profile/profile';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import NavBarExtensionContainer from './nav_bar/nav_bar_extension_container';
 import LoadingScreen from './loading/loading_screen';
+import NotFoundError from './not_found/not_found_error';
+
+
 
 
 
@@ -34,6 +37,7 @@ return (
                 <div className ="navbar-container">
                     <Route path = "/" component = {NavBarContainer} />
                     <Route path = "/users/:userId" component ={NavBarExtensionContainer} />
+                    
                 </div>
             </header>
                     
@@ -41,8 +45,12 @@ return (
                 <Switch>
 
                     <ProtectedRoute path= "/users/:userId" component={ProfileContainer}/>
+                    {/* <ProtectedRoute exact path= "/404NotFound" component={NotFoundError} /> */}
+                    
                     {/* <ProtectedRoute exact path="/" component ={HomePageContainer} /> */}
                     <Route exact path="/" component ={HomePageContainer} />
+                    <Route path="/*" component={NotFoundError} />
+                   
                 </Switch>
         </div> 
         }   
