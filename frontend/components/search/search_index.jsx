@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Redirect, useHistory } from 'react-router-dom';
 import SearchItem from './search_item';
 
 
 
  const Search = ({users}) => {
-    const history = useHistory()
     
     const [searchState, setSearchState]= useState("")
     const handleChange=(e) =>{
@@ -13,8 +11,7 @@ import SearchItem from './search_item';
     }
 
     
-    const ResetSearchBar =(userId) =>{
-        // history.push(`users/${userId}`)
+    const ResetSearchBar =() =>{
         setSearchState("")
         
         
@@ -25,14 +22,17 @@ import SearchItem from './search_item';
     
     return (
         <div className = "search-container">
-            <input type="search" 
-            className="searchbar" 
-            placeholder='Search Basicbook' 
-            // value= {e.target.value}
-            // onChange={((e)=>setSearchState(e.target.value))}/>
-            value={searchState}
-            onChange={handleChange}
-            />
+            <div className= "searchbar-container">
+                <i class="fa fa-duotone fa-magnifying-glass"></i>
+
+                <input type="search" 
+                className="searchbar" 
+                placeholder='Search Basicbook' 
+                value={searchState}
+                onChange={handleChange}
+                />
+            </div>
+            
 
             <div className="search-results-container" >
                 <ul className= "search-results" id = {visible}>
