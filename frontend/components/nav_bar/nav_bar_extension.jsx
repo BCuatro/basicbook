@@ -3,9 +3,6 @@ import {useParams } from 'react-router-dom'
 
 
 
-
-
-
 const NavBarExtension = ({users}) => {
     const id = parseInt(useParams().userId)
 
@@ -13,7 +10,7 @@ const NavBarExtension = ({users}) => {
     const [state, setState] = useState(false)
     const changevalueonScroll = () => {
         const scrollvalue = document.documentElement.scrollTop
-        if (scrollvalue > 700){
+        if (scrollvalue > 500){
             setState(true)
 
         }
@@ -21,6 +18,7 @@ const NavBarExtension = ({users}) => {
             setState(false)
         }
     }
+    
     window.addEventListener('scroll', changevalueonScroll)
     return(
         <div className = "navbar-extension-container" id = {state ? "visible-navbar" : "hidden-navbar"}>

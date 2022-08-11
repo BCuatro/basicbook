@@ -4002,7 +4002,7 @@ var NavBarExtension = function NavBarExtension(_ref) {
   var changevalueonScroll = function changevalueonScroll() {
     var scrollvalue = document.documentElement.scrollTop;
 
-    if (scrollvalue > 700) {
+    if (scrollvalue > 500) {
       setState(true);
     } else {
       setState(false);
