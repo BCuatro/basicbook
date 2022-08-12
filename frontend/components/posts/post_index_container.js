@@ -6,6 +6,8 @@ import PostIndex from './post_index';
 import { withRouter} from "react-router-dom"
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { fetchComments } from '../../actions/comments_actions';
+import { fetchLikes } from '../../actions/likes_actions';
+
 
 
 
@@ -34,7 +36,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   openModal: (modal, post)=> dispatch(openModal({modal: modal, post: post})),
   deletePost: (postId) => dispatch(deletePost(postId)),
-  fetchComments:() => dispatch(fetchComments())
+  fetchComments:() => dispatch(fetchComments()),
+  fetchLikes:() => dispatch(fetchLikes())
   
 
 });

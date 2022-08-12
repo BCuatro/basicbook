@@ -14,6 +14,7 @@ const aboutMe =(user) =>{
       <h3  id = {!user?.bio ? "non-visible" : "bio" }>{user?.bio}</h3>
       <p className = {!user?.username ? "non-visible": "aboutMe" }id= "username"> Username: @{user?.username}</p>
       <p className = {!user?.email ? "non-visible": "aboutMe" }id= "email"> Email: {user?.email}</p>
+      <p className = {!user?.birth_date ? "non-visible": "aboutMe" }id= "birthdate"> Birthday: {user?.birth_date}</p>
       <p className = {!user?.gender ? "non-visible" : "aboutMe" } id="gender"> My pronouns are {user?.gender}</p>
       <p className = {!user?.location ? "non-visible" : "aboutMe" }  id="location"> I live in {user?.location}</p>
       <p className = "aboutMe" id="created">Joined Basicbook on {joined_date.toLocaleDateString([],{month: 'long', day: 'numeric', year: 'numeric' })}</p>   

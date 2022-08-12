@@ -5,7 +5,7 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import { removeErrors } from '../../actions/posts_actions';
 import { fetchPosts } from '../../actions/posts_actions';
 import Post from './post';
-// import SessionForm from './session_form';
+
 
 
 

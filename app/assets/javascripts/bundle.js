@@ -4666,9 +4666,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index_container */ "./frontend/components/posts/post_index_container.js");
-/* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
-/* harmony import */ var _profile_about_me__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/about_me */ "./frontend/components/profile/about_me.jsx");
-/* harmony import */ var _friend_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./friend_index */ "./frontend/components/posts/friend_index.jsx");
+/* harmony import */ var _profile_about_me__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/about_me */ "./frontend/components/profile/about_me.jsx");
+/* harmony import */ var _friend_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./friend_index */ "./frontend/components/posts/friend_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4696,7 +4695,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Post = /*#__PURE__*/function (_React$Component) {
   _inherits(Post, _React$Component);
 
@@ -4714,9 +4712,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
   _createClass(Post, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchPosts();
-      // this.props.fetchComments();
-      // this.props.fetchLikes;
+    value: function componentDidMount() {
+      this.props.fetchLikes;
     }
   }, {
     key: "handleOpenModal",
@@ -4735,7 +4732,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-tab-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "aboutMe-container"
-      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_3__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_2__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_index__WEBPACK_IMPORTED_MODULE_3__["default"], {
         classname: "friends-list-container",
         user: this.props.user,
         users: this.props.users,
@@ -4783,7 +4780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import SessionForm from './session_form';
+
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
@@ -4880,8 +4877,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
 
   _createClass(PostIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchComments();
-      // this.props.fetchUser(this.props.match.params.userId)
+    value: function componentDidMount() {
+      this.props.fetchLikes();
     }
   }, {
     key: "handleOpenModal",
@@ -4942,9 +4939,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/post_index.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+
 
 
 
@@ -4990,11 +4989,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchComments: function fetchComments() {
       return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_5__.fetchComments)());
+    },
+    fetchLikes: function fetchLikes() {
+      return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__.fetchLikes)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -5204,6 +5206,9 @@ var aboutMe = function aboutMe(user) {
     className: !(user !== null && user !== void 0 && user.email) ? "non-visible" : "aboutMe",
     id: "email"
   }, " Email: ", user === null || user === void 0 ? void 0 : user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    className: !(user !== null && user !== void 0 && user.birth_date) ? "non-visible" : "aboutMe",
+    id: "birthdate"
+  }, " Birthday: ", user === null || user === void 0 ? void 0 : user.birth_date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: !(user !== null && user !== void 0 && user.gender) ? "non-visible" : "aboutMe",
     id: "gender"
   }, " My pronouns are ", user === null || user === void 0 ? void 0 : user.gender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -5354,6 +5359,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
       formData.append('user[last_name]', this.state.last_name);
       formData.append('user[location]', this.state.location);
       formData.append('user[bio]', this.state.bio);
+      formData.append('user[gender]', this.state.gender);
+      formData.append('user[birth_date]', this.state.birth_date);
       this.props.updateUser(this.state.id, formData).then(this.props.closeModal);
     }
   }, {
@@ -5457,8 +5464,8 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         required: true,
         max: today.toISOString().split('T')[0],
         className: "modal-input",
-        value: this.state.birthday,
-        onChange: this.handleUpdate('birthday')
+        value: this.state.birth_date,
+        onChange: this.handleUpdate('birth_date')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "birthday",
         className: "modal-label"
@@ -5469,7 +5476,7 @@ var EditForm = /*#__PURE__*/function (_React$Component) {
         id: "pronouns",
         required: true,
         className: "modal-input",
-        value: this.state.pronouns,
+        value: this.state.gender,
         onChange: this.handleUpdate('gender')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "pronouns",
@@ -5800,18 +5807,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.user; // this.state = {
-    //     id: this.props.currentUser.id,
-    //     email:this.props.currentUser.email,
-    //     username: this.props.currentUser.username,
-    //     first_name: this.props.currentUser.first_name,
-    //     last_name: this.props.currentUser.last_name,
-    //     location: this.props.currentUser.location,
-    //     bio:this.props.currentUser.bio,
-    //     photoFile: null,
-    //     photoUrl: null
-    // };
-
+    _this.state = _this.props.user;
     _this.handleOpenModal = _this.handleOpenModal.bind(_assertThisInitialized(_this));
     _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
     return _this;
@@ -5826,9 +5822,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         return _this2.handleRedirect(data.users);
       });
       this.props.fetchPosts();
-      this.props.fetchFriends();
-      this.props.fetchLikes();
-      this.props.fetchComments(); // this.props.fetchUser(parseInt(this.props.match.params.userId))
+      this.props.fetchFriends(); // this.props.fetchLikes();
+
+      this.props.fetchComments();
     }
   }, {
     key: "handleOpenModal",
@@ -5856,7 +5852,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           _this$props$user6,
           _this$props$user7;
 
-      // console.log("Look at this", this.props.users[this.props.friends[0]?.friend_id]?.username)
       console.log("look", this.props.usersArray);
       var editButton;
 
@@ -5871,9 +5866,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         }), " Edit Profile");
       } else {
         editButton = "";
-      } // const preview = this.state.photoUrl ? <img className = "profile-photo-preview" src={this.state.photoUrl} /> : null;
-      //     console.log(this.state)
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-header-background"

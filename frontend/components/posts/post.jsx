@@ -1,6 +1,5 @@
 import React from 'react'
 import PostIndexContainer from './post_index_container';
-import FriendItem from '../friends/friend_item';
 import aboutMe from '../profile/about_me';
 import FriendIndex from './friend_index';
 
@@ -12,9 +11,7 @@ class Post extends React.Component {
            
     }
     componentDidMount() {
-        // this.props.fetchPosts();
-        // this.props.fetchComments();
-        // this.props.fetchLikes;
+        this.props.fetchLikes;
 
       }
 
@@ -34,25 +31,7 @@ class Post extends React.Component {
                         <div className= "aboutMe-container">
                             {aboutMe(this.props.user)}
                         </div>
-        
-                           {/*  <h5 className="friends-list-title">Friends</h5>
-                                <ul className= "friends-list">
-                                        {
-                                            this.props.friends
-                                            .sort((a,b) => a.username > b.username ? 1 : -1)
-                                            .map((friend, ind) => (
-                                                <FriendItem
-                                                    key={`fi-${ind}`}
-                                                    friend={friend}
-                                                    user= {this.props.user}
-                                                    currentUser= {this.props.currentUser}
-                                                    users= {(this.props.users)}
-                                                    
-                                                />
-                                            ))
-                                        }
-                                </ul>
-                        </div> */}
+
                         <div>
                             <FriendIndex 
                             classname = {"friends-list-container"}

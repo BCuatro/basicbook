@@ -22,6 +22,8 @@ class EditForm extends React.Component{
         formData.append('user[last_name]', this.state.last_name)
         formData.append('user[location]', this.state.location)
         formData.append('user[bio]', this.state.bio)
+        formData.append('user[gender]', this.state.gender)
+        formData.append('user[birth_date]', this.state.birth_date)
         this.props.updateUser(this.state.id, formData).then(this.props.closeModal)
    
       }
@@ -106,8 +108,8 @@ class EditForm extends React.Component{
                                     required
                                     max= {today.toISOString().split('T')[0]}
                                     className= "modal-input"
-                                    value={this.state.birthday}
-                                    onChange={this.handleUpdate('birthday')}
+                                    value={this.state.birth_date}
+                                    onChange={this.handleUpdate('birth_date')}
                                 />
                                 <label htmlFor= "birthday" className="modal-label">Birthday</label>
                             </div> 
@@ -116,7 +118,7 @@ class EditForm extends React.Component{
                                 id="pronouns"
                                 required
                                 className= "modal-input"
-                                value={this.state.pronouns}
+                                value={this.state.gender}
                                 onChange={this.handleUpdate('gender')}
                             />
                             <label htmlFor= "pronouns" className="modal-label">Pronouns</label>
