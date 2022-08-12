@@ -7,6 +7,8 @@ import { withRouter} from "react-router-dom"
 import { openModal } from '../../actions/modal_actions';
 import { fetchUsers } from '../../actions/users_actions';
 import { fetchLikes } from '../../actions/likes_actions';
+import { fetchFriends } from '../../actions/friends_actions';
+
 
 
 
@@ -35,6 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
   openEditModal: (modal, post)=> dispatch(openModal({modal: modal, post: post})),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchLikes: () => dispatch(fetchLikes()),
+  fetchFriends: ()=> dispatch(fetchFriends())
   
 
 });

@@ -3239,7 +3239,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchPosts();
       this.props.fetchUsers();
-      this.props.fetchLikes(); // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchLikes();
+      this.props.fetchFriends(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleCreateOpenModal",
@@ -3321,10 +3322,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _newsfeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newsfeed */ "./frontend/components/home/newsfeed.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+/* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
+
 
 
 
@@ -3373,11 +3376,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchLikes: function fetchLikes() {
       return dispatch((0,_actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__.fetchLikes)());
+    },
+    fetchFriends: function fetchFriends() {
+      return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_7__.fetchFriends)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -6118,9 +6124,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import PostIndexContainer from '../posts/post_index_container';
-// import aboutMe from './about_me';
-// FriendIndex
+
 
 var Headers = /*#__PURE__*/function (_React$Component) {
   _inherits(Headers, _React$Component);
@@ -6206,10 +6210,8 @@ var Tabs = /*#__PURE__*/function (_React$Component2) {
           currentUser: this.props.currentUser,
           friends: this.props.friends
         })
-      }, {
-        title: 'Photo',
-        content: 'AWS'
-      }];
+      } // {title: 'Photo', content: 'AWS'},
+      ];
       var tab = tabs[this.state.selectedTab];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tabs"

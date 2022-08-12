@@ -1,7 +1,8 @@
 .profile-tab-content{
 
-    position: relative;
+    position: absolute;
     width: 100%;
+    margin-top: 10px;
     
     
 }
@@ -28,9 +29,8 @@
     display: flex;
     width: 100%;
     margin-top: 10px;
+    border-bottom: #65676b 2px solid;
 
-    
-   
     
 }
 .post-item-container{
@@ -46,52 +46,62 @@
 }
 
 .tabsHeader{
+    position: relative;
     display: flex;
+    flex-direction: row;
     list-style-type: none;
-    height: 60px;
+    min-height: 50px;
+    bottom: 0;
     width: 100%;
-    justify-content: flex-start;
-    padding: 0;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+    margin-bottom: 30px;
     background-color: #ffffff;
-    border-top: #65676b solid 1px;
+    // border-top: #65676b solid 1px;
     border-bottom-left-radius: 10px; 
     border-bottom-right-radius: 10px ;
+    align-items: flex-start;
   }
   
   .tabsHeader > li{
+    display: flex;
     width: 65px;
-    padding-top: 4px;
-    text-align: center;
+    min-height: 50px;
+    text-align: flex-start;
     cursor: pointer;
-    justify-content: center;
+    justify-content:flex-end;
     background-color: transparent;
-    padding:0;
-    margin:0;
     font-weight: 600;
     font-size: 15px;
     line-height: 20px;
     color: #65676b;
+    bottom:0;
     transform: translateY(20%);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .tabsHeader > li:hover{
     width: 65px;
-    height: 25px;
-    border-top: 2px solid #082a3a;
-    border-left: 1px solid #082a3a;
-    border-right: 1px solid #082a3a;
-    border-bottom: 2px solid #082a3a;
-    padding-top: 4px;
-    text-align: center;
-    justify-content: center;
+    height: 50px;
     cursor: pointer;
-    background-color: lightgray;
+    background-color:#DADDE1;
+    border-radius: 5px;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
     
   }
   
-  .tabsHeader > li:focus{
-  
-    background-color: #1f6cab;  
-  
+
+  .tabsHeader > li.active{
+      color: #1876F2;
+      // border-bottom: solid #1876F2 5px;
+      display: flex;
+      background-color: transparent;
+      height: 50px;
+      border-radius: 2px;
+      bottom: 0;
+      align-items: flex-start;
+      justify-content: flex-end;
+    
   }
+

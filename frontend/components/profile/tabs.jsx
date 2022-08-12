@@ -1,9 +1,7 @@
 import React from 'react';
 import FriendIndex from '../posts/friend_index';
 import PostContainer from '../posts/post_container';
-// import PostIndexContainer from '../posts/post_index_container';
-// import aboutMe from './about_me';
-// FriendIndex
+
 
 
 
@@ -62,7 +60,7 @@ export default class Tabs extends React.Component {
                                   currentUser = {this.props.currentUser}
                                   friends = {this.props.friends} />
                                 },
-      {title: 'Photo', content: 'AWS'},
+      // {title: 'Photo', content: 'AWS'},
       
     ];
     const tab = tabs[this.state.selectedTab];
