@@ -145,7 +145,7 @@
   transition: all .5s ease-out;
   padding-bottom: 10px;
   z-index: 10;
-  transform: translateY(-200px);
+  // transform: translateY(-200px);
 }
 
 
@@ -180,6 +180,7 @@
   height: min(50px, 100%);
   width: 100%;
   display: flex;
+  pointer-events: all;
   align-items: center;
   justify-content: space-between;
   font-size: 12px;

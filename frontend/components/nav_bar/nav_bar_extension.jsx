@@ -6,7 +6,7 @@ import {useParams } from 'react-router-dom'
 const NavBarExtension = ({users}) => {
     const id = parseInt(useParams().userId)
 
-   console.log(id)
+   
     const [state, setState] = useState(false)
     const changevalueonScroll = () => {
         const scrollvalue = document.documentElement.scrollTop

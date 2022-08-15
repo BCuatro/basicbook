@@ -8,6 +8,7 @@ import { createFriendship, deleteFriendship } from '../../actions/friends_action
 import Friendship from './friendship';
 import { fetchFriends } from "../../actions/friends_actions";
 import { fetchUser, fetchUsers } from '../../actions/users_actions';
+import Friends from './friendshook';
 
 
 

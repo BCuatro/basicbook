@@ -47,7 +47,7 @@ class SessionForm extends React.Component{
       }
 
     render(){
-        console.log()
+   
         return(
             <div className="signup-form-container">
                 {/* <pre>{JSON.stringify(this.state,undefined,2)}</pre> */}

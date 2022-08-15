@@ -87,8 +87,8 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                   </div>
               </div>
               <div className="like-and-dropdown">
-                <div class="dropdown" id={dropdownId}>
-                  <div class="dropdown-menu">
+                <div className="dropdown" id={dropdownId}>
+                  <div className="dropdown-menu">
                     <button>...</button>
                       <ul>
                         <li><div className="dropdown-links" 

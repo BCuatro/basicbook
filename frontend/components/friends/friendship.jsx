@@ -32,6 +32,7 @@ class Friendship extends React.Component {
         // this.props.fetchFriends();
         // this.props.fetchUsers();
         // this.props.fetchFriend();
+       
     }
 
     // handleFriendRequestSubmit(){
@@ -97,72 +98,120 @@ class Friendship extends React.Component {
 
 
     render() {
+        console.log("looky", this.props.user?.id)
         let friendshipButton;
         if (this.props.currentUser.id === this.props.user?.id) {
-            return friendshipButton = "";
+            friendshipButton = "";
         } else {
-            if (this.props.friends.length === 0){
-                return friendshipButton = 
-                        <form onSubmit={this.handleAddFriendSubmit}>
-                            {/* <button onClick={() =>{
-                            this.handleUpdate().then(
-                            this.handleAddFriendSubmit())
-                        }
-                        }>Friend Request</button> */}
-                            <button 
-                                id = "edit-button" 
-                                onClick={() => {this.handleUpdate();}}>
-                                    <i class="fa fa-solid fa-user"></i> Add Friend 
-                            </button>
+                // if (this.props.friends.length === 0){
+                //     return friendshipButton = 
+                //             <form onSubmit={this.handleAddFriendSubmit}>
+                //                 {/* <button onClick={() =>{
+                //                 this.handleUpdate().then(
+                //                 this.handleAddFriendSubmit())
+                //             }
+                //             }>Friend Request</button> */}
+                //                 <button 
+                //                     id = "edit-button" 
+                //                     onClick={() => {this.handleUpdate();}}>
+                //                         <i className="fa fa-solid fa-user"></i> Add Friend 
+                //                 </button>
 
-                        </form>
-            }
-            this.props.friends?.forEach(friend => {
-                if (
-                    (friend.friendship_status === "accepted") &&
-                    (
-                        (this.props.currentUser.id === friend.user_id &&
-                        this.props.user?.id === friend.friend_id) ||
-                        (this.props.currentUser.id === friend.friend_id &&
-                            this.props.user?.id === friend.user_id)
-
-                        ) 
+                //             </form>
+                // }
+            //     this.props.friends?.forEach(friend => {
                     
-                    )  {
-                        const friendId = friend?.id
-                        return friendshipButton =
-                
-                            <button 
-                                id = "edit-button" 
-                                onClick={() =>{this.handleDeleteFriendSubmit(friendId)}}>
-                                    <i class="fa fa-solid fa-user-check"></i> Friends
-                            </button>
-                    
-                }
+            //         if (
+            //             (friend.friendship_status === "accepted") &&
+            //             (
+            //                 (this.props.currentUser?.id === friend.user_id &&
+            //                 this.props.user?.id === friend.friend_id) ||
+            //                 (this.props.currentUser?.id === friend.friend_id &&
+            //                     this.props.user?.id === friend.user_id)
 
-                else if (
-                    (friend.friendship_status === "pending") &&
-                    (
-                        (this.props.currentUser.id === friend.user_id &&
-                        this.props.user?.id === friend.friend_id) ||
-                        (this.props.currentUser.id === friend.friend_id &&
-                            this.props.user?.id === friend.user_id)
-
-                        ) 
-                    
-                    ) {
-                    return friendshipButton =
+            //                 ) 
                         
-                            <button 
-                                id = "pending-friend-request-button" 
-                                disabled>
-                                    Pending Response
-                            </button>
-                       
+            //             )  {
+            //                 const friendId = friend?.id
+            //                 return friendshipButton =
+                    
+            //                     <button 
+            //                         id = "edit-button" 
+            //                         onClick={() =>{this.handleDeleteFriendSubmit(friendId)}}>
+            //                             <i className="fa fa-solid fa-user-check"></i> Friends
+            //                     </button>
+                                
+                        
+            //         }
+
+            //         else if (
+            //             (friend.friendship_status === "pending") &&
+            //             (
+            //                 (this.props.currentUser.id === friend.user_id &&
+            //                 this.props.user?.id === friend.friend_id) ||
+            //                 (this.props.currentUser.id === friend.friend_id &&
+            //                     this.props.user?.id === friend.user_id)
+
+            //                 ) 
+                        
+            //             ) {
+            //             return friendshipButton =
+                            
+            //                     <button 
+            //                         id = "pending-friend-request-button" 
+            //                         disabled>
+            //                             Pending Response
+            //                     </button>
+                        
+            //         }
+
+            //         else {
+            //              return friendshipButton = 
+            //                 <form onSubmit={this.handleAddFriendSubmit}>
+            //                     {/* <button onClick={() =>{
+            //                     this.handleUpdate().then(
+            //                     this.handleAddFriendSubmit())
+            //                 }
+            //                 }>Friend Request</button> */}
+            //                     <button 
+            //                         id = "add-friend-button" 
+            //                         onClick={() => {this.handleUpdate()}}>
+            //                             <i className="fa fa-solid fa-user"></i> Add Friend
+            //                     </button>
+
+            //                 </form>
+                    
+
+            //         }
+            //     })
+        
+            const relationship = this.props.friends.filter(friend => 
+                (this.props.user?.id === friend?.user_id && this.props.currentUser?.id === friend?.friend_id )
+                ||
+                (this.props.user?.id === friend?.friend_id && this.props.currentUser?.id === friend?.user_id ))
+                console.log(relationship)
+                if (relationship[0]?.friendship_status === "accepted"){
+                    
+                    friendshipButton =
+            
+                        <button 
+                            id = "edit-button" 
+                            onClick={() =>{this.handleDeleteFriendSubmit(relationship[0].id)}}>
+                                <i className="fa fa-solid fa-user-check"></i> Friends
+                        </button>
                 }
 
-                else {
-                     return friendshipButton = 
+                else if (relationship[0]?.friendship_status === "pending"){
+                    friendshipButton =
+                                
+                    <button 
+                        id = "pending-friend-request-button" 
+                        disabled>
+                            Pending Response
+                    </button>
+                }
+                else  {
+                    friendshipButton = 
                         <form onSubmit={this.handleAddFriendSubmit}>
                             {/* <button onClick={() =>{
                             this.handleUpdate().then(
@@ -172,15 +221,12 @@ class Friendship extends React.Component {
                             <button 
                                 id = "add-friend-button" 
                                 onClick={() => {this.handleUpdate()}}>
-                                    <i class="fa fa-solid fa-user"></i> Add Friend
+                                    <i className="fa fa-solid fa-user"></i> Add Friend
                             </button>
 
                         </form>
-                   
-
                 }
-            })
-        }
+            }
 
 
 
@@ -220,9 +266,6 @@ class Friendship extends React.Component {
         // const preview = this.state.photoUrl ? <img className = "post-photo-preview" src={this.state.photoUrl} /> : null;
         //     console.log(this.props.phototype)
 
-
-
-
         return (
 
 
@@ -243,5 +286,5 @@ class Friendship extends React.Component {
 
 }
 
-export default withRouter(Friendship);
+export default Friendship;
 

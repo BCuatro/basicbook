@@ -71,8 +71,8 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
           </div>
           
         </div>
-        <div class="dropdown">
-          <div class="dropdown-menu">
+        <div className="dropdown">
+          <div className="dropdown-menu">
             <button>...</button>
               <ul>
                 <li>

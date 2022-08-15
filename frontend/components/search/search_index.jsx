@@ -23,7 +23,7 @@ import SearchItem from './search_item';
     return (
         <div className = "search-container">
             <div className= "searchbar-container">
-                <i class="fa fa-duotone fa-magnifying-glass"></i>
+                <i className="fa fa-duotone fa-magnifying-glass"></i>
 
                 <input type="search" 
                 className="searchbar" 

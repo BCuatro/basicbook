@@ -16,7 +16,7 @@ export default ({ friend, users, user, currentUser}) => {
       <li className= "notification-dropdown-items" >
           <a href={`/#/users/${requester?.id }`}>
         <div className= "info-container">
-            <img className = "notification-photo"  src={user?.profile_photoUrl ? user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" />
+            <img className = "notification-photo"  src={requester?.profile_photoUrl ? requester?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" />
 
             <div className="notification-info">
                 <div className= "notification-name"></div>{requester?.first_name} {requester?.last_name}

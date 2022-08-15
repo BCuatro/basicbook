@@ -7,7 +7,6 @@ class Api::FriendsController < ApplicationController
     
     def create
         @friend = Friend.new(friend_params)
-        
         if @friend.save
           render :show
         else

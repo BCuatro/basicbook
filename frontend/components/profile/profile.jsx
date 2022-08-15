@@ -8,17 +8,7 @@ import FriendRequestItem from '../friends/friend_request_item';
 import FriendshipContainer from '../friends/friendship_container';
 import NavBarExtension from '../nav_bar/nav_bar_extension';
 import { Redirect } from 'react-router-dom';
-
-
-
-
-
-
-
-
-
-
-
+import Friends from '../friends/friendshook';
 
 
 
@@ -54,6 +44,7 @@ class Profile extends React.Component{
     handleRedirect(users){
         if(!(this.props.userId in users)){
             this.props.history.push("/PageNotFound")
+            console.log(userId)
             // <Redirect to="/404NotFound" />
         }
     }
@@ -62,7 +53,6 @@ class Profile extends React.Component{
     
     render(){ 
         
-        console.log("look",this.props.usersArray)
         let editButton
         if (parseInt(this.props.currentUser.id)=== parseInt(this.props.match.params.userId) ){
             editButton = <button id = "edit-button" 
@@ -101,6 +91,7 @@ class Profile extends React.Component{
                                 </div>
                             </div>
                                 <div className = "edit-profile-button-container">{editButton}</div>
+                                {/* <div className = "edit-profile-button-container"> <FriendshipContainer /> </div> */}
                                 <div className = "edit-profile-button-container"> <FriendshipContainer /> </div>
                         </div>
                     

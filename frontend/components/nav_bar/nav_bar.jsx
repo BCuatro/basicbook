@@ -12,9 +12,7 @@ import Search from '../search/search_index';
 
 
 const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
-    console.log("Looky", friends)
-    console.log("Users", users)
-    console.log("USer", currentUser)
+    
     const liNavBar = currentUser ? (
         
         // <div className ="navbar-container">
@@ -25,7 +23,7 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
                 <div className ="navbar-items">
                     <Search users = {usersArray}/>
                     <div id = "home-links"> 
-                    <Link id = "home-link" to={"/"}><i class="fa fa-solid fa-2x fa-house"></i></Link> 
+                    <Link id = "home-link" to={"/"}><i className="fa fa-solid fa-2x fa-house"></i></Link> 
                     
                     </div>
                     {/* <div className="notify" ></div> */}
@@ -58,9 +56,9 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
 
                         {/* </ul> */}
                     {/* </div> */}
-                    <div class="notification-dropdown">
-                        <div class="notification-dropdown-menu">
-                            <button id = "bell"><i class=" fa fa-solid fa-2x fa-bell"></i></button>
+                    <div className="notification-dropdown">
+                        <div className="notification-dropdown-menu">
+                            <button id = "bell"><i className=" fa fa-solid fa-2x fa-bell"></i></button>
 
                         <ul>
                                 <p className="notification-title">Friend Request</p>

@@ -53,9 +53,6 @@ class LoginForm extends React.Component{
 
     render(){
         let colo 
-        console.log(colo)
-        console.log(this.props.loginErrors.length)
-        
         if(this.props.loginErrors.length> 0) colo = "red"
         const here =  <div 
         className="login-form-demo-user"

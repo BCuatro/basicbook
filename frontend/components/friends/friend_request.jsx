@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 class FriendRequest extends React.Component {
     constructor(props) {
@@ -11,13 +11,13 @@ class FriendRequest extends React.Component {
         this.handleFriendRequestDenied= this.handleFriendRequestDenied.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
         
-        
-
+    
 
     }
-
+  
     handleUpdate(){
         this.setState({friendship_status: "accepted"})
+        
     }
 
   
@@ -27,7 +27,6 @@ class FriendRequest extends React.Component {
         const formData = new FormData();
         formData.append('friend[friendship_status]', this.state.friendship_status);
         this.props.updateFriendship(this.state.id, formData)
-        this.forceUpdate()
     
     }
 
@@ -58,5 +57,5 @@ class FriendRequest extends React.Component {
     }
 }
 
-export default withRouter(FriendRequest);
+export default FriendRequest;
 
