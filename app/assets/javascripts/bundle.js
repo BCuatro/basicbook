@@ -1748,7 +1748,7 @@ function App() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     setTimeout(function () {
       setloading("loaded");
-    }, 3000);
+    }, 2000);
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, loading === "loading" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_loading_loading_screen__WEBPACK_IMPORTED_MODULE_10__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "navbar-container"
@@ -2461,6 +2461,52 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_new_comment__WEBPACK_IMPORTED_MODULE_5__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_index.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/friends/friend_index.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _friend_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./friend_item */ "./frontend/components/friends/friend_item.jsx");
+
+
+
+var FriendIndex = function FriendIndex(_ref) {
+  var currentUser = _ref.currentUser,
+      user = _ref.user,
+      users = _ref.users,
+      friends = _ref.friends,
+      classname = _ref.classname;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: classname
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+    className: "friends-list-title"
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "friends-list"
+  }, friends.sort(function (a, b) {
+    return a.username > b.username ? 1 : -1;
+  }).map(function (friend, ind) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: "fi-".concat(ind),
+      friend: friend,
+      user: user,
+      currentUser: currentUser,
+      users: users
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FriendIndex);
 
 /***/ }),
 
@@ -3240,17 +3286,33 @@ var Homepage = function Homepage(_ref) {
   var Home = function Home(currentUser, users, user, friends) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "home"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("aside", {
-      className: "sidebar-left",
-      id: "sidebar-left-home"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
       className: "main-content",
       id: "main-home"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-      className: "header-group"
-    }, " Hi $", currentUser === null || currentUser === void 0 ? void 0 : currentUser.username, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "newsfeed"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)))) // <hgroup className="header-group">
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "person-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+      className: "person-title"
+    }, "About Eric Balfour"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "about-me-links"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      target: "_blank",
+      href: "https://github.com/BCuatro"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+      "class": "fa fa-2x fa-brands fa-github"
+    }), " GitHub Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      target: "_blank",
+      href: "https://bcuatro.github.io/Eric-Balfour/"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+      "class": "fa fa-2x fa-solid fa-at"
+    }), " Personal Portfolio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+      target: "_blank",
+      href: "www.linkedin.com/in/eric-balfour"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+      "class": "fa fa-2x fa-brands fa-linkedin"
+    }), " Linkedin Account"))))) // <hgroup className="header-group">
     //   <h2 className="header-name">Hi, {currentUser.username}! {currentUser.id}</h2>            
     // </hgroup>
     ;
@@ -4501,52 +4563,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/posts/friend_index.jsx":
-/*!****************************************************!*\
-  !*** ./frontend/components/posts/friend_index.jsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
-
-
-
-var FriendIndex = function FriendIndex(_ref) {
-  var currentUser = _ref.currentUser,
-      user = _ref.user,
-      users = _ref.users,
-      friends = _ref.friends,
-      classname = _ref.classname;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: classname
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-    className: "friends-list-title"
-  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-    className: "friends-list"
-  }, friends.sort(function (a, b) {
-    return a.username > b.username ? 1 : -1;
-  }).map(function (friend, ind) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: "fi-".concat(ind),
-      friend: friend,
-      user: user,
-      currentUser: currentUser,
-      users: users
-    });
-  })));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FriendIndex);
-
-/***/ }),
-
 /***/ "./frontend/components/posts/new_post.jsx":
 /*!************************************************!*\
   !*** ./frontend/components/posts/new_post.jsx ***!
@@ -4805,7 +4821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index_container */ "./frontend/components/posts/post_index_container.js");
 /* harmony import */ var _profile_about_me__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile/about_me */ "./frontend/components/profile/about_me.jsx");
-/* harmony import */ var _friend_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./friend_index */ "./frontend/components/posts/friend_index.jsx");
+/* harmony import */ var _friends_friend_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../friends/friend_index */ "./frontend/components/friends/friend_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4870,7 +4886,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-tab-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "aboutMe-container"
-      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_2__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_index__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, (0,_profile_about_me__WEBPACK_IMPORTED_MODULE_2__["default"])(this.props.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_index__WEBPACK_IMPORTED_MODULE_3__["default"], {
         classname: "friends-list-container",
         user: this.props.user,
         users: this.props.users,
@@ -6247,7 +6263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _posts_friend_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../posts/friend_index */ "./frontend/components/posts/friend_index.jsx");
+/* harmony import */ var _friends_friend_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/friend_index */ "./frontend/components/friends/friend_index.jsx");
 /* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -6353,11 +6369,12 @@ var Tabs = /*#__PURE__*/function (_React$Component2) {
         })
       }, {
         title: 'Friends',
-        content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_friend_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friends_friend_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
           user: this.props.user,
           users: this.props.users,
           currentUser: this.props.currentUser,
-          friends: this.props.friends
+          friends: this.props.friends,
+          classname: "tabs-friends-list"
         })
       } // {title: 'Photo', content: 'AWS'},
       ];

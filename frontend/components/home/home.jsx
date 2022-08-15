@@ -26,18 +26,34 @@ import NewsfeedContainer from './newsfeed_container'
         );
         const Home = (currentUser, users ,user, friends) => (
           <div className= "home">
-            <aside className ="sidebar-left" id="sidebar-left-home">
-
-            </aside>
+            
             
             <main className ="main-content" id = "main-home">
-              <div>
+              {/* <div>
                   <h2 className="header-group"> Hi ${currentUser?.username} </h2>
-              </div>
+              </div> */}
+              
+             
+           
 
               <div className ="newsfeed">
                 <NewsfeedContainer />
               </div>
+
+              <div className="person-container">
+                      <h2 className="person-title">About Eric Balfour</h2>
+                      <div className="about-me-links">
+                          <a target="_blank" href="https://github.com/BCuatro">
+                          <i class="fa fa-2x fa-brands fa-github"></i> GitHub Account
+                          </a>
+                          <a target="_blank" href="https://bcuatro.github.io/Eric-Balfour/">
+                          <i class="fa fa-2x fa-solid fa-at"></i> Personal Portfolio
+                          </a>
+                          <a target="_blank" href="www.linkedin.com/in/eric-balfour">
+                            <i class="fa fa-2x fa-brands fa-linkedin"></i> Linkedin Account
+                          </a>
+                      </div>
+                  </div>
             </main>
             {/* <aside className ="sidebar-right" id= "sidebar-right-home">
             

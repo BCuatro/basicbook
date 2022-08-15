@@ -50,58 +50,68 @@
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    min-height: 50px;
-    bottom: 0;
+    height: 50px;
+    
     width: 100%;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-bottom: 30px;
     background-color: #ffffff;
     // border-top: #65676b solid 1px;
     border-bottom-left-radius: 10px; 
     border-bottom-right-radius: 10px ;
-    align-items: flex-start;
+
   }
   
   .tabsHeader > li{
     display: flex;
     width: 65px;
-    min-height: 50px;
-    text-align: flex-start;
+    height: 55px;
     cursor: pointer;
-    justify-content:flex-end;
     background-color: transparent;
     font-weight: 600;
     font-size: 15px;
     line-height: 20px;
     color: #65676b;
-    bottom:0;
-    transform: translateY(20%);
+    top: 50%;
+    left: 50%;
+   
+    // transform: translateY(20%);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .tabsHeader > li:hover{
-    width: 65px;
-    height: 50px;
+    width: 75px;
+    height: 80%;
     cursor: pointer;
-    background-color:#DADDE1;
     border-radius: 5px;
-    bottom: 0;
+    transform: translateY(-1px);
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
     
   }
   
 
   .tabsHeader > li.active{
       color: #1876F2;
-      // border-bottom: solid #1876F2 5px;
+      width: 65px;
       display: flex;
       background-color: transparent;
       height: 50px;
       border-radius: 2px;
-      bottom: 0;
-      align-items: flex-start;
-      justify-content: flex-end;
+
+      
+
     
   }
 
+  .tabs-friends-list{
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    flex-direction: column;
+    background-color: #ffffff;
+    min-height: 300px;
+    border-radius: 10px;
+    padding: 5px 0 0 20px;
+
+  }
+  

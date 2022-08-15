@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendIndex from '../posts/friend_index';
+import FriendIndex from '../friends/friend_index';
 import PostContainer from '../posts/post_container';
 
 
@@ -58,7 +58,8 @@ export default class Tabs extends React.Component {
                                   user = {this.props.user}
                                   users = {this.props.users}
                                   currentUser = {this.props.currentUser}
-                                  friends = {this.props.friends} />
+                                  friends = {this.props.friends} 
+                                  classname = "tabs-friends-list" />
                                 },
       // {title: 'Photo', content: 'AWS'},
       

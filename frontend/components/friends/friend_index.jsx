@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendItem from '../friends/friend_item';
+import FriendItem from './friend_item';
 
 
 const FriendIndex= ({currentUser, user, users, friends, classname}) =>{

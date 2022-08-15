@@ -7,21 +7,25 @@
 }
 
 .main-content{
-    width: min(60%, 870px) ;
+    width: 80%;
     padding: 32px;
+    display: flex;
+    margin-top: 50px;
+    margin-inline: auto;
+   
 }
 
-.sidebar-right{
-    width: min(20%, 290px);
-    padding: 8px 0px 0px 0px;
-    z-index: 10000;
-}
+// .sidebar-right{
+//     width: min(20%, 290px);
+//     padding: 8px 0px 0px 0px;
+   
+// }
 
-.sidebar-left{
-    width: min(20%, 290px);
-    padding: 8px 0px 0px 0px;
-    z-index: 10000;
-}
+// .sidebar-left{
+//     width: min(20%, 290px);
+//     padding: 8px 0px 0px 0px;
+    
+// }
 
 #newFeedButtonModal{
     background-color:#f1f2f5;;
@@ -33,4 +37,45 @@
     font-size: medium;
     padding: 0%;
     
+    
+}
+
+.person-container {
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    height: 300px;
+    min-width: 400px;
+    margin-left:30px ;
+}
+
+.person-title{
+    text-align: center;
+}
+
+.about-me-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.about-me-links a{
+    padding:20px;
+    text-decoration: none;
+
+}
+
+.person {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-size: 21px;
+    color: beige;
+}
+
+.newsfeed{
+    width: min(60%,870px);
+    margin-right: 5%;
 }

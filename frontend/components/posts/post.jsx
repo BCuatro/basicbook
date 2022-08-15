@@ -1,7 +1,7 @@
 import React from 'react'
 import PostIndexContainer from './post_index_container';
 import aboutMe from '../profile/about_me';
-import FriendIndex from './friend_index';
+import FriendIndex from '../friends/friend_index';
 
 
 class Post extends React.Component {
