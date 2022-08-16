@@ -3466,7 +3466,7 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           _this$props$currentUs2,
           _this2 = this;
 
-      // console.log(Object.values(this.props.users))
+      console.log(this.props.currentUser.birth_date);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newfeed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
