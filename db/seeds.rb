@@ -54,7 +54,7 @@ like4 = Like.create!(user_id: blackpanther.id, likeable_id:comment1.id, likeable
 like5 = Like.create!(user_id: blackpanther.id , likeable_id: comment8.id, likeable_type:"Comment")
 like6 = Like.create!(user_id: blackpanther.id, likeable_id: post6.id, likeable_type: "Post")
 like7 = Like.create!(user_id: storm.id, likeable_id: post6.id, likeable_type: "Post")
-like8 = Like.create!(user_id: staticshock.id , likeable_id:post5.id, likeable_type: "Post"
+like8 = Like.create!(user_id: staticshock.id , likeable_id:post5.id, likeable_type: "Post")
 
 #Friends
 
