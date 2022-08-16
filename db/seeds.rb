@@ -25,14 +25,14 @@ staticshock = User.create!(username:"StaticShock", first_name: "Virgil", last_na
 
 #Post
 
-post1= Post.create!(author_id: blackpanther.id, profile_id: blackpanther.id, post: "The very first post on basicbook")
-post2= Post.create!(author_id: storm.id, profile_id: blackpanther.id, post: "I need to go back to wakanda, its so beautiful")
-post3= Post.create!(author_id: spiderman.id, profile_id: staticshock.id, post: "Yo SS what are you doing this weekend")
-post4= Post.create!(author_id: storm.id, profile_id: msmarvel.id, post: "Gurrlll your new series is amazing!!!!")
-post5= Post.create!(author_id: buzzlightyear.id, profile_id: buzzlightyear.id, post: "Basicbook is great! I need to tell Woody about this.")
-post6= Post.create!(author_id: phoneix.id, profile_id: phoenix.id, post: "X-men are hosting a charity event next week.  Everyone is invited!" )
-post7= Post.create!(author_id: staticshock.id, profile_id: blackpanther.id, post: "When is the next training session?  You may have won last time but I'll definitely get you this time.")
-post8= Post.create!(author_id: spiderham.id, profile_id: spiderham.id, post: "Who is down for 2 vs 2 basketball game?")
+post1= Post.create!(author_id: blackpanther.id, profile_id: blackpanther.id, body: "The very first post on basicbook")
+post2= Post.create!(author_id: storm.id, profile_id: blackpanther.id, body: "I need to go back to wakanda, its so beautiful")
+post3= Post.create!(author_id: spiderman.id, profile_id: staticshock.id, body: "Yo SS what are you doing this weekend")
+post4= Post.create!(author_id: storm.id, profile_id: msmarvel.id, body: "Gurrlll your new series is amazing!!!!")
+post5= Post.create!(author_id: buzzlightyear.id, profile_id: buzzlightyear.id, body: "Basicbook is great! I need to tell Woody about this.")
+post6= Post.create!(author_id: phoenix.id, profile_id: phoenix.id, body: "X-men are hosting a charity event next week.  Everyone is invited!" )
+post7= Post.create!(author_id: staticshock.id, profile_id: blackpanther.id, body: "When is the next training session?  You may have won last time but I'll definitely get you this time.")
+post8= Post.create!(author_id: spiderham.id, profile_id: spiderham.id, body: "Who is down for 2 vs 2 basketball game?")
 
 #Comments
 
@@ -40,7 +40,7 @@ comment1 = Comment.create!(author_id:spiderman.id, post_id:post1.id, body:"You m
 comment2 = Comment.create!(author_id:staticshock.id, post_id:post8.id, body:"I'm down ")
 comment3 = Comment.create!(author_id:msmarvel.id, post_id:post8.id, body:"Me too!! ")
 comment4 = Comment.create!(author_id:spiderman.id, post_id:post8.id, body:"Count me in")
-comment5 = Comment.create!(author_id:phoneix.id, post_id:post4.id, body:"Yassss bada**!! ")
+comment5 = Comment.create!(author_id:phoenix.id, post_id:post4.id, body:"Yassss bada**!! ")
 comment6 = Comment.create!(author_id:blackpanther.id, post_id:post2.id, body:"You are always welcome back 😊 ")
 comment7 = Comment.create!(author_id:blackpanther.id, post_id:post7.id, body:"Whenever you want to get beat again")
 comment8 = Comment.create!(author_id:spiderham.id, post_id:post1.id, body:"You may have the very first post, but I'm the very first pig on basicbook")
@@ -54,18 +54,18 @@ like4 = Like.create!(user_id: blackpanther.id, likeable_id:comment1.id, likeable
 like5 = Like.create!(user_id: blackpanther.id , likeable_id: comment8.id, likeable_type:"Comment")
 like6 = Like.create!(user_id: blackpanther.id, likeable_id: post6.id, likeable_type: "Post")
 like7 = Like.create!(user_id: storm.id, likeable_id: post6.id, likeable_type: "Post")
-like8 = Like.create!(user_id: staticshock.id , likeable_id:post5.id, likeable_type: "Post")
+like8 = Like.create!(user_id: staticshock.id , likeable_id: post5.id, likeable_type: "Post")
 
 #Friends
 
-friend1 = Like.create!(user_id: blackpanther.id , friend_id: storm.id, friendship_status: "accepted")
-friend2 = Like.create!(user_id: spiderman.id , friend_id: blackpanther.id, friendship_status: "accepted")
-friend3 = Like.create!(user_id: staticshock.id , friend_id: blackpanther.id, friendship_status: "accepted")
-friend4 = Like.create!(user_id: spiderman.id , friend_id: msmarvel.id, friendship_status: "accepted")
-friend5 = Like.create!(user_id: spiderman.id , friend_id: staticshock.id, friendship_status: "accepted")
-friend6 = Like.create!(user_id: storm.id , friend_id: phoenix.id, friendship_status: "accepted")
-friend7 = Like.create!(user_id: blackpanther.id, friend_id: buzzlightyear.id, friendship_status: "accepted")
-friend8 = Like.create!(user_id: spiderham.id, friend_id: blackpanther.id, friendship_status: "pending")
+friend1 = Friend.create!(user_id: blackpanther.id , friend_id: storm.id, friendship_status: "accepted")
+friend2 = Friend.create!(user_id: spiderman.id , friend_id: blackpanther.id, friendship_status: "accepted")
+friend3 = Friend.create!(user_id: staticshock.id , friend_id: blackpanther.id, friendship_status: "accepted")
+friend4 = Friend.create!(user_id: spiderman.id , friend_id: msmarvel.id, friendship_status: "accepted")
+friend5 = Friend.create!(user_id: spiderman.id , friend_id: staticshock.id, friendship_status: "accepted")
+friend6 = Friend.create!(user_id: storm.id , friend_id: phoenix.id, friendship_status: "accepted")
+friend7 = Friend.create!(user_id: blackpanther.id, friend_id: buzzlightyear.id, friendship_status: "accepted")
+friend8 = Friend.create!(user_id: spiderham.id, friend_id: blackpanther.id, friendship_status: "pending")
 
 # ProfileImages
 
