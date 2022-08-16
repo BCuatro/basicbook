@@ -32,7 +32,7 @@ class Newsfeed extends React.Component {
   }
   
   render() {
-    console.log(this.props.currentUser.birth_date)
+    // console.log(this.props.currentUser.birth_date)
     return (
       <div className ="newfeed">
         <div className= "postButtonModalContainter" >

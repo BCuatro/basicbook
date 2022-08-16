@@ -2994,8 +2994,7 @@ var Friendship = /*#__PURE__*/function (_React$Component) {
           var _this2$props$user, _this2$props$currentU, _this2$props$user2, _this2$props$currentU2;
 
           return ((_this2$props$user = _this2.props.user) === null || _this2$props$user === void 0 ? void 0 : _this2$props$user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) && ((_this2$props$currentU = _this2.props.currentUser) === null || _this2$props$currentU === void 0 ? void 0 : _this2$props$currentU.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id) || ((_this2$props$user2 = _this2.props.user) === null || _this2$props$user2 === void 0 ? void 0 : _this2$props$user2.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id) && ((_this2$props$currentU2 = _this2.props.currentUser) === null || _this2$props$currentU2 === void 0 ? void 0 : _this2$props$currentU2.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id);
-        });
-        console.log(relationship);
+        }); // console.log(relationship)
 
         if (((_relationship$ = relationship[0]) === null || _relationship$ === void 0 ? void 0 : _relationship$.friendship_status) === "accepted") {
           friendshipButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -3466,7 +3465,7 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           _this$props$currentUs2,
           _this2 = this;
 
-      console.log(this.props.currentUser.birth_date);
+      // console.log(this.props.currentUser.birth_date)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newfeed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -6009,8 +6008,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     key: "handleRedirect",
     value: function handleRedirect(users) {
       if (!(this.props.userId in users)) {
-        this.props.history.push("/PageNotFound");
-        console.log(userId); // <Redirect to="/404NotFound" />
+        this.props.history.push("/PageNotFound"); // console.log(userId)
+        // <Redirect to="/404NotFound" />
       }
     }
   }, {
@@ -7708,7 +7707,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, (0,_redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"], (redux_logger__WEBPACK_IMPORTED_MODULE_0___default()))));
+  return (// createStore(rootReducer, preloadedState, composeWithDevTools(applyMiddleware(thunk, logger)));
+    (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, (0,_redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"])))
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
@@ -51246,8 +51247,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.dispatch = store.dispatch;
   window.signup = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__.signup;
   window.login = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__.login;
-  window.logout = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__.logout;
-  console.log(store);
+  window.logout = _util_session_api_util__WEBPACK_IMPORTED_MODULE_4__.logout; // console.log(store)
 });
 })();
 

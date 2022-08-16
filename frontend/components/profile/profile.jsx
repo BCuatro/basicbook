@@ -44,7 +44,7 @@ class Profile extends React.Component{
     handleRedirect(users){
         if(!(this.props.userId in users)){
             this.props.history.push("/PageNotFound")
-            console.log(userId)
+            // console.log(userId)
             // <Redirect to="/404NotFound" />
         }
     }

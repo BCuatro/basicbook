@@ -189,7 +189,7 @@ class Friendship extends React.Component {
                 (this.props.user?.id === friend?.user_id && this.props.currentUser?.id === friend?.friend_id )
                 ||
                 (this.props.user?.id === friend?.friend_id && this.props.currentUser?.id === friend?.user_id ))
-                console.log(relationship)
+                // console.log(relationship)
                 if (relationship[0]?.friendship_status === "accepted"){
                     
                     friendshipButton =
