@@ -58,14 +58,14 @@ like8 = Like.create!(user_id: staticshock.id , likeable_id:post5.id, likeable_ty
 
 #Friends
 
-friend1 = Like.create!(user_id: blackpanther.id , friend_id: storm.id, friendship_status "accepted")
-friend2 = Like.create!(user_id: spiderman.id , friend_id: blackpanther.id, friendship_status "accepted")
-friend3 = Like.create!(user_id: staticshock.id , friend_id: blackpanther.id, friendship_status "accepted")
-friend4 = Like.create!(user_id: spiderman.id , friend_id: msmarvel.id, friendship_status "accepted")
-friend5 = Like.create!(user_id: spiderman.id , friend_id: staticshock.id, friendship_status "accepted")
-friend6 = Like.create!(user_id: storm.id , friend_id: phoenix.id, friendship_status "accepted")
-friend7 = Like.create!(user_id: blackpanther.id, friend_id: buzzlightyear.id, friendship_status "accepted")
-friend8 = Like.create!(user_id: spiderham.id, friend_id: blackpanther.id, friendship_status "pending")
+friend1 = Like.create!(user_id: blackpanther.id , friend_id: storm.id, friendship_status: "accepted")
+friend2 = Like.create!(user_id: spiderman.id , friend_id: blackpanther.id, friendship_status: "accepted")
+friend3 = Like.create!(user_id: staticshock.id , friend_id: blackpanther.id, friendship_status: "accepted")
+friend4 = Like.create!(user_id: spiderman.id , friend_id: msmarvel.id, friendship_status: "accepted")
+friend5 = Like.create!(user_id: spiderman.id , friend_id: staticshock.id, friendship_status: "accepted")
+friend6 = Like.create!(user_id: storm.id , friend_id: phoenix.id, friendship_status: "accepted")
+friend7 = Like.create!(user_id: blackpanther.id, friend_id: buzzlightyear.id, friendship_status: "accepted")
+friend8 = Like.create!(user_id: spiderham.id, friend_id: blackpanther.id, friendship_status: "pending")
 
 # ProfileImages
 
