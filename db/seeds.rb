@@ -47,9 +47,9 @@ comment8 = Comment.create!(author_id:spiderham.id, post_id:post1.id, body:"You m
 
 #Likes
 
-like1 = Like.create!(user_id: spiderman.id , likeable_id:, likeable_type: "Post")
-like2 = Like.create!(user_id: spiderham.id, likeable_id:, likeable_type: "Post")
-like3 = Like.create!(user_id: storm.id, likeable_id:, likeable_type: "Post")
+like1 = Like.create!(user_id: spiderman.id , likeable_id:post1.id, likeable_type: "Post")
+like2 = Like.create!(user_id: spiderham.id, likeable_id: post1.id, likeable_type: "Post")
+like3 = Like.create!(user_id: storm.id, likeable_id: post1.id, likeable_type: "Post")
 like4 = Like.create!(user_id: blackpanther.id, likeable_id:comment1.id, likeable_type:"Comment")
 like5 = Like.create!(user_id: blackpanther.id , likeable_id: comment8.id, likeable_type:"Comment")
 like6 = Like.create!(user_id: blackpanther.id, likeable_id: post6.id, likeable_type: "Post")
