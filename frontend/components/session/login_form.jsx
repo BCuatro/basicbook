@@ -25,7 +25,7 @@ class LoginForm extends React.Component{
 
     handleDemoUser(e){
         e.preventDefault();
-        const demoUser = { username: "Black Panther", password:"wakanda"}
+        const demoUser = { username: "BlackPanther", password:"wakanda"}
         this.props.processForm(demoUser).then(this.props.closeModal)
     }
 

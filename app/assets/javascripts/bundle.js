@@ -6632,7 +6632,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function handleDemoUser(e) {
       e.preventDefault();
       var demoUser = {
-        username: "Black Panther",
+        username: "BlackPanther",
         password: "wakanda"
       };
       this.props.processForm(demoUser).then(this.props.closeModal);
