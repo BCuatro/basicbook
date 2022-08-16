@@ -107,12 +107,12 @@ msmarvel.cover_photo.attach(io: file14, filename: "msmarvelcover.png")
 phoenix.cover_photo.attach(io: file15, filename: "jeancover.png")
 staticshock.cover_photo.attach(io: file16, filename: "static-shockcover.png")
 
-#PostImages
+# #PostImages
 
-file17 = open("https://metabook-pro.s3.amazonaws.com/wakanda.png")
-file18= open("https://metabook-pro.s3.amazonaws.com/xmencharity.png")
+# file17 = open("https://metabook-pro.s3.amazonaws.com/wakanda.png")
+# file18= open("https://metabook-pro.s3.amazonaws.com/xmencharity.png")
 
-post2.post_photo(io: file17, filename: "wakanda.png")
-post6.post_photo(io: file18, filename: "xmencharity.png")
+# post2.post_photo(io: file17, filename: "wakanda.png")
+# post6.post_photo(io: file18, filename: "xmencharity.png")
 
 
