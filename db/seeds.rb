@@ -69,14 +69,14 @@ friend8 = Friend.create!(user_id: spiderham.id, friend_id: blackpanther.id, frie
 
 # ProfileImages
 
-file1 = File.open("https://metabook-pro.s3.amazonaws.com/Black-Panther.png")
-file2 = File.open("https://metabook-pro.s3.amazonaws.com/SpideyProfilePic.png")
-file3 = File.open("https://metabook-pro.s3.amazonaws.com/Fearless_Storm.png")
-file4 = File.open("https://metabook-pro.s3.amazonaws.com/buzzprofile.png")
-file5 = File.open("https://metabook-pro.s3.amazonaws.com/spiderham_profile.jpeg")
-file6 = File.open("https://metabook-pro.s3.amazonaws.com/msmarvelprofile.png")
-file7 = File.open("https://metabook-pro.s3.amazonaws.com/Jean-Grey-Phoenix-2.png")
-file8 = File.open("https://metabook-pro.s3.amazonaws.com/static-shock.png")
+file1 = open("https://metabook-pro.s3.amazonaws.com/Black-Panther.png")
+file2 = open("https://metabook-pro.s3.amazonaws.com/SpideyProfilePic.png")
+file3 = open("https://metabook-pro.s3.amazonaws.com/Fearless_Storm.png")
+file4 = open("https://metabook-pro.s3.amazonaws.com/buzzprofile.png")
+file5 = open("https://metabook-pro.s3.amazonaws.com/spiderham_profile.jpeg")
+file6 = open("https://metabook-pro.s3.amazonaws.com/msmarvelprofile.png")
+file7 = open("https://metabook-pro.s3.amazonaws.com/Jean-Grey-Phoenix-2.png")
+file8 = open("https://metabook-pro.s3.amazonaws.com/static-shock.png")
 
 blackpanther.profile_photo.attach(io:file1, filename: "Black-Panther.png")
 spiderman.profile_photo.attach(io: file2, filename: "SpideyProfilePic.png")
@@ -89,14 +89,14 @@ staticshock.profile_photo.attach(io: file8, filename: "static-shock.png")
 
 
 #CoverImages
-file9 = File.open("https://metabook-pro.s3.amazonaws.com/BPcover.jpeg")
-file10 = File.open("https://metabook-pro.s3.amazonaws.com/SMpic2.png")
-file11 = File.open("https://metabook-pro.s3.amazonaws.com/stormcover.png")
-file12 = File.open("https://metabook-pro.s3.amazonaws.com/lightyearcover.jpeg")
-file13 = File.open("https://metabook-pro.s3.amazonaws.com/spiderham_cover.png")
-file14 = File.open("https://metabook-pro.s3.amazonaws.com/msmarvelcover.png")
-file15 = File.open("https://metabook-pro.s3.amazonaws.com/jeancover.png")
-file16 = File.open("https://metabook-pro.s3.amazonaws.com/static-shockcover.png")
+file9 = open("https://metabook-pro.s3.amazonaws.com/BPcover.jpeg")
+file10 = open("https://metabook-pro.s3.amazonaws.com/SMpic2.png")
+file11 = open("https://metabook-pro.s3.amazonaws.com/stormcover.png")
+file12 = open("https://metabook-pro.s3.amazonaws.com/lightyearcover.jpeg")
+file13 = open("https://metabook-pro.s3.amazonaws.com/spiderham_cover.png")
+file14 = open("https://metabook-pro.s3.amazonaws.com/msmarvelcover.png")
+file15 = open("https://metabook-pro.s3.amazonaws.com/jeancover.png")
+file16 = open("https://metabook-pro.s3.amazonaws.com/static-shockcover.png")
 
 blackpanther.cover_photo.attach(io: file9, filename: "BPcover.jpeg")
 spiderman.cover_photo.attach(io: file10, filename: "SMpic2.png")
@@ -109,8 +109,8 @@ staticshock.cover_photo.attach(io: file16, filename: "static-shockcover.png")
 
 #PostImages
 
-file17 = File.open("https://metabook-pro.s3.amazonaws.com/wakanda.png")
-file18= File.open("https://metabook-pro.s3.amazonaws.com/xmencharity.png")
+file17 = open("https://metabook-pro.s3.amazonaws.com/wakanda.png")
+file18= open("https://metabook-pro.s3.amazonaws.com/xmencharity.png")
 
 post2.post_photo(io: file17, filename: "wakanda.png")
 post6.post_photo(io: file18, filename: "xmencharity.png")
