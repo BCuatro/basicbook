@@ -33,7 +33,7 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
                     
                     <div className="notification-dropdown">
                         <div className="notification-dropdown-menu">
-                            <div id= {friendRequestCount.length > 0 ? "notification-exclamation":"hidden-navbar"} > ! </div>
+                            <div id= {friendRequestCount.length > 0 ? "notification-exclamation":"hidden-navbar"} > {friendRequestCount.length } </div>
                             <button id = "bell"><i className=" fa fa-solid fa-2xl fa-bell"></i></button>
                         <ul>
                                 <p className="notification-title">Friend Request</p>

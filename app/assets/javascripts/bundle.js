@@ -2507,13 +2507,21 @@ var FriendIndex = function FriendIndex(_ref) {
       users = _ref.users,
       friends = _ref.friends,
       classname = _ref.classname;
+  var myFriends = friends.filter(function (friend) {
+    return ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "accepted";
+  });
+  var friendWord = myFriends.length === 1 ? "Friend" : "Friends";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: classname
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "friends-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "friends-list-title"
-  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+  }, "Friends"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "friends-count"
+  }, " ", myFriends.length, " ", friendWord)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
     className: "friends-list"
-  }, friends.sort(function (a, b) {
+  }, myFriends.sort(function (a, b) {
     return a.username > b.username ? 1 : -1;
   }).map(function (friend, ind) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_friend_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2545,40 +2553,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+  var _theFriend, _theFriend2, _theFriend3, _theFriend4;
+
   var friend = _ref.friend,
       users = _ref.users,
       user = _ref.user,
-      currentUser = _ref.currentUser,
-      friendcount = _ref.friendcount;
+      currentUser = _ref.currentUser;
   var theFriend;
 
   if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id)) {
-    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
-    friendcount++;
+    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.friend_id]; // friendcount++
   } else if ((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) {
-    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
-    friendcount++;
-  }
+    theFriend = users[friend === null || friend === void 0 ? void 0 : friend.user_id]; // friendcount++
+  } // if((user?.id === friend?.user_id || user?.id === friend?.friend_id) && friend?.friendship_status === "accepted"){
 
-  if (((user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.user_id) || (user === null || user === void 0 ? void 0 : user.id) === (friend === null || friend === void 0 ? void 0 : friend.friend_id)) && (friend === null || friend === void 0 ? void 0 : friend.friendship_status) === "accepted") {
-    var _theFriend, _theFriend2, _theFriend3, _theFriend4;
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-      className: "friend-class"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-      href: "/#/users/".concat((_theFriend = theFriend) === null || _theFriend === void 0 ? void 0 : _theFriend.id)
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "friend-profile-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "friend-profile-photo-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      className: "friend-photo",
-      src: (_theFriend2 = theFriend) !== null && _theFriend2 !== void 0 && _theFriend2.profile_photoUrl ? (_theFriend3 = theFriend) === null || _theFriend3 === void 0 ? void 0 : _theFriend3.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "friend-profile-name"
-    }, (_theFriend4 = theFriend) === null || _theFriend4 === void 0 ? void 0 : _theFriend4.username))));
-  }
-});
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: "friend-class"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "/#/users/".concat((_theFriend = theFriend) === null || _theFriend === void 0 ? void 0 : _theFriend.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "friend-profile-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "friend-profile-photo-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: "friend-photo",
+    src: (_theFriend2 = theFriend) !== null && _theFriend2 !== void 0 && _theFriend2.profile_photoUrl ? (_theFriend3 = theFriend) === null || _theFriend3 === void 0 ? void 0 : _theFriend3.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "friend-profile-name"
+  }, (_theFriend4 = theFriend) === null || _theFriend4 === void 0 ? void 0 : _theFriend4.username))));
+}); // }
 
 /***/ }),
 
@@ -4097,7 +4101,7 @@ var NavBar = function NavBar(_ref) {
     className: "notification-dropdown-menu"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: friendRequestCount.length > 0 ? "notification-exclamation" : "hidden-navbar"
-  }, " ! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " ", friendRequestCount.length, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     id: "bell"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     className: " fa fa-solid fa-2xl fa-bell"

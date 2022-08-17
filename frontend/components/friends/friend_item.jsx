@@ -3,18 +3,18 @@ import React from 'react';
 
 
 
-export default ({ friend, users, user, currentUser, friendcount}) => {
+export default ({ friend, users, user, currentUser}) => {
   let theFriend
   if (user?.id === friend?.user_id ){
     theFriend = users[friend?.friend_id]
-    friendcount++
+    // friendcount++
   } else if (user?.id === friend?.friend_id) {
     theFriend = users[friend?.user_id]
-    friendcount++
+    // friendcount++
   }
   
   
-  if((user?.id === friend?.user_id || user?.id === friend?.friend_id) && friend?.friendship_status === "accepted"){
+  // if((user?.id === friend?.user_id || user?.id === friend?.friend_id) && friend?.friendship_status === "accepted"){
     return (
       <li className="friend-class">
         <a href={`/#/users/${theFriend?.id }`}>
@@ -32,6 +32,6 @@ export default ({ friend, users, user, currentUser, friendcount}) => {
         
       </li>
     )}
-}
+// }
 
   
