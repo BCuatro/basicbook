@@ -12,7 +12,10 @@ import Search from '../search/search_index';
 
 
 const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
-    
+    const friendRequestCount =  friends.filter(request=>
+        currentUser?.id ===request?.friend_id && request.friendship_status === "pending"
+      )
+    console.log(friends)
     const liNavBar = currentUser ? (
         
         // <div className ="navbar-container">
@@ -27,10 +30,11 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
                     <Link id = "home-link" to={"/"}><i className="fa fa-solid fa-2xl fa-house"></i></Link> 
                     
                     </div>
+                    
                     <div className="notification-dropdown">
                         <div className="notification-dropdown-menu">
+                            <div id= {friendRequestCount.length > 0 ? "notification-exclamation":"hidden-navbar"} > ! </div>
                             <button id = "bell"><i className=" fa fa-solid fa-2xl fa-bell"></i></button>
-
                         <ul>
                                 <p className="notification-title">Friend Request</p>
                             { 
@@ -47,13 +51,6 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
                                 ))
                             }
                         </ul>
- 
-
-
-
-
-
-
                         </div> {/* */}
                     </div> 
 

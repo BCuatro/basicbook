@@ -5,13 +5,12 @@ import FriendRequestContainer from './friend_request_container';
 
 
 
-export default ({ friend, users, user, currentUser}) => {
+export default ({ friend, users, user, currentUser, handleCount}) => {
   const requestee = users[friend?.friend_id]
   const requester=  users[friend?.user_id]
   
-  
-  
   if(currentUser?.id === requestee?.id && friend?.friendship_status === "pending") {
+    
     return (
       <li className= "notification-dropdown-items" >
           <a href={`/#/users/${requester?.id }`}>

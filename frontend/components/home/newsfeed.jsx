@@ -15,6 +15,7 @@ class Newsfeed extends React.Component {
     this.props.fetchUsers();
     this.props.fetchLikes();
     this.props.fetchFriends();
+    this.props.fetchComments();
     
     // this.props.fetchUser(this.props.match.params.userId)
   }

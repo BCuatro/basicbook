@@ -140,4 +140,14 @@
       .logout-icon{
         cursor: pointer;
       }
+
+      #notification-exclamation{
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        background-color: #F1F2F5;
+        border-radius: 20px;
+        text-align: center;
+        transform: translate(35px, -10px);
+      }
       

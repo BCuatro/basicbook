@@ -2777,7 +2777,8 @@ __webpack_require__.r(__webpack_exports__);
   var friend = _ref.friend,
       users = _ref.users,
       user = _ref.user,
-      currentUser = _ref.currentUser;
+      currentUser = _ref.currentUser,
+      handleCount = _ref.handleCount;
   var requestee = users[friend === null || friend === void 0 ? void 0 : friend.friend_id];
   var requester = users[friend === null || friend === void 0 ? void 0 : friend.user_id];
 
@@ -3260,18 +3261,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _friends_friend_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/friend_item */ "./frontend/components/friends/friend_item.jsx");
-/* harmony import */ var _nav_bar_nav_bar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../nav_bar/nav_bar_container */ "./frontend/components/nav_bar/nav_bar_container.js");
-/* harmony import */ var _posts_post_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../posts/post_container */ "./frontend/components/posts/post_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/profile_container */ "./frontend/components/profile/profile_container.js");
-/* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
-/* harmony import */ var _newsfeed_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./newsfeed_container */ "./frontend/components/home/newsfeed_container.js");
-
-
-
-
-
-
+/* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
+/* harmony import */ var _newsfeed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newsfeed_container */ "./frontend/components/home/newsfeed_container.js");
+ // import { Link } from 'react-router-dom'
+// import FriendItem from '../friends/friend_item';
+// import NavBarContainer from '../nav_bar/nav_bar_container';
+// import GreetingContainer from '../nav_bar/nav_bar_container';
+// import PostContainer from '../posts/post_container';
+// import ProfileContainer from '../profile/profile_container';
 
 
 
@@ -3297,7 +3294,7 @@ var Homepage = function Homepage(_ref) {
       className: "word"
     }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "login-form-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
   };
 
   var Home = function Home(currentUser, users, user, friends) {
@@ -3308,7 +3305,7 @@ var Homepage = function Homepage(_ref) {
       id: "main-home"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "newsfeed"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_newsfeed_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "person-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
       className: "person-title"
@@ -3320,17 +3317,17 @@ var Homepage = function Homepage(_ref) {
       target: "_blank",
       href: "https://github.com/BCuatro"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-      "class": "fa fa-2x fa-brands fa-github"
+      className: "fa fa-2x fa-brands fa-github"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "GitHub Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       target: "_blank",
       href: "https://bcuatro.github.io/Eric-Balfour/"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-      "class": "fa fa-2x fa-solid fa-at"
+      className: "fa fa-2x fa-solid fa-at"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Personal Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       target: "_blank",
       href: "www.linkedin.com/in/eric-balfour"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-      "class": "fa fa-2x fa-brands fa-linkedin"
+      className: "fa fa-2x fa-brands fa-linkedin"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Linkedin Account"))))));
   };
 
@@ -3460,7 +3457,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
       this.props.fetchPosts();
       this.props.fetchUsers();
       this.props.fetchLikes();
-      this.props.fetchFriends(); // this.props.fetchUser(this.props.match.params.userId)
+      this.props.fetchFriends();
+      this.props.fetchComments(); // this.props.fetchUser(this.props.match.params.userId)
     }
   }, {
     key: "handleCreateOpenModal",
@@ -3542,11 +3540,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
 /* harmony import */ var _newsfeed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./newsfeed */ "./frontend/components/home/newsfeed.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_users_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/users_actions */ "./frontend/actions/users_actions.js");
 /* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
 /* harmony import */ var _actions_friends_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/friends_actions */ "./frontend/actions/friends_actions.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+
 
 
 
@@ -3599,11 +3599,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchFriends: function fetchFriends() {
       return dispatch((0,_actions_friends_actions__WEBPACK_IMPORTED_MODULE_7__.fetchFriends)());
+    },
+    fetchComments: function fetchComments() {
+      return dispatch(_actions_comments_actions__WEBPACK_IMPORTED_MODULE_8__.fetchComments);
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_newsfeed__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -3902,7 +3905,7 @@ var LoadingScreen = function LoadingScreen() {
     wrapperClass: true
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "loading-text"
-  }, " BasicBook"));
+  }, " Basicbook"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingScreen);
@@ -4064,6 +4067,10 @@ var NavBar = function NavBar(_ref) {
       users = _ref.users,
       user = _ref.user,
       friends = _ref.friends;
+  var friendRequestCount = friends.filter(function (request) {
+    return (currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (request === null || request === void 0 ? void 0 : request.friend_id) && request.friendship_status === "pending";
+  });
+  console.log(friends);
   var liNavBar = currentUser ?
   /*#__PURE__*/
   // <div className ="navbar-container">
@@ -4088,7 +4095,9 @@ var NavBar = function NavBar(_ref) {
     className: "notification-dropdown"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "notification-dropdown-menu"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: friendRequestCount.length > 0 ? "notification-exclamation" : "hidden-navbar"
+  }, " ! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     id: "bell"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
     className: " fa fa-solid fa-2xl fa-bell"

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import FriendItem from '../friends/friend_item';
-import NavBarContainer from '../nav_bar/nav_bar_container';
-import GreetingContainer from '../nav_bar/nav_bar_container';
-import PostContainer from '../posts/post_container';
-import ProfileContainer from '../profile/profile_container';
+// import { Link } from 'react-router-dom'
+// import FriendItem from '../friends/friend_item';
+// import NavBarContainer from '../nav_bar/nav_bar_container';
+// import GreetingContainer from '../nav_bar/nav_bar_container';
+// import PostContainer from '../posts/post_container';
+// import ProfileContainer from '../profile/profile_container';
 import LoginFormContainer from '../session/login_form_container';
 import NewsfeedContainer from './newsfeed_container'
 
@@ -37,15 +37,15 @@ import NewsfeedContainer from './newsfeed_container'
                       <p className="about-eric">This clone was brought to you by Eric Balfour.  Before you leave, please visit the links below to learn more about Eric.  Thank You! </p>
                       <div className="about-me-links">
                           <a target="_blank" href="https://github.com/BCuatro">
-                          <i class="fa fa-2x fa-brands fa-github"></i>
+                          <i className="fa fa-2x fa-brands fa-github"></i>
                           <p>GitHub Account</p>
                           </a>
                           <a target="_blank" href="https://bcuatro.github.io/Eric-Balfour/">
-                          <i class="fa fa-2x fa-solid fa-at"></i>
+                          <i className="fa fa-2x fa-solid fa-at"></i>
                           <p>Personal Portfolio</p>
                           </a>
                           <a target="_blank" href="www.linkedin.com/in/eric-balfour">
-                            <i class="fa fa-2x fa-brands fa-linkedin"></i>
+                            <i className="fa fa-2x fa-brands fa-linkedin"></i>
                             <p>Linkedin Account</p>
                           </a>
                       </div>

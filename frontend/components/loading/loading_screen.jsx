@@ -17,7 +17,7 @@ const LoadingScreen = () => {
                 wrapperClass
             />
             </div>
-            <div className= "loading-text"> BasicBook</div>
+            <div className= "loading-text"> Basicbook</div>
             
         </div>
     )
