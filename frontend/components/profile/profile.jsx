@@ -72,7 +72,7 @@ class Profile extends React.Component{
                         <div className= "profile-cover-container">
                             <img className = "cover-photo" src={this.props.user?.cover_photoUrl ?
                                 this.props.user?.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q"  } alt="" />
-                            <div className= "edit-cover-button-container">
+                            <div className= {this.props.currentUser.id === parseInt(this.props.userId) ? "edit-cover-button-container" : "non-visible"}>
                             <div id= "edit-cover-content"  ><i onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}} className="fa-solid fa-3x fa-camera-retro"></i></div>
                                 {/* <button id= "edit-cover-button" onClick = {() => {this.handleOpenModal("editphoto","coverphoto")}}>Edit Cover Picture</button> */}
                             </div>
@@ -83,7 +83,7 @@ class Profile extends React.Component{
                         <div className= "profile-photo-container">
                             <div className="profile-banner">
                                 <img className = "profile-photo" src={this.props.user?.profile_photoUrl ? this.props.user?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } alt="" /> 
-                                <div className =" edit-photo-container" ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
+                                <div className ={this.props.currentUser.id === parseInt(this.props.userId) ? "edit-photo-container" :"non-visible" } ><i onClick = {() => {this.handleOpenModal("editphoto","profilephoto")}} className="fa-solid fa-lg fa-camera-retro"></i></div>
                                 <div className="user-information-container">
                                     <div className = "user-information">{this.props.user?.first_name} {this.props.user?.last_name} </div>
                                     <div className = "user-username">@{this.props.user?.username}</div>

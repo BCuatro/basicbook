@@ -98,7 +98,6 @@ class Friendship extends React.Component {
 
 
     render() {
-        console.log("looky", this.props.user?.id)
         let friendshipButton;
         if (this.props.currentUser.id === this.props.user?.id) {
             friendshipButton = "";

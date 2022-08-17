@@ -25,8 +25,9 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
     obj.id === post?.author_id
   )[0]
 
-  let editbutton 
-  let deletebutton 
+  let dropdown 
+  let dropdownMenu 
+  let dropdownLinks
   let postImage
   if (post.post_photoUrl){
     postImage = <img className = "post-photo" src={post.post_photoUrl} alt="" />
@@ -34,21 +35,16 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
     postImage = ""
   }
   if (currentUser?.id === post?.author_id){
-    
-    editbutton =  <button onClick ={() => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
- 
-    deletebutton =  <button 
-    className="delete button" 
-    onClick={() => { 
-      const confirmation = 
-      window.confirm("Are you sure you want to delete this post?")
-      if (confirmation === true) {
-        deletePost(post?.id)
-      }
-      }}>Delete Post </button>
+  
+    dropdown = "dropdown"
+    dropdownMenu = "dropdown-menu"
+    dropdownLinks= "dropdown-links"
+
+
   } else {
-    editbutton = ""
-    deletebutton = ""
+    dropdown = "nodropdown"
+    dropdownMenu = "nodropdown"
+    dropdownLinks= "nodropdown"
   }
   const post_date = new Date(post?.created_at)
    
@@ -71,12 +67,12 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
           </div>
           
         </div>
-        <div className="dropdown">
-          <div className="dropdown-menu">
+        <div className={dropdown}>
+          <div className={dropdownMenu} id="comment-dropdown-menu">
             <button>...</button>
               <ul>
                 <li>
-                  <div className="dropdown-links" 
+                  <div className={dropdownLinks} 
                       onClick ={() => 
                       {dispatch(openModal({modal: "editpost", post: post}))}}>
                       Edit Post
@@ -84,7 +80,7 @@ const PostItem = ({ post, user, users, deletePost,page, updatePost, currentUser,
                   </li>
 
                 <li>
-                  <div className= "dropdown-links"
+                  <div className= {dropdownLinks}
                       onClick={() => { 
                       const confirmation = 
                       window.confirm("Are you sure you want to delete this post?")

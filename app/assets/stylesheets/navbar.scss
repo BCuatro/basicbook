@@ -10,7 +10,7 @@
   }
   
   .logo::first-letter{
-    color:#1f6cab;
+    color:#1876F2;
     font-size: larger;
     font-family: monospace, cursive;
     
@@ -25,11 +25,12 @@
     }
 
     .logo-container{
-        width: 30%;
+        width: 15%;
         height: 100%;
         font-size: 12px;
         padding: 0 10px 0 10px;
         font-family: monospace
+        
     }
     .navbar-container{
         width: 100%;
@@ -49,12 +50,13 @@
         
     }
 
+
     .navbar-items{
         display: flex;
-        justify-content: space-evenly;
-        width: 70%;
+        justify-content: space-around;
+        width: 40%;
         height: 30px;
-        padding: 0;
+        padding-left: 20px;
     }
    
     #profile-link{
@@ -128,7 +130,14 @@
         
       }
 
-      .test{
-        background-color: black;
-        color: pink;
+      
+      #home-links i{
+        text-decoration: none;
+        color: #1876F2;
+        transform: translateY(5px);
       }
+
+      .logout-icon{
+        cursor: pointer;
+      }
+      

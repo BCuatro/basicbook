@@ -70,11 +70,12 @@ class Photo extends React.Component{
        
         const preview = this.state.photoUrl ? <img className = "photo-preview" id = {this.props.phototype}src={this.state.photoUrl} /> : null;
 
-        let photoform
+        let photoForm
+        let photoTitle
         if (this.props.phototype ==="profilephoto"){
-            photoform = 
+            photoTitle = "Profile Picture"
+            photoForm = 
             <div>
-                    <h4>Profile Picture</h4>
                     <h5>Preview</h5>
                     {preview}
                     <form onSubmit={this.handleProfilePhotoSubmit}>
@@ -88,10 +89,10 @@ class Photo extends React.Component{
                     
                 </div>
         } else if (this.props.phototype ==="coverphoto"){
-            photoform = 
+            photoTitle = "Cover Photo"
+            photoForm = 
             <div>
-                <h4>Cover Picture</h4>
-                    <h5>Preview</h5>
+                    <h4>Preview:</h4>
                     {preview}
                 <form onSubmit={this.handleCoverPhotoSubmit}>
                         <input type="file" 
@@ -104,14 +105,17 @@ class Photo extends React.Component{
         }
 
         return (
-            <div>
-                <div>
-                    <button onClick={()=>{this.props.closeModal();}} className="close-x">X</button>
+            <div className="new-photo_container">
+               <div className ="edit-post-header">
+                            <h2 className= "edit-form-title">{photoTitle}</h2>
+                            <div
+                            onClick={()=>{
+                                this.props.closeModal();
+                            }}className="close-x"><i className="fa fa-lg fa-x"></i></div>
+                        </div>
                     
-                </div>
-                    
                 <div>
-                    {photoform}
+                    {photoForm}
                 </div>
                 
             </div>

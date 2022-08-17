@@ -1815,16 +1815,34 @@ __webpack_require__.r(__webpack_exports__);
   }), " ", likesCount) : displayCommentLikesCount = "";
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (comment === null || comment === void 0 ? void 0 : comment.author_id);
-  })[0];
-  var dropdownId;
-  var visibility;
+  })[0]; // let dropdownId
+
+  var visibility; // if (currentUser?.id === comment?.author_id){
+  //   dropdownId = "comment-dropdown"
+  //   visibility= "non-visibility"
+  // }
+  // else{
+  //   dropdownId = "dropdown-nonvisible"
+  //   visibility = ""
+  // }
+
+  var dropdown;
+  var dropdownMenu;
+  var dropdownLinks;
+  var commentAndLikeId;
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (comment === null || comment === void 0 ? void 0 : comment.author_id)) {
-    dropdownId = "comment-dropdown";
+    dropdown = "dropdown";
+    dropdownMenu = "dropdown-menu";
+    dropdownLinks = "dropdown-links";
     visibility = "non-visibility";
+    commentAndLikeId = "";
   } else {
-    dropdownId = "dropdown-nonvisible";
-    visibility = "";
+    dropdown = "nodropdown";
+    dropdownMenu = "nodropdown";
+    dropdownLinks = "nodropdown";
+    commentAndLikeId = "nopointer";
+    visibility = "nopointer";
   } // editbutton = <EditPostContainer post={post} />
   // editbutton =  <button onClick ={(modal , post) => {dispatch(openModal({modal: "editpost", post: post}))}}> Edit Post</button> 
   // deletebutton= <button onClick ={() => {deletePost(post.id)}}> Delete Post</button> 
@@ -1855,7 +1873,8 @@ __webpack_require__.r(__webpack_exports__);
       className: "post-photo",
       id: "profile-picture"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "comment_class-and-like-button"
+      className: "comment_class-and-like-button",
+      id: commentAndLikeId
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "comment-body-with-likes"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1877,17 +1896,18 @@ __webpack_require__.r(__webpack_exports__);
     }, comment === null || comment === void 0 ? void 0 : comment.body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "like-and-dropdown"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown",
-      id: dropdownId
+      className: dropdown
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-menu"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-links",
+      className: dropdownMenu
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      id: "comment-downdrop-menu"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: dropdownLinks,
       onClick: function onClick() {
         return updateComment("editcomment", comment);
       }
     }, "Edit Comment")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-links",
+      className: dropdownLinks,
       onClick: function onClick() {
         var confirmation = window.confirm("Are you sure you want to delete this comment?");
 
@@ -2914,13 +2934,11 @@ var Friendship = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props$user2,
-          _this$props$user3,
           _this2 = this;
 
-      console.log("looky", (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id);
       var friendshipButton;
 
-      if (this.props.currentUser.id === ((_this$props$user3 = this.props.user) === null || _this$props$user3 === void 0 ? void 0 : _this$props$user3.id)) {
+      if (this.props.currentUser.id === ((_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.id)) {
         friendshipButton = "";
       } else {
         var _relationship$, _relationship$2;
@@ -3294,27 +3312,26 @@ var Homepage = function Homepage(_ref) {
       className: "person-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
       className: "person-title"
-    }, "About Eric Balfour"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    }, "Sponsership"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      className: "about-eric"
+    }, "This clone was brought to you by Eric Balfour.  Before you leave, please visit the links below to learn more about Eric.  Thank You! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "about-me-links"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       target: "_blank",
       href: "https://github.com/BCuatro"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
       "class": "fa fa-2x fa-brands fa-github"
-    }), " GitHub Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "GitHub Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       target: "_blank",
       href: "https://bcuatro.github.io/Eric-Balfour/"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
       "class": "fa fa-2x fa-solid fa-at"
-    }), " Personal Portfolio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Personal Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
       target: "_blank",
       href: "www.linkedin.com/in/eric-balfour"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
       "class": "fa fa-2x fa-brands fa-linkedin"
-    }), " Linkedin Account"))))) // <hgroup className="header-group">
-    //   <h2 className="header-name">Hi, {currentUser.username}! {currentUser.id}</h2>            
-    // </hgroup>
-    ;
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Linkedin Account"))))));
   };
 
   return currentUser ? Home(currentUser, users, user, friends) : login();
@@ -3879,7 +3896,7 @@ var LoadingScreen = function LoadingScreen() {
     height: "240",
     width: "240",
     radius: "9",
-    color: "blue",
+    color: "#1876F2",
     ariaLabel: "three-dots-loading",
     wrapperStyle: true,
     wrapperClass: true
@@ -4056,17 +4073,17 @@ var NavBar = function NavBar(_ref) {
     className: "logo-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "logo"
-  }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "navbar-items"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_search_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_search_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: usersArray
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "navbar-items"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "home-links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     id: "home-link",
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-    className: "fa fa-solid fa-2x fa-house"
+    className: "fa fa-solid fa-2xl fa-house"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "notification-dropdown"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4074,7 +4091,7 @@ var NavBar = function NavBar(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     id: "bell"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
-    className: " fa fa-solid fa-2x fa-bell"
+    className: " fa fa-solid fa-2xl fa-bell"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "notification-title"
   }, "Friend Request"), friends // .sort((a,b) => a.created_at > b.created_at ? -1 : 1)
@@ -5201,8 +5218,9 @@ var PostItem = function PostItem(_ref) {
   var author = users === null || users === void 0 ? void 0 : users.filter(function (obj) {
     return obj.id === (post === null || post === void 0 ? void 0 : post.author_id);
   })[0];
-  var editbutton;
-  var deletebutton;
+  var dropdown;
+  var dropdownMenu;
+  var dropdownLinks;
   var postImage;
 
   if (post.post_photoUrl) {
@@ -5216,27 +5234,13 @@ var PostItem = function PostItem(_ref) {
   }
 
   if ((currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (post === null || post === void 0 ? void 0 : post.author_id)) {
-    editbutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      onClick: function onClick() {
-        dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)({
-          modal: "editpost",
-          post: post
-        }));
-      }
-    }, " Edit Post");
-    deletebutton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-      className: "delete button",
-      onClick: function onClick() {
-        var confirmation = window.confirm("Are you sure you want to delete this post?");
-
-        if (confirmation === true) {
-          deletePost(post === null || post === void 0 ? void 0 : post.id);
-        }
-      }
-    }, "Delete Post ");
+    dropdown = "dropdown";
+    dropdownMenu = "dropdown-menu";
+    dropdownLinks = "dropdown-links";
   } else {
-    editbutton = "";
-    deletebutton = "";
+    dropdown = "nodropdown";
+    dropdownMenu = "nodropdown";
+    dropdownLinks = "nodropdown";
   }
 
   var post_date = new Date(post === null || post === void 0 ? void 0 : post.created_at);
@@ -5269,11 +5273,12 @@ var PostItem = function PostItem(_ref) {
     }), " at ", post_date.toLocaleTimeString([], {
       timeStyle: 'short'
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown"
+      className: dropdown
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-menu"
+      className: dropdownMenu,
+      id: "comment-dropdown-menu"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-links",
+      className: dropdownLinks,
       onClick: function onClick() {
         dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.openModal)({
           modal: "editpost",
@@ -5281,7 +5286,7 @@ var PostItem = function PostItem(_ref) {
         }));
       }
     }, "Edit Post")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      className: "dropdown-links",
+      className: dropdownLinks,
       onClick: function onClick() {
         var confirmation = window.confirm("Are you sure you want to delete this post?");
 
@@ -5352,7 +5357,7 @@ var aboutMe = function aboutMe(user) {
   }, "Intro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "aboutMe-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
-    id: !(user !== null && user !== void 0 && user.bio) ? "non-visible" : "bio"
+    id: !(user !== null && user !== void 0 && user.bio) ? "non-visible" : "biostatement"
   }, user === null || user === void 0 ? void 0 : user.bio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: !(user !== null && user !== void 0 && user.username) ? "non-visible" : "aboutMe",
     id: "username"
@@ -5813,10 +5818,12 @@ var Photo = /*#__PURE__*/function (_React$Component) {
         id: this.props.phototype,
         src: this.state.photoUrl
       }) : null;
-      var photoform;
+      var photoForm;
+      var photoTitle;
 
       if (this.props.phototype === "profilephoto") {
-        photoform = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Profile Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        photoTitle = "Profile Picture";
+        photoForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
           onSubmit: this.handleProfilePhotoSubmit
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
           type: "file",
@@ -5827,7 +5834,8 @@ var Photo = /*#__PURE__*/function (_React$Component) {
           onClick: this.handleProfilePhotoSubmit
         }, "Upload Profile Photo")));
       } else if (this.props.phototype === "coverphoto") {
-        photoform = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Cover Picture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Preview"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        photoTitle = "Cover Photo";
+        photoForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Preview:"), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
           onSubmit: this.handleCoverPhotoSubmit
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
           type: "file",
@@ -5839,12 +5847,20 @@ var Photo = /*#__PURE__*/function (_React$Component) {
         }, "Upload Cover Photo")));
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "new-photo_container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "edit-post-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+        className: "edit-form-title"
+      }, photoTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: function onClick() {
           _this3.props.closeModal();
         },
         className: "close-x"
-      }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, photoform));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
+        className: "fa fa-lg fa-x"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, photoForm));
     }
   }]);
 
@@ -6056,7 +6072,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         src: (_this$props$user = this.props.user) !== null && _this$props$user !== void 0 && _this$props$user.cover_photoUrl ? (_this$props$user2 = this.props.user) === null || _this$props$user2 === void 0 ? void 0 : _this$props$user2.cover_photoUrl : "https://metabook-dev.s3.amazonaws.com/Lyn7SpQ5rZw6GDkrhAqTbn7q",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "edit-cover-button-container"
+        className: this.props.currentUser.id === parseInt(this.props.userId) ? "edit-cover-button-container" : "non-visible"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         id: "edit-cover-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
@@ -6073,7 +6089,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         src: (_this$props$user3 = this.props.user) !== null && _this$props$user3 !== void 0 && _this$props$user3.profile_photoUrl ? (_this$props$user4 = this.props.user) === null || _this$props$user4 === void 0 ? void 0 : _this$props$user4.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32",
         alt: ""
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: " edit-photo-container"
+        className: this.props.currentUser.id === parseInt(this.props.userId) ? "edit-photo-container" : "non-visible"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("i", {
         onClick: function onClick() {
           _this3.handleOpenModal("editphoto", "profilephoto");

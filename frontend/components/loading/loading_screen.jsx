@@ -11,7 +11,7 @@ const LoadingScreen = () => {
                 height = "240"
                 width = "240"
                 radius = "9"
-                color = 'blue'
+                color = "#1876F2"
                 ariaLabel = 'three-dots-loading'     
                 wrapperStyle
                 wrapperClass

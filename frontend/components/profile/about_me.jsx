@@ -11,8 +11,7 @@ const aboutMe =(user) =>{
       <h2 id="aboutMe-title">Intro</h2>
     
       <div className = "aboutMe-content">
-      
-        <h3  id = {!user?.bio ? "non-visible" : "bio" }>{user?.bio}</h3>
+        <h3 id = {!user?.bio ? "non-visible" : "biostatement" }>{user?.bio}</h3>
       
         <div className = {!user?.username ? "non-visible": "aboutMe" }id= "username"> 
           <i className="fa fa-solid fa-user-astronaut"></i>&nbsp;Username: @{user?.username}

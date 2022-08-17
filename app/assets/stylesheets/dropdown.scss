@@ -90,9 +90,20 @@
 }
 
 
-#dropdown-nonvisible{
+.nodropdown{
   display: none;
   pointer-events: none;
+  cursor: default;
+}
+
+
+#comment-downdrop-menu{
+  padding-top: 10px;
+  
+}
+
+#nopointer{
+  cursor: default;
 }
 
 .spaceholder{
@@ -115,16 +126,17 @@
 
 .notification-dropdown {
   height: 100%;
-  width: 60%;
+  width: 30%;
   display: flex;
   justify-content:center;
   padding: 3px;
+  transform: translateX(50%);
   
   
 }
 
 .notification-dropdown-menu{
-  position: relative;
+  position: absolute
 }
 
 .notification-dropdown-menu ul{
@@ -160,6 +172,7 @@
   font-size: 18px;
   cursor: pointer;
   padding: 0px 10px 10px 10px;
+  
   
   
 }

@@ -20,45 +20,16 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
                 <div className ="logo-container">
                     <h1 className="logo">Basicbook</h1>
                 </div>
+                <Search users = {usersArray}/>
                 <div className ="navbar-items">
-                    <Search users = {usersArray}/>
+                    
                     <div id = "home-links"> 
-                    <Link id = "home-link" to={"/"}><i className="fa fa-solid fa-2x fa-house"></i></Link> 
+                    <Link id = "home-link" to={"/"}><i className="fa fa-solid fa-2xl fa-house"></i></Link> 
                     
                     </div>
-                    {/* <div className="notify" ></div> */}
-
-                    {/* <div className = "notification-container">  */}
-                        
-                        {/* <ul className= "notification-list">
-                            <li className="notification-links">Link 1</li>
-                            <li className="notification-links">Link 2</li>
-                            <li className="notification-links">Link 3</li> */}
-                        {/* <ul className= "wall_posts">
-                                { 
-                                    this.props.friends 
-                                    .sort((a,b) => a.created_at > b.created_at ? 1 : -1)
-                                    .map((friend , ind) => (
-                                        this.props.users[friend?.friend_id]?.username
-                                        <FriendRequestItem
-                                        key={`fRi-${ind}`}
-                                            friend={friend}
-                                            user= {this.props.user}
-                                            currentUser= {this.props.currentUser}
-                                            users= {(this.props.users)}
-                                        />
-                                    )
-                                    )
-                                 }
-                                
-                            </ul> */}
-
-
-                        {/* </ul> */}
-                    {/* </div> */}
                     <div className="notification-dropdown">
                         <div className="notification-dropdown-menu">
-                            <button id = "bell"><i className=" fa fa-solid fa-2x fa-bell"></i></button>
+                            <button id = "bell"><i className=" fa fa-solid fa-2xl fa-bell"></i></button>
 
                         <ul>
                                 <p className="notification-title">Friend Request</p>

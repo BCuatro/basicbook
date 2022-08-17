@@ -53,12 +53,8 @@ header{
 a{
   text-decoration: none;
 }
-  .word::first-letter{
-    color:#1f6cab;
-    font-size: larger;
-    font-family: monospace, cursive;
-  }
-  i::before{
+  
+i::before{
     text-decoration: none;
 }
 i::after{

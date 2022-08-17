@@ -26,15 +26,35 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
     obj.id === comment?.author_id
   )[0]
   
-  let dropdownId
+  // let dropdownId
   let visibility
+  // if (currentUser?.id === comment?.author_id){
+  //   dropdownId = "comment-dropdown"
+  //   visibility= "non-visibility"
+  // }
+  // else{
+  //   dropdownId = "dropdown-nonvisible"
+  //   visibility = ""
+  // }
+  let dropdown 
+  let dropdownMenu 
+  let dropdownLinks
+  let commentAndLikeId
   if (currentUser?.id === comment?.author_id){
-    dropdownId = "comment-dropdown"
+  
+    dropdown = "dropdown"
+    dropdownMenu = "dropdown-menu"
+    dropdownLinks= "dropdown-links"
     visibility= "non-visibility"
-  }
-  else{
-    dropdownId = "dropdown-nonvisible"
-    visibility = ""
+    commentAndLikeId = ""
+
+
+  } else {
+    dropdown = "nodropdown"
+    dropdownMenu = "nodropdown"
+    dropdownLinks= "nodropdown"
+    commentAndLikeId = "nopointer"
+    visibility = "nopointer"
   }
 
    
@@ -63,7 +83,7 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
           <div className= "comment-photo-container" >
                 <img  src={author?.profile_photoUrl ? author?.profile_photoUrl : "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" } className= "post-photo" id= "profile-picture" /> 
           </div>
-          <div className="comment_class-and-like-button">
+          <div className="comment_class-and-like-button" id ={commentAndLikeId}>
             <div className="comment-body-with-likes">
               <div className ="comment_class">
                 <div className = "post-header">
@@ -87,16 +107,16 @@ export default ({ comment, users, postId, deleteComment, currentUser, updateComm
                   </div>
               </div>
               <div className="like-and-dropdown">
-                <div className="dropdown" id={dropdownId}>
-                  <div className="dropdown-menu">
+                <div className={dropdown}>
+                  <div className={dropdownMenu}>
                     <button>...</button>
-                      <ul>
-                        <li><div className="dropdown-links" 
+                      <ul id= "comment-downdrop-menu">
+                        <li><div className={dropdownLinks} 
                                   onClick ={() => 
                                   updateComment("editcomment", comment)}>
                                   Edit Comment</div></li>
 
-                        <li><div className= "dropdown-links"
+                        <li><div className= {dropdownLinks}
                                   onClick={() => { 
                                   const confirmation = 
                                   window.confirm("Are you sure you want to delete this comment?")
