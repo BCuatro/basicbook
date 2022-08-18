@@ -25,7 +25,7 @@ import NewsfeedContainer from './newsfeed_container'
               <div className= "login-footer-container">
                 <div className="login-footer">
                   <div className= "footer-words" id = "first-sentence">A Facebook clone with a basic twist created by Eric Balfour</div>
-                  <div className= "footer-words" id = "second-sentence">Techonlogies used to build Basicbook:  React Js, Redux, JQuery, JBuilder HTML5, Postges SASS, Rails, </div>
+                  <div className= "footer-words" id = "second-sentence">Techonlogies used to build Basicbook:  React, Javascript, Redux, JQuery, JBuilder, Postges, SASS, Ruby on Rails, </div>
 
                 </div>
                 

@@ -3310,7 +3310,7 @@ var Homepage = function Homepage(_ref) {
     }, "A Facebook clone with a basic twist created by Eric Balfour"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "footer-words",
       id: "second-sentence"
-    }, "Techonlogies used to build Basicbook:  React Js, Redux, JQuery, JBuilder HTML5, Postges SASS, Rails, "))));
+    }, "Techonlogies used to build Basicbook:  React, Javascript, Redux, JQuery, JBuilder, Postges, SASS, Ruby on Rails, "))));
   };
 
   var Home = function Home(currentUser, users, user, friends) {
