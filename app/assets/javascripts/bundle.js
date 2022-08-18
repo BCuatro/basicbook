@@ -3287,6 +3287,8 @@ var Homepage = function Homepage(_ref) {
 
   var login = function login() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "login-splash-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "login"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "welcomeContainer"
@@ -3298,7 +3300,17 @@ var Homepage = function Homepage(_ref) {
       className: "word"
     }, "Basicbook")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "login-form-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_session_login_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "login-footer-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "login-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "footer-words",
+      id: "first-sentence"
+    }, "A Facebook clone with a basic twist created by Eric Balfour"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "footer-words",
+      id: "second-sentence"
+    }, "Techonlogies used to build Basicbook:  React Js, Redux, JQuery, JBuilder HTML5, Postges SASS, Rails, "))));
   };
 
   var Home = function Home(currentUser, users, user, friends) {

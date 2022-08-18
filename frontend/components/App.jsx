@@ -25,7 +25,7 @@ function App() {
     }, 2000);
   })
 return (
-    <div>
+    <div >
         {loading === "loading" ?
         <LoadingScreen /> :
         <div >

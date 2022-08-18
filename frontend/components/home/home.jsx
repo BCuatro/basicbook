@@ -11,15 +11,25 @@ import NewsfeedContainer from './newsfeed_container'
     
     const Homepage = ({ currentUser, users, user, friends, logout, openModal}) => {
         const login = () => (
-          <div className="login">
-            
-            <div className ="welcomeContainer">
-                <div className="word">Welcome</div>
-                <div className="word">To</div>
-                <div className="word">Basicbook</div>
-              
-            </div>
-            <div className="login-form-container"><LoginFormContainer /></div>
+          <div className="login-splash-container">
+            <div className="login">
+              <div className ="welcomeContainer">
+                  <div className="word">Welcome</div>
+                  <div className="word">To</div>
+                  <div className="word">Basicbook</div>
+                
+              </div>
+              <div className="login-form-container"><LoginFormContainer /></div>
+             
+              </div>
+              <div className= "login-footer-container">
+                <div className="login-footer">
+                  <div className= "footer-words" id = "first-sentence">A Facebook clone with a basic twist created by Eric Balfour</div>
+                  <div className= "footer-words" id = "second-sentence">Techonlogies used to build Basicbook:  React Js, Redux, JQuery, JBuilder HTML5, Postges SASS, Rails, </div>
+
+                </div>
+                
+              </div>
           
           </div>
           
