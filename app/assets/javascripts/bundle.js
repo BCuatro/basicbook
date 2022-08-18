@@ -6892,6 +6892,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       email: "",
       first_name: "",
       last_name: "",
+      birth_date: "",
+      gender: "",
       password: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));

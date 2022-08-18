@@ -11,6 +11,8 @@ class SessionForm extends React.Component{
             email:"",
             first_name: "",
             last_name: "",
+            birth_date: "",
+            gender: "",
             password: ""
         }
         this.handleSubmit= this.handleSubmit.bind(this);
@@ -101,7 +103,9 @@ class SessionForm extends React.Component{
                                     Last name is invalid 
                                 </div>
                             </div>
+                            
                         </div>
+                        
                         <div className="modal-input-container">
                             <input type="text" 
                                 id="signup-email"
