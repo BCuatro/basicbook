@@ -5,6 +5,7 @@ import { deleteComment, fetchComments } from '../../actions/comments_actions';
 import CommentsIndex from './comments_index';
 import { withRouter} from "react-router-dom"
 import { openModal } from '../../actions/modal_actions';
+import { fetchLikes } from '../../actions/likes_actions';
 
 
 
@@ -25,6 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchComments: () => dispatch(fetchComments()),
+  fetchLikes: () => dispatch(fetchLikes()),
   openModal: (modal, comment)=> dispatch(openModal({modal: modal, comment: comment})),
   deleteComment: (commentId) => dispatch(deleteComment(commentId))
 

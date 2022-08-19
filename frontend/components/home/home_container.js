@@ -6,6 +6,7 @@ import { fetchUser } from "../../util/users_api_util";
 import HomePage from "./home";
 
 
+
     const mapStateToProps = (state,ownProps) => {
     const currentUser= state.entities.users[state.session.id]
     const user= state.entities.users[ownProps.match.params.userId]
