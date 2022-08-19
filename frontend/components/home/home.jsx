@@ -1,10 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
-// import FriendItem from '../friends/friend_item';
-// import NavBarContainer from '../nav_bar/nav_bar_container';
-// import GreetingContainer from '../nav_bar/nav_bar_container';
-// import PostContainer from '../posts/post_container';
-// import ProfileContainer from '../profile/profile_container';
 import LoginFormContainer from '../session/login_form_container';
 import NewsfeedContainer from './newsfeed_container'
 
@@ -43,7 +37,7 @@ import NewsfeedContainer from './newsfeed_container'
               </div>
 
               <div className="person-container">
-                      <h2 className="person-title">Sponsership</h2>
+                      <h2 className="person-title">Sponsorship</h2>
                       <p className="about-eric">This clone was brought to you by Eric Balfour.  Before you leave, please visit the links below to learn more about Eric.  Thank You! </p>
                       <div className="about-me-links">
                           <a target="_blank" href="https://github.com/BCuatro">

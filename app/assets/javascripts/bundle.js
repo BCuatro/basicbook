@@ -1989,8 +1989,8 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
 
   _createClass(CommentsIndex, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchComments();
-      // this.props.fetchUser(this.props.match.params.userId)
+    value: function componentDidMount() {
+      this.props.fetchLikes();
     }
   }, {
     key: "handleOpenModal",
@@ -3267,12 +3267,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.js");
 /* harmony import */ var _newsfeed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newsfeed_container */ "./frontend/components/home/newsfeed_container.js");
- // import { Link } from 'react-router-dom'
-// import FriendItem from '../friends/friend_item';
-// import NavBarContainer from '../nav_bar/nav_bar_container';
-// import GreetingContainer from '../nav_bar/nav_bar_container';
-// import PostContainer from '../posts/post_container';
-// import ProfileContainer from '../profile/profile_container';
 
 
 
@@ -3325,7 +3319,7 @@ var Homepage = function Homepage(_ref) {
       className: "person-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
       className: "person-title"
-    }, "Sponsership"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+    }, "Sponsorship"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
       className: "about-eric"
     }, "This clone was brought to you by Eric Balfour.  Before you leave, please visit the links below to learn more about Eric.  Thank You! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: "about-me-links"
@@ -4276,7 +4270,7 @@ var NavBarExtension = function NavBarExtension(_ref) {
   }, "@", (_users$id5 = users[id]) === null || _users$id5 === void 0 ? void 0 : _users$id5.username))));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBarExtension); // !user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : user?.profile_photoUrl
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBarExtension);
 
 /***/ }),
 
@@ -5074,6 +5068,7 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchLikes();
+      this.props.fetchComments();
     }
   }, {
     key: "handleOpenModal",

@@ -9,8 +9,7 @@ class CommentsIndex extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchComments();
-    // this.props.fetchUser(this.props.match.params.userId)
+    this.props.fetchLikes()
   }
 
   handleOpenModal(modal, comment) {

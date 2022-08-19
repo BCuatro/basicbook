@@ -43,4 +43,3 @@ export default NavBarExtension
 
 
 
-// !user?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : user?.profile_photoUrl

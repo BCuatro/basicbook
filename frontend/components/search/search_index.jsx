@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import SearchItem from './search_item';
 
-
-
  const Search = ({users}) => {
     
     const [searchState, setSearchState]= useState("")
