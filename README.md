@@ -47,47 +47,43 @@ Users will have access to their navigation bar after they log in.  The navigatio
 
 ![extension_navbar](https://user-images.githubusercontent.com/100498310/185633304-d5712ba7-db0c-4504-8e11-cc0d2cb658b5.gif)
 
-Navigation Bar Extension Code:       
+Navigation Bar Extension Code Snippet:       
 
-/// 
-const NavBarExtension = ({users}) => {
-  const NavBarExtension = ({users}) => {
+    const NavBarExtension = ({users}) => {
       const id = parseInt(useParams().userId)
 
+   
+        const [state, setState] = useState(false)
+        const changevalueonScroll = () => {
+            const scrollvalue = document.documentElement.scrollTop
+            if (scrollvalue > 500){
+                setState(true)
 
-      const [state, setState] = useState(false)
-      const changevalueonScroll = () => {
-          const scrollvalue = document.documentElement.scrollTop
-          if (scrollvalue > 500){
-              setState(true)
+            }
+            else{
+                setState(false)
+            }
+        }
 
-          }
-          else{
-              setState(false)
-          }
+        window.addEventListener('scroll', changevalueonScroll)
+        return(
+            <div className = "navbar-extension-container" id = {state ? "visible-navbar" : "hidden-navbar"}>
+                        <div classname= "navbar-extension-background"></div>
+                        <div className="navbar-extension">
+                            <img src={!users[id]?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : users[id]?.profile_photoUrl} className="navbarext-photo" />
+
+
+                            <div className="navbarext-extension-content">
+                                <div id="navbarext-name">{users[id]?.first_name} {users[id]?.last_name} </div>
+                                <div id="navbarext-username-name">@{users[id]?.username}</div>
+                            </div>
+
+                        </div>
+                </div>
+
+        ) 
       }
-
-      window.addEventListener('scroll', changevalueonScroll)
-      return(
-          <div className = "navbar-extension-container" id = {state ? "visible-navbar" : "hidden-navbar"}>
-                      <div classname= "navbar-extension-background"></div>
-                      <div className="navbar-extension">
-                          <img src={!users[id]?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : users[id]?.profile_photoUrl} className="navbarext-photo" />
-
-
-                          <div className="navbarext-extension-content">
-                              <div id="navbarext-name">{users[id]?.first_name} {users[id]?.last_name} </div>
-                              <div id="navbarext-username-name">@{users[id]?.username}</div>
-                          </div>
-
-                      </div>
-              </div>
-
-      ) 
-  }
-
-
-  export default NavBarExtension
+      export default NavBarExtension
 
 
 ### Friends:    
@@ -113,65 +109,65 @@ If a user tries to go to a page that doesn't exist, they will be redirect to the
 <img width="1429" alt="page_not_found" src="https://user-images.githubusercontent.com/100498310/185640758-755d7f7a-a400-472c-97da-6810af70fadf.png">
 
 
-Search Bar code:       
+Search Bar Code Snippet:       
 
-const Search = ({users}) => {
-    
-    const [searchState, setSearchState]= useState("")
-    const handleChange=(e) =>{
-        setSearchState(e.target.value)
-    }
+    const Search = ({users}) => {
 
-    
-    const ResetSearchBar =() =>{
-        setSearchState("")
-        
-        
-    }
+        const [searchState, setSearchState]= useState("")
+        const handleChange=(e) =>{
+            setSearchState(e.target.value)
+        }
 
-    let visible
-    if(searchState.replace(/ /g, '').length ===0){visible= "nonvisible"}
-    
-    return (
-        <div className = "search-container">
-            <div className= "searchbar-container">
-                <i className="fa fa-duotone fa-magnifying-glass"></i>
 
-                <input type="search" 
-                className="searchbar" 
-                placeholder='Search Basicbook' 
-                value={searchState}
-                onChange={handleChange}
-                />
-            </div>
-            
+        const ResetSearchBar =() =>{
+            setSearchState("")
 
-            <div className="search-results-container" >
-                <ul className= "search-results" id = {visible}>
-                    {
-                        users
-                        .filter(user => user.first_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
-                        || 
-                        user.last_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
-                        ||
-                        user.username.split(" ").join("").toLocaleLowerCase().includes(searchState.toLocaleLowerCase()))
-                        .sort((a,b) => a.first_name > b.first_name ? 1 : -1)
-                        .map((user) => (
-                            <SearchItem
-                                key={user.id}
-                                user={user}
-                                reset={ResetSearchBar}
-                                />
+
+        }
+
+        let visible
+        if(searchState.replace(/ /g, '').length ===0){visible= "nonvisible"}
+
+        return (
+            <div className = "search-container">
+                <div className= "searchbar-container">
+                    <i className="fa fa-duotone fa-magnifying-glass"></i>
+
+                    <input type="search" 
+                    className="searchbar" 
+                    placeholder='Search Basicbook' 
+                    value={searchState}
+                    onChange={handleChange}
+                    />
+                </div>
+
+
+                <div className="search-results-container" >
+                    <ul className= "search-results" id = {visible}>
+                        {
+                            users
+                            .filter(user => user.first_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
+                            || 
+                            user.last_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
+                            ||
+                            user.username.split(" ").join("").toLocaleLowerCase().includes(searchState.toLocaleLowerCase()))
+                            .sort((a,b) => a.first_name > b.first_name ? 1 : -1)
+                            .map((user) => (
+                                <SearchItem
+                                    key={user.id}
+                                    user={user}
+                                    reset={ResetSearchBar}
+                                    />
+                                )
                             )
-                        )
-                    }
-                </ul>
-            </div>
-        </div>      
-    )
- }
+                        }
+                    </ul>
+                </div>
+            </div>      
+        )
+     }
 
- export default Search
+     export default Search
 
 
 ### Like:
