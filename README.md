@@ -2,27 +2,173 @@
 
 Basicbook is a social media clone  of the popular website Facebook.  Basicbook allows people to sign up and connect with other people all around the world.  Users would have access to their own profile page, which they could add pictures and inforomation about themseleves.   Users would be able to add and remove friends, and also be able to post and comment on their friend's walls.  The miminalistic approach to the interface would make it more user friendly and also allow their personality to shine 
 
-Link: https://metabook2.herokuapp.com/
+Link: https://basicbook.herokuapp.com/#/
+
+
+![basicbookicon](https://user-images.githubusercontent.com/100498310/185635341-9f0d60fd-2811-45b3-8efe-936a381834c8.png)
+
+
+## Technologies
+
+React
+Javascript
+Redux
+Ruby on Rails
+PostgreSQL
+AWS S3 Storage
+SASS
+Webpack
+Node
+
 
 ## Features
 
+
 ### User Auth:
-Users can signup and login to Basicbook.  The signup and login forms has their own modal which will render and credentials errors.  Once the user successfully logs in, they will be redirected to their home page. They will also have access to  a navigation bar, which contains their profile page link, homepage link, search bar, and logout button.  On their homepage user would be able to see their friend's posts, and friends list.  
+Users can signup and log into Basicbook.  Initially users will be direct to the login splash page, where they can sign in.  If a user needs to signup, they can click the "Create New Acount" button, and the signup form modal will appear. Credential errors will render if a user inputs invalid information into one of the forms.  Once the user successfully logs in, they will be redirected to their homepage. Only users that successfully logs in will have access to the features on basicbook. 
+
+
+![login_splash](https://user-images.githubusercontent.com/100498310/185610126-caf9b3cf-7605-4035-acf6-ddd09faa31f2.gif)
 
 ### Profile:
-Users will have their own profile page which they can customize by adding a profile picture, a cover picture, and information about themseleves. The profile page will contain posts, which the user's friends have posted on their wall.  The profile page will have tabs that contain different sets of infomation allowing the users to have a clean and organized profile page.  Tabs include: Posts, About Me, Pictures, and Friends.
+Users will have their own profile page which they can customize by adding a profile picture, a cover picture, and information about themselves. The profile page will contain 1) Navigation bar, 2) Profile header, which contains a profile picture. cover page picture, name, and username 3) User's information, 4) User's friend list, 5) New post form, 6) User's post wall.  All profile and cover pictures are uploaded and stored on AWS S3
+
+![code](/app/assets/images/User_profile.png)        
+
 
 ### Homepage/Newsfeed:
-Users will have a homepage which contains posts from their friends and friends list.
+Users will be redirected to their homepage when they log in.  The homepage includes a newsfeed of other users posts and a sponsorship section about the creator of basicbook.  
 
 ### Posts/Comments:    
-Users will have the option to post on their wall or their friend's wall.  Users would also be able to receive posts from the friends.  Users would have the ability to add comments to posts, or to like a post.  Users would only be able to delete posts that they have authored.  
+Users will have the option to post on their wall or a friend's wall.  Users also have the option to upload a photo in their posts. Users would have the ability to add comments to posts, or to like a post/comment.  Posts and comments have full CRUD capabilities.  Only the author's of a post and/or comment will have the capability to delete or update that post or comment.  
+
+### Navigation Bar: 
+Users will have access to their navigation bar after they log in.  The navigation bar is located on the top of the window.  The navigation bar houses the search bar, the "Return to Home" button, the notification bell, the "Go to User's Profile" button, and the logout button.  When visiting another user's profile, if the current user scrolls pass the user's profile header, an extension to the navigation bar will appear, which shows a condense version of the user's profile header. 
+
+![extension_navbar](https://user-images.githubusercontent.com/100498310/185633304-d5712ba7-db0c-4504-8e11-cc0d2cb658b5.gif)
+
+Navigation Bar Extension Code Snippet:       
+
+    const NavBarExtension = ({users}) => {
+      const id = parseInt(useParams().userId)
+
+   
+        const [state, setState] = useState(false)
+        const changevalueonScroll = () => {
+            const scrollvalue = document.documentElement.scrollTop
+            if (scrollvalue > 500){
+                setState(true)
+
+            }
+            else{
+                setState(false)
+            }
+        }
+
+        window.addEventListener('scroll', changevalueonScroll)
+        return(
+            <div className = "navbar-extension-container" id = {state ? "visible-navbar" : "hidden-navbar"}>
+                        <div classname= "navbar-extension-background"></div>
+                        <div className="navbar-extension">
+                            <img src={!users[id]?.profile_photoUrl ? "https://metabook-dev.s3.amazonaws.com/fXyCQgj5h3ZxMpDLr4F8pA32" : users[id]?.profile_photoUrl} className="navbarext-photo" />
+
+
+                            <div className="navbarext-extension-content">
+                                <div id="navbarext-name">{users[id]?.first_name} {users[id]?.last_name} </div>
+                                <div id="navbarext-username-name">@{users[id]?.username}</div>
+                            </div>
+
+                        </div>
+                </div>
+
+        ) 
+      }
+      export default NavBarExtension
+
 
 ### Friends:    
-Users would be able to add friends through making a friends request.  Users will have the option to accept or deny friend requests.  If a user accepts the request, the requestor and requestee will become friends.  If the user decides to decline a request, then the requestor will not become their friend
+Users would have the ability to add friends through friend requests.  A friend request is generated by clicking the "Add Friend" button on a user's profile.  When the friend request is generated, the "Add Friend" button turns into a "Pending Request" message on the recipient's page. The friend request will appear in the recipient's notification window.  Users have access to the notification window by clicking on the notification bell located on the navigation bar. If the user has any pending friend requests, the number of requests will appear next to the notification bell.  The recipient will have the option to accept or deny the friend request.  If the recipient accepts the request, the requestor and recipient will become friends.  Both users will have the ability to defriend one another.        
+
+Friend button status
+
+![code](/app/assets/images/friend_button.png)              
+
+Notification window/ Friend Request                
+
+![code](/app/assets/images/Notification.png)
+
 
 ### Search:    
-A search bar will be available to users on their navigation bar located at the top of their screen.  Users would be able to search for other users by their first name, last name or username.  
+The search bar is available to users on their navigation bar.  Users would be able to search for other users by their first name, last name or username.         
+
+![search_bar](https://user-images.githubusercontent.com/100498310/185634076-d201692c-b5a1-4e93-afa6-4a21a50a9576.gif)
+
+
+If a user tries to go to a page that doesn't exist, they will be redirect to the Pagenotfound page.       
+
+<img width="1429" alt="page_not_found" src="https://user-images.githubusercontent.com/100498310/185640758-755d7f7a-a400-472c-97da-6810af70fadf.png">
+
+
+Search Bar Code Snippet:       
+
+    const Search = ({users}) => {
+
+        const [searchState, setSearchState]= useState("")
+        const handleChange=(e) =>{
+            setSearchState(e.target.value)
+        }
+
+
+        const ResetSearchBar =() =>{
+            setSearchState("")
+
+
+        }
+
+        let visible
+        if(searchState.replace(/ /g, '').length ===0){visible= "nonvisible"}
+
+        return (
+            <div className = "search-container">
+                <div className= "searchbar-container">
+                    <i className="fa fa-duotone fa-magnifying-glass"></i>
+
+                    <input type="search" 
+                    className="searchbar" 
+                    placeholder='Search Basicbook' 
+                    value={searchState}
+                    onChange={handleChange}
+                    />
+                </div>
+
+
+                <div className="search-results-container" >
+                    <ul className= "search-results" id = {visible}>
+                        {
+                            users
+                            .filter(user => user.first_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
+                            || 
+                            user.last_name.toLocaleLowerCase().includes(searchState.toLocaleLowerCase()) 
+                            ||
+                            user.username.split(" ").join("").toLocaleLowerCase().includes(searchState.toLocaleLowerCase()))
+                            .sort((a,b) => a.first_name > b.first_name ? 1 : -1)
+                            .map((user) => (
+                                <SearchItem
+                                    key={user.id}
+                                    user={user}
+                                    reset={ResetSearchBar}
+                                    />
+                                )
+                            )
+                        }
+                    </ul>
+                </div>
+            </div>      
+        )
+     }
+
+     export default Search
+
 
 ### Like:
-Users can like and unlike posts
+Users will have the ability to like comments and/or post.  Once a user likes a post or comment, they will not be able to like it again.  User will be able to unlike and posts or comments that they already liked.  
