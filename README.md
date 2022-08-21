@@ -1,6 +1,6 @@
 # README
 
-Basicbook is a social media clone  of the popular website Facebook.  Basicbook allows people to sign up and connect with other people all around the world.  Users would have access to their own profile page, which they could add pictures and inforomation about themseleves.   Users would be able to add and remove friends, and also be able to post and comment on their friend's walls.  The miminalistic approach to the interface would make it more user friendly and also allow their personality to shine 
+Basicbook is a social media clone  of the popular website Facebook.  Basicbook allows people to sign up and connect with other people all around the world.  Users would have access to their own profile page, which they could add pictures and information about themselves.   Users would be able to add and remove friends, and also be able to post and comment on their friend's walls.  The miminalistic approach to the interface would make it more user friendly and also allow their personality to shine 
 
 Link: https://basicbook.herokuapp.com/#/
 
