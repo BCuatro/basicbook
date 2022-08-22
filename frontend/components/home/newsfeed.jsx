@@ -33,7 +33,6 @@ class Newsfeed extends React.Component {
   }
   
   render() {
-    // console.log(this.props.currentUser.birth_date)
     return (
       <div className ="newfeed">
         <div className= "postButtonModalContainter" >
@@ -62,6 +61,7 @@ class Newsfeed extends React.Component {
                 currentUser= {this.props.currentUser}
                 updatePost ={ this.handleEditOpenModal}
                 likes = {this.props.likes}
+                comments= {this.props.comments}
                 
                 />
                 )

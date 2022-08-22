@@ -11,7 +11,8 @@ class Post extends React.Component {
            
     }
     componentDidMount() {
-        this.props.fetchLikes;
+        this.props.fetchLikes();
+        this.props.fetchComments();
 
       }
 

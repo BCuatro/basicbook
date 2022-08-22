@@ -10,6 +10,7 @@ class CommentsIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchLikes()
+    this.props.fetchComments(this.props.post.id)
   }
 
   handleOpenModal(modal, comment) {

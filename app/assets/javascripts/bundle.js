@@ -1991,6 +1991,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchLikes();
+      this.props.fetchComments(this.props.post.id);
     }
   }, {
     key: "handleOpenModal",
@@ -3495,7 +3496,6 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           _this$props$currentUs2,
           _this2 = this;
 
-      // console.log(this.props.currentUser.birth_date)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "newfeed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3526,7 +3526,8 @@ var Newsfeed = /*#__PURE__*/function (_React$Component) {
           deletePost: _this2.props.deletePost,
           currentUser: _this2.props.currentUser,
           updatePost: _this2.handleEditOpenModal,
-          likes: _this2.props.likes
+          likes: _this2.props.likes,
+          comments: _this2.props.comments
         });
       }))));
     }
@@ -3583,6 +3584,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     currentUser: state.entities.users[state.session.id],
     likes: Object.keys(state.entities.likes).map(function (key) {
       return state.entities.likes[key];
+    }),
+    comments: Object.keys(state.entities.comments).map(function (key) {
+      return state.entities.comments[key];
     })
   };
 };
@@ -4085,7 +4089,6 @@ var NavBar = function NavBar(_ref) {
   var friendRequestCount = friends.filter(function (request) {
     return (currentUser === null || currentUser === void 0 ? void 0 : currentUser.id) === (request === null || request === void 0 ? void 0 : request.friend_id) && request.friendship_status === "pending";
   });
-  console.log(friends);
   var liNavBar = currentUser ?
   /*#__PURE__*/
   // <div className ="navbar-container">
@@ -4907,7 +4910,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
   _createClass(Post, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLikes;
+      this.props.fetchLikes();
+      this.props.fetchComments();
     }
   }, {
     key: "handleOpenModal",
@@ -4964,10 +4968,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
-/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./post */ "./frontend/components/posts/post.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/comments_actions */ "./frontend/actions/comments_actions.js");
+/* harmony import */ var _actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likes_actions */ "./frontend/actions/likes_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/posts_actions */ "./frontend/actions/posts_actions.js");
+/* harmony import */ var _post__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./post */ "./frontend/components/posts/post.jsx");
+
+
 
 
 
@@ -4995,23 +5003,29 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)({
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)({
         modal: 'createpost'
       }));
     },
+    fetchComments: function fetchComments() {
+      return dispatch((0,_actions_comments_actions__WEBPACK_IMPORTED_MODULE_2__.fetchComments)());
+    },
     removeErrors: function removeErrors() {
-      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__.removeErrors)());
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__.removeErrors)());
     },
     closeModal: function closeModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.closeModal)());
     },
     fetchPosts: function fetchPosts() {
-      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_3__.fetchPosts)());
+      return dispatch((0,_actions_posts_actions__WEBPACK_IMPORTED_MODULE_5__.fetchPosts)());
+    },
+    fetchLikes: function fetchLikes() {
+      return dispatch(_actions_likes_actions__WEBPACK_IMPORTED_MODULE_3__.fetchLikes);
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_post__WEBPACK_IMPORTED_MODULE_6__["default"])));
 
 /***/ }),
 
@@ -5072,8 +5086,7 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(PostIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchLikes();
-      this.props.fetchComments();
+      this.props.fetchLikes(); // this.props.fetchComments()
     }
   }, {
     key: "handleOpenModal",

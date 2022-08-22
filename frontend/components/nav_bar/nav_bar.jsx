@@ -15,7 +15,6 @@ const NavBar = ({currentUser, logout, usersArray, users, user, friends}) => {
     const friendRequestCount =  friends.filter(request=>
         currentUser?.id ===request?.friend_id && request.friendship_status === "pending"
       )
-    console.log(friends)
     const liNavBar = currentUser ? (
         
         // <div className ="navbar-container">

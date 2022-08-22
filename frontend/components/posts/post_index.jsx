@@ -10,7 +10,7 @@ class PostIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchLikes()
-    this.props.fetchComments()
+    // this.props.fetchComments()
   }
 
   handleOpenModal(modal, post) {

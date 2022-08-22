@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { fetchComments } from '../../actions/comments_actions';
+import { fetchLikes } from '../../actions/likes_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { removeErrors } from '../../actions/posts_actions';
 import { fetchPosts } from '../../actions/posts_actions';
 import Post from './post';
+
 
 
 
@@ -28,9 +31,11 @@ const mapStateToProps= (state, ownProps) =>{
 const mapDispatchToProps= dispatch =>{
     return{
         openModal: ()=> dispatch(openModal({modal: 'createpost'})),
+        fetchComments: () => dispatch(fetchComments()),
         removeErrors: ()=> dispatch(removeErrors()),
         closeModal: () => dispatch(closeModal()),
         fetchPosts: () => dispatch(fetchPosts()),
+        fetchLikes: () => dispatch(fetchLikes)
         
     }
 }
