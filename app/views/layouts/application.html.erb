@@ -6,6 +6,14 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= favicon_link_tag asset_path('favicon.ico') %>
+     <meta property="og:title" content="Basicbook" />
+     <meta property='og:image' content="<%= image_url('../../assets/images/login_splash.gif') %>"/>
+     <meta property="og:description"
+       content="A clone of facebook with a basic twist."
+     />
+     <meta property="og:url"
+       content="https://basicbook.herokuapp.com/"
+     />
     <script src="https://kit.fontawesome.com/804d17e48d.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
